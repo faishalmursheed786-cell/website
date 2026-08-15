@@ -145,7 +145,7 @@
                 </div>
 
                 <div class="text-[10px] uppercase tracking-widest text-brand-400 mt-1">
-                    Z
+                    Senior Engineer
                 </div>
             </div>
 
@@ -205,17 +205,24 @@
 
 
 <!-- ========================================================= -->
-<!-- HERO -->
+<!-- HERO WITH BACKGROUND VIDEO -->
 <!-- ========================================================= -->
 
 <section id="home"
          class="relative min-h-screen flex items-center pt-28 pb-20 overflow-hidden">
 
-    <div class="absolute inset-0 grid-bg"></div>
+    <!-- Background Video Element -->
+    <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none opacity-25">
+        <source src="bg-video.mp4" type="video/mp4">
+    </video>
 
-    <div class="absolute -top-40 -right-40 w-96 h-96 bg-brand-500/10 rounded-full blur-3xl"></div>
+    <!-- Dark Gradient & Glass Overlay -->
+    <div class="absolute inset-0 bg-gradient-to-b from-dark-900/80 via-dark-900/60 to-dark-900 z-0"></div>
+    <div class="absolute inset-0 grid-bg z-0 opacity-40"></div>
 
-    <div class="absolute bottom-0 -left-40 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl"></div>
+    <!-- Glowing Blobs -->
+    <div class="absolute -top-40 -right-40 w-96 h-96 bg-brand-500/15 rounded-full blur-3xl z-0"></div>
+    <div class="absolute bottom-0 -left-40 w-96 h-96 bg-cyan-500/15 rounded-full blur-3xl z-0"></div>
 
     <div class="max-w-7xl mx-auto px-5 sm:px-8 relative z-10 w-full">
 
@@ -265,7 +272,7 @@
                     </a>
 
                     <a href="#contact"
-                       class="px-7 py-4 rounded-xl border border-slate-700 bg-dark-800 hover:bg-dark-700 text-white font-semibold transition">
+                       class="px-7 py-4 rounded-xl border border-slate-700 bg-dark-800/80 backdrop-blur-sm hover:bg-dark-700 text-white font-semibold transition">
 
                         <i class="fa-regular fa-paper-plane mr-2"></i>
                         Contact Me
@@ -658,8 +665,6 @@
 
         <div class="flex flex-wrap justify-center gap-3 max-w-5xl mx-auto fade-up">
 
-         <div class="flex flex-wrap justify-center gap-3 max-w-5xl mx-auto fade-up">
-
             <!-- Core Network & Security -->
             <span class="skill">Cisco Core Routing & Switching</span>
             <span class="skill">Fortinet Next-Gen Firewalls (NGFW)</span>
@@ -675,8 +680,8 @@
             <span class="skill">IP Video Intercom & SIP Telephony</span>
 
             <!-- Fiber & Infrastructure -->
-            <span class="skill">Optical Fiber Splicing & Fusion Termination</span>
-            <span class="skill">OTDR Optical Time-Domain Reflectometry & Power Metering</span>
+            <span class="skill">Optical Fiber Networking</span>
+            <span class="skill">OTDR Optical Time-Domain Reflectometry </span>
             <span class="skill">Structured Cabling Standards (Cat6A / Cat7 / MPO)</span>
             <span class="skill">Server Rack Architecture & Thermal Containment</span>
 
@@ -691,8 +696,6 @@
             <span class="skill">Single Line Diagrams (SLD) & Cable Containment Routes</span>
             <span class="skill">MEP Coordination & Core Cutting Provisioning</span>
             <span class="skill">End-to-End Testing, Commissioning & As-Built BOQ Approvals</span>
-
-        </div>
 
         </div>
 
