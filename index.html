@@ -26,7 +26,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
     <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -102,6 +103,23 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+
+        .skill {
+            padding: 10px 16px;
+            border-radius: 10px;
+            background: #0d1420;
+            border: 1px solid #243044;
+            color: #cbd5e1;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all .25s ease;
+        }
+
+        .skill:hover {
+            border-color: #0ea5e9;
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 
@@ -112,29 +130,43 @@
 <!-- ========================================================= -->
 
 <header class="fixed top-0 left-0 right-0 z-50 glass border-b border-slate-800/70">
+
     <div class="max-w-7xl mx-auto px-5 sm:px-8 h-20 flex items-center justify-between">
+
         <a href="#home" class="flex items-center gap-3">
+
             <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-600 to-cyan-400 flex items-center justify-center font-black text-white shadow-lg shadow-brand-500/20">
                 SF
             </div>
+
             <div>
                 <div class="text-white font-bold leading-none">
                     Shah Faishal
                 </div>
+
                 <div class="text-[10px] uppercase tracking-widest text-brand-400 mt-1">
-                    z
+                    Network • Automation • ELV
                 </div>
             </div>
+
         </a>
 
         <!-- Desktop Menu -->
+
         <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+
             <a href="#about" class="hover:text-brand-400 transition">About</a>
+
             <a href="#services" class="hover:text-brand-400 transition">Services</a>
+
             <a href="#skills" class="hover:text-brand-400 transition">Skills</a>
+
             <a href="#projects" class="hover:text-brand-400 transition">Projects</a>
+
             <a href="#experience" class="hover:text-brand-400 transition">Experience</a>
+
             <a href="#contact" class="hover:text-brand-400 transition">Contact</a>
+
         </nav>
 
         <a href="#contact"
@@ -143,22 +175,32 @@
         </a>
 
         <!-- Mobile Button -->
-        <button id="menuBtn" class="md:hidden text-slate-300 text-2xl">
+
+        <button id="menuBtn"
+                class="md:hidden text-slate-300 text-2xl">
             <i class="fa-solid fa-bars"></i>
         </button>
+
     </div>
 
     <!-- Mobile Menu -->
-    <div id="mobileMenu" class="hidden md:hidden border-t border-slate-800 px-5 py-5 bg-dark-800">
+
+    <div id="mobileMenu"
+         class="hidden md:hidden border-t border-slate-800 px-5 py-5 bg-dark-800">
+
         <div class="flex flex-col gap-5">
+
             <a href="#about">About</a>
             <a href="#services">Services</a>
             <a href="#skills">Skills</a>
             <a href="#projects">Projects</a>
             <a href="#experience">Experience</a>
             <a href="#contact">Contact</a>
+
         </div>
+
     </div>
+
 </header>
 
 
@@ -166,100 +208,155 @@
 <!-- HERO -->
 <!-- ========================================================= -->
 
-<section id="home" class="relative min-h-screen flex items-center pt-28 pb-20 overflow-hidden">
+<section id="home"
+         class="relative min-h-screen flex items-center pt-28 pb-20 overflow-hidden">
+
     <div class="absolute inset-0 grid-bg"></div>
+
     <div class="absolute -top-40 -right-40 w-96 h-96 bg-brand-500/10 rounded-full blur-3xl"></div>
+
     <div class="absolute bottom-0 -left-40 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl"></div>
 
     <div class="max-w-7xl mx-auto px-5 sm:px-8 relative z-10 w-full">
+
         <div class="grid lg:grid-cols-12 gap-14 items-center">
 
             <!-- LEFT -->
+
             <div class="lg:col-span-7 fade-up">
+
                 <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-brand-500/20 bg-brand-500/10 text-brand-400 text-xs sm:text-sm font-semibold mb-6">
+
                     <span class="w-2 h-2 rounded-full bg-brand-400 animate-pulse"></span>
+
                     Network • Automation • ELV • Infrastructure
+
                 </div>
 
                 <h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white leading-tight tracking-tight">
+
                     Building Smart &
+
                     <span class="gradient-text">
                         Connected
                     </span>
+
                     Infrastructure.
+
                 </h1>
 
                 <p class="mt-7 text-lg sm:text-xl text-slate-400 leading-relaxed max-w-2xl">
-                    I am <strong class="text-white">Shah Faishal</strong>, a Network, Automation, ELV & Infrastructure Engineer based in Dubai, delivering reliable technology solutions from design and installation to testing and commissioning.
+
+                    <strong class="text-white">Shah Faishal</strong>,
+                    a Network, Automation, ELV & Infrastructure Engineer
+                    based in Dubai, delivering reliable technology solutions
+                    from design and installation to testing and commissioning.
+
                 </p>
 
                 <div class="flex flex-wrap gap-4 mt-9">
+
                     <a href="#projects"
                        class="px-7 py-4 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold transition shadow-xl shadow-brand-600/20">
+
                         <i class="fa-solid fa-diagram-project mr-2"></i>
                         View Projects
+
                     </a>
 
                     <a href="#contact"
                        class="px-7 py-4 rounded-xl border border-slate-700 bg-dark-800 hover:bg-dark-700 text-white font-semibold transition">
+
                         <i class="fa-regular fa-paper-plane mr-2"></i>
                         Contact Me
+
                     </a>
+
                 </div>
 
                 <!-- Highlights -->
+
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-5 mt-12 pt-8 border-t border-slate-800">
+
                     <div>
                         <div class="text-2xl font-black text-white">10+</div>
                         <div class="text-xs text-slate-500 mt-1">Villa Automation</div>
                     </div>
+
                     <div>
                         <div class="text-2xl font-black text-white">Dubai</div>
                         <div class="text-xs text-slate-500 mt-1">Project Experience</div>
                     </div>
+
                     <div>
                         <div class="text-2xl font-black text-white">ELV</div>
                         <div class="text-xs text-slate-500 mt-1">Systems</div>
                     </div>
+
                     <div>
                         <div class="text-2xl font-black text-white">Fiber</div>
                         <div class="text-xs text-slate-500 mt-1">Optic Engineering</div>
                     </div>
+
                 </div>
+
             </div>
 
+
             <!-- RIGHT PROFILE -->
+
             <div class="lg:col-span-5 flex justify-center fade-up">
+
                 <div class="relative w-full max-w-md">
+
                     <div class="absolute inset-0 bg-brand-500/20 blur-3xl rounded-full"></div>
+
                     <div class="relative p-1 rounded-3xl bg-gradient-to-br from-brand-500 via-cyan-400 to-brand-700">
+
                         <div class="rounded-[22px] overflow-hidden bg-dark-800 relative">
+
                             <img src="profile.jpg"
                                  alt="Shah Faishal - Network and Automation Engineer"
                                  class="w-full aspect-[4/5] object-cover object-center">
 
                             <div class="absolute bottom-4 left-4 right-4 glass border border-slate-700/60 rounded-xl p-4">
+
                                 <div class="flex items-center justify-between">
+
                                     <div>
+
                                         <div class="font-bold text-white">
                                             Shah Faishal
                                         </div>
+
                                         <div class="text-xs text-brand-400 mt-1">
                                             Network • Automation • ELV • Infrastructure
                                         </div>
+
                                     </div>
+
                                     <div class="w-10 h-10 rounded-lg bg-brand-500/20 flex items-center justify-center text-brand-400">
+
                                         <i class="fa-solid fa-network-wired"></i>
+
                                     </div>
+
                                 </div>
+
                             </div>
+
                         </div>
+
                     </div>
+
                 </div>
+
             </div>
 
         </div>
+
     </div>
+
 </section>
 
 
@@ -268,77 +365,130 @@
 <!-- ========================================================= -->
 
 <section id="about" class="py-24 border-t border-slate-800/70">
+
     <div class="max-w-7xl mx-auto px-5 sm:px-8">
+
         <div class="grid lg:grid-cols-2 gap-14 items-center">
+
             <div class="fade-up">
+
                 <div class="text-brand-400 text-xs font-bold uppercase tracking-widest mb-3">
                     About Me
                 </div>
+
                 <h2 class="text-3xl sm:text-4xl font-bold text-white leading-tight">
                     Engineering technology that works in the real world.
                 </h2>
+
                 <p class="mt-6 text-slate-400 text-lg leading-relaxed">
-                    I work across network infrastructure, home automation, ELV systems, structured cabling, fiber optics, audio/visual systems and smart building technologies.
+
+                    I work across network infrastructure, home automation,
+                    ELV systems, structured cabling, fiber optics,
+                    audio/visual systems and smart building technologies.
+
                 </p>
+
                 <p class="mt-5 text-slate-400 leading-relaxed">
-                    My role covers the complete project lifecycle — understanding requirements, preparing layouts, coordinating installations, configuring systems, testing, commissioning and handing over completed projects.
+
+                    My role covers the complete project lifecycle —
+                    understanding requirements, preparing layouts,
+                    coordinating installations, configuring systems,
+                    testing, commissioning and handing over completed projects.
+
                 </p>
+
                 <p class="mt-5 text-slate-400 leading-relaxed">
-                    I have completed more than <strong class="text-white">10 villa automation projects</strong> across premium locations in Dubai including Emirates Hills, Dubai Hills, Jumeirah Bay Island and Downtown Dubai.
+
+                    I have completed more than
+                    <strong class="text-white">10 villa automation projects</strong>
+                    across premium locations in Dubai including
+                    Emirates Hills, Dubai Hills, Jumeirah Bay Island and Downtown Dubai.
+
                 </p>
+
             </div>
 
+
             <div class="grid sm:grid-cols-2 gap-5 fade-up">
+
                 <div class="bg-dark-800 border border-slate-800 rounded-2xl p-7 hover:border-brand-500/40 transition">
+
                     <div class="text-brand-400 text-3xl mb-5">
                         <i class="fa-solid fa-network-wired"></i>
                     </div>
+
                     <h3 class="text-white font-bold text-lg">
                         Network Engineering
                     </h3>
+
                     <p class="text-slate-500 text-sm mt-3 leading-relaxed">
-                        Network infrastructure, switching, routing, Wi-Fi, VLANs, rack management and structured cabling.
+                        Network infrastructure, switching, routing,
+                        Wi-Fi, VLANs, rack management and structured cabling.
                     </p>
+
                 </div>
 
+
                 <div class="bg-dark-800 border border-slate-800 rounded-2xl p-7 hover:border-cyan-500/40 transition">
+
                     <div class="text-cyan-400 text-3xl mb-5">
                         <i class="fa-solid fa-house-signal"></i>
                     </div>
+
                     <h3 class="text-white font-bold text-lg">
                         Home Automation
                     </h3>
+
                     <p class="text-slate-500 text-sm mt-3 leading-relaxed">
-                        Smart villa automation, lighting, climate, AV, control systems and integrated solutions.
+                        Smart villa automation, lighting, climate,
+                        AV, control systems and integrated solutions.
                     </p>
+
                 </div>
 
+
                 <div class="bg-dark-800 border border-slate-800 rounded-2xl p-7 hover:border-emerald-500/40 transition">
+
                     <div class="text-emerald-400 text-3xl mb-5">
-                        <i class="fa-solid fa-network-wired"></i>
+                        <i class="fa-solid fa-wave-square"></i>
                     </div>
+
                     <h3 class="text-white font-bold text-lg">
                         Fiber Optics
                     </h3>
+
                     <p class="text-slate-500 text-sm mt-3 leading-relaxed">
-                        Fiber installation, termination, testing, troubleshooting and infrastructure deployment.
+                        Fiber installation, termination, testing,
+                        troubleshooting and infrastructure deployment.
                     </p>
+
                 </div>
 
+
                 <div class="bg-dark-800 border border-slate-800 rounded-2xl p-7 hover:border-purple-500/40 transition">
+
                     <div class="text-purple-400 text-3xl mb-5">
                         <i class="fa-solid fa-shield-halved"></i>
                     </div>
+
                     <h3 class="text-white font-bold text-lg">
                         ELV Systems
                     </h3>
+
                     <p class="text-slate-500 text-sm mt-3 leading-relaxed">
-                        Deployment of centralized Video Management Systems (VMS), high-density control room video walls, multi-tier SAN/NAS storage archiving, and AI-powered IP CCTV analytics for enterprise-grade security operations.
+                        Deployment of centralized Video Management Systems (VMS),
+                        high-density control room video walls, multi-tier SAN/NAS
+                        storage archiving, and AI-powered IP CCTV analytics.
                     </p>
+
                 </div>
+
             </div>
+
         </div>
+
     </div>
+
 </section>
 
 
@@ -347,93 +497,141 @@
 <!-- ========================================================= -->
 
 <section id="services" class="py-24 bg-dark-800 border-y border-slate-800/70">
+
     <div class="max-w-7xl mx-auto px-5 sm:px-8">
+
         <div class="max-w-3xl mb-14 fade-up">
+
             <div class="text-brand-400 text-xs font-bold uppercase tracking-widest mb-3">
                 What I Do
             </div>
+
             <h2 class="text-3xl sm:text-4xl font-bold text-white">
                 Technical Specializations
             </h2>
+
             <p class="text-slate-400 mt-4 leading-relaxed">
-                End-to-end engineering support for modern residential, commercial and infrastructure projects.
+                End-to-end engineering support for modern residential,
+                commercial and infrastructure projects.
             </p>
+
         </div>
 
+
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
             <div class="bg-dark-900 border border-slate-800 rounded-2xl p-7 hover:border-brand-500/50 hover:-translate-y-1 transition fade-up">
+
                 <div class="w-12 h-12 rounded-xl bg-brand-500/10 text-brand-400 flex items-center justify-center text-xl mb-5">
                     <i class="fa-solid fa-network-wired"></i>
                 </div>
+
                 <h3 class="text-xl font-bold text-white">
                     Network Infrastructure
                 </h3>
+
                 <p class="text-slate-500 text-sm leading-relaxed mt-3">
-                    LAN/WAN, switching, routing, VLANs, Wi-Fi, network racks, patch panels and infrastructure deployment.
+                    LAN/WAN, switching, routing, VLANs, Wi-Fi,
+                    network racks, patch panels and infrastructure deployment.
                 </p>
+
             </div>
 
+
             <div class="bg-dark-900 border border-slate-800 rounded-2xl p-7 hover:border-cyan-500/50 hover:-translate-y-1 transition fade-up">
+
                 <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-xl mb-5">
                     <i class="fa-solid fa-house-chimney"></i>
                 </div>
+
                 <h3 class="text-xl font-bold text-white">
                     Villa Automation
                 </h3>
+
                 <p class="text-slate-500 text-sm leading-relaxed mt-3">
-                    Complete smart home automation including lighting, curtains, climate control, AV and centralized control.
+                    Complete smart home automation including lighting,
+                    curtains, climate control, AV and centralized control.
                 </p>
+
             </div>
 
+
             <div class="bg-dark-900 border border-slate-800 rounded-2xl p-7 hover:border-emerald-500/50 hover:-translate-y-1 transition fade-up">
+
                 <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl mb-5">
                     <i class="fa-solid fa-video"></i>
                 </div>
+
                 <h3 class="text-xl font-bold text-white">
                     CCTV & Security
                 </h3>
+
                 <p class="text-slate-500 text-sm leading-relaxed mt-3">
-                    Deployment of centralized Video Management Systems (VMS), high-density control room video walls, multi-tier SAN/NAS storage archiving, and AI-powered IP CCTV analytics for enterprise-grade security operations.
+                    Deployment of centralized Video Management Systems (VMS),
+                    high-density control room video walls, multi-tier SAN/NAS
+                    storage archiving, and AI-powered IP CCTV analytics.
                 </p>
+
             </div>
 
+
             <div class="bg-dark-900 border border-slate-800 rounded-2xl p-7 hover:border-amber-500/50 hover:-translate-y-1 transition fade-up">
+
                 <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl mb-5">
                     <i class="fa-solid fa-volume-high"></i>
                 </div>
+
                 <h3 class="text-xl font-bold text-white">
                     Audio & AV
                 </h3>
+
                 <p class="text-slate-500 text-sm leading-relaxed mt-3">
-                    Multi-zone audio, amplifiers, streamers, DSP configuration, speakers and AV integration.
+                    Multi-zone audio, amplifiers, streamers,
+                    DSP configuration, speakers and AV integration.
                 </p>
+
             </div>
 
+
             <div class="bg-dark-900 border border-slate-800 rounded-2xl p-7 hover:border-purple-500/50 hover:-translate-y-1 transition fade-up">
+
                 <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center text-xl mb-5">
-                    <i class="fa-solid fa-network-wired"></i>
+                    <i class="fa-solid fa-wave-square"></i>
                 </div>
+
                 <h3 class="text-xl font-bold text-white">
                     Fiber Optics
                 </h3>
+
                 <p class="text-slate-500 text-sm leading-relaxed mt-3">
-                    Fiber optic installation, termination, testing, OTDR and fault troubleshooting.
+                    Fiber optic installation, termination,
+                    testing, OTDR and fault troubleshooting.
                 </p>
+
             </div>
 
+
             <div class="bg-dark-900 border border-slate-800 rounded-2xl p-7 hover:border-rose-500/50 hover:-translate-y-1 transition fade-up">
+
                 <div class="w-12 h-12 rounded-xl bg-rose-500/10 text-rose-400 flex items-center justify-center text-xl mb-5">
                     <i class="fa-solid fa-diagram-project"></i>
                 </div>
+
                 <h3 class="text-xl font-bold text-white">
                     Project Execution
                 </h3>
+
                 <p class="text-slate-500 text-sm leading-relaxed mt-3">
-                    Layout preparation, site coordination, installation supervision, testing and commissioning.
+                    Layout preparation, site coordination,
+                    installation supervision, testing and commissioning.
                 </p>
+
             </div>
+
         </div>
+
     </div>
+
 </section>
 
 
@@ -442,17 +640,24 @@
 <!-- ========================================================= -->
 
 <section id="skills" class="py-24">
+
     <div class="max-w-7xl mx-auto px-5 sm:px-8">
+
         <div class="text-center max-w-3xl mx-auto mb-14 fade-up">
+
             <div class="text-brand-400 text-xs font-bold uppercase tracking-widest mb-3">
                 Technical Skills
             </div>
+
             <h2 class="text-3xl sm:text-4xl font-bold text-white">
                 Tools, Systems & Technologies
             </h2>
+
         </div>
 
+
         <div class="flex flex-wrap justify-center gap-3 max-w-5xl mx-auto fade-up">
+
             <span class="skill">Cisco Routing & Switching</span>
             <span class="skill">Fortinet</span>
             <span class="skill">VLAN & Network Configuration</span>
@@ -473,8 +678,11 @@
             <span class="skill">Single Line Diagrams</span>
             <span class="skill">Site Coordination</span>
             <span class="skill">Testing & Commissioning</span>
+
         </div>
+
     </div>
+
 </section>
 
 
@@ -483,69 +691,100 @@
 <!-- ========================================================= -->
 
 <section id="projects" class="py-24 bg-dark-800 border-y border-slate-800/70">
+
     <div class="max-w-7xl mx-auto px-5 sm:px-8">
+
         <div class="text-center max-w-3xl mx-auto mb-14 fade-up">
+
             <div class="text-brand-400 text-xs font-bold uppercase tracking-widest mb-3">
                 Project Experience
             </div>
+
             <h2 class="text-3xl sm:text-4xl font-bold text-white">
                 Selected Project Locations
             </h2>
+
             <p class="text-slate-400 mt-4">
-                Villa automation and infrastructure project experience across some of Dubai's premium developments.
+                Villa automation and infrastructure project experience
+                across some of Dubai's premium developments.
             </p>
+
         </div>
 
+
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+
             <div class="group bg-dark-900 border border-slate-800 rounded-2xl p-7 hover:border-brand-500/50 transition fade-up">
+
                 <div class="text-brand-400 text-2xl mb-5">
                     <i class="fa-solid fa-building"></i>
                 </div>
+
                 <h3 class="text-white font-bold text-lg">
                     Emirates Hills
                 </h3>
+
                 <p class="text-slate-500 text-sm mt-2">
                     Premium villa automation and integrated technology systems.
                 </p>
+
             </div>
 
+
             <div class="group bg-dark-900 border border-slate-800 rounded-2xl p-7 hover:border-cyan-500/50 transition fade-up">
+
                 <div class="text-cyan-400 text-2xl mb-5">
                     <i class="fa-solid fa-city"></i>
                 </div>
+
                 <h3 class="text-white font-bold text-lg">
                     Dubai Hills
                 </h3>
+
                 <p class="text-slate-500 text-sm mt-2">
                     Smart villa and infrastructure project execution.
                 </p>
+
             </div>
 
+
             <div class="group bg-dark-900 border border-slate-800 rounded-2xl p-7 hover:border-emerald-500/50 transition fade-up">
+
                 <div class="text-emerald-400 text-2xl mb-5">
                     <i class="fa-solid fa-water"></i>
                 </div>
+
                 <h3 class="text-white font-bold text-lg">
                     Jumeirah Bay Island
                 </h3>
+
                 <p class="text-slate-500 text-sm mt-2">
                     High-end residential automation and ELV solutions.
                 </p>
+
             </div>
 
+
             <div class="group bg-dark-900 border border-slate-800 rounded-2xl p-7 hover:border-purple-500/50 transition fade-up">
+
                 <div class="text-purple-400 text-2xl mb-5">
                     <i class="fa-solid fa-city"></i>
                 </div>
+
                 <h3 class="text-white font-bold text-lg">
                     Downtown Dubai
                 </h3>
+
                 <p class="text-slate-500 text-sm mt-2">
                     Technology infrastructure and integrated system deployment.
                 </p>
+
             </div>
+
         </div>
+
     </div>
+
 </section>
 
 
@@ -554,74 +793,109 @@
 <!-- ========================================================= -->
 
 <section id="experience" class="py-24">
+
     <div class="max-w-5xl mx-auto px-5 sm:px-8">
+
         <div class="text-center mb-14 fade-up">
+
             <div class="text-brand-400 text-xs font-bold uppercase tracking-widest mb-3">
                 Experience
             </div>
+
             <h2 class="text-3xl sm:text-4xl font-bold text-white">
                 Professional Journey
             </h2>
+
         </div>
 
+
         <div class="relative border-l border-slate-700 ml-3 pl-8 space-y-10">
+
             <div class="relative fade-up">
+
                 <div class="absolute -left-[41px] top-1 w-5 h-5 rounded-full bg-brand-500 ring-4 ring-dark-900"></div>
+
                 <div class="bg-dark-800 border border-slate-800 rounded-2xl p-7">
+
                     <div class="text-brand-400 text-xs font-bold uppercase tracking-widest">
                         Current Position
                     </div>
+
                     <h3 class="text-xl sm:text-2xl font-bold text-white mt-2">
                         Network, Automation, ELV & Infrastructure Engineer
                     </h3>
+
                     <div class="text-slate-400 font-medium mt-2">
                         Dynamic World Computer • Dubai
                     </div>
+
                     <ul class="mt-5 space-y-3 text-slate-400 text-sm leading-relaxed">
+
                         <li>
                             <i class="fa-solid fa-check text-brand-400 mr-2"></i>
                             Network infrastructure design, installation and configuration.
                         </li>
+
                         <li>
                             <i class="fa-solid fa-check text-brand-400 mr-2"></i>
                             Home automation and smart villa project execution.
                         </li>
+
                         <li>
                             <i class="fa-solid fa-check text-brand-400 mr-2"></i>
                             ELV systems including CCTV, access control and intercom.
                         </li>
+
                         <li>
                             <i class="fa-solid fa-check text-brand-400 mr-2"></i>
                             Fiber optic infrastructure and structured cabling.
                         </li>
+
                         <li>
                             <i class="fa-solid fa-check text-brand-400 mr-2"></i>
                             Site coordination, testing, troubleshooting and commissioning.
                         </li>
+
                         <li>
                             <i class="fa-solid fa-check text-brand-400 mr-2"></i>
                             Preparing and revising automation layouts and technical drawings.
                         </li>
+
                     </ul>
+
                 </div>
+
             </div>
 
+
             <div class="relative fade-up">
+
                 <div class="absolute -left-[41px] top-1 w-5 h-5 rounded-full bg-slate-600 ring-4 ring-dark-900"></div>
+
                 <div class="bg-dark-800 border border-slate-800 rounded-2xl p-7">
+
                     <div class="text-slate-500 text-xs font-bold uppercase tracking-widest">
                         Previous Experience
                     </div>
+
                     <h3 class="text-xl sm:text-2xl font-bold text-white mt-2">
                         Network & Infrastructure Engineering
                     </h3>
+
                     <p class="text-slate-400 mt-3 leading-relaxed">
-                        Experience in structured cabling, network infrastructure, fiber optics, equipment racks, installation, troubleshooting and site-level technical support.
+                        Experience in structured cabling, network infrastructure,
+                        fiber optics, equipment racks, installation,
+                        troubleshooting and site-level technical support.
                     </p>
+
                 </div>
+
             </div>
+
         </div>
+
     </div>
+
 </section>
 
 
@@ -630,141 +904,221 @@
 <!-- ========================================================= -->
 
 <section id="contact" class="py-24 bg-dark-800 border-t border-slate-800">
+
     <div class="max-w-7xl mx-auto px-5 sm:px-8">
+
         <div class="grid lg:grid-cols-2 gap-14 items-center">
+
             <div class="fade-up">
+
                 <div class="text-brand-400 text-xs font-bold uppercase tracking-widest mb-3">
                     Contact
                 </div>
+
                 <h2 class="text-3xl sm:text-4xl font-bold text-white leading-tight">
                     Let's talk about your next project.
                 </h2>
+
                 <p class="text-slate-400 mt-5 leading-relaxed max-w-xl">
-                    If you need support with network infrastructure, home automation, ELV systems, fiber optics, AV or smart building projects, feel free to get in touch.
+
+                    If you need support with network infrastructure,
+                    home automation, ELV systems, fiber optics,
+                    AV or smart building projects, feel free to get in touch.
+
                 </p>
 
+
                 <div class="space-y-5 mt-9">
+
                     <!-- Email -->
+
                     <a href="mailto:contact@shahfaishal.com"
                        class="flex items-center gap-4 group">
+
                         <div class="w-12 h-12 rounded-xl bg-dark-900 border border-slate-700 flex items-center justify-center text-brand-400 group-hover:bg-brand-600 group-hover:text-white transition">
+
                             <i class="fa-solid fa-envelope"></i>
+
                         </div>
+
                         <div>
+
                             <div class="text-xs text-slate-500 uppercase tracking-wider">
                                 Email
                             </div>
+
                             <div class="text-white font-semibold">
                                 contact@shahfaishal.com
                             </div>
+
                         </div>
+
                     </a>
 
+
                     <!-- WhatsApp -->
+
                     <a href="https://wa.me/971503928611"
                        target="_blank"
+                       rel="noopener noreferrer"
                        class="flex items-center gap-4 group">
+
                         <div class="w-12 h-12 rounded-xl bg-dark-900 border border-slate-700 flex items-center justify-center text-green-400 group-hover:bg-green-600 group-hover:text-white transition">
+
                             <i class="fa-brands fa-whatsapp"></i>
+
                         </div>
+
                         <div>
+
                             <div class="text-xs text-slate-500 uppercase tracking-wider">
                                 WhatsApp
                             </div>
+
                             <div class="text-white font-semibold">
-                                +971 50 392 8611
+                                Message on WhatsApp
                             </div>
+
                         </div>
+
                     </a>
 
+
                     <!-- Instagram -->
-                    <a href="https://www.instagram.com/ffaishalll?igsh=MXV3bXh6NndhcTlxYg%3D%3D&utm_source=qr"
+
+                    <a href="https://www.instagram.com/ffaishalll"
                        target="_blank"
+                       rel="noopener noreferrer"
                        class="flex items-center gap-4 group">
-                        <div class="w-12 h-12 rounded-xl bg-dark-900 border border-slate-700 flex items-center justify-center text-pink-400 group-hover:bg-gradient-to-tr group-hover:from-amber-500 group-hover:via-rose-500 group-hover:to-purple-600 group-hover:text-white transition">
+
+                        <div class="w-12 h-12 rounded-xl bg-dark-900 border border-slate-700 flex items-center justify-center text-pink-400 group-hover:bg-pink-600 group-hover:text-white transition">
+
                             <i class="fa-brands fa-instagram"></i>
+
                         </div>
+
                         <div>
+
                             <div class="text-xs text-slate-500 uppercase tracking-wider">
                                 Instagram
                             </div>
+
                             <div class="text-white font-semibold">
                                 @ffaishalll
                             </div>
+
                         </div>
+
                     </a>
 
+
                     <!-- LinkedIn -->
+
                     <a href="#"
                        target="_blank"
                        class="flex items-center gap-4 group">
+
                         <div class="w-12 h-12 rounded-xl bg-dark-900 border border-slate-700 flex items-center justify-center text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition">
+
                             <i class="fa-brands fa-linkedin-in"></i>
+
                         </div>
+
                         <div>
+
                             <div class="text-xs text-slate-500 uppercase tracking-wider">
                                 LinkedIn
                             </div>
+
                             <div class="text-white font-semibold">
                                 Shah Faishal
                             </div>
+
                         </div>
+
                     </a>
+
                 </div>
+
             </div>
 
+
             <!-- Contact Card -->
+
             <div class="bg-dark-900 border border-slate-800 rounded-3xl p-8 glow fade-up">
+
                 <div class="text-white text-xl font-bold">
                     Quick Contact
                 </div>
+
                 <p class="text-slate-500 text-sm mt-2">
                     Send your project requirements directly through WhatsApp.
                 </p>
 
+
                 <form id="contactForm" class="mt-7 space-y-5">
+
                     <div>
+
                         <label class="text-xs text-slate-500 uppercase tracking-wider">
                             Name
                         </label>
+
                         <input id="name"
                                type="text"
                                required
                                placeholder="Your name"
                                class="mt-2 w-full px-4 py-3.5 rounded-xl bg-dark-800 border border-slate-700 text-white placeholder-slate-600 focus:outline-none focus:border-brand-500">
+
                     </div>
 
+
                     <div>
+
                         <label class="text-xs text-slate-500 uppercase tracking-wider">
                             Email
                         </label>
+
                         <input id="email"
                                type="email"
                                required
                                placeholder="your@email.com"
                                class="mt-2 w-full px-4 py-3.5 rounded-xl bg-dark-800 border border-slate-700 text-white placeholder-slate-600 focus:outline-none focus:border-brand-500">
+
                     </div>
 
+
                     <div>
+
                         <label class="text-xs text-slate-500 uppercase tracking-wider">
                             Message
                         </label>
+
                         <textarea id="message"
                                   rows="5"
                                   required
                                   placeholder="Tell me about your project..."
                                   class="mt-2 w-full px-4 py-3.5 rounded-xl bg-dark-800 border border-slate-700 text-white placeholder-slate-600 focus:outline-none focus:border-brand-500"></textarea>
+
                     </div>
+
 
                     <button type="submit"
                             class="w-full py-4 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold transition shadow-lg shadow-brand-600/20">
+
                         <i class="fa-brands fa-whatsapp mr-2"></i>
                         Send via WhatsApp
+
                     </button>
+
                 </form>
+
             </div>
+
         </div>
+
     </div>
+
 </section>
 
 
@@ -773,27 +1127,42 @@
 <!-- ========================================================= -->
 
 <footer class="py-8 border-t border-slate-800 bg-dark-900">
-    <div class="max-w-7xl mx-auto px-5 sm:px-8">
-        <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div class="text-sm text-slate-500">
-                © <span id="year"></span> Shah Faishal. All rights reserved.
-            </div>
 
-            <div class="flex items-center gap-4 text-sm text-slate-400">
-                <a href="https://www.instagram.com/ffaishalll?igsh=MXV3bXh6NndhcTlxYg%3D%3D&utm_source=qr" target="_blank" class="hover:text-pink-400 transition">
-                    <i class="fa-brands fa-instagram text-lg"></i>
-                </a>
-                <a href="https://wa.me/971503928611" target="_blank" class="hover:text-green-400 transition">
-                    <i class="fa-brands fa-whatsapp text-lg"></i>
-                </a>
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+
+            <div class="text-sm text-slate-500">
+
+                © <span id="year"></span> Shah Faishal.
+                All rights reserved.
+
             </div>
 
             <div class="text-xs text-slate-600">
                 Network • Automation • ELV • Infrastructure
             </div>
+
         </div>
+
     </div>
+
 </footer>
+
+
+<!-- ========================================================= -->
+<!-- FLOATING INSTAGRAM -->
+<!-- ========================================================= -->
+
+<a href="https://www.instagram.com/ffaishalll"
+   target="_blank"
+   rel="noopener noreferrer"
+   aria-label="Instagram"
+   class="fixed bottom-24 right-6 z-40 w-14 h-14 rounded-full bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 hover:scale-110 text-white flex items-center justify-center text-2xl shadow-xl transition">
+
+    <i class="fa-brands fa-instagram"></i>
+
+</a>
 
 
 <!-- ========================================================= -->
@@ -802,8 +1171,12 @@
 
 <a href="https://wa.me/971503928611"
    target="_blank"
+   rel="noopener noreferrer"
+   aria-label="WhatsApp"
    class="fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full bg-green-600 hover:bg-green-500 text-white flex items-center justify-center text-2xl shadow-xl shadow-green-900/30 transition hover:scale-110">
+
     <i class="fa-brands fa-whatsapp"></i>
+
 </a>
 
 
@@ -812,89 +1185,107 @@
 <!-- ========================================================= -->
 
 <script>
+
     /* Current Year */
-    document.getElementById("year").textContent = new Date().getFullYear();
+
+    document.getElementById("year").textContent =
+        new Date().getFullYear();
+
 
     /* Mobile Menu */
-    const menuBtn = document.getElementById("menuBtn");
-    const mobileMenu = document.getElementById("mobileMenu");
+
+    const menuBtn =
+        document.getElementById("menuBtn");
+
+    const mobileMenu =
+        document.getElementById("mobileMenu");
 
     menuBtn.addEventListener("click", () => {
+
         mobileMenu.classList.toggle("hidden");
+
     });
+
 
     /* Close mobile menu after click */
+
     document.querySelectorAll("#mobileMenu a").forEach(link => {
+
         link.addEventListener("click", () => {
+
             mobileMenu.classList.add("hidden");
+
         });
+
     });
+
 
     /* Scroll Animation */
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("show");
-            }
+
+    const observer =
+        new IntersectionObserver((entries) => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add("show");
+
+                }
+
+            });
+
+        }, {
+            threshold: 0.12
         });
-    }, {
-        threshold: 0.12
-    });
+
 
     document.querySelectorAll(".fade-up").forEach(el => {
+
         observer.observe(el);
+
     });
+
 
     /* Contact Form → WhatsApp */
-    document.getElementById("contactForm").addEventListener("submit", function(event) {
-        event.preventDefault();
 
-        const name = document.getElementById("name").value.trim();
-        const email = document.getElementById("email").value.trim();
-        const message = document.getElementById("message").value.trim();
+    document.getElementById("contactForm")
+        .addEventListener("submit", function(event) {
 
-        const whatsappNumber = "971503928611";
+            event.preventDefault();
 
-        const text =
-            "Hello Shah Faishal,%0A%0A" +
-            "Name: " + encodeURIComponent(name) + "%0A" +
-            "Email: " + encodeURIComponent(email) + "%0A%0A" +
-            "Project Details:%0A" +
-            encodeURIComponent(message);
+            const name =
+                document.getElementById("name").value.trim();
 
-        window.open(
-            "https://wa.me/" +
-            whatsappNumber +
-            "?text=" +
-            text,
-            "_blank"
-        );
-    });
+            const email =
+                document.getElementById("email").value.trim();
+
+            const message =
+                document.getElementById("message").value.trim();
+
+
+            const whatsappNumber = "971503928611";
+
+
+            const text =
+                "Hello Shah Faishal,\n\n" +
+                "Name: " + name + "\n" +
+                "Email: " + email + "\n\n" +
+                "Project Details:\n" +
+                message;
+
+
+            window.open(
+                "https://wa.me/" +
+                whatsappNumber +
+                "?text=" +
+                encodeURIComponent(text),
+                "_blank"
+            );
+
+        });
+
 </script>
-
-
-<!-- ========================================================= -->
-<!-- SKILL STYLE -->
-<!-- ========================================================= -->
-
-<style>
-    .skill {
-        padding: 10px 16px;
-        border-radius: 10px;
-        background: #0d1420;
-        border: 1px solid #243044;
-        color: #cbd5e1;
-        font-size: 13px;
-        font-weight: 500;
-        transition: all .25s ease;
-    }
-
-    .skill:hover {
-        border-color: #0ea5e9;
-        color: #ffffff;
-        transform: translateY(-2px);
-    }
-</style>
 
 </body>
 </html>
