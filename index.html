@@ -160,7 +160,7 @@
             z-index: 10;
         }
 
-        #detailModal, #partnerModal, #zoyaModal {
+        #detailModal, #partnerModal {
             transition: all 0.3s ease;
         }
     </style>
@@ -315,28 +315,6 @@
                 <i class="fa-regular fa-paper-plane mr-2"></i>
                 Contact Me
             </a>
-        </div>
-
-        <!-- STATS SECTION -->
-        <div class="fade-up mt-12 pt-8 border-t border-slate-800/80">
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center sm:text-left">
-                <div class="glass p-5 rounded-2xl border border-slate-800/80">
-                    <div class="text-3xl font-black text-white font-mono">10+</div>
-                    <div class="text-xs text-slate-400 mt-1 uppercase tracking-wider">Villa Automation</div>
-                </div>
-                <div class="glass p-5 rounded-2xl border border-slate-800/80">
-                    <div class="text-3xl font-black text-brand-400 font-mono">Dubai</div>
-                    <div class="text-xs text-slate-400 mt-1 uppercase tracking-wider">Project Experience</div>
-                </div>
-                <div class="glass p-5 rounded-2xl border border-slate-800/80">
-                    <div class="text-3xl font-black text-cyan-400 font-mono">ELV</div>
-                    <div class="text-xs text-slate-400 mt-1 uppercase tracking-wider">Systems</div>
-                </div>
-                <div class="glass p-5 rounded-2xl border border-slate-800/80">
-                    <div class="text-3xl font-black text-emerald-400 font-mono">Fiber</div>
-                    <div class="text-xs text-slate-400 mt-1 uppercase tracking-wider">Optic Engineering</div>
-                </div>
-            </div>
         </div>
 
     </div>
@@ -496,7 +474,7 @@
             </p>
         </div>
 
-        <!-- 3D White Cards Grid (14 Clean Cards with ZOYA right next to VMware) -->
+        <!-- 3D White Cards Grid (14 Professional Cards) -->
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-5 fade-up">
             
             <!-- 1. KNX -->
@@ -565,20 +543,14 @@
                 <span class="text-slate-800 font-bold text-base font-sans">vm<span class="font-light">ware</span></span>
             </div>
 
-            <!-- 13. ZOYA (Special Heart Reveal - Right Next to VMware) -->
-            <div onclick="openZoyaModal()" class="partner-card flex-col items-center group bg-gradient-to-b from-white to-pink-50/40 border border-pink-200/50 hover:border-pink-400">
-                <span class="text-pink-600 font-black text-2xl tracking-widest font-serif">ZOYA</span>
-                <span class="text-pink-400 text-[8px] font-bold uppercase tracking-widest mt-0.5"><i class="fa-solid fa-heart text-[8px] animate-pulse"></i></span>
-            </div>
-
-            <!-- 14. Poly / HP -->
+            <!-- 13. Poly / HP -->
             <div onclick="openPartnerDetail('Poly / HP')" class="partner-card flex items-center gap-2">
                 <span class="text-red-500 font-bold text-sm">poly</span>
                 <span class="text-slate-400">|</span>
                 <span class="text-[#0096d6] font-bold text-sm">hp</span>
             </div>
 
-            <!-- 15. Fujitsu -->
+            <!-- 14. Fujitsu -->
             <div onclick="openPartnerDetail('Fujitsu')" class="partner-card">
                 <span class="text-red-600 font-bold text-lg font-serif">FUJITSU</span>
             </div>
@@ -1239,35 +1211,6 @@
     </div>
 </div>
 
-<!-- 3. ZOYA SPECIAL HEART MODAL -->
-<div id="zoyaModal" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl hidden items-center justify-center p-4 sm:p-6">
-    <div class="relative w-full max-w-md glass border border-pink-500/40 rounded-3xl p-8 sm:p-10 text-center shadow-2xl shadow-pink-500/20">
-        <button onclick="closeZoyaModal()" class="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-dark-900/80 border border-slate-700 text-slate-300 hover:text-white hover:bg-pink-600 flex items-center justify-center transition">
-            <i class="fa-solid fa-xmark text-sm"></i>
-        </button>
-
-        <div class="py-6 flex flex-col items-center justify-center">
-            <!-- Pulsing Beating Heart -->
-            <div class="w-24 h-24 rounded-full bg-pink-500/10 border border-pink-500/30 flex items-center justify-center mb-5 animate-bounce">
-                <i class="fa-solid fa-heart text-5xl text-pink-500 drop-shadow-[0_0_25px_rgba(236,72,153,0.9)]"></i>
-            </div>
-            
-            <div class="text-3xl font-black font-serif text-white tracking-widest mt-1">
-                ZOYA
-            </div>
-
-            <!-- Custom Love Message Line -->
-            <p class="text-xs sm:text-sm font-semibold tracking-wider uppercase text-pink-300/90 mt-4 leading-relaxed font-sans border-y border-pink-500/20 py-3 w-full">
-                ✨ MOST BEAUTIFULL WOMEN EVER SEEN BY ME ✨
-            </p>
-        </div>
-
-        <button onclick="closeZoyaModal()" class="w-full py-3 rounded-xl bg-gradient-to-r from-pink-600 to-rose-500 hover:from-pink-500 hover:to-rose-400 text-white text-xs font-bold tracking-wider uppercase transition shadow-lg shadow-pink-500/25">
-            Close
-        </button>
-    </div>
-</div>
-
 <!-- SCRIPTS & ENGINE -->
 <script>
     const servicesData = [
@@ -1381,27 +1324,6 @@
             icon: "fa-solid fa-server"
         }
     };
-
-    // Zoya Modal Functions
-    function openZoyaModal() {
-        const modal = document.getElementById('zoyaModal');
-        modal.classList.remove('hidden');
-        modal.classList.add('flex');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeZoyaModal() {
-        const modal = document.getElementById('zoyaModal');
-        modal.classList.add('hidden');
-        modal.classList.remove('flex');
-        document.body.style.overflow = 'auto';
-    }
-
-    document.getElementById('zoyaModal').addEventListener('click', function(e) {
-        if (e.target === this) {
-            closeZoyaModal();
-        }
-    });
 
     // Partner Modal Functions
     function openPartnerDetail(name) {
