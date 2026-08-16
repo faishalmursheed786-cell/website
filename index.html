@@ -1,3 +1,5 @@
+Aapke original code ke har ek section, project details, WhatsApp form, contact links aur styles ko 100% waise hi rakhte hue, background me Live Hacker Matrix Rain (0 & 1 glowing stream) integrate kar diya hai.
+Aap is poore code ko copy karke apne index.html me paste kar dein:
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
@@ -31,14 +33,15 @@
     <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'sans-serif']
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['Share Tech Mono', 'monospace']
                     },
                     colors: {
                         brand: {
@@ -48,9 +51,9 @@
                             700: '#0369a1'
                         },
                         dark: {
-                            900: '#070b12',
-                            800: '#0d1420',
-                            700: '#162033'
+                            900: '#030811',
+                            800: '#07101e',
+                            700: '#0f1d33'
                         }
                     }
                 }
@@ -65,24 +68,38 @@
 
         body {
             overflow-x: hidden;
+            background-color: #030811;
         }
 
+        /* Fixed Matrix Rain Canvas */
+        #matrixCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.65;
+        }
+
+        /* Glassmorphism with Cyber Glow */
         .glass {
-            background: rgba(13, 20, 32, 0.72);
+            background: rgba(7, 16, 30, 0.78) !important;
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
         }
 
         .glow {
             box-shadow:
-                0 0 40px rgba(14, 165, 233, 0.12),
-                inset 0 0 30px rgba(14, 165, 233, 0.03);
+                0 0 35px rgba(14, 165, 233, 0.18),
+                inset 0 0 20px rgba(14, 165, 233, 0.05);
         }
 
         .grid-bg {
             background-image:
-                linear-gradient(rgba(148,163,184,0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(148,163,184,0.05) 1px, transparent 1px);
+                linear-gradient(rgba(56, 189, 248, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(56, 189, 248, 0.04) 1px, transparent 1px);
             background-size: 45px 45px;
         }
 
@@ -98,7 +115,7 @@
         }
 
         .gradient-text {
-            background: linear-gradient(90deg, #38bdf8, #22d3ee);
+            background: linear-gradient(90deg, #38bdf8, #22d3ee, #00ffcc);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -106,18 +123,26 @@
         .skill {
             padding: 10px 16px;
             border-radius: 10px;
-            background: #0d1420;
-            border: 1px solid #243044;
+            background: rgba(13, 20, 32, 0.85);
+            border: 1px solid rgba(56, 189, 248, 0.2);
             color: #cbd5e1;
             font-size: 13px;
             font-weight: 500;
+            backdrop-filter: blur(8px);
             transition: all .25s ease;
         }
 
         .skill:hover {
-            border-color: #0ea5e9;
+            border-color: #38bdf8;
             color: #ffffff;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
             transform: translateY(-2px);
+        }
+
+        /* Transparent sections to show live matrix rain */
+        section {
+            position: relative;
+            z-index: 10;
         }
     </style>
 </head>
@@ -125,10 +150,15 @@
 <body class="bg-dark-900 text-slate-200 font-sans antialiased">
 
 <!-- ========================================================= -->
+<!-- LIVE HACKER MATRIX CANVAS BACKGROUND -->
+<!-- ========================================================= -->
+<canvas id="matrixCanvas"></canvas>
+
+<!-- ========================================================= -->
 <!-- NAVBAR -->
 <!-- ========================================================= -->
 
-<header class="fixed top-0 left-0 right-0 z-50 glass border-b border-slate-800/70">
+<header class="fixed top-0 left-0 right-0 z-50 glass border-b border-slate-800/80">
     <div class="max-w-7xl mx-auto px-5 sm:px-8 h-20 flex items-center justify-between">
         <a href="#home" class="flex items-center gap-3">
             <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-600 to-cyan-400 flex items-center justify-center font-black text-white shadow-lg shadow-brand-500/20">
@@ -138,7 +168,7 @@
                 <div class="text-white font-bold leading-none">
                     Shah Faishal
                 </div>
-                <div class="text-[10px] uppercase tracking-widest text-brand-400 mt-1">
+                <div class="text-[10px] uppercase tracking-widest text-brand-400 mt-1 font-mono">
                     Senior Engineer
                 </div>
             </div>
@@ -155,7 +185,7 @@
         </nav>
 
         <a href="#contact"
-           class="hidden md:inline-flex px-5 py-2.5 rounded-full bg-brand-600 hover:bg-brand-500 text-white text-sm font-semibold transition">
+           class="hidden md:inline-flex px-5 py-2.5 rounded-full bg-brand-600 hover:bg-brand-500 text-white text-sm font-semibold transition shadow-lg shadow-brand-600/30">
             Let's Connect
         </a>
 
@@ -166,7 +196,7 @@
     </div>
 
     <!-- Mobile Menu -->
-    <div id="mobileMenu" class="hidden md:hidden border-t border-slate-800 px-5 py-5 bg-dark-800">
+    <div id="mobileMenu" class="hidden md:hidden border-t border-slate-800 px-5 py-5 bg-dark-800/95 backdrop-blur-lg">
         <div class="flex flex-col gap-5">
             <a href="#about">About</a>
             <a href="#services">Services</a>
@@ -180,7 +210,7 @@
 
 
 <!-- ========================================================= -->
-<!-- HERO WITH INTERACTIVE PARTICLE NETWORK BACKGROUND -->
+<!-- HERO WITH INTERACTIVE PARTICLE NETWORK + MATRIX BACKGROUND -->
 <!-- ========================================================= -->
 
 <section id="home" class="relative min-h-screen flex items-center pt-28 pb-20 overflow-hidden">
@@ -189,8 +219,8 @@
     <canvas id="networkCanvas" class="absolute inset-0 w-full h-full z-0 pointer-events-none"></canvas>
 
     <!-- Overlay & Glow Layers -->
-    <div class="absolute inset-0 bg-gradient-to-b from-dark-900/60 via-dark-900/30 to-dark-900 z-0"></div>
-    <div class="absolute inset-0 grid-bg z-0 opacity-50"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-dark-900/50 via-dark-900/20 to-dark-900/80 z-0"></div>
+    <div class="absolute inset-0 grid-bg z-0 opacity-40"></div>
     <div class="absolute -top-40 -right-40 w-96 h-96 bg-brand-500/15 rounded-full blur-3xl z-0"></div>
     <div class="absolute bottom-0 -left-40 w-96 h-96 bg-cyan-500/15 rounded-full blur-3xl z-0"></div>
 
@@ -199,7 +229,7 @@
 
             <!-- LEFT CONTENT -->
             <div class="lg:col-span-7 fade-up">
-                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-brand-500/20 bg-brand-500/10 text-brand-400 text-xs sm:text-sm font-semibold mb-6">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-brand-500/30 bg-brand-500/10 text-brand-400 text-xs sm:text-sm font-semibold mb-6 backdrop-blur-md">
                     <span class="w-2 h-2 rounded-full bg-brand-400 animate-pulse"></span>
                     Network • Automation • ELV • Infrastructure
                 </div>
@@ -218,13 +248,13 @@
 
                 <div class="flex flex-wrap gap-4 mt-9">
                     <a href="#projects"
-                       class="px-7 py-4 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold transition shadow-xl shadow-brand-600/20">
+                       class="px-7 py-4 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold transition shadow-xl shadow-brand-600/30 border border-brand-400/30">
                         <i class="fa-solid fa-diagram-project mr-2"></i>
                         View Projects
                     </a>
 
                     <a href="#contact"
-                       class="px-7 py-4 rounded-xl border border-slate-700 bg-dark-800/80 backdrop-blur-sm hover:bg-dark-700 text-white font-semibold transition">
+                       class="px-7 py-4 rounded-xl border border-slate-700 bg-dark-800/80 backdrop-blur-md hover:bg-dark-700 text-white font-semibold transition">
                         <i class="fa-regular fa-paper-plane mr-2"></i>
                         Contact Me
                     </a>
@@ -255,7 +285,7 @@
             <div class="lg:col-span-5 flex justify-center fade-up">
                 <div class="relative w-full max-w-md">
                     <div class="absolute inset-0 bg-brand-500/20 blur-3xl rounded-full"></div>
-                    <div class="relative p-1 rounded-3xl bg-gradient-to-br from-brand-500 via-cyan-400 to-brand-700">
+                    <div class="relative p-1 rounded-3xl bg-gradient-to-br from-brand-500 via-cyan-400 to-brand-700 shadow-2xl">
                         <div class="rounded-[22px] overflow-hidden bg-dark-800 relative">
                             <img src="profile.jpg"
                                  alt="Shah Faishal - Network and Automation Engineer"
@@ -294,7 +324,7 @@
     <div class="max-w-7xl mx-auto px-5 sm:px-8">
         <div class="grid lg:grid-cols-2 gap-14 items-center">
             <div class="fade-up">
-                <div class="text-brand-400 text-xs font-bold uppercase tracking-widest mb-3">
+                <div class="text-brand-400 text-xs font-bold uppercase tracking-widest mb-3 font-mono">
                     About Me
                 </div>
                 <h2 class="text-3xl sm:text-4xl font-bold text-white leading-tight">
@@ -312,50 +342,50 @@
             </div>
 
             <div class="grid sm:grid-cols-2 gap-5 fade-up">
-                <div class="bg-dark-800 border border-slate-800 rounded-2xl p-7 hover:border-brand-500/40 transition">
+                <div class="glass border border-slate-800/80 rounded-2xl p-7 hover:border-brand-500/40 transition glow">
                     <div class="text-brand-400 text-3xl mb-5">
                         <i class="fa-solid fa-network-wired"></i>
                     </div>
                     <h3 class="text-white font-bold text-lg">
                         Network Engineering
                     </h3>
-                    <p class="text-slate-500 text-sm mt-3 leading-relaxed">
+                    <p class="text-slate-400 text-sm mt-3 leading-relaxed">
                         Network infrastructure, switching, routing, Wi-Fi, VLANs, rack management and structured cabling.
                     </p>
                 </div>
 
-                <div class="bg-dark-800 border border-slate-800 rounded-2xl p-7 hover:border-cyan-500/40 transition">
+                <div class="glass border border-slate-800/80 rounded-2xl p-7 hover:border-cyan-500/40 transition glow">
                     <div class="text-cyan-400 text-3xl mb-5">
                         <i class="fa-solid fa-house-signal"></i>
                     </div>
                     <h3 class="text-white font-bold text-lg">
                         Home Automation
                     </h3>
-                    <p class="text-slate-500 text-sm mt-3 leading-relaxed">
+                    <p class="text-slate-400 text-sm mt-3 leading-relaxed">
                         Smart villa automation, lighting, climate, AV, control systems and integrated solutions.
                     </p>
                 </div>
 
-                <div class="bg-dark-800 border border-slate-800 rounded-2xl p-7 hover:border-emerald-500/40 transition">
+                <div class="glass border border-slate-800/80 rounded-2xl p-7 hover:border-emerald-500/40 transition glow">
                     <div class="text-emerald-400 text-3xl mb-5">
                         <i class="fa-solid fa-wave-square"></i>
                     </div>
                     <h3 class="text-white font-bold text-lg">
                         Fiber Optics
                     </h3>
-                    <p class="text-slate-500 text-sm mt-3 leading-relaxed">
+                    <p class="text-slate-400 text-sm mt-3 leading-relaxed">
                         Fiber installation, termination, testing, troubleshooting and infrastructure deployment.
                     </p>
                 </div>
 
-                <div class="bg-dark-800 border border-slate-800 rounded-2xl p-7 hover:border-purple-500/40 transition">
+                <div class="glass border border-slate-800/80 rounded-2xl p-7 hover:border-purple-500/40 transition glow">
                     <div class="text-purple-400 text-3xl mb-5">
                         <i class="fa-solid fa-shield-halved"></i>
                     </div>
                     <h3 class="text-white font-bold text-lg">
                         ELV Systems
                     </h3>
-                    <p class="text-slate-500 text-sm mt-3 leading-relaxed">
+                    <p class="text-slate-400 text-sm mt-3 leading-relaxed">
                         Deployment of centralized Video Management Systems (VMS), high-density control room video walls, multi-tier SAN/NAS storage archiving, and AI-powered IP CCTV analytics.
                     </p>
                 </div>
@@ -369,10 +399,10 @@
 <!-- SERVICES -->
 <!-- ========================================================= -->
 
-<section id="services" class="py-24 bg-dark-800 border-y border-slate-800/70">
+<section id="services" class="py-24 border-y border-slate-800/70">
     <div class="max-w-7xl mx-auto px-5 sm:px-8">
         <div class="max-w-3xl mb-14 fade-up">
-            <div class="text-brand-400 text-xs font-bold uppercase tracking-widest mb-3">
+            <div class="text-brand-400 text-xs font-bold uppercase tracking-widest mb-3 font-mono">
                 What I Do
             </div>
             <h2 class="text-3xl sm:text-4xl font-bold text-white">
@@ -384,74 +414,74 @@
         </div>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="bg-dark-900 border border-slate-800 rounded-2xl p-7 hover:border-brand-500/50 hover:-translate-y-1 transition fade-up">
+            <div class="glass border border-slate-800/80 rounded-2xl p-7 hover:border-brand-500/50 hover:-translate-y-1 transition fade-up">
                 <div class="w-12 h-12 rounded-xl bg-brand-500/10 text-brand-400 flex items-center justify-center text-xl mb-5">
                     <i class="fa-solid fa-network-wired"></i>
                 </div>
                 <h3 class="text-xl font-bold text-white">
                     Network Infrastructure
                 </h3>
-                <p class="text-slate-500 text-sm leading-relaxed mt-3">
+                <p class="text-slate-400 text-sm leading-relaxed mt-3">
                     LAN/WAN, switching, routing, VLANs, Wi-Fi, network racks, patch panels and infrastructure deployment.
                 </p>
             </div>
 
-            <div class="bg-dark-900 border border-slate-800 rounded-2xl p-7 hover:border-cyan-500/50 hover:-translate-y-1 transition fade-up">
+            <div class="glass border border-slate-800/80 rounded-2xl p-7 hover:border-cyan-500/50 hover:-translate-y-1 transition fade-up">
                 <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-xl mb-5">
                     <i class="fa-solid fa-house-chimney"></i>
                 </div>
                 <h3 class="text-xl font-bold text-white">
                     Villa Automation
                 </h3>
-                <p class="text-slate-500 text-sm leading-relaxed mt-3">
+                <p class="text-slate-400 text-sm leading-relaxed mt-3">
                     Complete smart home automation including lighting, curtains, climate control, AV and centralized control.
                 </p>
             </div>
 
-            <div class="bg-dark-900 border border-slate-800 rounded-2xl p-7 hover:border-emerald-500/50 hover:-translate-y-1 transition fade-up">
+            <div class="glass border border-slate-800/80 rounded-2xl p-7 hover:border-emerald-500/50 hover:-translate-y-1 transition fade-up">
                 <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl mb-5">
                     <i class="fa-solid fa-video"></i>
                 </div>
                 <h3 class="text-xl font-bold text-white">
                     CCTV & Security
                 </h3>
-                <p class="text-slate-500 text-sm leading-relaxed mt-3">
+                <p class="text-slate-400 text-sm leading-relaxed mt-3">
                     Deployment of centralized Video Management Systems (VMS), high-density control room video walls, multi-tier SAN/NAS storage archiving, and AI-powered IP CCTV analytics.
                 </p>
             </div>
 
-            <div class="bg-dark-900 border border-slate-800 rounded-2xl p-7 hover:border-amber-500/50 hover:-translate-y-1 transition fade-up">
+            <div class="glass border border-slate-800/80 rounded-2xl p-7 hover:border-amber-500/50 hover:-translate-y-1 transition fade-up">
                 <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl mb-5">
                     <i class="fa-solid fa-volume-high"></i>
                 </div>
                 <h3 class="text-xl font-bold text-white">
                     Audio & AV
                 </h3>
-                <p class="text-slate-500 text-sm leading-relaxed mt-3">
+                <p class="text-slate-400 text-sm leading-relaxed mt-3">
                     Multi-zone audio, amplifiers, streamers, DSP configuration, speakers and AV integration.
                 </p>
             </div>
 
-            <div class="bg-dark-900 border border-slate-800 rounded-2xl p-7 hover:border-purple-500/50 hover:-translate-y-1 transition fade-up">
+            <div class="glass border border-slate-800/80 rounded-2xl p-7 hover:border-purple-500/50 hover:-translate-y-1 transition fade-up">
                 <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center text-xl mb-5">
                     <i class="fa-solid fa-wave-square"></i>
                 </div>
                 <h3 class="text-xl font-bold text-white">
                     Fiber Optics
                 </h3>
-                <p class="text-slate-500 text-sm leading-relaxed mt-3">
+                <p class="text-slate-400 text-sm leading-relaxed mt-3">
                     Fiber optic installation, termination, testing, OTDR and fault troubleshooting.
                 </p>
             </div>
 
-            <div class="bg-dark-900 border border-slate-800 rounded-2xl p-7 hover:border-rose-500/50 hover:-translate-y-1 transition fade-up">
+            <div class="glass border border-slate-800/80 rounded-2xl p-7 hover:border-rose-500/50 hover:-translate-y-1 transition fade-up">
                 <div class="w-12 h-12 rounded-xl bg-rose-500/10 text-rose-400 flex items-center justify-center text-xl mb-5">
                     <i class="fa-solid fa-diagram-project"></i>
                 </div>
                 <h3 class="text-xl font-bold text-white">
                     Project Execution
                 </h3>
-                <p class="text-slate-500 text-sm leading-relaxed mt-3">
+                <p class="text-slate-400 text-sm leading-relaxed mt-3">
                     Layout preparation, site coordination, installation supervision, testing and commissioning.
                 </p>
             </div>
@@ -467,7 +497,7 @@
 <section id="skills" class="py-24">
     <div class="max-w-7xl mx-auto px-5 sm:px-8">
         <div class="text-center max-w-3xl mx-auto mb-14 fade-up">
-            <div class="text-brand-400 text-xs font-bold uppercase tracking-widest mb-3">
+            <div class="text-brand-400 text-xs font-bold uppercase tracking-widest mb-3 font-mono">
                 Technical Skills
             </div>
             <h2 class="text-3xl sm:text-4xl font-bold text-white">
@@ -516,10 +546,10 @@
 <!-- PROJECTS -->
 <!-- ========================================================= -->
 
-<section id="projects" class="py-24 bg-dark-800 border-y border-slate-800/70">
+<section id="projects" class="py-24 border-y border-slate-800/70">
     <div class="max-w-7xl mx-auto px-5 sm:px-8">
         <div class="text-center max-w-3xl mx-auto mb-14 fade-up">
-            <div class="text-brand-400 text-xs font-bold uppercase tracking-widest mb-3">
+            <div class="text-brand-400 text-xs font-bold uppercase tracking-widest mb-3 font-mono">
                 Project Experience
             </div>
             <h2 class="text-3xl sm:text-4xl font-bold text-white">
@@ -531,50 +561,50 @@
         </div>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
-            <div class="group bg-dark-900 border border-slate-800 rounded-2xl p-7 hover:border-brand-500/50 transition fade-up">
+            <div class="group glass border border-slate-800/80 rounded-2xl p-7 hover:border-brand-500/50 transition fade-up">
                 <div class="text-brand-400 text-2xl mb-5">
                     <i class="fa-solid fa-building"></i>
                 </div>
                 <h3 class="text-white font-bold text-lg">
                     Emirates Hills
                 </h3>
-                <p class="text-slate-500 text-sm mt-2">
+                <p class="text-slate-400 text-sm mt-2">
                     Premium villa automation and integrated technology systems.
                 </p>
             </div>
 
-            <div class="group bg-dark-900 border border-slate-800 rounded-2xl p-7 hover:border-cyan-500/50 transition fade-up">
+            <div class="group glass border border-slate-800/80 rounded-2xl p-7 hover:border-cyan-500/50 transition fade-up">
                 <div class="text-cyan-400 text-2xl mb-5">
                     <i class="fa-solid fa-city"></i>
                 </div>
                 <h3 class="text-white font-bold text-lg">
                     Dubai Hills
                 </h3>
-                <p class="text-slate-500 text-sm mt-2">
+                <p class="text-slate-400 text-sm mt-2">
                     Smart villa and infrastructure project execution.
                 </p>
             </div>
 
-            <div class="group bg-dark-900 border border-slate-800 rounded-2xl p-7 hover:border-emerald-500/50 transition fade-up">
+            <div class="group glass border border-slate-800/80 rounded-2xl p-7 hover:border-emerald-500/50 transition fade-up">
                 <div class="text-emerald-400 text-2xl mb-5">
                     <i class="fa-solid fa-water"></i>
                 </div>
                 <h3 class="text-white font-bold text-lg">
                     Jumeirah Bay Island
                 </h3>
-                <p class="text-slate-500 text-sm mt-2">
+                <p class="text-slate-400 text-sm mt-2">
                     High-end residential automation and ELV solutions.
                 </p>
             </div>
 
-            <div class="group bg-dark-900 border border-slate-800 rounded-2xl p-7 hover:border-purple-500/50 transition fade-up">
+            <div class="group glass border border-slate-800/80 rounded-2xl p-7 hover:border-purple-500/50 transition fade-up">
                 <div class="text-purple-400 text-2xl mb-5">
                     <i class="fa-solid fa-city"></i>
                 </div>
                 <h3 class="text-white font-bold text-lg">
                     Downtown Dubai
                 </h3>
-                <p class="text-slate-500 text-sm mt-2">
+                <p class="text-slate-400 text-sm mt-2">
                     Technology infrastructure and integrated system deployment.
                 </p>
             </div>
@@ -590,7 +620,7 @@
 <section id="experience" class="py-24">
     <div class="max-w-5xl mx-auto px-5 sm:px-8">
         <div class="text-center mb-14 fade-up">
-            <div class="text-brand-400 text-xs font-bold uppercase tracking-widest mb-3">
+            <div class="text-brand-400 text-xs font-bold uppercase tracking-widest mb-3 font-mono">
                 Experience
             </div>
             <h2 class="text-3xl sm:text-4xl font-bold text-white">
@@ -600,9 +630,9 @@
 
         <div class="relative border-l border-slate-700 ml-3 pl-8 space-y-10">
             <div class="relative fade-up">
-                <div class="absolute -left-[41px] top-1 w-5 h-5 rounded-full bg-brand-500 ring-4 ring-dark-900"></div>
-                <div class="bg-dark-800 border border-slate-800 rounded-2xl p-7">
-                    <div class="text-brand-400 text-xs font-bold uppercase tracking-widest">
+                <div class="absolute -left-[41px] top-1 w-5 h-5 rounded-full bg-brand-500 ring-4 ring-dark-900 shadow-lg shadow-brand-500"></div>
+                <div class="glass border border-slate-800/80 rounded-2xl p-7">
+                    <div class="text-brand-400 text-xs font-bold uppercase tracking-widest font-mono">
                         Current Position
                     </div>
                     <h3 class="text-xl sm:text-2xl font-bold text-white mt-2">
@@ -611,7 +641,7 @@
                     <div class="text-slate-400 font-medium mt-2">
                         Dynamic World Computer • Dubai
                     </div>
-                    <ul class="mt-5 space-y-3 text-slate-400 text-sm leading-relaxed">
+                    <ul class="mt-5 space-y-3 text-slate-300 text-sm leading-relaxed">
                         <li>
                             <i class="fa-solid fa-check text-brand-400 mr-2"></i>
                             Network infrastructure design, installation and configuration.
@@ -642,14 +672,14 @@
 
             <div class="relative fade-up">
                 <div class="absolute -left-[41px] top-1 w-5 h-5 rounded-full bg-slate-600 ring-4 ring-dark-900"></div>
-                <div class="bg-dark-800 border border-slate-800 rounded-2xl p-7">
-                    <div class="text-slate-500 text-xs font-bold uppercase tracking-widest">
+                <div class="glass border border-slate-800/80 rounded-2xl p-7">
+                    <div class="text-slate-500 text-xs font-bold uppercase tracking-widest font-mono">
                         Previous Experience
                     </div>
                     <h3 class="text-xl sm:text-2xl font-bold text-white mt-2">
                         Network & Infrastructure Engineering
                     </h3>
-                    <p class="text-slate-400 mt-3 leading-relaxed">
+                    <p class="text-slate-300 mt-3 leading-relaxed">
                         Experience in structured cabling, network infrastructure, fiber optics, equipment racks, installation, troubleshooting and site-level technical support.
                     </p>
                 </div>
@@ -663,11 +693,11 @@
 <!-- CONTACT -->
 <!-- ========================================================= -->
 
-<section id="contact" class="py-24 bg-dark-800 border-t border-slate-800">
+<section id="contact" class="py-24 border-t border-slate-800/80">
     <div class="max-w-7xl mx-auto px-5 sm:px-8">
         <div class="grid lg:grid-cols-2 gap-14 items-center">
             <div class="fade-up">
-                <div class="text-brand-400 text-xs font-bold uppercase tracking-widest mb-3">
+                <div class="text-brand-400 text-xs font-bold uppercase tracking-widest mb-3 font-mono">
                     Contact
                 </div>
                 <h2 class="text-3xl sm:text-4xl font-bold text-white leading-tight">
@@ -681,7 +711,7 @@
                     <!-- Email -->
                     <a href="mailto:contact@shahfaishal.com"
                        class="flex items-center gap-4 group">
-                        <div class="w-12 h-12 rounded-xl bg-dark-900 border border-slate-700 flex items-center justify-center text-brand-400 group-hover:bg-brand-600 group-hover:text-white transition">
+                        <div class="w-12 h-12 rounded-xl bg-dark-800 border border-slate-700 flex items-center justify-center text-brand-400 group-hover:bg-brand-600 group-hover:text-white transition">
                             <i class="fa-solid fa-envelope"></i>
                         </div>
                         <div>
@@ -699,7 +729,7 @@
                        target="_blank"
                        rel="noopener noreferrer"
                        class="flex items-center gap-4 group">
-                        <div class="w-12 h-12 rounded-xl bg-dark-900 border border-slate-700 flex items-center justify-center text-green-400 group-hover:bg-green-600 group-hover:text-white transition">
+                        <div class="w-12 h-12 rounded-xl bg-dark-800 border border-slate-700 flex items-center justify-center text-green-400 group-hover:bg-green-600 group-hover:text-white transition">
                             <i class="fa-brands fa-whatsapp"></i>
                         </div>
                         <div>
@@ -717,7 +747,7 @@
                        target="_blank"
                        rel="noopener noreferrer"
                        class="flex items-center gap-4 group">
-                        <div class="w-12 h-12 rounded-xl bg-dark-900 border border-slate-700 flex items-center justify-center text-pink-400 group-hover:bg-pink-600 group-hover:text-white transition">
+                        <div class="w-12 h-12 rounded-xl bg-dark-800 border border-slate-700 flex items-center justify-center text-pink-400 group-hover:bg-pink-600 group-hover:text-white transition">
                             <i class="fa-brands fa-instagram"></i>
                         </div>
                         <div>
@@ -734,7 +764,7 @@
                     <a href="#"
                        target="_blank"
                        class="flex items-center gap-4 group">
-                        <div class="w-12 h-12 rounded-xl bg-dark-900 border border-slate-700 flex items-center justify-center text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition">
+                        <div class="w-12 h-12 rounded-xl bg-dark-800 border border-slate-700 flex items-center justify-center text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition">
                             <i class="fa-brands fa-linkedin-in"></i>
                         </div>
                         <div>
@@ -750,50 +780,50 @@
             </div>
 
             <!-- Contact Card -->
-            <div class="bg-dark-900 border border-slate-800 rounded-3xl p-8 glow fade-up">
+            <div class="glass border border-slate-800 rounded-3xl p-8 glow fade-up">
                 <div class="text-white text-xl font-bold">
                     Quick Contact
                 </div>
-                <p class="text-slate-500 text-sm mt-2">
+                <p class="text-slate-400 text-sm mt-2">
                     Send your project requirements directly through WhatsApp.
                 </p>
 
                 <form id="contactForm" class="mt-7 space-y-5">
                     <div>
-                        <label class="text-xs text-slate-500 uppercase tracking-wider">
+                        <label class="text-xs text-slate-400 uppercase tracking-wider">
                             Name
                         </label>
                         <input id="name"
                                type="text"
                                required
                                placeholder="Your name"
-                               class="mt-2 w-full px-4 py-3.5 rounded-xl bg-dark-800 border border-slate-700 text-white placeholder-slate-600 focus:outline-none focus:border-brand-500">
+                               class="mt-2 w-full px-4 py-3.5 rounded-xl bg-dark-900/90 border border-slate-700 text-white placeholder-slate-600 focus:outline-none focus:border-brand-500 transition">
                     </div>
 
                     <div>
-                        <label class="text-xs text-slate-500 uppercase tracking-wider">
+                        <label class="text-xs text-slate-400 uppercase tracking-wider">
                             Email
                         </label>
                         <input id="email"
                                type="email"
                                required
                                placeholder="your@email.com"
-                               class="mt-2 w-full px-4 py-3.5 rounded-xl bg-dark-800 border border-slate-700 text-white placeholder-slate-600 focus:outline-none focus:border-brand-500">
+                               class="mt-2 w-full px-4 py-3.5 rounded-xl bg-dark-900/90 border border-slate-700 text-white placeholder-slate-600 focus:outline-none focus:border-brand-500 transition">
                     </div>
 
                     <div>
-                        <label class="text-xs text-slate-500 uppercase tracking-wider">
+                        <label class="text-xs text-slate-400 uppercase tracking-wider">
                             Message
                         </label>
                         <textarea id="message"
                                   rows="5"
                                   required
                                   placeholder="Tell me about your project..."
-                                  class="mt-2 w-full px-4 py-3.5 rounded-xl bg-dark-800 border border-slate-700 text-white placeholder-slate-600 focus:outline-none focus:border-brand-500"></textarea>
+                                  class="mt-2 w-full px-4 py-3.5 rounded-xl bg-dark-900/90 border border-slate-700 text-white placeholder-slate-600 focus:outline-none focus:border-brand-500 transition"></textarea>
                     </div>
 
                     <button type="submit"
-                            class="w-full py-4 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold transition shadow-lg shadow-brand-600/20">
+                            class="w-full py-4 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold transition shadow-lg shadow-brand-600/30">
                         <i class="fa-brands fa-whatsapp mr-2"></i>
                         Send via WhatsApp
                     </button>
@@ -808,14 +838,14 @@
 <!-- FOOTER -->
 <!-- ========================================================= -->
 
-<footer class="py-8 border-t border-slate-800 bg-dark-900">
+<footer class="py-8 border-t border-slate-800/80 bg-dark-900/90 relative z-10">
     <div class="max-w-7xl mx-auto px-5 sm:px-8">
         <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div class="text-sm text-slate-500">
+            <div class="text-sm text-slate-500 font-mono">
                 © <span id="year"></span> Shah Faishal. All rights reserved.
             </div>
 
-            <div class="text-xs text-slate-600">
+            <div class="text-xs text-slate-500 font-mono">
                 Network • Automation • ELV • Infrastructure
             </div>
         </div>
@@ -850,7 +880,7 @@
 
 
 <!-- ========================================================= -->
-<!-- JAVASCRIPT & PARTICLES ENGINE -->
+<!-- SCRIPTS & LIVE MATRIX ANIMATION ENGINE -->
 <!-- ========================================================= -->
 
 <script>
@@ -913,7 +943,56 @@
         );
     });
 
-    /* Network Canvas Animation Engine */
+    /* ========================================================= */
+    /* LIVE MATRIX RAIN BACKGROUND (FULL SCREEN) */
+    /* ========================================================= */
+    const mCanvas = document.getElementById('matrixCanvas');
+    const mCtx = mCanvas.getContext('2d');
+
+    function resizeMatrix() {
+        mCanvas.width = window.innerWidth;
+        mCanvas.height = window.innerHeight;
+    }
+    resizeMatrix();
+    window.addEventListener('resize', resizeMatrix);
+
+    const matrixChars = '010101011001010123456789ABCDEF';
+    const mFontSize = 14;
+    let mColumns = Math.floor(mCanvas.width / mFontSize);
+    let mDrops = [];
+
+    function initMatrixDrops() {
+        mColumns = Math.floor(mCanvas.width / mFontSize);
+        mDrops = [];
+        for (let i = 0; i < mColumns; i++) {
+            mDrops[i] = Math.random() * -100;
+        }
+    }
+    initMatrixDrops();
+    window.addEventListener('resize', initMatrixDrops);
+
+    function drawMatrixRain() {
+        mCtx.fillStyle = 'rgba(3, 8, 17, 0.08)';
+        mCtx.fillRect(0, 0, mCanvas.width, mCanvas.height);
+
+        mCtx.fillStyle = '#00f2fe'; // Neon cyan hacker streams
+        mCtx.font = mFontSize + 'px Share Tech Mono, monospace';
+
+        for (let i = 0; i < mDrops.length; i++) {
+            const char = matrixChars.charAt(Math.floor(Math.random() * matrixChars.length));
+            mCtx.fillText(char, i * mFontSize, mDrops[i] * mFontSize);
+
+            if (mDrops[i] * mFontSize > mCanvas.height && Math.random() > 0.975) {
+                mDrops[i] = 0;
+            }
+            mDrops[i]++;
+        }
+    }
+    setInterval(drawMatrixRain, 33);
+
+    /* ========================================================= */
+    /* HERO INTERACTIVE PARTICLES */
+    /* ========================================================= */
     const canvas = document.getElementById('networkCanvas');
     const ctx = canvas.getContext('2d');
     let particlesArray = [];
@@ -1018,3 +1097,4 @@
 
 </body>
 </html>
+
