@@ -31,7 +31,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,700;1,800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,700;1,800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
@@ -39,7 +39,8 @@
                 extend: {
                     fontFamily: {
                         sans: ['Plus Jakarta Sans', 'sans-serif'],
-                        mono: ['Share Tech Mono', 'monospace']
+                        mono: ['Share Tech Mono', 'monospace'],
+                        luxury: ['Cinzel', 'serif']
                     },
                     colors: {
                         brand: {
@@ -67,6 +68,65 @@
         body {
             overflow-x: hidden;
             background-color: #030811;
+        }
+
+        /* EXACT LUXURY SKYON-STYLE SPLASH SCREEN */
+        #preloader {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            background-color: #040810;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.8s ease;
+        }
+        #preloader.fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .luxury-text {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 0.45em;
+            color: #d4af37;
+            background: linear-gradient(135deg, #dfba73 0%, #c59b27 50%, #f3e5ab 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: luxuryFadeIn 1.4s ease forwards;
+        }
+
+        .luxury-line {
+            width: 0px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #c59b27, #dfba73, transparent);
+            margin: 18px auto 0;
+            animation: lineExpand 1.6s ease-out 0.2s forwards;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+        }
+
+        @keyframes luxuryFadeIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.96) translateY(6px);
+                filter: blur(4px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+                filter: blur(0px);
+            }
+        }
+
+        @keyframes lineExpand {
+            0% {
+                width: 0px;
+                opacity: 0;
+            }
+            100% {
+                width: 80px;
+                opacity: 0.85;
+            }
         }
 
         #matrixCanvas {
@@ -167,6 +227,16 @@
 </head>
 
 <body class="bg-dark-900 text-slate-200 font-sans antialiased">
+
+<!-- EXACT SKYON GOLDEN SPLASH SCREEN -->
+<div id="preloader">
+    <div class="text-center px-4 select-none">
+        <h1 class="text-3xl sm:text-5xl md:text-6xl font-medium tracking-[0.45em] luxury-text pl-3 uppercase">
+            FAISHAL
+        </h1>
+        <div class="luxury-line"></div>
+    </div>
+</div>
 
 <!-- Live Matrix Background -->
 <canvas id="matrixCanvas"></canvas>
@@ -1215,11 +1285,11 @@
     </div>
 </div>
 
-<!-- 3. CLEAN RED HEART POPUP MODAL (NO TEXT AT ALL) -->
+<!-- 3. PURE RED HEART POPUP MODAL (ONLY HEART - ZERO TEXT) -->
 <div id="heartModal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-xl hidden items-center justify-center p-4" onclick="closeHeartModal()">
-    <div class="relative p-10 flex flex-col items-center justify-center pointer-events-auto" onclick="event.stopPropagation()">
-        <!-- Pulsing Beating Red Heart -->
-        <div class="w-28 h-28 rounded-full bg-red-500/10 border border-red-500/20 flex items-center justify-center animate-bounce shadow-[0_0_50px_rgba(239,68,68,0.5)]">
+    <div class="relative p-8 flex flex-col items-center justify-center pointer-events-auto" onclick="event.stopPropagation()">
+        <!-- Pulsing Pure Beating Red Heart with Glow -->
+        <div class="w-28 h-28 rounded-full bg-red-500/15 border border-red-500/30 flex items-center justify-center animate-bounce shadow-[0_0_60px_rgba(239,68,68,0.6)] cursor-pointer" onclick="closeHeartModal()">
             <i class="fa-solid fa-heart text-6xl text-red-500 drop-shadow-[0_0_35px_rgba(239,68,68,1)]"></i>
         </div>
     </div>
@@ -1227,6 +1297,17 @@
 
 <!-- SCRIPTS & ENGINE -->
 <script>
+    // Exact Smooth Timing: 1.8s Elegant Intro Reveal -> 0.8s Cinematic Fade-out
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            const preloader = document.getElementById('preloader');
+            preloader.classList.add('fade-out');
+            setTimeout(() => {
+                preloader.style.display = 'none';
+            }, 800);
+        }, 1800);
+    });
+
     const servicesData = [
         {
             category: "Network & Security Gateways",
@@ -1339,7 +1420,7 @@
         }
     };
 
-    // Clean Heart Modal Functions
+    // Clean Pure Heart Modal Functions
     function openHeartModal(e) {
         if(e) e.stopPropagation();
         const modal = document.getElementById('heartModal');
