@@ -96,7 +96,7 @@
             opacity: 0.6;
         }
 
-        /* NORMAL STRAIGHT ZOOM ANIMATION FOR ENTIRE CONTAINER */
+        /* F AND SHAL STRAIGHT NORMAL TEXT */
         .zoom-text {
             font-family: 'Cinzel', serif;
             font-weight: 700;
@@ -128,7 +128,6 @@
             }
         }
 
-        /* F AND SHAL STRAIGHT NORMAL TEXT COLOR */
         .fshal-part {
             background: linear-gradient(135deg, #ffffff 0%, #38bdf8 50%, #00ffcc 100%);
             -webkit-background-clip: text;
@@ -137,7 +136,7 @@
             font-style: normal;
         }
 
-        /* ai. IN A GLOWING BOX THAT DROPS DOWN AND STAYS SLIGHTLY TILTED */
+        /* AI. LOWERCASE BOX DROPPING DIRECTLY FROM VERY TOP OF PAGE */
         .ai-box {
             display: inline-flex;
             align-items: center;
@@ -147,22 +146,28 @@
             box-shadow: 0 0 25px rgba(255, 51, 102, 0.6);
             border-radius: 8px;
             padding: 0.05em 0.35em;
-            font-style: italic;
+            font-style: normal;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 600;
             color: #ff3366;
             text-transform: lowercase;
             backdrop-filter: blur(4px);
-            transform: rotate(-8deg);
-            animation: dropInAIBox 1.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            transform: rotate(-5deg);
+            animation: dropFromVeryTop 1.5s cubic-bezier(0.25, 1, 0.5, 1.25) forwards;
             opacity: 0;
         }
 
-        @keyframes dropInAIBox {
+        @keyframes dropFromVeryTop {
             0% {
-                transform: translateY(-200px) rotate(-8deg);
+                transform: translateY(-50vh) rotate(-5deg);
                 opacity: 0;
             }
+            70% {
+                opacity: 1;
+                transform: translateY(10px) rotate(-5deg);
+            }
             100% {
-                transform: translateY(0) rotate(-8deg);
+                transform: translateY(0) rotate(-5deg);
                 opacity: 1;
             }
         }
