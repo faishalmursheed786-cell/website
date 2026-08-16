@@ -160,7 +160,7 @@
             z-index: 10;
         }
 
-        #detailModal, #partnerModal {
+        #detailModal, #partnerModal, #heartModal {
             transition: all 0.3s ease;
         }
     </style>
@@ -174,19 +174,23 @@
 <!-- NAVBAR -->
 <header class="fixed top-0 left-0 right-0 z-50 glass border-b border-slate-800/80">
     <div class="max-w-7xl mx-auto px-5 sm:px-8 h-20 flex items-center justify-between">
-        <a href="#home" class="flex items-center gap-3">
-            <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-600 to-cyan-400 flex items-center justify-center font-black text-white shadow-lg shadow-brand-500/20">
+        
+        <!-- Logo with Special Clickable 'Z' -->
+        <div class="flex items-center gap-3">
+            <button onclick="openHeartModal(event)" 
+                    title="Click me"
+                    class="w-11 h-11 rounded-xl bg-gradient-to-tr from-rose-600 via-red-500 to-pink-500 flex items-center justify-center font-black text-white text-xl shadow-lg shadow-rose-500/30 border border-rose-400/40 hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer">
                 Z
-            </div>
-            <div>
-                <div class="text-white font-bold leading-none">
+            </button>
+            <a href="#home">
+                <div class="text-white font-bold leading-none hover:text-brand-400 transition">
                     Shah Faishal
                 </div>
                 <div class="text-[10px] uppercase tracking-widest text-brand-400 mt-1 font-mono">
                     
                 </div>
-            </div>
-        </a>
+            </a>
+        </div>
 
         <!-- Desktop Menu -->
         <nav class="hidden md:flex items-center gap-7 text-sm font-medium">
@@ -1211,6 +1215,34 @@
     </div>
 </div>
 
+<!-- 3. RED HEART POPUP MODAL (OPENED VIA NAVBAR 'Z' BUTTON) -->
+<div id="heartModal" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl hidden items-center justify-center p-4 sm:p-6">
+    <div class="relative w-full max-w-sm glass border border-red-500/40 rounded-3xl p-8 sm:p-10 text-center shadow-2xl shadow-red-500/30">
+        <button onclick="closeHeartModal()" class="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-dark-900/80 border border-slate-700 text-slate-300 hover:text-white hover:bg-red-600 flex items-center justify-center transition">
+            <i class="fa-solid fa-xmark text-sm"></i>
+        </button>
+
+        <div class="py-6 flex flex-col items-center justify-center">
+            <!-- Pulsing Beating Red Heart -->
+            <div class="w-24 h-24 rounded-full bg-red-500/15 border border-red-500/30 flex items-center justify-center mb-5 animate-bounce">
+                <i class="fa-solid fa-heart text-5xl text-red-500 drop-shadow-[0_0_30px_rgba(239,68,68,0.95)]"></i>
+            </div>
+            
+            <div class="text-3xl font-black font-serif text-white tracking-widest mt-1">
+                ZOYA
+            </div>
+
+            <p class="text-xs sm:text-sm font-semibold tracking-wider uppercase text-red-300/90 mt-4 leading-relaxed font-sans border-y border-red-500/20 py-3 w-full">
+                ✨ MOST BEAUTIFULL WOMEN EVER SEEN BY ME ✨
+            </p>
+        </div>
+
+        <button onclick="closeHeartModal()" class="w-full py-3 rounded-xl bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white text-xs font-bold tracking-wider uppercase transition shadow-lg shadow-red-500/30">
+            Close
+        </button>
+    </div>
+</div>
+
 <!-- SCRIPTS & ENGINE -->
 <script>
     const servicesData = [
@@ -1324,6 +1356,28 @@
             icon: "fa-solid fa-server"
         }
     };
+
+    // Heart Modal Functions (Triggered by Navbar 'Z' button)
+    function openHeartModal(e) {
+        if(e) e.stopPropagation();
+        const modal = document.getElementById('heartModal');
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeHeartModal() {
+        const modal = document.getElementById('heartModal');
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        document.body.style.overflow = 'auto';
+    }
+
+    document.getElementById('heartModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeHeartModal();
+        }
+    });
 
     // Partner Modal Functions
     function openPartnerDetail(name) {
