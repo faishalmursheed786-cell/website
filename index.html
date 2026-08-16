@@ -100,7 +100,7 @@
         /* NORMAL BALANCED SIZE ZOOM ANIMATION */
         .zoom-text {
             font-family: 'Cinzel', serif;
-            letter-spacing: 0.35em;
+            letter-spacing: 0.25em;
             background: linear-gradient(135deg, #ffffff 0%, #38bdf8 50%, #00ffcc 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -110,8 +110,17 @@
             transform: scale(0.5);
         }
 
-        /* Dropping Box Animation for 'ai.' */
+        /* Compact Dropping Box for 'ai.' */
         #dropBox {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.05em 0.35em;
+            margin: 0 0.15em;
+            border: 1.5px solid #38bdf8;
+            background: rgba(56, 189, 248, 0.15);
+            border-radius: 6px;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
             animation: dropInBox 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.4s forwards;
             opacity: 0;
             transform: translateY(-120vh) scale(0.5);
@@ -124,7 +133,7 @@
             }
             70% {
                 opacity: 1;
-                transform: translateY(15px) scale(1.1);
+                transform: translateY(10px) scale(1.1);
             }
             100% {
                 opacity: 1;
@@ -292,15 +301,14 @@
     <canvas id="preloaderCanvas"></canvas>
     
     <div class="relative z-10 text-center px-4 select-none flex flex-col items-center justify-center">
-        <!-- F ai. SHAL Structure -->
+        <!-- F ai. SHAL Structure with compact box -->
         <div class="flex items-center justify-center zoom-text font-bold text-2xl sm:text-4xl md:text-5xl">
             <span>F</span>
-            <span class="mx-1.5 sm:mx-3">&nbsp;</span>
-            <!-- Dropping AI Box -->
-            <div id="dropBox" class="inline-flex items-center justify-center px-2 py-0.5 sm:px-3 sm:py-1 mx-1 border border-brand-400 bg-brand-500/20 rounded-md shadow-[0_0_20px_rgba(56,189,248,0.6)]">
-                <span class="lowercase text-brand-300 font-normal">ai.</span>
+            <span class="mx-2">&nbsp;</span>
+            <div id="dropBox">
+                <span class="lowercase text-brand-300 font-normal tracking-normal text-xl sm:text-3xl md:text-4xl">ai.</span>
             </div>
-            <span class="mx-1.5 sm:mx-3">&nbsp;</span>
+            <span class="mx-2">&nbsp;</span>
             <span>S</span>
             <span>H</span>
             <span>A</span>
