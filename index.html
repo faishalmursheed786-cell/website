@@ -1403,7 +1403,7 @@
         <p id="alertPopupText" class="text-slate-300 text-sm mt-3 leading-relaxed">
             5 attempts failed! Looks like you applied network troubleshooting skills to a heart. Time to check the actual website?
         </p>
-        <button onclick="closeAlertPopup()" class="mt-6 w-full py-3 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-sm font-semibold transition">
+        <button onclick="redirectToHome()" class="mt-6 w-full py-3 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-sm font-semibold transition">
             Continue Exploring Website
         </button>
     </div>
@@ -1546,10 +1546,25 @@
         modal.classList.add('flex');
     }
 
-    function closeAlertPopup() {
-        const modal = document.getElementById('alertPopupModal');
-        modal.classList.add('hidden');
-        modal.classList.remove('flex');
+    function redirectToHome() {
+        // 1. Alert popup band karo
+        const alertModal = document.getElementById('alertPopupModal');
+        alertModal.classList.add('hidden');
+        alertModal.classList.remove('flex');
+
+        // 2. Heart/Easter egg modal bhi band karo
+        const heartModal = document.getElementById('heartModal');
+        heartModal.classList.add('hidden');
+        heartModal.classList.remove('flex');
+
+        // 3. Body scroll wapas enable karo
+        document.body.style.overflow = 'auto';
+
+        // 4. Seedha Home section par smooth scroll karo
+        const homeSection = document.getElementById('home');
+        if (homeSection) {
+            homeSection.scrollIntoView({ behavior: 'smooth' });
+        }
     }
 
     function openHeartModal(e) {
