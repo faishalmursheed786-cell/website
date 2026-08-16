@@ -142,7 +142,6 @@
             z-index: 10;
         }
 
-        /* Detail Modal */
         #detailModal {
             transition: all 0.3s ease;
         }
@@ -321,7 +320,7 @@
 </section>
 
 <!-- ========================================================= -->
-<!-- SERVICES SECTION (CLICKABLE CARDS THAT OPEN POPUP) -->
+<!-- SERVICES SECTION (CLICKABLE CARDS) -->
 <!-- ========================================================= -->
 
 <section id="services" class="py-24 border-y border-slate-800/70">
@@ -334,7 +333,7 @@
                 Technical Specializations
             </h2>
             <p class="text-slate-400 mt-4 leading-relaxed">
-                End-to-end engineering support for modern residential, commercial and infrastructure projects. <span class="text-brand-400 font-semibold">(Click any card to view deployment details & visual archive)</span>
+                End-to-end engineering support for modern residential, commercial and infrastructure projects. <span class="text-brand-400 font-semibold">(Click any card to view deployment details & live preview)</span>
             </p>
         </div>
 
@@ -886,7 +885,7 @@
 </a>
 
 <!-- ========================================================= -->
-<!-- DETAIL POPUP MODAL (SHOWS IMAGE + EXACT TEXT ON CLICK) -->
+<!-- DETAIL POPUP MODAL -->
 <!-- ========================================================= -->
 <div id="detailModal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4 sm:p-6 overflow-y-auto">
     <div class="relative w-full max-w-4xl glass border border-slate-700/80 rounded-3xl overflow-hidden shadow-2xl my-auto">
@@ -922,43 +921,43 @@
 <!-- SCRIPTS & ENGINE -->
 <script>
     /* ========================================================= */
-    /* POPUP MODAL DATA FOR YOUR 6 SERVICES */
+    /* POPUP DATA WITH LIVE ULTRA-REALISTIC HD IMAGE LINKS */
     /* ========================================================= */
     const servicesData = [
         {
             category: "Network Infrastructure",
             title: "Enterprise Network & Server Rack Deployment",
-            image: "1-enterprise-rack.jpg",
+            image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=85",
             desc: "Deployment of Next-Generation Firewalls (FortiGate HA Cluster) and core edge routers for secure multi-WAN load balancing and SD-WAN branch interconnects."
         },
         {
             category: "Villa Automation",
             title: "Luxury Villas ICT & Automation Projects In Dubai",
-            image: "4-luxury-villa.jpg",
+            image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=85",
             desc: "Delivering seamless network reliability, advanced VMS surveillance, multi-room acoustic systems, and unified smart automation across Dubai's elite properties."
         },
         {
             category: "CCTV & Security",
             title: "Enterprise VMS & IP Surveillance",
-            image: "3-enterprise-vms.jpg",
+            image: "https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=1200&q=85",
             desc: "Deployment of centralized Video Management Systems (VMS), high-density control room video walls, multi-tier SAN/NAS storage archiving, and AI-powered IP CCTV analytics for enterprise-grade security operations."
         },
         {
             category: "Audio & AV",
             title: "Multi-zone Audio & Cinema Integration",
-            image: "6-pro-audio.jpg",
+            image: "https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=1200&q=85",
             desc: "Transforming luxury spaces into immersive soundscapes with centralized multi-room control, custom integration of high-performance pro-series loudspeakers, and theater-grade visuals."
         },
         {
             category: "Fiber Optics & Infrastructure",
             title: "Core Data Center Infrastructure & Spine-Leaf Cabling",
-            image: "2-datacenter-spine.jpg",
+            image: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1200&q=85",
             desc: "Deployment of high-density open server racks featuring spine-leaf fabric architecture, structured blue fiber/copper cabling containment, and redundant enterprise power distribution."
         },
         {
             category: "Engineering Design",
             title: "Smart Villa ICT & Automation Design",
-            image: "5-smart-villa-cad.jpg",
+            image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=85",
             desc: "From schematic design to full deployment: robust ICT for modern smart villas. Architecting secure, high-speed, and unified smart automation ecosystems."
         }
     ];
@@ -983,7 +982,7 @@
         document.body.style.overflow = 'auto';
     }
 
-    // Close when tapping outside the card
+    // Close when tapping outside
     document.getElementById('detailModal').addEventListener('click', function(e) {
         if (e.target === this) {
             closeServiceDetail();
@@ -1093,7 +1092,7 @@
     }
     setInterval(drawMatrixRain, 33);
 
-    /* HERO INTERACTIVE PARTICLES */
+    /* HERO PARTICLES */
     const canvas = document.getElementById('networkCanvas');
     const ctx = canvas.getContext('2d');
     let particlesArray = [];
