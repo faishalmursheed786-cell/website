@@ -100,7 +100,7 @@
         /* NORMAL BALANCED SIZE ZOOM ANIMATION */
         .zoom-text {
             font-family: 'Cinzel', serif;
-            letter-spacing: 0.45em;
+            letter-spacing: 0.35em;
             background: linear-gradient(135deg, #ffffff 0%, #38bdf8 50%, #00ffcc 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -108,6 +108,28 @@
             animation: textZoomIn 2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
             opacity: 0;
             transform: scale(0.5);
+        }
+
+        /* Dropping Box Animation for 'ai.' */
+        #dropBox {
+            animation: dropInBox 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.4s forwards;
+            opacity: 0;
+            transform: translateY(-120vh) scale(0.5);
+        }
+
+        @keyframes dropInBox {
+            0% {
+                opacity: 0;
+                transform: translateY(-120vh) scale(0.5);
+            }
+            70% {
+                opacity: 1;
+                transform: translateY(15px) scale(1.1);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
         }
 
         /* FULL WIDTH HORIZONTAL LINE */
@@ -270,9 +292,20 @@
     <canvas id="preloaderCanvas"></canvas>
     
     <div class="relative z-10 text-center px-4 select-none flex flex-col items-center justify-center">
-        <h1 class="text-2xl sm:text-4xl md:text-5xl font-bold zoom-text pl-3 uppercase">
-            FAISHAL
-        </h1>
+        <!-- F ai. SHAL Structure -->
+        <div class="flex items-center justify-center zoom-text font-bold text-2xl sm:text-4xl md:text-5xl">
+            <span>F</span>
+            <span class="mx-1.5 sm:mx-3">&nbsp;</span>
+            <!-- Dropping AI Box -->
+            <div id="dropBox" class="inline-flex items-center justify-center px-2 py-0.5 sm:px-3 sm:py-1 mx-1 border border-brand-400 bg-brand-500/20 rounded-md shadow-[0_0_20px_rgba(56,189,248,0.6)]">
+                <span class="lowercase text-brand-300 font-normal">ai.</span>
+            </div>
+            <span class="mx-1.5 sm:mx-3">&nbsp;</span>
+            <span>S</span>
+            <span>H</span>
+            <span>A</span>
+            <span>L</span>
+        </div>
         <div class="full-screen-line"></div>
     </div>
 </div>
@@ -1748,11 +1781,9 @@
     window.addEventListener('resize', initMatrixDrops);
 
     function drawMatrixRain() {
-        // Deep pitch-black trail fade
         mCtx.fillStyle = 'rgba(3, 8, 17, 0.09)';
         mCtx.fillRect(0, 0, mCanvas.width, mCanvas.height);
 
-        // Neon Light Green Glowing Text
         mCtx.fillStyle = '#00ff66';
         mCtx.shadowColor = '#00ff88';
         mCtx.shadowBlur = 8;
