@@ -6,7 +6,7 @@
 
     <title>Shah Faishal | Senior Network, Automation, AV, ELV & Infrastructure Engineer</title>
 
-    <meta name="description" content="Shah Faishal is a Senior Network, Automation, AV, ELV & Infrastructure Engineer from Dynamic World Computer based in Dubai, specializing in Fortinet firewalls, Cisco switching, IT rack architecture, Xilica DSP, Martin Audio, Onkyo AVRs, LEA Pro amps, KNX automation, and DeepSpace Network (DSN) infrastructure.">
+    <meta name="description" content="Shah Faishal is a Senior Network, Automation, AV, ELV & Infrastructure Engineer based in Dubai, specializing in Fortinet firewalls, Cisco switching, IT rack architecture, Xilica DSP, Martin Audio, Onkyo AVRs, LEA Pro amps, KNX automation, and DeepSpace Network (DSN) infrastructure.">
 
     <meta name="keywords" content="Shah Faishal, Dynamic World Computer, Delvina Cable, Softpro India, DeepSpace Network, DSN Engineer, Fortinet FortiGate, Gateway Routing, Cisco Switching, Network Cabinets, Xilica DSP, Martin Audio, Onkyo AVR, LEA Professional, KNX Automation, GVS, Belden, ELV Engineer Dubai, Fiber Optics">
 
@@ -160,7 +160,7 @@
             z-index: 10;
         }
 
-        #detailModal, #partnerModal {
+        #detailModal, #partnerModal, #zoyaModal {
             transition: all 0.3s ease;
         }
     </style>
@@ -478,7 +478,7 @@
 </section>
 
 <!-- ========================================================= -->
-<!-- ENTERPRISE ECOSYSTEM / OEM SOLUTIONS (SAFE COMPLIANT PHRASING) -->
+<!-- ENTERPRISE ECOSYSTEM / OEM SOLUTIONS (CURATED & SAFE) -->
 <!-- ========================================================= -->
 <section id="ecosystem" class="py-24 relative overflow-hidden bg-dark-800/40 border-b border-slate-800/70">
     <div class="max-w-7xl mx-auto px-5 sm:px-8">
@@ -491,62 +491,53 @@
                 Technology Stack & OEM Solutions
             </h2>
             <p class="text-slate-400 mt-4 leading-relaxed">
-                Strategic hardware & software technologies integrated across enterprise ICT, cybersecurity, hyperconverged data centers, and luxury automation  
-                <a href=target="_blank" rel="noopener noreferrer" class="text-brand-400 hover:underline font-semibold"></a>.
+                Strategic hardware & software technologies deployed across enterprise ICT, cybersecurity, server infrastructure, and luxury automation.
                 <span class="text-brand-400 font-semibold block mt-1">(Click any brand card to view system integration details)</span>
             </p>
         </div>
 
-        <!-- 3D White Cards Grid (Interactive Clickable) -->
+        <!-- 3D White Cards Grid (16 Clean Cards) -->
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-5 fade-up">
             
-            <!-- 1. KNX (New) -->
+            <!-- 1. ZOYA (Special Heart Reveal) -->
+            <div onclick="openZoyaModal()" class="partner-card flex-col items-center group bg-gradient-to-b from-white to-pink-50/40 border border-pink-200/50 hover:border-pink-400">
+                <span class="text-pink-600 font-black text-2xl tracking-widest font-serif">ZOYA</span>
+                <span class="text-pink-400 text-[8px] font-bold uppercase tracking-widest mt-0.5"><i class="fa-solid fa-heart text-[8px] animate-pulse"></i></span>
+            </div>
+
+            <!-- 2. KNX -->
             <div onclick="openPartnerDetail('KNX')" class="partner-card flex-col items-center">
                 <span class="text-[#207c38] font-black text-2xl tracking-widest font-mono">KNX</span>
                 <span class="text-slate-500 text-[8px] font-bold uppercase tracking-wider mt-0.5">Smart Standard</span>
             </div>
 
-            <!-- 2. GVS (New) -->
+            <!-- 3. GVS -->
             <div onclick="openPartnerDetail('GVS')" class="partner-card flex-col items-center">
                 <span class="text-[#00529b] font-extrabold text-2xl tracking-wider font-sans">GVS</span>
                 <span class="text-slate-500 text-[8px] font-bold uppercase tracking-wider mt-0.5">Touch & Automation</span>
             </div>
 
-            <!-- 3. BELDEN (New) -->
+            <!-- 4. BELDEN -->
             <div onclick="openPartnerDetail('BELDEN')" class="partner-card flex-col items-center">
                 <span class="text-[#102b4e] font-black text-xl tracking-widest font-sans">BELDEN</span>
                 <span class="text-slate-500 text-[8px] font-bold uppercase tracking-wider mt-0.5">Signal & Cabling</span>
             </div>
 
-            <!-- 4. Fortinet -->
+            <!-- 5. Fortinet -->
             <div onclick="openPartnerDetail('Fortinet')" class="partner-card">
                 <span class="text-red-600 font-extrabold text-xl tracking-wider font-mono">FORTINET.</span>
             </div>
 
-            <!-- 5. Cisco -->
+            <!-- 6. Cisco -->
             <div onclick="openPartnerDetail('Cisco')" class="partner-card flex-col gap-1">
                 <span class="text-slate-800 text-[10px] tracking-widest">.ıııllıl.ıııllıl.</span>
                 <span class="text-red-600 font-bold text-lg font-mono">CISCO</span>
             </div>
 
-            <!-- 6. Huawei -->
+            <!-- 7. Huawei -->
             <div onclick="openPartnerDetail('Huawei')" class="partner-card flex items-center gap-2">
                 <i class="fa-brands fa-huawei text-red-600 text-2xl"></i>
                 <span class="text-slate-900 font-bold text-sm tracking-wide font-sans">HUAWEI</span>
-            </div>
-
-            <!-- 7. Microsoft Partner -->
-            <div onclick="openPartnerDetail('Microsoft Partner')" class="partner-card flex items-center gap-2">
-                <div class="grid grid-cols-2 gap-0.5 w-5 h-5">
-                    <div class="bg-red-500"></div>
-                    <div class="bg-green-500"></div>
-                    <div class="bg-blue-500"></div>
-                    <div class="bg-yellow-500"></div>
-                </div>
-                <div class="text-left leading-tight">
-                    <div class="text-slate-900 font-bold text-xs">Microsoft</div>
-                    <div class="text-slate-500 text-[9px]">Partner</div>
-                </div>
             </div>
 
             <!-- 8. Dell EMC -->
@@ -586,77 +577,21 @@
                 <span class="text-black font-serif font-bold text-lg tracking-widest">SAVANT</span>
             </div>
 
-            <!-- 15. Traka Assa Abloy -->
-            <div onclick="openPartnerDetail('Traka Assa Abloy')" class="partner-card flex-col items-center">
-                <span class="text-orange-500 font-bold text-lg tracking-tight">traka</span>
-                <span class="text-slate-600 text-[8px] font-bold tracking-widest">ASSA ABLOY</span>
-            </div>
-
-            <!-- 16. VMware -->
+            <!-- 15. VMware -->
             <div onclick="openPartnerDetail('VMware')" class="partner-card">
                 <span class="text-slate-800 font-bold text-base font-sans">vm<span class="font-light">ware</span></span>
             </div>
 
-            <!-- 17. QNAP -->
-            <div onclick="openPartnerDetail('QNAP')" class="partner-card">
-                <span class="text-[#005596] font-extrabold text-lg font-sans">QNAP</span>
-            </div>
-
-            <!-- 18. Veeam -->
-            <div onclick="openPartnerDetail('Veeam')" class="partner-card">
-                <span class="text-[#00b336] font-extrabold text-lg tracking-wide font-sans">VEEAM</span>
-            </div>
-
-            <!-- 19. PRTG Network Monitor -->
-            <div onclick="openPartnerDetail('PRTG Network Monitor')" class="partner-card flex-col items-center text-center">
-                <span class="text-slate-900 font-bold text-xs">PRTG</span>
-                <span class="text-slate-500 text-[8px] font-mono">NETWORK MONITOR</span>
-            </div>
-
-            <!-- 20. Kemp -->
-            <div onclick="openPartnerDetail('Kemp')" class="partner-card flex items-center gap-1.5">
-                <i class="fa-solid fa-cube text-amber-500 text-sm"></i>
-                <span class="text-slate-900 font-bold text-base">kemp</span>
-            </div>
-
-            <!-- 21. Logitech -->
-            <div onclick="openPartnerDetail('Logitech')" class="partner-card">
-                <span class="text-slate-900 font-bold text-base font-sans">logitech</span>
-            </div>
-
-            <!-- 22. Poly / HP -->
+            <!-- 16. Poly / HP -->
             <div onclick="openPartnerDetail('Poly / HP')" class="partner-card flex items-center gap-2">
                 <span class="text-red-500 font-bold text-sm">poly</span>
                 <span class="text-slate-400">|</span>
                 <span class="text-[#0096d6] font-bold text-sm">hp</span>
             </div>
 
-            <!-- 23. Fujitsu -->
+            <!-- 17. Fujitsu -->
             <div onclick="openPartnerDetail('Fujitsu')" class="partner-card">
                 <span class="text-red-600 font-bold text-lg font-serif">FUJITSU</span>
-            </div>
-
-            <!-- 24. Check Point -->
-            <div onclick="openPartnerDetail('Check Point')" class="partner-card flex-col items-center">
-                <span class="text-slate-800 font-bold text-xs">Check Point</span>
-                <span class="text-slate-500 text-[7px]">SOFTWARE TECHNOLOGIES</span>
-            </div>
-
-            <!-- 25. APC by Schneider -->
-            <div onclick="openPartnerDetail('APC by Schneider')" class="partner-card flex-col items-center">
-                <span class="text-red-600 font-bold text-base">APC</span>
-                <span class="text-slate-500 text-[7px]">by Schneider Electric</span>
-            </div>
-
-            <!-- 26. Acronis -->
-            <div onclick="openPartnerDetail('Acronis')" class="partner-card">
-                <span class="text-[#002855] font-bold text-lg">Acronis</span>
-            </div>
-
-            <!-- 27. AWS -->
-            <div onclick="openPartnerDetail('AWS')" class="partner-card flex-col items-center">
-                <span class="text-slate-900 font-bold text-lg leading-none">aws</span>
-                <div class="w-8 h-1 bg-amber-500 rounded-full mt-1"></div>
             </div>
 
         </div>
@@ -1284,7 +1219,7 @@
     </div>
 </div>
 
-<!-- 2. PARTNER / OEM POPUP MODAL (NEW) -->
+<!-- 2. PARTNER / OEM POPUP MODAL -->
 <div id="partnerModal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4 sm:p-6 overflow-y-auto">
     <div class="relative w-full max-w-2xl glass border border-brand-500/40 rounded-3xl overflow-hidden shadow-2xl my-auto p-6 sm:p-8">
         <button onclick="closePartnerDetail()" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-dark-900/80 border border-slate-700 text-slate-300 hover:text-white hover:bg-brand-600 flex items-center justify-center transition">
@@ -1307,11 +1242,38 @@
         </div>
 
         <div class="pt-5 border-t border-slate-800 flex justify-between items-center">
-            <span class="text-xs text-slate-500 font-mono">Dynamic World Computers Partner Stack</span>
+            <span class="text-xs text-slate-500 font-mono">Enterprise Engineering Tech Stack</span>
             <button onclick="closePartnerDetail()" class="px-5 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-sm font-semibold transition">
                 Got it
             </button>
         </div>
+    </div>
+</div>
+
+<!-- 3. ZOYA SPECIAL HEART MODAL -->
+<div id="zoyaModal" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl hidden items-center justify-center p-4 sm:p-6">
+    <div class="relative w-full max-w-sm glass border border-pink-500/40 rounded-3xl p-8 text-center shadow-2xl shadow-pink-500/20">
+        <button onclick="closeZoyaModal()" class="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-dark-900/80 border border-slate-700 text-slate-300 hover:text-white hover:bg-pink-600 flex items-center justify-center transition">
+            <i class="fa-solid fa-xmark text-sm"></i>
+        </button>
+
+        <div class="py-6 flex flex-col items-center justify-center">
+            <!-- Pulsing Beating Heart -->
+            <div class="w-24 h-24 rounded-full bg-pink-500/10 border border-pink-500/30 flex items-center justify-center mb-4 animate-bounce">
+                <i class="fa-solid fa-heart text-5xl text-pink-500 drop-shadow-[0_0_20px_rgba(236,72,153,0.8)]"></i>
+            </div>
+            
+            <div class="text-2xl font-bold font-serif text-white tracking-widest mt-2">
+                ZOYA
+            </div>
+            <div class="text-xs text-pink-400 font-mono mt-1">
+                ❤️
+            </div>
+        </div>
+
+        <button onclick="closeZoyaModal()" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-pink-600 to-rose-500 hover:from-pink-500 hover:to-rose-400 text-white text-xs font-bold tracking-wider uppercase transition shadow-lg shadow-pink-500/25">
+            Close
+        </button>
     </div>
 </div>
 
@@ -1387,11 +1349,6 @@
             desc: "High-density enterprise wireless APs, fiber GPON distribution, and scalable core switches.",
             icon: "fa-brands fa-huawei"
         },
-        "Microsoft Partner": {
-            tag: "Cloud Infrastructure & Active Directory",
-            desc: "Windows Server architecture, Azure Hybrid integration, Entra ID authentication, and enterprise licensing management.",
-            icon: "fa-brands fa-microsoft"
-        },
         "Dell EMC": {
             tag: "Storage & Hyperconverged Servers",
             desc: "PowerEdge server clusters, SAN/NAS high-throughput video archiving, and enterprise virtualization storage.",
@@ -1427,40 +1384,10 @@
             desc: "Studio-grade AV distribution, intelligent climate scheduling, and customized high-end touchscreen control.",
             icon: "fa-solid fa-house-laptop"
         },
-        "Traka Assa Abloy": {
-            tag: "Intelligent Key & Asset Management",
-            desc: "High-security biometric electronic locker systems, audit-trailed key cabinets, and facility access governance.",
-            icon: "fa-solid fa-key"
-        },
         "VMware": {
             tag: "Virtualization & Cloud Compute",
             desc: "vSphere ESXi clustering, vCenter datacenter orchestration, and virtual network appliances.",
             icon: "fa-solid fa-cubes"
-        },
-        "QNAP": {
-            tag: "High-Speed NAS & Video Storage",
-            desc: "Tiered RAID storage pools, high-throughput VMS footage archiving, and snapshots data backup.",
-            icon: "fa-solid fa-database"
-        },
-        "Veeam": {
-            tag: "Backup & Disaster Recovery",
-            desc: "Immutable ransomware-proof backups, instant VM recovery, and multi-site offsite replication.",
-            icon: "fa-solid fa-shield-virus"
-        },
-        "PRTG Network Monitor": {
-            tag: "SNMP & Traffic Diagnostics",
-            desc: "Real-time bandwidth tracking, ping uptime alerts, and switch port load telemetry monitoring.",
-            icon: "fa-solid fa-chart-line"
-        },
-        "Kemp": {
-            tag: "Load Balancing & Reverse Proxy",
-            desc: "Application Delivery Controllers (ADC), high-availability web service load balancing, and SSL offloading.",
-            icon: "fa-solid fa-cube"
-        },
-        "Logitech": {
-            tag: "Video Conferencing & Unified Comm",
-            desc: "Microsoft Teams / Zoom Rooms hardware, Rally bar setups, and boardroom collaborative systems.",
-            icon: "fa-solid fa-camera"
         },
         "Poly / HP": {
             tag: "Enterprise Audio/Video Collaboration",
@@ -1471,29 +1398,31 @@
             tag: "Mission-Critical Enterprise Compute",
             desc: "PRIMERGY server engineering, storage arrays, and high-reliability data center nodes.",
             icon: "fa-solid fa-server"
-        },
-        "Check Point": {
-            tag: "Next-Gen Quantum Security",
-            desc: "Quantum security gateways, SandBlast zero-day protection, and high-throughput threat prevention.",
-            icon: "fa-solid fa-shield"
-        },
-        "APC by Schneider": {
-            tag: "Critical Power & Rack UPS",
-            desc: "Smart-UPS Online power backup, ATS switches, and environmental monitoring in IT cabinets.",
-            icon: "fa-solid fa-bolt"
-        },
-        "Acronis": {
-            tag: "Cyber Protect & Cloud Backup",
-            desc: "AI-driven endpoint protection, disaster recovery, and automated image backups.",
-            icon: "fa-solid fa-lock"
-        },
-        "AWS": {
-            tag: "Cloud Scalability & Hybrid Infrastructure",
-            desc: "VPC networking, Direct Connect hybrid tunneling, and offsite storage archiving pipelines.",
-            icon: "fa-brands fa-aws"
         }
     };
 
+    // Zoya Modal Functions
+    function openZoyaModal() {
+        const modal = document.getElementById('zoyaModal');
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeZoyaModal() {
+        const modal = document.getElementById('zoyaModal');
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        document.body.style.overflow = 'auto';
+    }
+
+    document.getElementById('zoyaModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeZoyaModal();
+        }
+    });
+
+    // Partner Modal Functions
     function openPartnerDetail(name) {
         const data = partnerDataMap[name] || {
             tag: "Technology Stack",
@@ -1525,6 +1454,7 @@
         }
     });
 
+    // Service Detail Modal Functions
     function openServiceDetail(index) {
         const item = servicesData[index];
         document.getElementById('modalCategory').textContent = item.category;
