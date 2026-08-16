@@ -173,7 +173,7 @@
             height: 100vh;
             z-index: 0;
             pointer-events: none;
-            opacity: 0.65;
+            opacity: 0.75;
         }
 
         .glass {
@@ -276,7 +276,7 @@
     </div>
 </div>
 
-<!-- Live Matrix Background -->
+<!-- Live Matrix Background (Light Green Rain on Deep Black) -->
 <canvas id="matrixCanvas"></canvas>
 
 <!-- NAVBAR -->
@@ -1323,7 +1323,7 @@
     </div>
 </div>
 
-<!-- 3. RUNAWAY RED HEART MODAL (BHAGNE WALA DIL + CLEAN EXIT BUTTON) -->
+<!-- 3. RUNAWAY RED HEART MODAL -->
 <div id="heartModal" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-2xl hidden flex-col items-center justify-between p-6 sm:p-10 select-none">
     
     <!-- Top Floating Exit (X) Button -->
@@ -1433,7 +1433,7 @@
         }, 2000);
     });
 
-    // RUNAWAY / DODGING HEART LOGIC (Mouse ya Touch aate hi jump karega)
+    // RUNAWAY / DODGING HEART LOGIC
     function dodgeHeart(e) {
         if (e) e.preventDefault();
         const arena = document.getElementById('heartArena');
@@ -1459,7 +1459,6 @@
         const modal = document.getElementById('heartModal');
         const heart = document.getElementById('dodgingHeart');
         
-        // Reset heart position to center on open
         heart.style.left = '50%';
         heart.style.top = '50%';
         heart.style.transform = 'translate(-50%, -50%)';
@@ -1701,6 +1700,9 @@
         );
     });
 
+    // ==========================================
+    // LIGHT GREEN MATRIX DIGITAL RAIN ON DEEP BLACK
+    // ==========================================
     const mCanvas = document.getElementById('matrixCanvas');
     const mCtx = mCanvas.getContext('2d');
 
@@ -1711,7 +1713,7 @@
     resizeMatrix();
     window.addEventListener('resize', resizeMatrix);
 
-    const matrixChars = '010101011001010123456789ABCDEF';
+    const matrixChars = '010101011001010123456789ABCDEFｦｱｳｴｵｶｷｹｺｻｼｽｾｿﾀﾂﾃﾅﾆﾇﾈﾊﾋﾎﾏﾐﾑﾒﾓﾔﾕﾗﾘﾜ';
     const mFontSize = 14;
     let mColumns = Math.floor(mCanvas.width / mFontSize);
     let mDrops = [];
@@ -1727,10 +1729,14 @@
     window.addEventListener('resize', initMatrixDrops);
 
     function drawMatrixRain() {
-        mCtx.fillStyle = 'rgba(3, 8, 17, 0.08)';
+        // Deep pitch-black trail fade
+        mCtx.fillStyle = 'rgba(3, 8, 17, 0.09)';
         mCtx.fillRect(0, 0, mCanvas.width, mCanvas.height);
 
-        mCtx.fillStyle = '#00f2fe';
+        // Neon Light Green Glowing Text
+        mCtx.fillStyle = '#00ff66';
+        mCtx.shadowColor = '#00ff88';
+        mCtx.shadowBlur = 8;
         mCtx.font = mFontSize + 'px Share Tech Mono, monospace';
 
         for (let i = 0; i < mDrops.length; i++) {
@@ -1742,6 +1748,7 @@
             }
             mDrops[i]++;
         }
+        mCtx.shadowBlur = 0;
     }
     setInterval(drawMatrixRain, 33);
 
