@@ -31,7 +31,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,700;1,800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
@@ -83,7 +83,7 @@
 
         /* Glassmorphism with Cyber Glow */
         .glass {
-            background: rgba(7, 16, 30, 0.78) !important;
+            background: rgba(7, 16, 30, 0.82) !important;
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
         }
@@ -140,6 +140,11 @@
         section {
             position: relative;
             z-index: 10;
+        }
+
+        /* Detail Modal */
+        #detailModal {
+            transition: all 0.3s ease;
         }
     </style>
 </head>
@@ -215,7 +220,7 @@
     <div class="max-w-7xl mx-auto px-5 sm:px-8 relative z-10 w-full">
         <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
 
-            <!-- LEFT CONTENT (Heading & Role) -->
+            <!-- LEFT CONTENT -->
             <div class="lg:col-span-7 fade-up text-center lg:text-left">
                 <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-brand-500/30 bg-brand-500/10 text-brand-400 text-xs sm:text-sm font-semibold mb-6 backdrop-blur-md">
                     <span class="w-2 h-2 rounded-full bg-brand-400 animate-pulse"></span>
@@ -277,7 +282,7 @@
 
         <!-- ACTION BUTTONS (BELOW PHOTO) -->
         <div class="flex flex-wrap justify-center lg:justify-start gap-4 mt-10 fade-up">
-            <a href="#projects"
+            <a href="#services"
                class="px-8 py-4 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold transition shadow-xl shadow-brand-600/30 border border-brand-400/30 inline-flex items-center">
                 <i class="fa-solid fa-diagram-project mr-2"></i>
                 View Projects
@@ -315,8 +320,146 @@
     </div>
 </section>
 
+<!-- ========================================================= -->
+<!-- SERVICES SECTION (CLICKABLE CARDS THAT OPEN POPUP) -->
+<!-- ========================================================= -->
+
+<section id="services" class="py-24 border-y border-slate-800/70">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+        <div class="max-w-3xl mb-14 fade-up">
+            <div class="text-brand-400 text-xs font-bold uppercase tracking-widest mb-3 font-mono">
+                What I Do
+            </div>
+            <h2 class="text-3xl sm:text-4xl font-bold text-white">
+                Technical Specializations
+            </h2>
+            <p class="text-slate-400 mt-4 leading-relaxed">
+                End-to-end engineering support for modern residential, commercial and infrastructure projects. <span class="text-brand-400 font-semibold">(Click any card to view deployment details & visual archive)</span>
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <!-- 1. Network Infrastructure -->
+            <div onclick="openServiceDetail(0)"
+                 class="cursor-pointer glass border border-slate-800/80 rounded-2xl p-7 hover:border-brand-500/60 hover:-translate-y-1.5 transition duration-300 fade-up group">
+                <div class="flex items-center justify-between mb-5">
+                    <div class="w-12 h-12 rounded-xl bg-brand-500/10 text-brand-400 flex items-center justify-center text-xl group-hover:bg-brand-500 group-hover:text-white transition">
+                        <i class="fa-solid fa-network-wired"></i>
+                    </div>
+                    <span class="text-xs text-brand-400/80 font-mono flex items-center gap-1 group-hover:text-brand-300">
+                        View Project <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </span>
+                </div>
+                <h3 class="text-xl font-bold text-white group-hover:text-brand-400 transition">
+                    Network Infrastructure
+                </h3>
+                <p class="text-slate-400 text-sm leading-relaxed mt-3">
+                    LAN/WAN, switching, routing, VLANs, Wi-Fi, network racks, patch panels and infrastructure deployment.
+                </p>
+            </div>
+
+            <!-- 2. Villa Automation -->
+            <div onclick="openServiceDetail(1)"
+                 class="cursor-pointer glass border border-slate-800/80 rounded-2xl p-7 hover:border-cyan-500/60 hover:-translate-y-1.5 transition duration-300 fade-up group">
+                <div class="flex items-center justify-between mb-5">
+                    <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-xl group-hover:bg-cyan-500 group-hover:text-white transition">
+                        <i class="fa-solid fa-house-chimney"></i>
+                    </div>
+                    <span class="text-xs text-cyan-400/80 font-mono flex items-center gap-1 group-hover:text-cyan-300">
+                        View Project <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </span>
+                </div>
+                <h3 class="text-xl font-bold text-white group-hover:text-cyan-400 transition">
+                    Villa Automation
+                </h3>
+                <p class="text-slate-400 text-sm leading-relaxed mt-3">
+                    Complete smart home automation including lighting, curtains, climate control, AV and centralized control.
+                </p>
+            </div>
+
+            <!-- 3. CCTV & Security -->
+            <div onclick="openServiceDetail(2)"
+                 class="cursor-pointer glass border border-slate-800/80 rounded-2xl p-7 hover:border-emerald-500/60 hover:-translate-y-1.5 transition duration-300 fade-up group">
+                <div class="flex items-center justify-between mb-5">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl group-hover:bg-emerald-500 group-hover:text-white transition">
+                        <i class="fa-solid fa-video"></i>
+                    </div>
+                    <span class="text-xs text-emerald-400/80 font-mono flex items-center gap-1 group-hover:text-emerald-300">
+                        View Project <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </span>
+                </div>
+                <h3 class="text-xl font-bold text-white group-hover:text-emerald-400 transition">
+                    CCTV & Security
+                </h3>
+                <p class="text-slate-400 text-sm leading-relaxed mt-3">
+                    Deployment of centralized Video Management Systems (VMS), high-density control room video walls, multi-tier SAN/NAS storage archiving, and AI-powered IP CCTV analytics.
+                </p>
+            </div>
+
+            <!-- 4. Audio & AV -->
+            <div onclick="openServiceDetail(3)"
+                 class="cursor-pointer glass border border-slate-800/80 rounded-2xl p-7 hover:border-amber-500/60 hover:-translate-y-1.5 transition duration-300 fade-up group">
+                <div class="flex items-center justify-between mb-5">
+                    <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl group-hover:bg-amber-500 group-hover:text-white transition">
+                        <i class="fa-solid fa-volume-high"></i>
+                    </div>
+                    <span class="text-xs text-amber-400/80 font-mono flex items-center gap-1 group-hover:text-amber-300">
+                        View Project <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </span>
+                </div>
+                <h3 class="text-xl font-bold text-white group-hover:text-amber-400 transition">
+                    Audio & AV
+                </h3>
+                <p class="text-slate-400 text-sm leading-relaxed mt-3">
+                    Multi-zone audio, amplifiers, streamers, DSP configuration, speakers and AV integration.
+                </p>
+            </div>
+
+            <!-- 5. Fiber Optics -->
+            <div onclick="openServiceDetail(4)"
+                 class="cursor-pointer glass border border-slate-800/80 rounded-2xl p-7 hover:border-purple-500/60 hover:-translate-y-1.5 transition duration-300 fade-up group">
+                <div class="flex items-center justify-between mb-5">
+                    <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center text-xl group-hover:bg-purple-500 group-hover:text-white transition">
+                        <i class="fa-solid fa-wave-square"></i>
+                    </div>
+                    <span class="text-xs text-purple-400/80 font-mono flex items-center gap-1 group-hover:text-purple-300">
+                        View Project <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </span>
+                </div>
+                <h3 class="text-xl font-bold text-white group-hover:text-purple-400 transition">
+                    Fiber Optics
+                </h3>
+                <p class="text-slate-400 text-sm leading-relaxed mt-3">
+                    Fiber optic installation, termination, testing, OTDR and fault troubleshooting.
+                </p>
+            </div>
+
+            <!-- 6. Project Execution & AutoCAD Design -->
+            <div onclick="openServiceDetail(5)"
+                 class="cursor-pointer glass border border-slate-800/80 rounded-2xl p-7 hover:border-rose-500/60 hover:-translate-y-1.5 transition duration-300 fade-up group">
+                <div class="flex items-center justify-between mb-5">
+                    <div class="w-12 h-12 rounded-xl bg-rose-500/10 text-rose-400 flex items-center justify-center text-xl group-hover:bg-rose-500 group-hover:text-white transition">
+                        <i class="fa-solid fa-diagram-project"></i>
+                    </div>
+                    <span class="text-xs text-rose-400/80 font-mono flex items-center gap-1 group-hover:text-rose-300">
+                        View Project <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </span>
+                </div>
+                <h3 class="text-xl font-bold text-white group-hover:text-rose-400 transition">
+                    Project Execution
+                </h3>
+                <p class="text-slate-400 text-sm leading-relaxed mt-3">
+                    Layout preparation, site coordination, installation supervision, testing and commissioning.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
 <!-- ABOUT -->
-<section id="about" class="py-24 border-t border-slate-800/70">
+<section id="about" class="py-24">
     <div class="max-w-7xl mx-auto px-5 sm:px-8">
         <div class="grid lg:grid-cols-2 gap-14 items-center">
             <div class="fade-up">
@@ -390,99 +533,8 @@
     </div>
 </section>
 
-<!-- SERVICES -->
-<section id="services" class="py-24 border-y border-slate-800/70">
-    <div class="max-w-7xl mx-auto px-5 sm:px-8">
-        <div class="max-w-3xl mb-14 fade-up">
-            <div class="text-brand-400 text-xs font-bold uppercase tracking-widest mb-3 font-mono">
-                What I Do
-            </div>
-            <h2 class="text-3xl sm:text-4xl font-bold text-white">
-                Technical Specializations
-            </h2>
-            <p class="text-slate-400 mt-4 leading-relaxed">
-                End-to-end engineering support for modern residential, commercial and infrastructure projects.
-            </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="glass border border-slate-800/80 rounded-2xl p-7 hover:border-brand-500/50 hover:-translate-y-1 transition fade-up">
-                <div class="w-12 h-12 rounded-xl bg-brand-500/10 text-brand-400 flex items-center justify-center text-xl mb-5">
-                    <i class="fa-solid fa-network-wired"></i>
-                </div>
-                <h3 class="text-xl font-bold text-white">
-                    Network Infrastructure
-                </h3>
-                <p class="text-slate-400 text-sm leading-relaxed mt-3">
-                    LAN/WAN, switching, routing, VLANs, Wi-Fi, network racks, patch panels and infrastructure deployment.
-                </p>
-            </div>
-
-            <div class="glass border border-slate-800/80 rounded-2xl p-7 hover:border-cyan-500/50 hover:-translate-y-1 transition fade-up">
-                <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-xl mb-5">
-                    <i class="fa-solid fa-house-chimney"></i>
-                </div>
-                <h3 class="text-xl font-bold text-white">
-                    Villa Automation
-                </h3>
-                <p class="text-slate-400 text-sm leading-relaxed mt-3">
-                    Complete smart home automation including lighting, curtains, climate control, AV and centralized control.
-                </p>
-            </div>
-
-            <div class="glass border border-slate-800/80 rounded-2xl p-7 hover:border-emerald-500/50 hover:-translate-y-1 transition fade-up">
-                <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl mb-5">
-                    <i class="fa-solid fa-video"></i>
-                </div>
-                <h3 class="text-xl font-bold text-white">
-                    CCTV & Security
-                </h3>
-                <p class="text-slate-400 text-sm leading-relaxed mt-3">
-                    Deployment of centralized Video Management Systems (VMS), high-density control room video walls, multi-tier SAN/NAS storage archiving, and AI-powered IP CCTV analytics.
-                </p>
-            </div>
-
-            <div class="glass border border-slate-800/80 rounded-2xl p-7 hover:border-amber-500/50 hover:-translate-y-1 transition fade-up">
-                <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl mb-5">
-                    <i class="fa-solid fa-volume-high"></i>
-                </div>
-                <h3 class="text-xl font-bold text-white">
-                    Audio & AV
-                </h3>
-                <p class="text-slate-400 text-sm leading-relaxed mt-3">
-                    Multi-zone audio, amplifiers, streamers, DSP configuration, speakers and AV integration.
-                </p>
-            </div>
-
-            <div class="glass border border-slate-800/80 rounded-2xl p-7 hover:border-purple-500/50 hover:-translate-y-1 transition fade-up">
-                <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center text-xl mb-5">
-                    <i class="fa-solid fa-wave-square"></i>
-                </div>
-                <h3 class="text-xl font-bold text-white">
-                    Fiber Optics
-                </h3>
-                <p class="text-slate-400 text-sm leading-relaxed mt-3">
-                    Fiber optic installation, termination, testing, OTDR and fault troubleshooting.
-                </p>
-            </div>
-
-            <div class="glass border border-slate-800/80 rounded-2xl p-7 hover:border-rose-500/50 hover:-translate-y-1 transition fade-up">
-                <div class="w-12 h-12 rounded-xl bg-rose-500/10 text-rose-400 flex items-center justify-center text-xl mb-5">
-                    <i class="fa-solid fa-diagram-project"></i>
-                </div>
-                <h3 class="text-xl font-bold text-white">
-                    Project Execution
-                </h3>
-                <p class="text-slate-400 text-sm leading-relaxed mt-3">
-                    Layout preparation, site coordination, installation supervision, testing and commissioning.
-                </p>
-            </div>
-        </div>
-    </div>
-</section>
-
 <!-- SKILLS -->
-<section id="skills" class="py-24">
+<section id="skills" class="py-24 border-t border-slate-800/70">
     <div class="max-w-7xl mx-auto px-5 sm:px-8">
         <div class="text-center max-w-3xl mx-auto mb-14 fade-up">
             <div class="text-brand-400 text-xs font-bold uppercase tracking-widest mb-3 font-mono">
@@ -833,8 +885,111 @@
     <i class="fa-brands fa-whatsapp"></i>
 </a>
 
-<!-- SCRIPTS & ANIMATION ENGINE -->
+<!-- ========================================================= -->
+<!-- DETAIL POPUP MODAL (SHOWS IMAGE + EXACT TEXT ON CLICK) -->
+<!-- ========================================================= -->
+<div id="detailModal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4 sm:p-6 overflow-y-auto">
+    <div class="relative w-full max-w-4xl glass border border-slate-700/80 rounded-3xl overflow-hidden shadow-2xl my-auto">
+        <!-- Close Button -->
+        <button onclick="closeServiceDetail()" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-dark-900/80 border border-slate-700 text-slate-300 hover:text-white hover:bg-brand-600 flex items-center justify-center transition">
+            <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+
+        <div class="flex flex-col">
+            <!-- Modal Image Preview -->
+            <div class="w-full h-64 sm:h-96 overflow-hidden bg-dark-900 relative">
+                <img id="modalImage" src="" alt="Deployment Visual" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-dark-900 via-transparent to-transparent"></div>
+            </div>
+
+            <!-- Modal Content & Text -->
+            <div class="p-6 sm:p-8">
+                <div id="modalCategory" class="text-xs font-mono text-brand-400 font-bold uppercase tracking-widest mb-2"></div>
+                <h3 id="modalTitle" class="text-2xl sm:text-3xl font-extrabold text-white leading-tight italic"></h3>
+                <p id="modalDesc" class="text-slate-300 text-base sm:text-lg leading-relaxed mt-4"></p>
+                
+                <div class="mt-8 pt-6 border-t border-slate-800 flex justify-between items-center">
+                    <span class="text-xs text-slate-500 font-mono">Shah Faishal Engineering Archive</span>
+                    <button onclick="closeServiceDetail()" class="px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-sm font-semibold transition">
+                        Close Preview
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SCRIPTS & ENGINE -->
 <script>
+    /* ========================================================= */
+    /* POPUP MODAL DATA FOR YOUR 6 SERVICES */
+    /* ========================================================= */
+    const servicesData = [
+        {
+            category: "Network Infrastructure",
+            title: "Enterprise Network & Server Rack Deployment",
+            image: "1-enterprise-rack.jpg",
+            desc: "Deployment of Next-Generation Firewalls (FortiGate HA Cluster) and core edge routers for secure multi-WAN load balancing and SD-WAN branch interconnects."
+        },
+        {
+            category: "Villa Automation",
+            title: "Luxury Villas ICT & Automation Projects In Dubai",
+            image: "4-luxury-villa.jpg",
+            desc: "Delivering seamless network reliability, advanced VMS surveillance, multi-room acoustic systems, and unified smart automation across Dubai's elite properties."
+        },
+        {
+            category: "CCTV & Security",
+            title: "Enterprise VMS & IP Surveillance",
+            image: "3-enterprise-vms.jpg",
+            desc: "Deployment of centralized Video Management Systems (VMS), high-density control room video walls, multi-tier SAN/NAS storage archiving, and AI-powered IP CCTV analytics for enterprise-grade security operations."
+        },
+        {
+            category: "Audio & AV",
+            title: "Multi-zone Audio & Cinema Integration",
+            image: "6-pro-audio.jpg",
+            desc: "Transforming luxury spaces into immersive soundscapes with centralized multi-room control, custom integration of high-performance pro-series loudspeakers, and theater-grade visuals."
+        },
+        {
+            category: "Fiber Optics & Infrastructure",
+            title: "Core Data Center Infrastructure & Spine-Leaf Cabling",
+            image: "2-datacenter-spine.jpg",
+            desc: "Deployment of high-density open server racks featuring spine-leaf fabric architecture, structured blue fiber/copper cabling containment, and redundant enterprise power distribution."
+        },
+        {
+            category: "Engineering Design",
+            title: "Smart Villa ICT & Automation Design",
+            image: "5-smart-villa-cad.jpg",
+            desc: "From schematic design to full deployment: robust ICT for modern smart villas. Architecting secure, high-speed, and unified smart automation ecosystems."
+        }
+    ];
+
+    function openServiceDetail(index) {
+        const item = servicesData[index];
+        document.getElementById('modalCategory').textContent = item.category;
+        document.getElementById('modalTitle').textContent = item.title;
+        document.getElementById('modalImage').src = item.image;
+        document.getElementById('modalDesc').textContent = item.desc;
+
+        const modal = document.getElementById('detailModal');
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeServiceDetail() {
+        const modal = document.getElementById('detailModal');
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        document.body.style.overflow = 'auto';
+    }
+
+    // Close when tapping outside the card
+    document.getElementById('detailModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeServiceDetail();
+        }
+    });
+
     /* Current Year */
     document.getElementById("year").textContent = new Date().getFullYear();
 
