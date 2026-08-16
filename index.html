@@ -97,7 +97,7 @@
             opacity: 0.6;
         }
 
-        /* NORMAL BALANCED SIZE ZOOM ANIMATION */
+        /* ZOOM TEXT ANIMATION FOR LETTERS */
         .zoom-text {
             font-family: 'Cinzel', serif;
             letter-spacing: 0.25em;
@@ -115,15 +115,22 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 0.05em 0.35em;
+            padding: 0.05em 0.3em;
             margin: 0 0.15em;
             border: 1.5px solid #38bdf8;
-            background: rgba(56, 189, 248, 0.15);
+            background: rgba(7, 16, 30, 0.95);
             border-radius: 6px;
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.6);
             animation: dropInBox 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.4s forwards;
             opacity: 0;
             transform: translateY(-120vh) scale(0.5);
+        }
+
+        #dropBox span {
+            -webkit-background-clip: initial !important;
+            -webkit-text-fill-color: #38bdf8 !important;
+            color: #38bdf8 !important;
+            text-shadow: 0 0 10px rgba(56, 189, 248, 0.8);
         }
 
         @keyframes dropInBox {
@@ -301,12 +308,12 @@
     <canvas id="preloaderCanvas"></canvas>
     
     <div class="relative z-10 text-center px-4 select-none flex flex-col items-center justify-center">
-        <!-- F ai. SHAL Structure with compact box -->
+        <!-- F ai. SHAL Structure -->
         <div class="flex items-center justify-center zoom-text font-bold text-2xl sm:text-4xl md:text-5xl">
             <span>F</span>
             <span class="mx-2">&nbsp;</span>
             <div id="dropBox">
-                <span class="lowercase text-brand-300 font-normal tracking-normal text-xl sm:text-3xl md:text-4xl">ai.</span>
+                <span class="lowercase tracking-normal text-xl sm:text-3xl md:text-4xl font-mono">ai.</span>
             </div>
             <span class="mx-2">&nbsp;</span>
             <span>S</span>
