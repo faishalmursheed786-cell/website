@@ -96,25 +96,39 @@
             opacity: 0.6;
         }
 
-        /* INTRO TEXT STYLING */
+        /* ZOOM ANIMATION WITH SLIGHT TILT (SULA HUA) */
         .zoom-text {
             font-family: 'Cinzel', serif;
             font-style: italic;
-            letter-spacing: 0.2em;
+            transform: rotate(-8deg) scale(0.5);
+            letter-spacing: 0.25em;
+            animation: textZoomInSlanted 2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 12px;
-            opacity: 0;
-            animation: fadeInText 1s ease forwards;
         }
 
-        @keyframes fadeInText {
-            0% { opacity: 0; filter: blur(10px); }
-            100% { opacity: 1; filter: blur(0px); }
+        @keyframes textZoomInSlanted {
+            0% {
+                opacity: 0;
+                transform: rotate(-15deg) scale(0.4);
+                filter: blur(10px);
+            }
+            60% {
+                opacity: 1;
+                transform: rotate(-6deg) scale(1.02);
+                filter: blur(0px);
+            }
+            100% {
+                opacity: 1;
+                transform: rotate(-8deg) scale(1);
+                filter: blur(0px);
+            }
         }
 
-        /* F AND SHAL NORMAL TEXT GRADIENT */
+        /* F AND SHAL NORMAL TEXT COLOR */
         .fshal-part {
             background: linear-gradient(135deg, #ffffff 0%, #38bdf8 50%, #00ffcc 100%);
             -webkit-background-clip: text;
@@ -122,7 +136,7 @@
             text-shadow: 0 0 30px rgba(56, 189, 248, 0.4);
         }
 
-        /* ai. IN A GLOWING BOX THAT DROPS DOWN WITH SLIGHT TILT */
+        /* ai. IN A GLOWING BOX THAT DROPS DOWN WITH SLIGHT TILT (LOWERCASE) */
         .ai-box {
             display: inline-flex;
             align-items: center;
@@ -133,9 +147,8 @@
             border-radius: 8px;
             padding: 0.05em 0.35em;
             font-style: italic;
-            background: linear-gradient(135deg, #ff3366 0%, #ff6b8b 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: #ff3366;
+            text-transform: lowercase;
             backdrop-filter: blur(4px);
             transform: rotate(-5deg);
             animation: dropInAI 1.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
