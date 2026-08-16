@@ -31,7 +31,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,700;1,800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,700;1,800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
@@ -74,7 +74,7 @@
         #preloader {
             position: fixed;
             inset: 0;
-            z-index: 100;
+            z-index: 99999;
             background: radial-gradient(circle at center, #071326 0%, #030811 100%);
             display: flex;
             align-items: center;
@@ -85,6 +85,7 @@
         #preloader.fade-out {
             opacity: 0;
             visibility: hidden;
+            pointer-events: none;
         }
 
         #preloaderCanvas {
@@ -96,81 +97,17 @@
             opacity: 0.6;
         }
 
-        /* FULLY STRAIGHT TEXT ZOOM ANIMATION */
+        /* NORMAL BALANCED SIZE ZOOM ANIMATION */
         .zoom-text {
             font-family: 'Cinzel', serif;
-            font-weight: 700;
-            letter-spacing: 0.25em;
-            animation: textZoomStraight 2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-            opacity: 0;
-            transform: scale(0.5);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-        }
-
-        @keyframes textZoomStraight {
-            0% {
-                opacity: 0;
-                transform: scale(0.4);
-                filter: blur(10px);
-            }
-            60% {
-                opacity: 1;
-                transform: scale(1.02);
-                filter: blur(0px);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1);
-                filter: blur(0px);
-            }
-        }
-
-        /* F AND SHAL STRAIGHT NORMAL TEXT COLOR */
-        .fshal-part {
+            letter-spacing: 0.45em;
             background: linear-gradient(135deg, #ffffff 0%, #38bdf8 50%, #00ffcc 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-shadow: 0 0 30px rgba(56, 189, 248, 0.4);
-            font-style: normal;
-        }
-
-        /* ai. STRAIGHT BOX DROPPING STRAIGHT FROM TOP LIKE RAIN */
-        .ai-box {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, rgba(255, 51, 102, 0.25), rgba(255, 107, 139, 0.25));
-            border: 1.5px solid rgba(255, 51, 102, 0.7);
-            box-shadow: 0 0 25px rgba(255, 51, 102, 0.6);
-            border-radius: 8px;
-            padding: 0.05em 0.35em;
-            font-style: normal;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-weight: 600;
-            color: #ff3366;
-            text-transform: lowercase;
-            backdrop-filter: blur(4px);
-            transform: rotate(0deg);
-            animation: dropStraightFromTop 1.4s cubic-bezier(0.25, 1, 0.5, 1.25) forwards;
+            animation: textZoomIn 2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
             opacity: 0;
-        }
-
-        @keyframes dropStraightFromTop {
-            0% {
-                transform: translateY(-60vh) rotate(0deg);
-                opacity: 0;
-            }
-            70% {
-                opacity: 1;
-                transform: translateY(8px) rotate(0deg);
-            }
-            100% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 1;
-            }
+            transform: scale(0.5);
         }
 
         /* FULL WIDTH HORIZONTAL LINE */
@@ -184,6 +121,23 @@
             background: linear-gradient(90deg, transparent 0%, rgba(56,189,248,0.2) 15%, #38bdf8 50%, rgba(0,255,204,0.8) 75%, transparent 100%);
             box-shadow: 0 0 20px rgba(56, 189, 248, 0.9), 0 0 40px rgba(0, 255, 204, 0.6);
             animation: lineExpandFull 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+        }
+
+        @keyframes textZoomIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+                filter: blur(8px);
+            }
+            60% {
+                opacity: 1;
+                filter: blur(0px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+                filter: blur(0px);
+            }
         }
 
         @keyframes lineExpandFull {
@@ -316,14 +270,14 @@
     <canvas id="preloaderCanvas"></canvas>
     
     <div class="relative z-10 text-center px-4 select-none flex flex-col items-center justify-center">
-        <h1 class="text-3xl sm:text-5xl md:text-6xl font-bold zoom-text uppercase">
-            <span class="fshal-part">F</span><span class="ai-box">ai.</span><span class="fshal-part">SHAL</span>
+        <h1 class="text-2xl sm:text-4xl md:text-5xl font-bold zoom-text pl-3 uppercase">
+            FAISHAL
         </h1>
         <div class="full-screen-line"></div>
     </div>
 </div>
 
-<!-- 3D Matrix Warp Tunnel Background -->
+<!-- Live Matrix Background (Light Green Rain on Deep Black) -->
 <canvas id="matrixCanvas"></canvas>
 
 <!-- NAVBAR -->
@@ -1370,7 +1324,7 @@
     </div>
 </div>
 
-<!-- 3. RUNAWAY RED HEART MODAL (DIL KE ANDAR 'Z' IN VIBRANT PINK) -->
+<!-- 3. RUNAWAY RED HEART MODAL -->
 <div id="heartModal" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-2xl hidden flex-col items-center justify-between p-6 sm:p-10 select-none">
     
     <!-- Top Floating Exit (X) Button -->
@@ -1474,16 +1428,29 @@
     }
     animatePreloader();
 
-    // Smooth Preloader Timing
+    // FIXED PRELOADER REMOVAL TIMING (Guaranteed Execution)
     window.addEventListener('load', () => {
         setTimeout(() => {
             const preloader = document.getElementById('preloader');
+            if (preloader) {
+                preloader.classList.add('fade-out');
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                }, 800);
+            }
+        }, 2000);
+    });
+
+    // Fallback safety timeout if window load event already passed
+    setTimeout(() => {
+        const preloader = document.getElementById('preloader');
+        if (preloader && !preloader.classList.contains('fade-out')) {
             preloader.classList.add('fade-out');
             setTimeout(() => {
                 preloader.style.display = 'none';
             }, 800);
-        }, 2000);
-    });
+        }
+    }, 3500);
 
     // RUNAWAY / DODGING HEART LOGIC
     function dodgeHeart(e) {
@@ -1753,7 +1720,7 @@
     });
 
     // ==========================================
-    // 3D MATRIX WARP TUNNEL
+    // LIGHT GREEN MATRIX DIGITAL RAIN ON DEEP BLACK
     // ==========================================
     const mCanvas = document.getElementById('matrixCanvas');
     const mCtx = mCanvas.getContext('2d');
@@ -1766,66 +1733,43 @@
     window.addEventListener('resize', resizeMatrix);
 
     const matrixChars = '010101011001010123456789ABCDEFｦｱｳｴｵｶｷｹｺｻｼｽｾｿﾀﾂﾃﾅﾆﾇﾈﾊﾋﾎﾏﾐﾑﾒﾓﾔﾕﾗﾘﾜ';
-    let particles = [];
-    const numParticles = 180;
+    const mFontSize = 14;
+    let mColumns = Math.floor(mCanvas.width / mFontSize);
+    let mDrops = [];
 
-    class MatrixParticle {
-        constructor() {
-            this.reset();
-        }
-        reset() {
-            this.x = (Math.random() - 0.5) * mCanvas.width * 2;
-            this.y = (Math.random() - 0.5) * mCanvas.height * 2;
-            this.z = Math.random() * mCanvas.width;
-            this.char = matrixChars.charAt(Math.floor(Math.random() * matrixChars.length));
-            this.speed = Math.random() * 3 + 2;
-        }
-        update() {
-            this.z -= this.speed;
-            if (this.z <= 0) {
-                this.reset();
-                this.z = mCanvas.width;
-            }
-        }
-        draw() {
-            let k = 250 / this.z;
-            let px = this.x * k + mCanvas.width / 2;
-            let py = this.y * k + mCanvas.height / 2;
-
-            if (px >= 0 && px <= mCanvas.width && py >= 0 && py <= mCanvas.height) {
-                let size = Math.max(1, (1 - this.z / mCanvas.width) * 22);
-                let opacity = Math.min(1, (1 - this.z / mCanvas.width) * 1.5);
-
-                mCtx.fillStyle = `rgba(0, 255, 102, ${opacity})`;
-                mCtx.shadowColor = '#00ff88';
-                mCtx.shadowBlur = 10;
-                mCtx.font = `${size}px 'Share Tech Mono', monospace`;
-                mCtx.fillText(this.char, px, py);
-                mCtx.shadowBlur = 0;
-            }
+    function initMatrixDrops() {
+        mColumns = Math.floor(mCanvas.width / mFontSize);
+        mDrops = [];
+        for (let i = 0; i < mColumns; i++) {
+            mDrops[i] = Math.random() * -100;
         }
     }
+    initMatrixDrops();
+    window.addEventListener('resize', initMatrixDrops);
 
-    function init3DMatrix() {
-        particles = [];
-        for (let i = 0; i < numParticles; i++) {
-            particles.push(new MatrixParticle());
-        }
-    }
-    init3DMatrix();
-    window.addEventListener('resize', init3DMatrix);
-
-    function animate3DMatrix() {
-        mCtx.fillStyle = 'rgba(3, 8, 17, 0.25)';
+    function drawMatrixRain() {
+        // Deep pitch-black trail fade
+        mCtx.fillStyle = 'rgba(3, 8, 17, 0.09)';
         mCtx.fillRect(0, 0, mCanvas.width, mCanvas.height);
 
-r        for (let i = 0; i < particles.length; i++) {
-            particles[i].update();
-            particles[i].draw();
+        // Neon Light Green Glowing Text
+        mCtx.fillStyle = '#00ff66';
+        mCtx.shadowColor = '#00ff88';
+        mCtx.shadowBlur = 8;
+        mCtx.font = mFontSize + 'px Share Tech Mono, monospace';
+
+        for (let i = 0; i < mDrops.length; i++) {
+            const char = matrixChars.charAt(Math.floor(Math.random() * matrixChars.length));
+            mCtx.fillText(char, i * mFontSize, mDrops[i] * mFontSize);
+
+            if (mDrops[i] * mFontSize > mCanvas.height && Math.random() > 0.975) {
+                mDrops[i] = 0;
+            }
+            mDrops[i]++;
         }
-        requestAnimationFrame(animate3DMatrix);
+        mCtx.shadowBlur = 0;
     }
-    animate3DMatrix();
+    setInterval(drawMatrixRain, 33);
 
     const canvas = document.getElementById('networkCanvas');
     const ctx = canvas.getContext('2d');
