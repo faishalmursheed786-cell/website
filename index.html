@@ -170,15 +170,18 @@
         }
 
         /* RUNAWAY / DODGING HEART STYLING */
-        #dodgingHeart {
+        #dodgingHeartContainer {
             position: absolute;
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
             transition: left 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), top 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
-            user-select: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             cursor: pointer;
             z-index: 10;
+            user-select: none;
         }
 
         #matrixCanvas {
@@ -1351,11 +1354,7 @@
 <div id="heartModal" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-2xl hidden flex-col items-center justify-between p-6 sm:p-10 select-none">
     
     <!-- Top Floating Exit (X) Button -->
-    <div class="w-full flex justify-between items-center">
-        <!-- Floating instruction text before touch -->
-        <div id="heartHintText" class="text-brand-400 font-mono text-xs sm:text-sm tracking-widest uppercase animate-pulse">
-            Catch me if you can
-        </div>
+    <div class="w-full flex justify-end">
         <button onclick="closeHeartModal()" class="w-10 h-10 rounded-full bg-dark-800/80 border border-slate-700 text-slate-300 hover:text-white hover:bg-red-600 flex items-center justify-center transition shadow-lg">
             <i class="fa-solid fa-xmark text-base"></i>
         </button>
@@ -1363,17 +1362,25 @@
 
     <!-- Arena Where Heart Escapes / Dodges Mouse & Touch -->
     <div id="heartArena" class="relative w-full h-[65vh] flex items-center justify-center overflow-hidden">
-        <!-- Dodging Beating Red Heart with Pink 'Z' Inside -->
-        <div id="dodgingHeart" 
+        <!-- Dodging Container with Heart + "Click the heart if you can!" Text Directly Above It -->
+        <div id="dodgingHeartContainer" 
              onmouseenter="dodgeHeart()" 
-             ontouchstart="dodgeHeart(event)"
-             class="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-red-500/15 border border-red-500/30 flex items-center justify-center shadow-[0_0_50px_rgba(239,68,68,0.7)] active:scale-90">
-            <!-- Heart Icon -->
-            <i class="fa-solid fa-heart text-5xl sm:text-6xl text-red-500 drop-shadow-[0_0_30px_rgba(239,68,68,1)] animate-pulse"></i>
-            <!-- 'Z' Precisely Inside the Heart in Pink Color -->
-            <span class="absolute inset-0 flex items-center justify-center font-black text-pink-300 text-xl sm:text-2xl drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)] pb-1.5 pointer-events-none">
-                Z
-            </span>
+             ontouchstart="dodgeHeart(event)">
+            
+            <!-- Instruction Text Attached to Heart (Disappears on 1st touch) -->
+            <div id="heartHintText" class="mb-3 text-center whitespace-nowrap text-brand-400 font-mono text-xs sm:text-sm tracking-wide bg-brand-500/10 border border-brand-500/30 px-3 py-1.5 rounded-full shadow-lg backdrop-blur-md animate-pulse">
+                Click the heart if you can! 👇
+            </div>
+
+            <!-- Beating Red Heart with Pink 'Z' Inside -->
+            <div class="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-red-500/15 border border-red-500/30 flex items-center justify-center shadow-[0_0_50px_rgba(239,68,68,0.7)] active:scale-90">
+                <!-- Heart Icon -->
+                <i class="fa-solid fa-heart text-5xl sm:text-6xl text-red-500 drop-shadow-[0_0_30px_rgba(239,68,68,1)] animate-pulse"></i>
+                <!-- 'Z' Precisely Inside the Heart in Pink Color -->
+                <span class="absolute inset-0 flex items-center justify-center font-black text-pink-300 text-xl sm:text-2xl drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)] pb-1.5 pointer-events-none">
+                    Z
+                </span>
+            </div>
         </div>
     </div>
 
@@ -1504,10 +1511,10 @@
         // Increment attempts
         dodgeAttempts++;
 
-        // On first touch, hide the "Catch me if you can" text
+        // On first touch, completely remove/hide the instruction text banner
         const hintText = document.getElementById('heartHintText');
         if (hintText) {
-            hintText.style.opacity = '0';
+            hintText.style.display = 'none';
         }
 
         // Check if 5 attempts reached
@@ -1516,21 +1523,21 @@
         }
 
         const arena = document.getElementById('heartArena');
-        const heart = document.getElementById('dodgingHeart');
+        const container = document.getElementById('dodgingHeartContainer');
         
         const arenaRect = arena.getBoundingClientRect();
-        const heartWidth = heart.offsetWidth;
-        const heartHeight = heart.offsetHeight;
+        const containerWidth = container.offsetWidth;
+        const containerHeight = container.offsetHeight;
 
-        const maxLeft = arenaRect.width - heartWidth - 20;
-        const maxTop = arenaRect.height - heartHeight - 20;
+        const maxLeft = arenaRect.width - containerWidth - 20;
+        const maxTop = arenaRect.height - containerHeight - 20;
 
         const randomX = Math.floor(Math.random() * Math.max(maxLeft, 50)) + 10;
         const randomY = Math.floor(Math.random() * Math.max(maxTop, 50)) + 10;
 
-        heart.style.left = `${randomX}px`;
-        heart.style.top = `${randomY}px`;
-        heart.style.transform = 'none';
+        container.style.left = `${randomX}px`;
+        container.style.top = `${randomY}px`;
+        container.style.transform = 'none';
     }
 
     function showAlertPopup() {
@@ -1551,15 +1558,15 @@
         
         const hintText = document.getElementById('heartHintText');
         if (hintText) {
-            hintText.style.opacity = '1';
+            hintText.style.display = 'block'; // Show text again when modal opens
         }
 
         const modal = document.getElementById('heartModal');
-        const heart = document.getElementById('dodgingHeart');
+        const container = document.getElementById('dodgingHeartContainer');
         
-        heart.style.left = '50%';
-        heart.style.top = '50%';
-        heart.style.transform = 'translate(-50%, -50%)';
+        container.style.left = '50%';
+        container.style.top = '50%';
+        container.style.transform = 'translate(-50%, -50%)';
 
         modal.classList.remove('hidden');
         modal.classList.add('flex');
