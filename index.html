@@ -135,6 +135,23 @@
             transform: translateY(-2px);
         }
 
+        /* Partner White Cards (DWC Style) */
+        .partner-card {
+            background: #ffffff;
+            border-radius: 18px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            min-height: 90px;
+        }
+        .partner-card:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 20px 30px -10px rgba(56, 189, 248, 0.35);
+        }
+
         section {
             position: relative;
             z-index: 10;
@@ -169,9 +186,10 @@
         </a>
 
         <!-- Desktop Menu -->
-        <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+        <nav class="hidden md:flex items-center gap-7 text-sm font-medium">
             <a href="#about" class="hover:text-brand-400 transition">About</a>
             <a href="#services" class="hover:text-brand-400 transition">Specializations</a>
+            <a href="#partners" class="hover:text-brand-400 transition">Partners</a>
             <a href="#skills" class="hover:text-brand-400 transition">Skills</a>
             <a href="#projects" class="hover:text-brand-400 transition">Projects</a>
             <a href="#experience" class="hover:text-brand-400 transition">Experience</a>
@@ -194,6 +212,7 @@
         <div class="flex flex-col gap-5">
             <a href="#about">About</a>
             <a href="#services">Specializations</a>
+            <a href="#partners">Partners</a>
             <a href="#skills">Skills</a>
             <a href="#projects">Projects</a>
             <a href="#experience">Experience</a>
@@ -205,10 +224,8 @@
 <!-- HERO SECTION -->
 <section id="home" class="relative min-h-screen flex items-center pt-28 pb-20 overflow-hidden">
 
-    <!-- Interactive Canvas Animation -->
     <canvas id="networkCanvas" class="absolute inset-0 w-full h-full z-0 pointer-events-none"></canvas>
 
-    <!-- Overlay & Glow Layers -->
     <div class="absolute inset-0 bg-gradient-to-b from-dark-900/50 via-dark-900/20 to-dark-900/80 z-0"></div>
     <div class="absolute inset-0 grid-bg z-0 opacity-40"></div>
     <div class="absolute -top-40 -right-40 w-96 h-96 bg-brand-500/15 rounded-full blur-3xl z-0"></div>
@@ -232,7 +249,6 @@
                     Environments.
                 </h1>
 
-                <!-- Dynamic World Computer with Clickable Link -->
                 <p class="mt-7 text-lg sm:text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto lg:mx-0">
                     A <strong class="text-white">Senior Network, Automation, ELV & Infrastructure Engineer</strong> from 
                     <a href="https://dynamicworld.ae" 
@@ -277,12 +293,18 @@
 
         </div>
 
-        <!-- ACTION BUTTONS (BELOW PHOTO) -->
+        <!-- ACTION BUTTONS -->
         <div class="flex flex-wrap justify-center lg:justify-start gap-4 mt-10 fade-up">
             <a href="#services"
                class="px-8 py-4 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold transition shadow-xl shadow-brand-600/30 border border-brand-400/30 inline-flex items-center">
                 <i class="fa-solid fa-diagram-project mr-2"></i>
                 View Specializations
+            </a>
+
+            <a href="#partners"
+               class="px-8 py-4 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-300 font-semibold transition inline-flex items-center">
+                <i class="fa-solid fa-handshake mr-2"></i>
+                Technology Partners
             </a>
 
             <a href="#contact"
@@ -452,6 +474,181 @@
     </div>
 </section>
 
+<!-- ========================================================= -->
+<!-- TECHNOLOGY PARTNERS SECTION (DYNAMIC WORLD COMPUTERS) -->
+<!-- ========================================================= -->
+<section id="partners" class="py-24 relative overflow-hidden bg-dark-800/40 border-b border-slate-800/70">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16 fade-up">
+            <div class="text-brand-400 text-xs font-bold uppercase tracking-widest mb-3 font-mono">
+                Enterprise Ecosystem
+            </div>
+            <h2 class="text-3xl sm:text-4xl font-bold text-white">
+                Our Technology Partners
+            </h2>
+            <p class="text-slate-400 mt-4 leading-relaxed">
+                Strategic hardware & software technologies deployed in enterprise ICT, cybersecurity, hyperconverged data centers, and luxury automation in association with 
+                <a href="https://dynamicworld.ae" target="_blank" rel="noopener noreferrer" class="text-brand-400 hover:underline font-semibold">Dynamic World Computers LLC</a>.
+            </p>
+        </div>
+
+        <!-- 3D Style White Partner Cards Grid (Exact DWC Aesthetics) -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-5 fade-up">
+            
+            <!-- 1. Fortinet -->
+            <div class="partner-card">
+                <span class="text-red-600 font-extrabold text-xl tracking-wider font-mono">FORTINET.</span>
+            </div>
+
+            <!-- 2. Cisco -->
+            <div class="partner-card flex-col gap-1">
+                <span class="text-slate-800 text-[10px] tracking-widest">.ıııllıl.ıııllıl.</span>
+                <span class="text-red-600 font-bold text-lg font-mono">CISCO</span>
+            </div>
+
+            <!-- 3. Huawei -->
+            <div class="partner-card flex items-center gap-2">
+                <i class="fa-brands fa-huawei text-red-600 text-2xl"></i>
+                <span class="text-slate-900 font-bold text-sm tracking-wide font-sans">HUAWEI</span>
+            </div>
+
+            <!-- 4. Microsoft Partner -->
+            <div class="partner-card flex items-center gap-2">
+                <div class="grid grid-cols-2 gap-0.5 w-5 h-5">
+                    <div class="bg-red-500"></div>
+                    <div class="bg-green-500"></div>
+                    <div class="bg-blue-500"></div>
+                    <div class="bg-yellow-500"></div>
+                </div>
+                <div class="text-left leading-tight">
+                    <div class="text-slate-900 font-bold text-xs">Microsoft</div>
+                    <div class="text-slate-500 text-[9px]">Partner</div>
+                </div>
+            </div>
+
+            <!-- 5. Dell EMC -->
+            <div class="partner-card">
+                <span class="text-[#007db8] font-black text-lg tracking-tight font-sans">DELLEMC</span>
+            </div>
+
+            <!-- 6. HPE -->
+            <div class="partner-card flex-col items-center">
+                <div class="w-6 h-2 border-2 border-emerald-500 mb-1"></div>
+                <span class="text-slate-800 font-bold text-[11px] leading-tight text-center">Hewlett Packard<br>Enterprise</span>
+            </div>
+
+            <!-- 7. Hikvision -->
+            <div class="partner-card">
+                <span class="text-[#d71920] font-extrabold text-lg tracking-wide italic font-sans">HIKVISION</span>
+            </div>
+
+            <!-- 8. Martin Audio -->
+            <div class="partner-card flex-col items-center">
+                <span class="text-slate-950 font-black text-xl font-serif">M</span>
+                <span class="text-slate-700 text-[8px] font-bold tracking-widest uppercase">Martin Audio</span>
+            </div>
+
+            <!-- 9. Bose -->
+            <div class="partner-card">
+                <span class="text-black font-extrabold text-lg tracking-widest italic font-serif">BOSE</span>
+            </div>
+
+            <!-- 10. Control4 -->
+            <div class="partner-card">
+                <span class="text-slate-900 font-bold text-base">Control<span class="text-red-600 font-extrabold text-lg">4</span></span>
+            </div>
+
+            <!-- 11. Savant -->
+            <div class="partner-card">
+                <span class="text-black font-serif font-bold text-lg tracking-widest">SAVANT</span>
+            </div>
+
+            <!-- 12. Traka Assa Abloy -->
+            <div class="partner-card flex-col items-center">
+                <span class="text-orange-500 font-bold text-lg tracking-tight">traka</span>
+                <span class="text-slate-600 text-[8px] font-bold tracking-widest">ASSA ABLOY</span>
+            </div>
+
+            <!-- 13. VMware -->
+            <div class="partner-card">
+                <span class="text-slate-800 font-bold text-base font-sans">vm<span class="font-light">ware</span></span>
+            </div>
+
+            <!-- 14. QNAP -->
+            <div class="partner-card">
+                <span class="text-[#005596] font-extrabold text-lg font-sans">QNAP</span>
+            </div>
+
+            <!-- 15. Veeam -->
+            <div class="partner-card">
+                <span class="text-[#00b336] font-extrabold text-lg tracking-wide font-sans">VEEAM</span>
+            </div>
+
+            <!-- 16. PRTG Network Monitor -->
+            <div class="partner-card flex-col items-center text-center">
+                <span class="text-slate-900 font-bold text-xs">PRTG</span>
+                <span class="text-slate-500 text-[8px] font-mono">NETWORK MONITOR</span>
+            </div>
+
+            <!-- 17. Kemp -->
+            <div class="partner-card flex items-center gap-1.5">
+                <i class="fa-solid fa-cube text-amber-500 text-sm"></i>
+                <span class="text-slate-900 font-bold text-base">kemp</span>
+            </div>
+
+            <!-- 18. Logitech -->
+            <div class="partner-card">
+                <span class="text-slate-900 font-bold text-base font-sans">logitech</span>
+            </div>
+
+            <!-- 19. Poly / HP -->
+            <div class="partner-card flex items-center gap-2">
+                <span class="text-red-500 font-bold text-sm">poly</span>
+                <span class="text-slate-400">|</span>
+                <span class="text-[#0096d6] font-bold text-sm">hp</span>
+            </div>
+
+            <!-- 20. Fujitsu -->
+            <div class="partner-card">
+                <span class="text-red-600 font-bold text-lg font-serif">FUJITSU</span>
+            </div>
+
+            <!-- 21. Check Point -->
+            <div class="partner-card flex-col items-center">
+                <span class="text-slate-800 font-bold text-xs">Check Point</span>
+                <span class="text-slate-500 text-[7px]">SOFTWARE TECHNOLOGIES</span>
+            </div>
+
+            <!-- 22. APC by Schneider -->
+            <div class="partner-card flex-col items-center">
+                <span class="text-red-600 font-bold text-base">APC</span>
+                <span class="text-slate-500 text-[7px]">by Schneider Electric</span>
+            </div>
+
+            <!-- 23. Acronis -->
+            <div class="partner-card">
+                <span class="text-[#002855] font-bold text-lg">Acronis</span>
+            </div>
+
+            <!-- 24. AWS -->
+            <div class="partner-card flex-col items-center">
+                <span class="text-slate-900 font-bold text-lg leading-none">aws</span>
+                <div class="w-8 h-1 bg-amber-500 rounded-full mt-1"></div>
+            </div>
+
+        </div>
+
+        <div class="mt-12 text-center fade-up">
+            <span class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-dark-900/90 border border-slate-700 text-xs font-mono text-slate-300">
+                <i class="fa-solid fa-circle-check text-brand-400"></i>
+                All hardware, switches, storage, & firewalls provisioned with active manufacturer warranties & SLA.
+            </span>
+        </div>
+
+    </div>
+</section>
+
 <!-- ABOUT SECTION -->
 <section id="about" class="py-24">
     <div class="max-w-7xl mx-auto px-5 sm:px-8">
@@ -540,14 +737,12 @@
         </div>
 
         <div class="flex flex-wrap justify-center gap-3 max-w-5xl mx-auto fade-up">
-            <!-- Firewalls & Networking -->
             <span class="skill">Fortinet FortiGate Next-Gen Firewalls (NGFW)</span>
             <span class="skill">Multi-WAN SD-WAN & Gateway Security Policies</span>
             <span class="skill">Cisco Catalyst Core & Edge L2/L3 Switching</span>
             <span class="skill">VLAN Segmentation, Inter-VLAN & DHCP Snooping</span>
             <span class="skill">Enterprise Wi-Fi 6 Architecture & Gateway Provisioning</span>
 
-            <!-- Pro Sound, Amps & DSP -->
             <span class="skill">Xilica Digital Signal Processors (DSP) Tuning</span>
             <span class="skill">Martin Audio Professional Loudspeaker Systems</span>
             <span class="skill">Onkyo Audio/Video Receivers (AVR) & 4K Cinema</span>
@@ -555,7 +750,6 @@
             <span class="skill">WiiM Hi-Res Multi-Room Audio Streaming Networks</span>
             <span class="skill">Pro-Series Stage & Architectural Loudspeaker Setup</span>
 
-            <!-- DeepSpace & Infrastructure -->
             <span class="skill">DeepSpace Network (DSN) Telemetry & Link Infrastructure</span>
             <span class="skill">Network Cabinet Elevation & Containment Routing</span>
             <span class="skill">SAN / NAS Tiered Video & Data Archiving</span>
@@ -563,13 +757,11 @@
             <span class="skill">Optical Fiber Splicing & OTDR Power Metering</span>
             <span class="skill">Structured Cabling Standards (Cat6A / Cat7 / MPO)</span>
 
-            <!-- ELV & Automation -->
             <span class="skill">Smart Villa Automation (KNX / Modbus / IoT)</span>
             <span class="skill">Centralized Video Management Systems (VMS)</span>
             <span class="skill">AI-Powered IP CCTV & Facial Recognition</span>
             <span class="skill">Biometric Access Control & SIP Intercom</span>
 
-            <!-- Engineering & Design -->
             <span class="skill">AutoCAD Engineering Shop Drawings & Layouts</span>
             <span class="skill">Single Line Diagrams (SLD) & Containment Routes</span>
             <span class="skill">MEP Coordination & Authority BOQ Compliance</span>
@@ -686,7 +878,6 @@
                     </div>
                 </div>
 
-                <!-- Technical Scope Grid -->
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                     
                     <div class="bg-dark-900/80 p-5 rounded-2xl border border-slate-800/80">
@@ -870,7 +1061,6 @@
                 </p>
 
                 <div class="space-y-5 mt-9">
-                    <!-- Email -->
                     <a href="mailto:s.faishal@dynamicworld.ae"
                        class="flex items-center gap-4 group">
                         <div class="w-12 h-12 rounded-xl bg-dark-800 border border-slate-700 flex items-center justify-center text-brand-400 group-hover:bg-brand-600 group-hover:text-white transition">
@@ -886,7 +1076,6 @@
                         </div>
                     </a>
 
-                    <!-- WhatsApp -->
                     <a href="https://wa.me/971503928611"
                        target="_blank"
                        rel="noopener noreferrer"
@@ -904,7 +1093,6 @@
                         </div>
                     </a>
 
-                    <!-- Instagram -->
                     <a href="https://www.instagram.com/ffaishalll"
                        target="_blank"
                        rel="noopener noreferrer"
@@ -922,7 +1110,6 @@
                         </div>
                     </a>
 
-                    <!-- LinkedIn -->
                     <a href="https://www.linkedin.com/in/shah-faishal-2000b6266"
                        target="_blank"
                        rel="noopener noreferrer"
@@ -1011,11 +1198,8 @@
     </div>
 </footer>
 
-<!-- ========================================================= -->
-<!-- ENLARGED UNIFIED SLEEK SIDEBAR (ALL 4 ICONS IN ONE STRIP) -->
-<!-- ========================================================= -->
+<!-- ENLARGED UNIFIED SLEEK SIDEBAR -->
 <div class="fixed left-0 top-1/2 -translate-y-1/2 z-40 flex flex-col bg-[#6b7280]/90 backdrop-blur-md rounded-r-lg shadow-2xl border-y border-r border-white/20 overflow-hidden">
-    <!-- 1. Instagram -->
     <a href="https://www.instagram.com/ffaishalll"
        target="_blank"
        rel="noopener noreferrer"
@@ -1024,7 +1208,6 @@
         <i class="fa-brands fa-instagram text-base"></i>
     </a>
 
-    <!-- 2. LinkedIn -->
     <a href="https://www.linkedin.com/in/shah-faishal-2000b6266"
        target="_blank"
        rel="noopener noreferrer"
@@ -1033,7 +1216,6 @@
         <i class="fa-brands fa-linkedin-in text-base"></i>
     </a>
 
-    <!-- 3. WhatsApp -->
     <a href="https://wa.me/971503928611"
        target="_blank"
        rel="noopener noreferrer"
@@ -1042,7 +1224,6 @@
         <i class="fa-brands fa-whatsapp text-base"></i>
     </a>
 
-    <!-- 4. Email -->
     <a href="mailto:s.faishal@dynamicworld.ae"
        title="Email"
        class="w-11 h-11 flex items-center justify-center text-white/95 hover:bg-brand-600 hover:text-white transition duration-200">
