@@ -96,10 +96,10 @@
             opacity: 0.6;
         }
 
-        /* NORMAL BALANCED SIZE ZOOM ANIMATION */
+        /* STYLISH LOGO-STYLE F_AI_SHAL ZOOM ANIMATION */
         .zoom-text {
             font-family: 'Cinzel', serif;
-            letter-spacing: 0.45em;
+            letter-spacing: 0.25em;
             background: linear-gradient(135deg, #ffffff 0%, #38bdf8 50%, #00ffcc 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -107,6 +107,26 @@
             animation: textZoomIn 2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
             opacity: 0;
             transform: scale(0.5);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* AI LOGO BADGE STYLE */
+        .ai-logo-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.25), rgba(0, 255, 204, 0.25));
+            border: 1px solid rgba(56, 189, 248, 0.6);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+            border-radius: 8px;
+            padding: 0.05em 0.25em;
+            margin: 0 0.1em;
+            font-size: 0.85em;
+            letter-spacing: 0.05em;
+            -webkit-text-fill-color: #38bdf8;
+            backdrop-filter: blur(4px);
         }
 
         /* FULL WIDTH HORIZONTAL LINE */
@@ -264,19 +284,19 @@
 
 <body class="bg-dark-900 text-slate-200 font-sans antialiased">
 
-<!-- CINEMATIC PRELOADER -->
+<!-- CINEMATIC PRELOADER WITH 'AI' LOGO BADGE STYLE -->
 <div id="preloader">
     <canvas id="preloaderCanvas"></canvas>
     
     <div class="relative z-10 text-center px-4 select-none flex flex-col items-center justify-center">
-        <h1 class="text-2xl sm:text-4xl md:text-5xl font-bold zoom-text pl-3 uppercase">
-            FAISHAL
+        <h1 class="text-2xl sm:text-4xl md:text-5xl font-bold zoom-text uppercase">
+            <span>F</span><span class="ai-logo-badge font-sans font-extrabold tracking-normal">AI</span><span>SHAL</span>
         </h1>
         <div class="full-screen-line"></div>
     </div>
 </div>
 
-<!-- Live Matrix Background (Light Green Rain on Deep Black) -->
+<!-- 3D Matrix Warp Tunnel Background -->
 <canvas id="matrixCanvas"></canvas>
 
 <!-- NAVBAR -->
@@ -1706,7 +1726,7 @@
     });
 
     // ==========================================
-    // LIGHT GREEN MATRIX DIGITAL RAIN ON DEEP BLACK
+    // 3D MATRIX WARP TUNNEL (Andr se bahar screen par aane wala effect)
     // ==========================================
     const mCanvas = document.getElementById('matrixCanvas');
     const mCtx = mCanvas.getContext('2d');
@@ -1719,43 +1739,66 @@
     window.addEventListener('resize', resizeMatrix);
 
     const matrixChars = '010101011001010123456789ABCDEFｦｱｳｴｵｶｷｹｺｻｼｽｾｿﾀﾂﾃﾅﾆﾇﾈﾊﾋﾎﾏﾐﾑﾒﾓﾔﾕﾗﾘﾜ';
-    const mFontSize = 14;
-    let mColumns = Math.floor(mCanvas.width / mFontSize);
-    let mDrops = [];
+    let particles = [];
+    const numParticles = 180;
 
-    function initMatrixDrops() {
-        mColumns = Math.floor(mCanvas.width / mFontSize);
-        mDrops = [];
-        for (let i = 0; i < mColumns; i++) {
-            mDrops[i] = Math.random() * -100;
+    class MatrixParticle {
+        constructor() {
+            this.reset();
+        }
+        reset() {
+            this.x = (Math.random() - 0.5) * mCanvas.width * 2;
+            this.y = (Math.random() - 0.5) * mCanvas.height * 2;
+            this.z = Math.random() * mCanvas.width;
+            this.char = matrixChars.charAt(Math.floor(Math.random() * matrixChars.length));
+            this.speed = Math.random() * 3 + 2;
+        }
+        update() {
+            this.z -= this.speed;
+            if (this.z <= 0) {
+                this.reset();
+                this.z = mCanvas.width;
+            }
+        }
+        draw() {
+            let k = 250 / this.z;
+            let px = this.x * k + mCanvas.width / 2;
+            let py = this.y * k + mCanvas.height / 2;
+
+            if (px >= 0 && px <= mCanvas.width && py >= 0 && py <= mCanvas.height) {
+                let size = Math.max(1, (1 - this.z / mCanvas.width) * 22);
+                let opacity = Math.min(1, (1 - this.z / mCanvas.width) * 1.5);
+
+                mCtx.fillStyle = `rgba(0, 255, 102, ${opacity})`;
+                mCtx.shadowColor = '#00ff88';
+                mCtx.shadowBlur = 10;
+                mCtx.font = `${size}px 'Share Tech Mono', monospace`;
+                mCtx.fillText(this.char, px, py);
+                mCtx.shadowBlur = 0;
+            }
         }
     }
-    initMatrixDrops();
-    window.addEventListener('resize', initMatrixDrops);
 
-    function drawMatrixRain() {
-        // Deep pitch-black trail fade
-        mCtx.fillStyle = 'rgba(3, 8, 17, 0.09)';
+    function init3DMatrix() {
+        particles = [];
+        for (let i = 0; i < numParticles; i++) {
+            particles.push(new MatrixParticle());
+        }
+    }
+    init3DMatrix();
+    window.addEventListener('resize', init3DMatrix);
+
+    function animate3DMatrix() {
+        mCtx.fillStyle = 'rgba(3, 8, 17, 0.25)';
         mCtx.fillRect(0, 0, mCanvas.width, mCanvas.height);
 
-        // Neon Light Green Glowing Text
-        mCtx.fillStyle = '#00ff66';
-        mCtx.shadowColor = '#00ff88';
-        mCtx.shadowBlur = 8;
-        mCtx.font = mFontSize + 'px Share Tech Mono, monospace';
-
-        for (let i = 0; i < mDrops.length; i++) {
-            const char = matrixChars.charAt(Math.floor(Math.random() * matrixChars.length));
-            mCtx.fillText(char, i * mFontSize, mDrops[i] * mFontSize);
-
-            if (mDrops[i] * mFontSize > mCanvas.height && Math.random() > 0.975) {
-                mDrops[i] = 0;
-            }
-            mDrops[i]++;
+        for (let i = 0; i < particles.length; i++) {
+            particles[i].update();
+            particles[i].draw();
         }
-        mCtx.shadowBlur = 0;
+        requestAnimationFrame(animate3DMatrix);
     }
-    setInterval(drawMatrixRain, 33);
+    animate3DMatrix();
 
     const canvas = document.getElementById('networkCanvas');
     const ctx = canvas.getContext('2d');
@@ -1839,7 +1882,7 @@
                     ctx.strokeStyle = `rgba(14, 165, 233, ${opacity * 0.35})`;
                     ctx.lineWidth = 1;
                     ctx.beginPath();
-                    ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+                    ctx.moveTo(particlesArray[a].x, particlesArray.a.y);
                     ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
                     ctx.stroke();
                 }
