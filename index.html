@@ -96,14 +96,10 @@
             opacity: 0.6;
         }
 
-        /* STYLISH LOGO-STYLE F_AI_SHAL ZOOM ANIMATION */
+        /* ZOOM ANIMATION */
         .zoom-text {
             font-family: 'Cinzel', serif;
-            letter-spacing: 0.25em;
-            background: linear-gradient(135deg, #ffffff 0%, #38bdf8 50%, #00ffcc 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px rgba(56, 189, 248, 0.4);
+            letter-spacing: 0.2em;
             animation: textZoomIn 2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
             opacity: 0;
             transform: scale(0.5);
@@ -112,21 +108,22 @@
             justify-content: center;
         }
 
-        /* AI LOGO BADGE STYLE */
-        .ai-logo-badge {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, rgba(56, 189, 248, 0.25), rgba(0, 255, 204, 0.25));
-            border: 1px solid rgba(56, 189, 248, 0.6);
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
-            border-radius: 8px;
-            padding: 0.05em 0.25em;
-            margin: 0 0.1em;
-            font-size: 0.85em;
-            letter-spacing: 0.05em;
-            -webkit-text-fill-color: #38bdf8;
-            backdrop-filter: blur(4px);
+        /* F, SHAL COLOR (Same as original F_A_I_SHAL gradient) */
+        .fshal-part {
+            background: linear-gradient(135deg, #ffffff 0%, #38bdf8 50%, #00ffcc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(56, 189, 248, 0.4);
+            margin: 0 0.15em;
+        }
+
+        /* DISTINCT COLOR FOR 'AI' */
+        .ai-part {
+            background: linear-gradient(135deg, #ff3366 0%, #ff6b8b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(255, 51, 102, 0.6);
+            margin: 0 0.15em;
         }
 
         /* FULL WIDTH HORIZONTAL LINE */
@@ -284,13 +281,13 @@
 
 <body class="bg-dark-900 text-slate-200 font-sans antialiased">
 
-<!-- CINEMATIC PRELOADER WITH 'AI' LOGO BADGE STYLE -->
+<!-- CINEMATIC PRELOADER WITH SPACED F_AI_SHAL -->
 <div id="preloader">
     <canvas id="preloaderCanvas"></canvas>
     
     <div class="relative z-10 text-center px-4 select-none flex flex-col items-center justify-center">
         <h1 class="text-2xl sm:text-4xl md:text-5xl font-bold zoom-text uppercase">
-            <span>F</span><span class="ai-logo-badge font-sans font-extrabold tracking-normal">AI</span><span>SHAL</span>
+            <span class="fshal-part">F</span> &nbsp; <span class="ai-part">AI</span> &nbsp; <span class="fshal-part">SHAL</span>
         </h1>
         <div class="full-screen-line"></div>
     </div>
@@ -1726,7 +1723,7 @@
     });
 
     // ==========================================
-    // 3D MATRIX WARP TUNNEL (Andr se bahar screen par aane wala effect)
+    // 3D MATRIX WARP TUNNEL
     // ==========================================
     const mCanvas = document.getElementById('matrixCanvas');
     const mCtx = mCanvas.getContext('2d');
@@ -1882,7 +1879,7 @@
                     ctx.strokeStyle = `rgba(14, 165, 233, ${opacity * 0.35})`;
                     ctx.lineWidth = 1;
                     ctx.beginPath();
-                    ctx.moveTo(particlesArray[a].x, particlesArray.a.y);
+                    ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
                     ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
                     ctx.stroke();
                 }
