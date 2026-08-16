@@ -31,7 +31,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,700;1,800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,700;1,800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
@@ -96,24 +96,24 @@
             opacity: 0.6;
         }
 
-        /* FAISHAL ZOOM ANIMATION (Chote se Bada + Smooth Glow) */
+        /* NORMAL BALANCED SIZE ZOOM ANIMATION */
         .zoom-text {
             font-family: 'Cinzel', serif;
-            letter-spacing: 0.5em;
-            background: linear-gradient(135deg, #ffffff 0%, #38bdf8 40%, #00ffcc 100%);
+            letter-spacing: 0.45em;
+            background: linear-gradient(135deg, #ffffff 0%, #38bdf8 50%, #00ffcc 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 40px rgba(56, 189, 248, 0.45);
+            text-shadow: 0 0 30px rgba(56, 189, 248, 0.4);
             animation: textZoomIn 2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
             opacity: 0;
-            transform: scale(0.35);
+            transform: scale(0.5);
         }
 
-        /* FULL WIDTH HORIZONTAL LINE (Center se 100vw Expand) */
+        /* FULL WIDTH HORIZONTAL LINE */
         .full-screen-line {
             position: absolute;
             left: 50%;
-            top: calc(50% + 55px);
+            top: calc(50% + 40px);
             transform: translateX(-50%);
             height: 1.5px;
             width: 0vw;
@@ -125,20 +125,17 @@
         @keyframes textZoomIn {
             0% {
                 opacity: 0;
-                transform: scale(0.3);
-                filter: blur(12px);
-                letter-spacing: 0.2em;
+                transform: scale(0.5);
+                filter: blur(8px);
             }
             60% {
                 opacity: 1;
                 filter: blur(0px);
-                letter-spacing: 0.5em;
             }
             100% {
                 opacity: 1;
-                transform: scale(1.05);
+                transform: scale(1);
                 filter: blur(0px);
-                letter-spacing: 0.55em;
             }
         }
 
@@ -154,6 +151,18 @@
                 width: 100vw;
                 opacity: 0.9;
             }
+        }
+
+        /* RUNAWAY / DODGING HEART STYLING */
+        #dodgingHeart {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            transition: left 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), top 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
+            user-select: none;
+            cursor: pointer;
+            z-index: 10;
         }
 
         #matrixCanvas {
@@ -255,12 +264,12 @@
 
 <body class="bg-dark-900 text-slate-200 font-sans antialiased">
 
-<!-- CINEMATIC PRELOADER (ZOOM FAISHAL + FULL SCREEN LINE + BACKGROUND PARTICLES) -->
+<!-- CINEMATIC PRELOADER -->
 <div id="preloader">
     <canvas id="preloaderCanvas"></canvas>
     
     <div class="relative z-10 text-center px-4 select-none flex flex-col items-center justify-center">
-        <h1 class="text-4xl sm:text-6xl md:text-8xl font-black zoom-text pl-4 uppercase">
+        <h1 class="text-2xl sm:text-4xl md:text-5xl font-bold zoom-text pl-3 uppercase">
             FAISHAL
         </h1>
         <div class="full-screen-line"></div>
@@ -1314,19 +1323,39 @@
     </div>
 </div>
 
-<!-- 3. PURE RED HEART POPUP MODAL (ONLY HEART - ZERO TEXT) -->
-<div id="heartModal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-xl hidden items-center justify-center p-4" onclick="closeHeartModal()">
-    <div class="relative p-8 flex flex-col items-center justify-center pointer-events-auto" onclick="event.stopPropagation()">
-        <!-- Pulsing Pure Beating Red Heart with Glow -->
-        <div class="w-28 h-28 rounded-full bg-red-500/15 border border-red-500/30 flex items-center justify-center animate-bounce shadow-[0_0_60px_rgba(239,68,68,0.6)] cursor-pointer" onclick="closeHeartModal()">
-            <i class="fa-solid fa-heart text-6xl text-red-500 drop-shadow-[0_0_35px_rgba(239,68,68,1)]"></i>
+<!-- 3. RUNAWAY RED HEART MODAL (BHAGNE WALA DIL + CLEAN EXIT BUTTON) -->
+<div id="heartModal" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-2xl hidden flex-col items-center justify-between p-6 sm:p-10 select-none">
+    
+    <!-- Top Floating Exit (X) Button -->
+    <div class="w-full flex justify-end">
+        <button onclick="closeHeartModal()" class="w-10 h-10 rounded-full bg-dark-800/80 border border-slate-700 text-slate-300 hover:text-white hover:bg-red-600 flex items-center justify-center transition shadow-lg">
+            <i class="fa-solid fa-xmark text-base"></i>
+        </button>
+    </div>
+
+    <!-- Arena Where Heart Escapes / Dodges Mouse & Touch -->
+    <div id="heartArena" class="relative w-full h-[65vh] flex items-center justify-center overflow-hidden">
+        <!-- Dodging Beating Red Heart -->
+        <div id="dodgingHeart" 
+             onmouseenter="dodgeHeart()" 
+             ontouchstart="dodgeHeart(event)"
+             class="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-red-500/15 border border-red-500/30 flex items-center justify-center shadow-[0_0_50px_rgba(239,68,68,0.7)] active:scale-90">
+            <i class="fa-solid fa-heart text-5xl sm:text-6xl text-red-500 drop-shadow-[0_0_30px_rgba(239,68,68,1)] animate-pulse"></i>
         </div>
+    </div>
+
+    <!-- Bottom Clear Exit Button -->
+    <div class="w-full max-w-xs pb-4">
+        <button onclick="closeHeartModal()" 
+                class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-red-600 via-rose-600 to-red-700 hover:from-red-500 hover:to-rose-500 text-white text-xs sm:text-sm font-bold tracking-[0.2em] uppercase transition shadow-xl shadow-red-600/30 border border-red-400/30">
+            <i class="fa-solid fa-arrow-right-from-bracket mr-2"></i> Exit
+        </button>
     </div>
 </div>
 
 <!-- SCRIPTS & ENGINE -->
 <script>
-    // PRELOADER PARTICLE SYSTEM (Same as Website Tech Background)
+    // PRELOADER PARTICLE SYSTEM
     const pCanvas = document.getElementById('preloaderCanvas');
     const pCtx = pCanvas.getContext('2d');
     let preloaderParticles = [];
@@ -1393,7 +1422,7 @@
     }
     animatePreloader();
 
-    // Smooth Preloader Timing: 2.1s Zoom & Full Expand -> 0.8s Cinematic Fade-out
+    // Smooth Preloader Timing
     window.addEventListener('load', () => {
         setTimeout(() => {
             const preloader = document.getElementById('preloader');
@@ -1401,8 +1430,51 @@
             setTimeout(() => {
                 preloader.style.display = 'none';
             }, 800);
-        }, 2100);
+        }, 2000);
     });
+
+    // RUNAWAY / DODGING HEART LOGIC (Mouse ya Touch aate hi jump karega)
+    function dodgeHeart(e) {
+        if (e) e.preventDefault();
+        const arena = document.getElementById('heartArena');
+        const heart = document.getElementById('dodgingHeart');
+        
+        const arenaRect = arena.getBoundingClientRect();
+        const heartWidth = heart.offsetWidth;
+        const heartHeight = heart.offsetHeight;
+
+        const maxLeft = arenaRect.width - heartWidth - 20;
+        const maxTop = arenaRect.height - heartHeight - 20;
+
+        const randomX = Math.floor(Math.random() * Math.max(maxLeft, 50)) + 10;
+        const randomY = Math.floor(Math.random() * Math.max(maxTop, 50)) + 10;
+
+        heart.style.left = `${randomX}px`;
+        heart.style.top = `${randomY}px`;
+        heart.style.transform = 'none';
+    }
+
+    function openHeartModal(e) {
+        if(e) e.stopPropagation();
+        const modal = document.getElementById('heartModal');
+        const heart = document.getElementById('dodgingHeart');
+        
+        // Reset heart position to center on open
+        heart.style.left = '50%';
+        heart.style.top = '50%';
+        heart.style.transform = 'translate(-50%, -50%)';
+
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeHeartModal() {
+        const modal = document.getElementById('heartModal');
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        document.body.style.overflow = 'auto';
+    }
 
     const servicesData = [
         {
@@ -1515,28 +1587,6 @@
             icon: "fa-solid fa-server"
         }
     };
-
-    // Clean Pure Heart Modal Functions
-    function openHeartModal(e) {
-        if(e) e.stopPropagation();
-        const modal = document.getElementById('heartModal');
-        modal.classList.remove('hidden');
-        modal.classList.add('flex');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeHeartModal() {
-        const modal = document.getElementById('heartModal');
-        modal.classList.add('hidden');
-        modal.classList.remove('flex');
-        document.body.style.overflow = 'auto';
-    }
-
-    document.getElementById('heartModal').addEventListener('click', function(e) {
-        if (e.target === this) {
-            closeHeartModal();
-        }
-    });
 
     // Partner Modal Functions
     function openPartnerDetail(name) {
