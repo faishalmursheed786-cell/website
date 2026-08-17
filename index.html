@@ -788,7 +788,7 @@
     </div>
 </footer>
 
-<!-- SIDEBAR (Visible on mobile & desktop, shifted down, ultra-glass effect) -->
+<!-- SIDEBAR -->
 <div class="fixed left-0 top-[62%] -translate-y-1/2 z-40 flex flex-col super-glass-sidebar rounded-r-xl shadow-2xl border-y border-r overflow-hidden notranslate" translate="no">
     <a href="https://www.instagram.com/ffaishalll" target="_blank" rel="noopener noreferrer" title="Instagram" class="w-11 h-11 flex items-center justify-center text-white/95 hover:bg-gradient-to-tr hover:from-yellow-500 hover:via-pink-600 hover:to-purple-600 hover:text-white transition duration-200 border-b border-white/10"><i class="fa-brands fa-instagram text-base"></i></a>
     <a href="https://www.linkedin.com/in/shah-faishal-2000b6266" target="_blank" rel="noopener noreferrer" title="LinkedIn" class="w-11 h-11 flex items-center justify-center text-white/95 hover:bg-[#0077b5] hover:text-white transition duration-200 border-b border-white/10"><i class="fa-brands fa-linkedin-in text-base"></i></a>
@@ -818,6 +818,7 @@
     </div>
 </div>
 
+<!-- PARTNER MODAL WITH OFFICIAL WEBSITE LINK -->
 <div id="partnerModal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4 sm:p-6 overflow-y-auto">
     <div class="relative w-full max-w-2xl glass border border-brand-500/40 rounded-3xl overflow-hidden shadow-2xl my-auto p-6 sm:p-8">
         <button onclick="closePartnerDetail()" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-dark-900/80 border border-slate-700 text-slate-300 hover:text-white hover:bg-brand-600 flex items-center justify-center transition"><i class="fa-solid fa-xmark text-lg"></i></button>
@@ -832,9 +833,11 @@
             <h4 class="text-xs font-mono uppercase text-slate-400 tracking-wider mb-2">Technical Implementation & Role</h4>
             <p id="partnerModalDesc" class="text-slate-300 text-base leading-relaxed"></p>
         </div>
-        <div class="pt-5 border-t border-slate-800 flex justify-between items-center">
-            <span class="text-xs text-slate-500 font-mono">Enterprise Engineering Tech Stack</span>
-            <button onclick="closePartnerDetail()" class="px-5 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-sm font-semibold transition">Got it</button>
+        <div class="pt-5 border-t border-slate-800 flex justify-between items-center gap-3">
+            <a id="partnerModalLink" href="#" target="_blank" rel="noopener noreferrer" class="hidden px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-sm font-semibold transition inline-flex items-center gap-2 shadow-lg shadow-brand-600/30">
+                <i class="fa-solid fa-globe text-xs"></i> Official Website
+            </a>
+            <button onclick="closePartnerDetail()" class="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-sm font-semibold transition ml-auto">Got it</button>
         </div>
     </div>
 </div>
@@ -984,28 +987,37 @@
     ];
 
     const partnerDataMap = {
-        "KNX": { tag: "Smart Home & Building Protocol", desc: "Global open standard for commercial and residential automation. Engineering complete KNX topology, ETS programming, bus line couplers, DALI lighting gateways, HVAC climate integration, and centralized building logic controllers.", icon: "fa-solid fa-house-signal" },
-        "GVS": { tag: "KNX Touchpanels & Smart Actuators", desc: "High-end KNX smart screens, room master controllers, IP video intercom interfaces, and multifunction keypads for luxury villas and modern hospitality estates.", icon: "fa-solid fa-tablet-screen-button" },
-        "BELDEN": { tag: "Mission-Critical Structured Cabling", desc: "Enterprise and industrial grade copper Cat6A/Cat7 cabling, precision audio/video low-capacitance signal wires, KNX certified bus cables, and optical fiber interconnects for zero-loss transmission.", icon: "fa-solid fa-network-wired" },
-        "Fortinet": { tag: "Next-Gen Cybersecurity", desc: "FortiGate HA next-gen firewalls, UTM inspection, SD-WAN multi-ISP failover, IPsec VPN tunnels, and gateway perimeter defense.", icon: "fa-solid fa-shield-halved" },
-        "Cisco": { tag: "Enterprise Core Routing & Switching", desc: "Catalyst distribution, spine-leaf switching topology, VLAN segmentation, and high-performance core data center networks.", icon: "fa-solid fa-network-wired" },
-        "Huawei": { tag: "Carrier-Grade Switching & Wi-Fi", desc: "High-density enterprise wireless APs, fiber GPON distribution, and scalable core switches.", icon: "fa-brands fa-huawei" },
-        "Dell EMC": { tag: "Storage & Hyperconverged Servers", desc: "PowerEdge server clusters, SAN/NAS high-throughput video archiving, and enterprise virtualization storage.", icon: "fa-solid fa-server" },
-        "Hikvision": { tag: "AI CCTV & Security Monitoring", desc: "Enterprise IP surveillance, ANPR license plate recognition, thermal imaging, and high-capacity NVR clusters.", icon: "fa-solid fa-video" },
-        "Martin Audio": { tag: "Pro-Audio & Architectural Acoustics", desc: "High-SPL loudspeakers, multi-zone commercial background sound, line arrays, and calibrated sound reinforcement.", icon: "fa-solid fa-volume-high" },
-        "Bose": { tag: "Commercial & Luxury Sound Systems", desc: "Bose FreeSpace and EdgeMax architectural speakers, multi-room acoustic zones, and premium spatial sound.", icon: "fa-solid fa-headphones" },
-        "Control4": { tag: "Integrated Smart Villa Systems", desc: "Whole-home AV matrix routing, lighting, motorized shades, and unified mobile control.", icon: "fa-solid fa-sliders" },
-        "VMware": { tag: "Virtualization & Cloud Compute", desc: "vSphere ESXi clustering, vCenter datacenter orchestration, and virtual network appliances.", icon: "fa-solid fa-cubes" },
-        "Poly / HP": { tag: "Enterprise Audio/Video Collaboration", desc: "Studio video bars, acoustic fence microphone arrays, and SIP conferencing phones.", icon: "fa-solid fa-phone" },
-        "Fujitsu": { tag: "Mission-Critical Enterprise Compute", desc: "PRIMERGY server engineering, storage arrays, and high-reliability data center nodes.", icon: "fa-solid fa-server" }
+        "KNX": { tag: "Smart Home & Building Protocol", desc: "Global open standard for commercial and residential automation. Engineering complete KNX topology, ETS programming, bus line couplers, DALI lighting gateways, HVAC climate integration, and centralized building logic controllers.", icon: "fa-solid fa-house-signal", url: "https://www.knx.org" },
+        "GVS": { tag: "KNX Touchpanels & Smart Actuators", desc: "High-end KNX smart screens, room master controllers, IP video intercom interfaces, and multifunction keypads for luxury villas and modern hospitality estates.", icon: "fa-solid fa-tablet-screen-button", url: "https://www.video-intercom.com.cn" },
+        "BELDEN": { tag: "Mission-Critical Structured Cabling", desc: "Enterprise and industrial grade copper Cat6A/Cat7 cabling, precision audio/video low-capacitance signal wires, KNX certified bus cables, and optical fiber interconnects for zero-loss transmission.", icon: "fa-solid fa-network-wired", url: "https://www.belden.com" },
+        "Fortinet": { tag: "Next-Gen Cybersecurity", desc: "FortiGate HA next-gen firewalls, UTM inspection, SD-WAN multi-ISP failover, IPsec VPN tunnels, and gateway perimeter defense.", icon: "fa-solid fa-shield-halved", url: "https://www.fortinet.com" },
+        "Cisco": { tag: "Enterprise Core Routing & Switching", desc: "Catalyst distribution, spine-leaf switching topology, VLAN segmentation, and high-performance core data center networks.", icon: "fa-solid fa-network-wired", url: "https://www.cisco.com" },
+        "Huawei": { tag: "Carrier-Grade Switching & Wi-Fi", desc: "High-density enterprise wireless APs, fiber GPON distribution, and scalable core switches.", icon: "fa-brands fa-huawei", url: "https://www.huawei.com" },
+        "Dell EMC": { tag: "Storage & Hyperconverged Servers", desc: "PowerEdge server clusters, SAN/NAS high-throughput video archiving, and enterprise virtualization storage.", icon: "fa-solid fa-server", url: "https://www.dell.com" },
+        "Hikvision": { tag: "AI CCTV & Security Monitoring", desc: "Enterprise IP surveillance, ANPR license plate recognition, thermal imaging, and high-capacity NVR clusters.", icon: "fa-solid fa-video", url: "https://www.hikvision.com" },
+        "Martin Audio": { tag: "Pro-Audio & Architectural Acoustics", desc: "High-SPL loudspeakers, multi-zone commercial background sound, line arrays, and calibrated sound reinforcement.", icon: "fa-solid fa-volume-high", url: "https://martin-audio.com" },
+        "Bose": { tag: "Commercial & Luxury Sound Systems", desc: "Bose FreeSpace and EdgeMax architectural speakers, multi-room acoustic zones, and premium spatial sound.", icon: "fa-solid fa-headphones", url: "https://www.bose.com" },
+        "Control4": { tag: "Integrated Smart Villa Systems", desc: "Whole-home AV matrix routing, lighting, motorized shades, and unified mobile control.", icon: "fa-solid fa-sliders", url: "https://www.control4.com" },
+        "VMware": { tag: "Virtualization & Cloud Compute", desc: "vSphere ESXi clustering, vCenter datacenter orchestration, and virtual network appliances.", icon: "fa-solid fa-cubes", url: "https://www.vmware.com" },
+        "Poly / HP": { tag: "Enterprise Audio/Video Collaboration", desc: "Studio video bars, acoustic fence microphone arrays, and SIP conferencing phones.", icon: "fa-solid fa-phone", url: "https://www.hp.com" },
+        "Fujitsu": { tag: "Mission-Critical Enterprise Compute", desc: "PRIMERGY server engineering, storage arrays, and high-reliability data center nodes.", icon: "fa-solid fa-server", url: "https://www.fujitsu.com" }
     };
 
     function openPartnerDetail(name) {
-        const data = partnerDataMap[name] || { tag: "Technology Stack", desc: "Hardware & software technology deployed across enterprise network and smart building projects.", icon: "fa-solid fa-microchip" };
+        const data = partnerDataMap[name] || { tag: "Technology Stack", desc: "Hardware & software technology deployed across enterprise network and smart building projects.", icon: "fa-solid fa-microchip", url: "#" };
         document.getElementById('partnerModalTitle').textContent = name;
         document.getElementById('partnerModalTag').textContent = data.tag;
         document.getElementById('partnerModalDesc').textContent = data.desc;
         document.getElementById('partnerModalIcon').innerHTML = `<i class="${data.icon}"></i>`;
+        
+        const linkBtn = document.getElementById('partnerModalLink');
+        if (data.url && data.url !== "#") {
+            linkBtn.href = data.url;
+            linkBtn.classList.remove('hidden');
+        } else {
+            linkBtn.classList.add('hidden');
+        }
+
         const modal = document.getElementById('partnerModal');
         modal.classList.remove('hidden'); modal.classList.add('flex');
         document.body.style.overflow = 'hidden';
