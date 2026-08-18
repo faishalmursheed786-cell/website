@@ -10,11 +10,46 @@
         body { background-color: #0f172a; color: #f8fafc; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; overflow-x: hidden; }
         .glass { background: rgba(30, 41, 59, 0.85); backdrop-filter: blur(16px); }
         .dodging-btn { transition: transform 0.15s ease-out; position: relative; z-index: 50; }
+
+        /* Floating Hearts Animation Background */
+        .heart-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+            pointer-events: none;
+        }
+        .heart {
+            position: absolute;
+            color: rgba(244, 63, 94, 0.25);
+            animation: floatUp 6s linear infinite;
+            bottom: -20px;
+            font-size: 20px;
+        }
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(0.8);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-105vh) scale(1.4);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
-<body class="min-h-screen flex items-center justify-center p-4">
+<body class="min-h-screen flex items-center justify-center p-4 relative">
 
-    <div class="w-full max-w-md glass border border-slate-700/80 rounded-3xl p-6 sm:p-8 shadow-2xl text-center relative overflow-hidden min-h-[480px] flex flex-col justify-center">
+    <!-- Background Floating Hearts -->
+    <div class="heart-bg" id="heartContainer"></div>
+
+    <div class="w-full max-w-md glass border border-slate-700/80 rounded-3xl p-6 sm:p-8 shadow-2xl text-center relative overflow-hidden min-h-[480px] flex flex-col justify-center z-10">
 
         <!-- PAGE 1 -->
         <div id="page1" class="space-y-5">
@@ -103,6 +138,23 @@
     </div>
 
     <script>
+        // Create continuous floating hearts
+        function createHeart() {
+            const heartContainer = document.getElementById('heartContainer');
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            heart.style.fontSize = (Math.random() * 14 + 14) + 'px';
+            heartContainer.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 7000);
+        }
+        setInterval(createHeart, 400);
+
         function nextPage(pageNum) {
             for(let i=1; i<=5; i++) {
                 document.getElementById('page' + i).classList.add('hidden');
