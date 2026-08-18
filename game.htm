@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fruit Ninja - Shah Faishal</title>
+    <title>Fruit Ninja - Yushra</title>
     <style>
         * {
             box-sizing: border-box;
@@ -29,9 +29,10 @@
             width: 100%;
         }
         header h1 {
-            font-size: 20px;
+            font-size: 22px;
             color: #2ecc71;
             letter-spacing: 1px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
         }
         #game-container {
             position: relative;
@@ -105,15 +106,15 @@
 <body>
 
     <header>
-        <h1>Shah Faishal &bull; Interactive Game Project</h1>
+        <h1>Yushra game khelo aur jeet kr dikhao</h1>
     </header>
 
     <div id="game-container">
-        <div id="ui">Score: <span id="score">0</span> | Lives: <span id="lives">3</span></div>
+        <div id="ui">Score: <span id="score">0</span></div>
         <canvas id="gameCanvas" width="800" height="500"></canvas>
         
         <div id="game-over">
-            <h2>GAME OVER</h2>
+            <h2>BOMB BLAST!</h2>
             <p>Your Score: <span id="final-score">0</span></p>
             <button id="restart-btn" onclick="restartGame()">Play Again</button>
         </div>
@@ -124,7 +125,6 @@
     const ctx = canvas.getContext('2d');
 
     let score = 0;
-    let lives = 3;
     let isGameOver = false;
     let fruits = [];
     let particles = [];
@@ -134,7 +134,7 @@
         { name: 'Watermelon', color: '#2ecc71', innerColor: '#e74c3c', radius: 35, points: 1 },
         { name: 'Orange', color: '#f39c12', innerColor: '#f1c40f', radius: 28, points: 2 },
         { name: 'Apple', color: '#c0392b', innerColor: '#f1c40f', radius: 30, points: 1 },
-        { name: 'Bomb', color: '#333333', innerColor: '#e74c3c', radius: 30, isBomb: true }
+        { name: 'Bomb', color: '#222222', innerColor: '#e74c3c', radius: 28, isBomb: true }
     ];
 
     class Fruit {
@@ -171,13 +171,6 @@
             this.rotation += this.rotSpeed;
 
             if (!this.sliced && this.y > canvas.height + 60 && this.vy > 0) {
-                if (!this.isBomb) {
-                    lives--;
-                    document.getElementById('lives').innerText = lives;
-                    if (lives <= 0) {
-                        endGame();
-                    }
-                }
                 this.reset();
             }
         }
@@ -193,7 +186,7 @@
                 ctx.fillStyle = this.color;
                 ctx.fill();
                 ctx.lineWidth = 3;
-                ctx.strokeStyle = '#fff';
+                ctx.strokeStyle = '#e74c3c';
                 ctx.stroke();
 
                 ctx.beginPath();
@@ -248,7 +241,7 @@
         }
     }
 
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 4; i++) {
         fruits.push(new Fruit());
     }
 
@@ -330,10 +323,8 @@
 
     function restartGame() {
         score = 0;
-        lives = 3;
         isGameOver = false;
         document.getElementById('score').innerText = score;
-        document.getElementById('lives').innerText = lives;
         document.getElementById('game-over').style.display = 'none';
         fruits.forEach(f => f.reset());
     }
