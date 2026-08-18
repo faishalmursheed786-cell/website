@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habib's Shadi Agreement 📜</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        body { background-color: #0f172a; color: #f8fafc; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; overflow-x: hidden; }
+        .glass { background: rgba(30, 41, 59, 0.85); backdrop-filter: blur(16px); }
+        .dodging-btn { transition: transform 0.15s ease-out; position: relative; z-index: 50; }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+
+    <div class="w-full max-w-md glass border border-slate-700/80 rounded-3xl p-6 sm:p-8 shadow-2xl text-center relative overflow-hidden min-h-[460px] flex flex-col justify-center">
+
+        <!-- PAGE 1: Shadi ka Sawaal -->
+        <div id="page1" class="space-y-5">
+            <div class="w-16 h-16 mx-auto rounded-full bg-pink-500/20 border border-pink-500/40 flex items-center justify-center text-pink-400 text-2xl">
+                <i class="fa-solid fa-ring"></i>
+            </div>
+            <h2 class="text-xl font-extrabold text-white">Shadi krne hai to koe 1 option chose kro!</h2>
+            <p class="text-slate-300 text-sm">💍</p>
+            
+            <p id="error1" class="text-xs text-rose-400 font-mono hidden">⚠️ Na wala button select hi nahi ho sakta bhai! 😉</p>
+
+            <div class="flex gap-4 justify-center pt-4 items-center relative min-h-[70px]">
+                <button onclick="nextPage(2)" class="px-6 py-3 rounded-xl bg-pink-600 hover:bg-pink-500 text-white font-bold transition shadow-lg shadow-pink-600/30">Ha, zaroor! 😊</button>
+                <button id="btnNa1" onmouseover="dodgeButton('btnNa1')" ontouchstart="dodgeButton('btnNa1')" onclick="dodgeButton('btnNa1')" class="px-6 py-3 rounded-xl bg-slate-800 text-slate-300 font-bold transition border border-slate-600 dodging-btn">Na ❌</button>
+            </div>
+        </div>
+
+        <!-- PAGE 2: Late Night Entry -->
+        <div id="page2" class="space-y-5 hidden">
+            <div class="w-16 h-16 mx-auto rounded-full bg-purple-500/20 border border-purple-500/40 flex items-center justify-center text-purple-400 text-2xl">
+                <i class="fa-solid fa-clock"></i>
+            </div>
+            <h2 class="text-xl font-extrabold text-white">Agr mai sadi ke baad ghr late aya to koe questions nhi krna!</h2>
+            <p class="text-slate-300 text-sm">🤫</p>
+            
+            <div class="flex gap-4 justify-center pt-4 items-center relative min-h-[70px]">
+                <button onclick="nextPage(3)" class="px-6 py-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold transition shadow-lg">Manjoor hai! 👍</button>
+                <button id="btnNa2" onmouseover="dodgeButton('btnNa2')" ontouchstart="dodgeButton('btnNa2')" onclick="dodgeButton('btnNa2')" class="px-6 py-3 rounded-xl bg-slate-800 text-slate-300 font-bold transition border border-slate-600 dodging-btn">Nhi krunga ❌</button>
+            </div>
+        </div>
+
+        <!-- PAGE 3: Habib's Instructions -->
+        <div id="page3" class="space-y-5 hidden">
+            <div class="w-16 h-16 mx-auto rounded-full bg-blue-500/20 border border-blue-500/40 flex items-center justify-center text-blue-400 text-2xl">
+                <i class="fa-solid fa-user-shield"></i>
+            </div>
+            <h2 class="text-xl font-extrabold text-white">Sadi ke baad sirf Habib ka instructions follow hoga!</h2>
+            <p class="text-slate-300 text-sm">😎👑</p>
+
+            <button onclick="nextPage(4)" class="w-full mt-4 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold transition shadow-lg">Done, Aage Badhein ➔</button>
+        </div>
+
+        <!-- PAGE 4: South Indian Menu -->
+        <div id="page4" class="space-y-4 hidden">
+            <div class="w-14 h-14 mx-auto rounded-full bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 text-2xl">
+                <i class="fa-solid fa-bowl-food"></i>
+            </div>
+            <h2 class="text-xl font-extrabold text-white">Batao kya khaoge? (South Indian Menu)</h2>
+            <p class="text-xs text-yellow-400 font-medium bg-yellow-500/10 py-1 px-3 rounded-lg border border-yellow-500/20">ℹ️ Ek dish select karna zaroori hai!</p>
+            
+            <div class="grid grid-cols-2 gap-2 text-left max-h-40 overflow-y-auto pr-1">
+                <label class="glass p-2.5 rounded-xl border border-slate-700 flex items-center gap-2 cursor-pointer hover:border-amber-500 transition">
+                    <input type="radio" name="menu" value="Masala Dosa" class="accent-amber-500">
+                    <span class="text-xs font-semibold">Masala Dosa</span>
+                </label>
+                <label class="glass p-2.5 rounded-xl border border-slate-700 flex items-center gap-2 cursor-pointer hover:border-amber-500 transition">
+                    <input type="radio" name="menu" value="Idli Vada Sambhar" class="accent-amber-500">
+                    <span class="text-xs font-semibold">Idli Vada</span>
+                </label>
+                <label class="glass p-2.5 rounded-xl border border-slate-700 flex items-center gap-2 cursor-pointer hover:border-amber-500 transition">
+                    <input type="radio" name="menu" value="Mysore Bonda" class="accent-amber-500">
+                    <span class="text-xs font-semibold">Mysore Bonda</span>
+                </label>
+                <label class="glass p-2.5 rounded-xl border border-slate-700 flex items-center gap-2 cursor-pointer hover:border-amber-500 transition">
+                    <input type="radio" name="menu" value="Uttapam" class="accent-amber-500">
+                    <span class="text-xs font-semibold">Uttapam</span>
+                </label>
+            </div>
+            <button onclick="finalizeHabib()" class="w-full py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold transition shadow-lg">Finalize Agreement 🍽️</button>
+        </div>
+
+        <!-- PAGE 5: Final Success -->
+        <div id="page5" class="space-y-6 hidden">
+            <div class="w-16 h-16 mx-auto rounded-full bg-green-500/20 border border-green-500/40 flex items-center justify-center text-green-400 text-3xl">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <h2 class="text-2xl font-extrabold text-white">Agreement Signed! 🎉</h2>
+            <p id="finalChoiceText" class="text-slate-300 text-sm font-medium leading-relaxed"></p>
+            <p class="text-xs text-yellow-400">Habib ka naya contract lock ho chuka hai! 🤣🤣</p>
+        </div>
+
+    </div>
+
+    <script>
+        function nextPage(pageNum) {
+            // Sabhi pages chupao
+            for(let i=1; i<=5; i++) {
+                document.getElementById('page' + i).classList.add('hidden');
+            }
+            // Jo page chahiye use dikhao
+            document.getElementById('page' + pageNum).classList.remove('hidden');
+        }
+
+        function dodgeButton(btnId) {
+            const btn = document.getElementById(btnId);
+            const randomX = Math.floor(Math.random() * 160) - 80;
+            const randomY = Math.floor(Math.random() * 100) - 50;
+            btn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+            
+            if(btnId === 'btnNa1') {
+                document.getElementById('error1').classList.remove('hidden');
+            }
+        }
+
+        function finalizeHabib() {
+            const selected = document.querySelector('input[name="menu"]:checked');
+            if(!selected) {
+                alert('Pehle South Indian dish toh select karo bhai!');
+                return;
+            }
+            
+            const dish = selected.value;
+            document.getElementById('finalChoiceText').innerHTML = `Habib ne khane me chun liya hai: <b>"${dish}"</b>.<br><br>Ab shadi ke saare niyam aur Habib ki instructions lock ho chuki hain! 📜✨`;
+            
+            document.getElementById('page4').classList.add('hidden');
+            document.getElementById('page5').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
