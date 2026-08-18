@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best Brother Award 🏆</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        body { 
+            background: linear-gradient(135deg, #090d16, #111e38, #090d16); 
+            color: #f8fafc; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            overflow-x: hidden; 
+        }
+        .glass { 
+            background: rgba(15, 23, 42, 0.85); 
+            backdrop-filter: blur(16px); 
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+        }
+        .dodging-btn { transition: transform 0.15s ease-out; position: relative; z-index: 50; }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+
+    <div class="w-full max-w-md glass rounded-3xl p-6 sm:p-8 text-center relative overflow-hidden min-h-[500px] flex flex-col justify-center">
+
+        <!-- PAGE 1: Ready Check -->
+        <div id="page1" class="space-y-5">
+            <div class="w-16 h-16 mx-auto rounded-full bg-brand-500/20 border border-brand-500/40 flex items-center justify-center text-brand-400 text-2xl shadow-[0_0_15px_rgba(56,189,248,0.4)]">
+                <i class="fa-solid fa-crown"></i>
+            </div>
+            <h2 class="text-xl font-extrabold text-white leading-snug">Ronak jahan ap ready hai chose krne leyi?</h2>
+            <p class="text-slate-300 text-sm">👑</p>
+            
+            <p id="error1" class="text-xs text-rose-400 font-mono hidden">⚠️ No wala button select nahi ho sakta! 😉</p>
+
+            <div class="flex gap-4 justify-center pt-4 items-center relative min-h-[70px]">
+                <button onclick="nextPage(2)" class="px-6 py-3 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-bold transition shadow-lg shadow-sky-600/30">Yes, Ready! 😊</button>
+                <button id="btnNo1" onmouseover="dodgeButton('btnNo1')" ontouchstart="dodgeButton('btnNo1')" onclick="dodgeButton('btnNo1')" class="px-6 py-3 rounded-xl bg-slate-800 text-slate-300 font-bold transition border border-slate-600 dodging-btn">No ❌</button>
+            </div>
+        </div>
+
+        <!-- PAGE 2: Choose Brother Photo (Ozair vs Faishal) -->
+        <div id="page2" class="space-y-4 hidden">
+            <div class="w-12 h-12 mx-auto rounded-full bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-400 text-xl">
+                <i class="fa-solid fa-users"></i>
+            </div>
+            <h2 class="text-lg font-extrabold text-white">Chose the Best Brother:</h2>
+            <p class="text-xs text-sky-400 font-medium">ℹ️ Ek photo select karo jo sabse accha ho!</p>
+            
+            <div class="grid grid-cols-2 gap-3 relative min-h-[220px]">
+                <!-- Ozair Card (Dodging) -->
+                <div id="ozairCard" onmouseover="dodgePhoto()" ontouchstart="dodgePhoto()" onclick="dodgePhoto()" class="glass p-3 rounded-2xl border border-red-500/40 cursor-pointer flex flex-col items-center justify-center dodging-btn bg-slate-900/90">
+                    <img src="ozair.jpg" alt="Ozair Alam" class="w-28 h-36 object-cover rounded-xl border border-red-500/30 shadow-md mb-2">
+                    <span class="text-xs font-bold text-red-400">Ozair Alam</span>
+                </div>
+
+                <!-- Faishal Card (Success) -->
+                <div onclick="nextPage(3)" class="glass p-3 rounded-2xl border border-emerald-500/50 cursor-pointer flex flex-col items-center justify-center hover:border-emerald-400 transition bg-slate-900/90 shadow-[0_0_15px_rgba(16,185,129,0.2)]">
+                    <img src="faishal.jpg" alt="Shah Faishal" class="w-28 h-36 object-cover rounded-xl border border-emerald-500/40 shadow-md mb-2">
+                    <span class="text-xs font-bold text-emerald-400">Shah Faishal 🌟</span>
+                </div>
+            </div>
+            <p id="error2" class="text-xs text-rose-400 font-mono hidden">⚠️ Yeh photo select nahi ho sakti! Dusri try karo 😉</p>
+        </div>
+
+        <!-- PAGE 3: Success & Indian Menu -->
+        <div id="page3" class="space-y-4 hidden">
+            <div class="w-14 h-14 mx-auto rounded-full bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 text-2xl">
+                <i class="fa-solid fa-award"></i>
+            </div>
+            <h2 class="text-lg font-extrabold text-white">Mubarak ho! Apka sabse accha bhai <span class="text-emerald-400">Faishal</span> hai! 🎉</h2>
+            <p class="text-xs text-yellow-300 font-medium bg-yellow-500/10 py-1 px-3 rounded-lg border border-yellow-500/20">Bataiye kya khana hai apko?</p>
+            
+            <div class="grid grid-cols-2 gap-2 text-left max-h-36 overflow-y-auto pr-1">
+                <label class="glass p-2.5 rounded-xl border border-slate-700 flex items-center gap-2 cursor-pointer hover:border-emerald-500 transition">
+                    <input type="radio" name="menu" value="Butter Chicken & Naan" class="accent-emerald-500">
+                    <span class="text-xs font-semibold">Butter Chicken</span>
+                </label>
+                <label class="glass p-2.5 rounded-xl border border-slate-700 flex items-center gap-2 cursor-pointer hover:border-emerald-500 transition">
+                    <input type="radio" name="menu" value="Biryani" class="accent-emerald-500">
+                    <span class="text-xs font-semibold">Hyderabadi Biryani</span>
+                </label>
+                <label class="glass p-2.5 rounded-xl border border-slate-700 flex items-center gap-2 cursor-pointer hover:border-emerald-500 transition">
+                    <input type="radio" name="menu" value="Paneer Tikka" class="accent-emerald-500">
+                    <span class="text-xs font-semibold">Paneer Tikka</span>
+                </label>
+                <label class="glass p-2.5 rounded-xl border border-slate-700 flex items-center gap-2 cursor-pointer hover:border-emerald-500 transition">
+                    <input type="radio" name="menu" value="Chole Bhature" class="accent-emerald-500">
+                    <span class="text-xs font-semibold">Chole Bhature</span>
+                </label>
+            </div>
+            <button onclick="finalizeChoice()" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold transition shadow-lg shadow-emerald-600/30">Confirm Order 🍽️</button>
+        </div>
+
+        <!-- PAGE 4: Final Congratulations -->
+        <div id="page4" class="space-y-6 hidden">
+            <div class="w-16 h-16 mx-auto rounded-full bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 text-3xl shadow-[0_0_20px_rgba(16,185,129,0.4)]">
+                <i class="fa-solid fa-heart"></i>
+            </div>
+            <h2 class="text-2xl font-extrabold text-white">Congratulations! 🎉</h2>
+            <p id="finalChoiceText" class="text-slate-200 text-sm font-medium leading-relaxed"></p>
+            <p class="text-xs text-emerald-400 font-bold bg-emerald-500/10 py-2 px-4 rounded-xl border border-emerald-500/20">Faishal bahut accha ladka hai! 💖🤣🤣</p>
+        </div>
+
+    </div>
+
+    <script>
+        function nextPage(pageNum) {
+            for(let i=1; i<=4; i++) {
+                document.getElementById('page' + i).classList.add('hidden');
+            }
+            document.getElementById('page' + pageNum).classList.remove('hidden');
+        }
+
+        function dodgeButton(btnId) {
+            const btn = document.getElementById(btnId);
+            const randomX = Math.floor(Math.random() * 160) - 80;
+            const randomY = Math.floor(Math.random() * 100) - 50;
+            btn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+            
+            if(btnId === 'btnNo1') {
+                document.getElementById('error1').classList.remove('hidden');
+            }
+        }
+
+        function dodgePhoto() {
+            const card = document.getElementById('ozairCard');
+            const randomX = Math.floor(Math.random() * 140) - 70;
+            const randomY = Math.floor(Math.random() * 80) - 40;
+            card.style.transform = `translate(${randomX}px, ${randomY}px)`;
+            document.getElementById('error2').classList.remove('hidden');
+        }
+
+        function finalizeChoice() {
+            const selected = document.querySelector('input[name="menu"]:checked');
+            if(!selected) {
+                alert('Pehle koi ek dish toh select karo!');
+                return;
+            }
+            
+            const dish = selected.value;
+            document.getElementById('finalChoiceText').innerHTML = `Aapne apne pyare chhote bhai ko chun liya hai!<br><br>Khane mein order hua hai: <b>"${dish}"</b> 🍛`;
+            
+            document.getElementById('page3').classList.add('hidden');
+            document.getElementById('page4').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
