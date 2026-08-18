@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Habib & Fida's Agreement 📜</title>
+    <title>Habib & Fida Agreement 📜</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <style>
@@ -16,58 +16,58 @@
 
     <div class="w-full max-w-md glass border border-slate-700/80 rounded-3xl p-6 sm:p-8 shadow-2xl text-center relative overflow-hidden min-h-[480px] flex flex-col justify-center">
 
-        <!-- PAGE 1: Shadi ka Sawaal (Malayalam) -->
+        <!-- PAGE 1 -->
         <div id="page1" class="space-y-5">
             <div class="w-16 h-16 mx-auto rounded-full bg-pink-500/20 border border-pink-500/40 flex items-center justify-center text-pink-400 text-2xl">
                 <i class="fa-solid fa-ring"></i>
             </div>
-            <h2 class="text-xl font-extrabold text-white">കല്യാണം കഴിക്കണമെങ്കിൽ ഏതെങ്കിലും ഒരു ഓപ്ഷൻ തിരഞ്ഞെടുക്കൂ!</h2>
+            <h2 class="text-xl font-extrabold text-white">Vivaham kazhikanamenkil enthengilum oru option select cheyyu!</h2>
             <p class="text-slate-300 text-sm">💍</p>
             
-            <p id="error1" class="text-xs text-rose-400 font-mono hidden">⚠️ 'illa' button select cheyyan pattilla! 😉</p>
+            <p id="error1" class="text-xs text-rose-400 font-mono hidden">⚠️ "Illa" button select cheyyan pattilla! 😉</p>
 
             <div class="flex gap-4 justify-center pt-4 items-center relative min-h-[70px]">
-                <button onclick="nextPage(2)" class="px-6 py-3 rounded-xl bg-pink-600 hover:bg-pink-500 text-white font-bold transition shadow-lg shadow-pink-600/35">Athe, kandikkum! 😊</button>
+                <button onclick="nextPage(2)" class="px-6 py-3 rounded-xl bg-pink-600 hover:bg-pink-500 text-white font-bold transition shadow-lg shadow-pink-600/35">Athe, zaroor! 😊</button>
                 <button id="btnNa1" onmouseover="dodgeButton('btnNa1')" ontouchstart="dodgeButton('btnNa1')" onclick="dodgeButton('btnNa1')" class="px-6 py-3 rounded-xl bg-slate-800 text-slate-300 font-bold transition border border-slate-600 dodging-btn">Illa ❌</button>
             </div>
         </div>
 
-        <!-- PAGE 2: Late Night Entry (Malayalam) -->
+        <!-- PAGE 2 -->
         <div id="page2" class="space-y-5 hidden">
             <div class="w-16 h-16 mx-auto rounded-full bg-purple-500/20 border border-purple-500/40 flex items-center justify-center text-purple-400 text-2xl">
                 <i class="fa-solid fa-clock"></i>
             </div>
-            <h2 class="text-xl font-extrabold text-white">ഞാൻ കല്യാണത്തിന് ശേഷം രാത്രി വൈകി വീട്ടിൽ വന്നാൽ ചോദ്യങ്ങളൊന്നും ചോദിക്കാൻ പാടില്ല!</h2>
+            <h2 class="text-xl font-extrabold text-white">Njan vivahathinu sesham rathri vaiki veettil vannal oru chodyangalum chodikkan padilla!</h2>
             <p class="text-slate-300 text-sm">🤫</p>
             
             <div class="flex gap-4 justify-center pt-4 items-center relative min-h-[70px]">
-                <button onclick="nextPage(3)" class="px-6 py-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold transition shadow-lg">Sammatham! 👍</button>
+                <button onclick="nextPage(3)" class="px-6 py-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold transition shadow-lg">Manasammatham! 👍</button>
                 <button id="btnNa2" onmouseover="dodgeButton('btnNa2')" ontouchstart="dodgeButton('btnNa2')" onclick="dodgeButton('btnNa2')" class="px-6 py-3 rounded-xl bg-slate-800 text-slate-300 font-bold transition border border-slate-600 dodging-btn">Illa ❌</button>
             </div>
         </div>
 
-        <!-- PAGE 3: Question for Fida -->
+        <!-- PAGE 3 -->
         <div id="page3" class="space-y-4 hidden">
             <div class="w-16 h-16 mx-auto rounded-full bg-blue-500/20 border border-blue-500/40 flex items-center justify-center text-blue-400 text-2xl">
                 <i class="fa-solid fa-heart-circle-question"></i>
             </div>
-            <h2 class="text-lg font-extrabold text-white leading-relaxed">Fida, shaadi ke baad sirf Habib ki instruction follow kroge tum?</h2>
+            <h2 class="text-lg font-extrabold text-white leading-relaxed">Fida, vivahathinu sesham sherikkum Habib-nte instruction mathram alle follow cheyyunne?</h2>
             
-            <p id="error3" class="text-xs text-rose-400 font-mono hidden">⚠️ 'No' select karne ki koshish mat karo Fida! 😉</p>
+            <p id="error3" class="text-xs text-rose-400 font-mono hidden">⚠️ "No" select cheyyan nokkanda Fida! 😉</p>
 
             <div class="flex gap-4 justify-center pt-4 items-center relative min-h-[70px]">
-                <button onclick="nextPage(4)" class="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold transition shadow-lg">Yes, zaroor! ❤️</button>
+                <button onclick="nextPage(4)" class="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold transition shadow-lg">Athe, shariyanu! ❤️</button>
                 <button id="btnNa3" onmouseover="dodgeButton('btnNa3')" ontouchstart="dodgeButton('btnNa3')" onclick="dodgeButton('btnNa3')" class="px-6 py-3 rounded-xl bg-slate-800 text-slate-300 font-bold transition border border-slate-600 dodging-btn">No ❌</button>
             </div>
         </div>
 
-        <!-- PAGE 4: South Indian Menu (Malayalam flavor) -->
+        <!-- PAGE 4 -->
         <div id="page4" class="space-y-4 hidden">
             <div class="w-14 h-14 mx-auto rounded-full bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 text-2xl">
                 <i class="fa-solid fa-bowl-food"></i>
             </div>
-            <h2 class="text-xl font-extrabold text-white">Enthea kazhikkan vendiyullathu? (Kerala/South Indian Menu)</h2>
-            <p class="text-xs text-yellow-400 font-medium bg-yellow-500/10 py-1 px-3 rounded-lg border border-yellow-500/20">ℹ️ Ethankilum oru dish select cheyyoo!</p>
+            <h2 class="text-xl font-extrabold text-white">Enthea kazhikkan vendiyullathu? (Kerala Menu)</h2>
+            <p class="text-xs text-yellow-400 font-medium bg-yellow-500/10 py-1 px-3 rounded-lg border border-yellow-500/20">ℹ️ Oradakkam oru dish select cheyyoo!</p>
             
             <div class="grid grid-cols-2 gap-2 text-left max-h-40 overflow-y-auto pr-1">
                 <label class="glass p-2.5 rounded-xl border border-slate-700 flex items-center gap-2 cursor-pointer hover:border-amber-500 transition">
@@ -87,17 +87,17 @@
                     <span class="text-xs font-semibold">Porotta & Beef</span>
                 </label>
             </div>
-            <button onclick="finalizeHabib()" class="w-full py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold transition shadow-lg">Finalize Agreement 🍽️</button>
+            <button onclick="finalizeHabib()" class="w-full py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold transition shadow-lg">Agreement Finalize Cheyyu 🍽️</button>
         </div>
 
-        <!-- PAGE 5: Final Success -->
+        <!-- PAGE 5 -->
         <div id="page5" class="space-y-6 hidden">
             <div class="w-16 h-16 mx-auto rounded-full bg-green-500/20 border border-green-500/40 flex items-center justify-center text-green-400 text-3xl">
                 <i class="fa-solid fa-check"></i>
             </div>
             <h2 class="text-2xl font-extrabold text-white">Agreement Signed! 🎉</h2>
             <p id="finalChoiceText" class="text-slate-300 text-sm font-medium leading-relaxed"></p>
-            <p class="text-xs text-yellow-400">Habib aur Fida ka contract pakka ho gaya! 🤣🤣</p>
+            <p class="text-xs text-yellow-400">Habib-um Fida-yum thammilulla contract pakka ayi! 🤣🤣</p>
         </div>
 
     </div>
@@ -131,7 +131,7 @@
             }
             
             const dish = selected.value;
-            document.getElementById('finalChoiceText').innerHTML = `Fida ne select kiya hai: <b>"${dish}"</b>.<br><br>Ella niyamangalum lock cheythirikkunnu! 📜✨`;
+            document.getElementById('finalChoiceText').innerHTML = `Fida select cheythirikkunnu: <b>"${dish}"</b>.<br><br>Ella niyamangalum sharthukalum lock cheythirikkunnu! 📜✨`;
             
             document.getElementById('page4').classList.add('hidden');
             document.getElementById('page5').classList.remove('hidden');
