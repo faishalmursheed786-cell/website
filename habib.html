@@ -7,11 +7,21 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <style>
-        body { background-color: #0f172a; color: #f8fafc; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; overflow-x: hidden; }
-        .glass { background: rgba(30, 41, 59, 0.85); backdrop-filter: blur(16px); }
+        body { 
+            background: linear-gradient(135deg, #180512, #2d0b22, #11020d); 
+            color: #f8fafc; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            overflow-x: hidden; 
+        }
+        .glass { 
+            background: rgba(45, 11, 34, 0.75); 
+            backdrop-filter: blur(16px); 
+            border: 1px solid rgba(244, 63, 94, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(244, 63, 94, 0.15);
+        }
         .dodging-btn { transition: transform 0.15s ease-out; position: relative; z-index: 50; }
 
-        /* Floating Hearts Animation Background */
+        /* Glowing Pink Floating Hearts Background */
         .heart-bg {
             position: fixed;
             top: 0;
@@ -24,21 +34,23 @@
         }
         .heart {
             position: absolute;
-            color: rgba(244, 63, 94, 0.25);
+            color: #ff3366;
+            text-shadow: 0 0 12px #ff3366, 0 0 25px #ff6699;
             animation: floatUp 6s linear infinite;
-            bottom: -20px;
-            font-size: 20px;
+            bottom: -30px;
+            font-size: 22px;
+            opacity: 0.8;
         }
         @keyframes floatUp {
             0% {
-                transform: translateY(0) scale(0.8);
+                transform: translateY(0) scale(0.7) rotate(0deg);
                 opacity: 0;
             }
             20% {
-                opacity: 0.8;
+                opacity: 0.9;
             }
             100% {
-                transform: translateY(-105vh) scale(1.4);
+                transform: translateY(-105vh) scale(1.4) rotate(360deg);
                 opacity: 0;
             }
         }
@@ -46,99 +58,99 @@
 </head>
 <body class="min-h-screen flex items-center justify-center p-4 relative">
 
-    <!-- Background Floating Hearts -->
+    <!-- Glowing Background Floating Hearts -->
     <div class="heart-bg" id="heartContainer"></div>
 
-    <div class="w-full max-w-md glass border border-slate-700/80 rounded-3xl p-6 sm:p-8 shadow-2xl text-center relative overflow-hidden min-h-[480px] flex flex-col justify-center z-10">
+    <div class="w-full max-w-md glass rounded-3xl p-6 sm:p-8 text-center relative overflow-hidden min-h-[480px] flex flex-col justify-center z-10">
 
         <!-- PAGE 1 -->
         <div id="page1" class="space-y-5">
-            <div class="w-16 h-16 mx-auto rounded-full bg-pink-500/20 border border-pink-500/40 flex items-center justify-center text-pink-400 text-2xl">
+            <div class="w-16 h-16 mx-auto rounded-full bg-pink-500/20 border border-pink-500/40 flex items-center justify-center text-pink-400 text-2xl shadow-[0_0_15px_rgba(244,63,94,0.4)]">
                 <i class="fa-solid fa-ring"></i>
             </div>
             <h2 class="text-xl font-extrabold text-white">Vivaham kazhikanamenkil enthengilum oru option select cheyyu!</h2>
             <p class="text-slate-300 text-sm">💍</p>
             
-            <p id="error1" class="text-xs text-rose-400 font-mono hidden">⚠️ "Illa" button select cheyyan pattilla! 😉</p>
+            <p id="error1" class="text-xs text-rose-300 font-mono hidden">⚠️ "Illa" button select cheyyan pattilla! 😉</p>
 
             <div class="flex gap-4 justify-center pt-4 items-center relative min-h-[70px]">
-                <button onclick="nextPage(2)" class="px-6 py-3 rounded-xl bg-pink-600 hover:bg-pink-500 text-white font-bold transition shadow-lg shadow-pink-600/35">Athe, zaroor! 😊</button>
-                <button id="btnNa1" onmouseover="dodgeButton('btnNa1')" ontouchstart="dodgeButton('btnNa1')" onclick="dodgeButton('btnNa1')" class="px-6 py-3 rounded-xl bg-slate-800 text-slate-300 font-bold transition border border-slate-600 dodging-btn">Illa ❌</button>
+                <button onclick="nextPage(2)" class="px-6 py-3 rounded-xl bg-pink-600 hover:bg-pink-500 text-white font-bold transition shadow-[0_0_20px_rgba(219,39,119,0.5)]">Athe, zaroor! 😊</button>
+                <button id="btnNa1" onmouseover="dodgeButton('btnNa1')" ontouchstart="dodgeButton('btnNa1')" onclick="dodgeButton('btnNa1')" class="px-6 py-3 rounded-xl bg-slate-900/80 text-slate-300 font-bold transition border border-pink-500/30 dodging-btn">Illa ❌</button>
             </div>
         </div>
 
         <!-- PAGE 2 -->
         <div id="page2" class="space-y-5 hidden">
-            <div class="w-16 h-16 mx-auto rounded-full bg-purple-500/20 border border-purple-500/40 flex items-center justify-center text-purple-400 text-2xl">
+            <div class="w-16 h-16 mx-auto rounded-full bg-pink-500/20 border border-pink-500/40 flex items-center justify-center text-pink-400 text-2xl shadow-[0_0_15px_rgba(244,63,94,0.4)]">
                 <i class="fa-solid fa-clock"></i>
             </div>
             <h2 class="text-xl font-extrabold text-white">Njan vivahathinu sesham rathri vaiki veettil vannal oru chodyangalum chodikkan padilla!</h2>
             <p class="text-slate-300 text-sm">🤫</p>
             
             <div class="flex gap-4 justify-center pt-4 items-center relative min-h-[70px]">
-                <button onclick="nextPage(3)" class="px-6 py-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold transition shadow-lg">Manasammatham! 👍</button>
-                <button id="btnNa2" onmouseover="dodgeButton('btnNa2')" ontouchstart="dodgeButton('btnNa2')" onclick="dodgeButton('btnNa2')" class="px-6 py-3 rounded-xl bg-slate-800 text-slate-300 font-bold transition border border-slate-600 dodging-btn">Illa ❌</button>
+                <button onclick="nextPage(3)" class="px-6 py-3 rounded-xl bg-pink-600 hover:bg-pink-500 text-white font-bold transition shadow-[0_0_20px_rgba(219,39,119,0.5)]">Manasammatham! 👍</button>
+                <button id="btnNa2" onmouseover="dodgeButton('btnNa2')" ontouchstart="dodgeButton('btnNa2')" onclick="dodgeButton('btnNa2')" class="px-6 py-3 rounded-xl bg-slate-900/80 text-slate-300 font-bold transition border border-pink-500/30 dodging-btn">Illa ❌</button>
             </div>
         </div>
 
         <!-- PAGE 3 -->
         <div id="page3" class="space-y-4 hidden">
-            <div class="w-16 h-16 mx-auto rounded-full bg-blue-500/20 border border-blue-500/40 flex items-center justify-center text-blue-400 text-2xl">
+            <div class="w-16 h-16 mx-auto rounded-full bg-pink-500/20 border border-pink-500/40 flex items-center justify-center text-pink-400 text-2xl shadow-[0_0_15px_rgba(244,63,94,0.4)]">
                 <i class="fa-solid fa-heart-circle-question"></i>
             </div>
             <h2 class="text-lg font-extrabold text-white leading-relaxed">Fida, vivahathinu sesham sherikkum Habib-nte instruction mathram alle follow cheyyunne?</h2>
             
-            <p id="error3" class="text-xs text-rose-400 font-mono hidden">⚠️ "No" select cheyyan nokkanda Fida! 😉</p>
+            <p id="error3" class="text-xs text-rose-300 font-mono hidden">⚠️ "No" select cheyyan nokkanda Fida! 😉</p>
 
             <div class="flex gap-4 justify-center pt-4 items-center relative min-h-[70px]">
-                <button onclick="nextPage(4)" class="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold transition shadow-lg">Athe, shariyanu! ❤️</button>
-                <button id="btnNa3" onmouseover="dodgeButton('btnNa3')" ontouchstart="dodgeButton('btnNa3')" onclick="dodgeButton('btnNa3')" class="px-6 py-3 rounded-xl bg-slate-800 text-slate-300 font-bold transition border border-slate-600 dodging-btn">No ❌</button>
+                <button onclick="nextPage(4)" class="px-6 py-3 rounded-xl bg-pink-600 hover:bg-pink-500 text-white font-bold transition shadow-[0_0_20px_rgba(219,39,119,0.5)]">Athe, shariyanu! ❤️</button>
+                <button id="btnNa3" onmouseover="dodgeButton('btnNa3')" ontouchstart="dodgeButton('btnNa3')" onclick="dodgeButton('btnNa3')" class="px-6 py-3 rounded-xl bg-slate-900/80 text-slate-300 font-bold transition border border-pink-500/30 dodging-btn">No ❌</button>
             </div>
         </div>
 
         <!-- PAGE 4 -->
         <div id="page4" class="space-y-4 hidden">
-            <div class="w-14 h-14 mx-auto rounded-full bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 text-2xl">
+            <div class="w-14 h-14 mx-auto rounded-full bg-pink-500/20 border border-pink-500/40 flex items-center justify-center text-pink-400 text-2xl shadow-[0_0_15px_rgba(244,63,94,0.4)]">
                 <i class="fa-solid fa-bowl-food"></i>
             </div>
             <h2 class="text-xl font-extrabold text-white">Enthea kazhikkan vendiyullathu? (Kerala Menu)</h2>
-            <p class="text-xs text-yellow-400 font-medium bg-yellow-500/10 py-1 px-3 rounded-lg border border-yellow-500/20">ℹ️ Oradakkam oru dish select cheyyoo!</p>
+            <p class="text-xs text-pink-300 font-medium bg-pink-500/10 py-1 px-3 rounded-lg border border-pink-500/20">ℹ️ Oradakkam oru dish select cheyyoo!</p>
             
             <div class="grid grid-cols-2 gap-2 text-left max-h-40 overflow-y-auto pr-1">
-                <label class="glass p-2.5 rounded-xl border border-slate-700 flex items-center gap-2 cursor-pointer hover:border-amber-500 transition">
-                    <input type="radio" name="menu" value="Masala Dosa" class="accent-amber-500">
+                <label class="glass p-2.5 rounded-xl flex items-center gap-2 cursor-pointer hover:border-pink-500 transition">
+                    <input type="radio" name="menu" value="Masala Dosa" class="accent-pink-500">
                     <span class="text-xs font-semibold">Masala Dosa</span>
                 </label>
-                <label class="glass p-2.5 rounded-xl border border-slate-700 flex items-center gap-2 cursor-pointer hover:border-amber-500 transition">
-                    <input type="radio" name="menu" value="Idli Vada Sambhar" class="accent-amber-500">
+                <label class="glass p-2.5 rounded-xl flex items-center gap-2 cursor-pointer hover:border-pink-500 transition">
+                    <input type="radio" name="menu" value="Idli Vada Sambhar" class="accent-pink-500">
                     <span class="text-xs font-semibold">Idli Vada</span>
                 </label>
-                <label class="glass p-2.5 rounded-xl border border-slate-700 flex items-center gap-2 cursor-pointer hover:border-amber-500 transition">
-                    <input type="radio" name="menu" value="Appam & Stew" class="accent-amber-500">
+                <label class="glass p-2.5 rounded-xl flex items-center gap-2 cursor-pointer hover:border-pink-500 transition">
+                    <input type="radio" name="menu" value="Appam & Stew" class="accent-pink-500">
                     <span class="text-xs font-semibold">Appam & Stew</span>
                 </label>
-                <label class="glass p-2.5 rounded-xl border border-slate-700 flex items-center gap-2 cursor-pointer hover:border-amber-500 transition">
-                    <input type="radio" name="menu" value="Kerala Porotta & Beef" class="accent-amber-500">
+                <label class="glass p-2.5 rounded-xl flex items-center gap-2 cursor-pointer hover:border-pink-500 transition">
+                    <input type="radio" name="menu" value="Kerala Porotta & Beef" class="accent-pink-500">
                     <span class="text-xs font-semibold">Porotta & Beef</span>
                 </label>
             </div>
-            <button onclick="finalizeHabib()" class="w-full py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold transition shadow-lg">Agreement Finalize Cheyyu 🍽️</button>
+            <button onclick="finalizeHabib()" class="w-full py-3 rounded-xl bg-pink-600 hover:bg-pink-500 text-white font-bold transition shadow-[0_0_20px_rgba(219,39,119,0.5)]">Agreement Finalize Cheyyu 🍽️</button>
         </div>
 
         <!-- PAGE 5 -->
         <div id="page5" class="space-y-6 hidden">
-            <div class="w-16 h-16 mx-auto rounded-full bg-green-500/20 border border-green-500/40 flex items-center justify-center text-green-400 text-3xl">
+            <div class="w-16 h-16 mx-auto rounded-full bg-pink-500/20 border border-pink-500/40 flex items-center justify-center text-pink-400 text-3xl shadow-[0_0_20px_rgba(244,63,94,0.5)]">
                 <i class="fa-solid fa-check"></i>
             </div>
             <h2 class="text-2xl font-extrabold text-white">Agreement Signed! 🎉</h2>
-            <p id="finalChoiceText" class="text-slate-300 text-sm font-medium leading-relaxed"></p>
-            <p class="text-xs text-yellow-400">Habib-um Fida-yum thammilulla contract pakka ayi! 🤣🤣</p>
+            <p id="finalChoiceText" class="text-slate-200 text-sm font-medium leading-relaxed"></p>
+            <p class="text-xs text-pink-300">Habib-um Fida-yum thammilulla contract pakka ayi! 🤣🤣</p>
         </div>
 
     </div>
 
     <script>
-        // Create continuous floating hearts
+        // Create continuous glowing pink floating hearts
         function createHeart() {
             const heartContainer = document.getElementById('heartContainer');
             const heart = document.createElement('div');
@@ -146,14 +158,14 @@
             heart.innerHTML = '❤️';
             heart.style.left = Math.random() * 100 + 'vw';
             heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
-            heart.style.fontSize = (Math.random() * 14 + 14) + 'px';
+            heart.style.fontSize = (Math.random() * 16 + 14) + 'px';
             heartContainer.appendChild(heart);
 
             setTimeout(() => {
                 heart.remove();
             }, 7000);
         }
-        setInterval(createHeart, 400);
+        setInterval(createHeart, 350);
 
         function nextPage(pageNum) {
             for(let i=1; i<=5; i++) {
