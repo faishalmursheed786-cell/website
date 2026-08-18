@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habib & Fidha Wedding Protocol</title>
+    <style>
+        body {
+            background-color: #0f172a;
+            color: #38bdf8;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .terminal {
+            background-color: #1e293b;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            max-width: 600px;
+            width: 100%;
+            border: 1px solid #334155;
+        }
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            margin: 0;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        .cursor {
+            display: inline-block;
+            background-color: #38bdf8;
+            width: 10px;
+            height: 18px;
+            animation: blink 1s infinite;
+            vertical-align: bottom;
+            margin-left: 5px;
+        }
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="terminal">
+        <pre id="output"></pre><span class="cursor"></span>
+    </div>
+
+    <script>
+        const text = `===========================================
+   ❤️  HABIB & FIDHA WEDDING PROTOCOL  ❤️
+===========================================
+
+[+] Initializing Wedding Bells...
+[+] Bridging Hearts: Habib <--> Fidha...
+[+] Status: Forever Connected! 
+
+-------------------------------------------
+ "Saj gayi hai duniya kuch is tarah, 
+  Habib ke naseeb mein Fidha jo aayi hai..."
+-------------------------------------------
+
+ Mubarak ho mere bhai Habib! 
+ Dua hai ki yeh Jodi hamesha salamat rahe.
+===========================================`;
+
+        let i = 0;
+        const speed = 30; // Typing speed in milliseconds
+
+        function typeWriter() {
+            if (i < text.length) {
+                document.getElementById("output").innerHTML += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, speed);
+            }
+        }
+
+        window.onload = typeWriter;
+    </script>
+
+</body>
+</html>
