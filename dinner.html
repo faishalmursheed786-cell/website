@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dinner Plan With Friends</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        body { background-color: #0f172a; color: #f8fafc; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; overflow-x: hidden; }
+        .glass { background: rgba(30, 41, 59, 0.85); backdrop-filter: blur(16px); }
+        .dodging-btn { transition: transform 0.15s ease-out; position: relative; z-index: 50; }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+
+    <div class="w-full max-w-md glass border border-slate-700/80 rounded-3xl p-6 sm:p-8 shadow-2xl text-center relative overflow-hidden min-h-[460px] flex flex-col justify-center">
+
+        <!-- STEP 1 -->
+        <div id="step1" class="space-y-5">
+            <div class="w-16 h-16 mx-auto rounded-full bg-pink-500/20 border border-pink-500/40 flex items-center justify-center text-pink-400 text-2xl">
+                <i class="fa-solid fa-utensils"></i>
+            </div>
+            <h2 class="text-xl font-extrabold text-white">Gulhasmi didi agr khana order krwana hai to form fill krna pdega.</h2>
+            <p class="text-slate-300 text-base">🥲</p>
+            
+            <p class="text-xs text-yellow-400 font-medium bg-yellow-500/10 py-1.5 px-3 rounded-lg border border-yellow-500/20">ℹ️ Pehle aapko ek option select karna zaroori hai!</p>
+            <p id="error1" class="text-xs text-rose-400 font-mono hidden">⚠️ Pehle "Haan" select karo!</p>
+
+            <div class="flex gap-4 justify-center pt-2 items-center relative min-h-[60px]">
+                <button onclick="selectOption('Haan')" id="btnHaan" class="px-6 py-3 rounded-xl bg-slate-800 text-slate-300 font-bold transition border border-slate-600">Haan, zaroor! 😊</button>
+                <button id="btnNhi" onmouseover="dodgeButton('btnNhi')" ontouchstart="dodgeButton('btnNhi')" onclick="dodgeButton('btnNhi')" class="px-6 py-3 rounded-xl bg-slate-800 text-slate-300 font-bold transition border border-slate-600 dodging-btn">Nhi</button>
+            </div>
+            <button onclick="validateStep1()" class="w-full mt-2 py-3 rounded-xl bg-pink-600 hover:bg-pink-500 text-white font-bold transition shadow-lg shadow-pink-600/30">Aage Badhein ➔</button>
+        </div>
+
+        <!-- STEP 2 -->
+        <div id="step2" class="space-y-4 hidden">
+            <div class="w-16 h-16 mx-auto rounded-full bg-purple-500/20 border border-purple-500/40 flex items-center justify-center text-purple-400 text-2xl">
+                <i class="fa-solid fa-user-group"></i>
+            </div>
+            <h2 class="text-xl font-extrabold text-white">Pehle apne kisi dost se baat karwao!</h2>
+            
+            <p class="text-xs text-yellow-400 font-medium bg-yellow-500/10 py-1.5 px-3 rounded-lg border border-yellow-500/20">ℹ️ Noor ya Zoya me se ek ko chunna compulsory hai!</p>
+            <p id="error2" class="text-xs text-rose-400 font-mono hidden">⚠️ Pehle Noor ya Zoya select karo!</p>
+
+            <div class="grid grid-cols-2 gap-4 pt-2 justify-items-center">
+                <!-- Noor Option -->
+                <button onclick="selectFriend('Noor')" id="friendNoor" class="glass p-3 rounded-2xl border border-slate-700 flex flex-col items-center gap-2 cursor-pointer hover:border-purple-500 transition w-full">
+                    <div class="w-28 h-36 rounded-xl overflow-hidden border-2 border-purple-400/60 bg-slate-900 shadow-xl">
+                        <img src="noor.jpg" alt="Noor" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=300'">
+                    </div>
+                    <span class="text-xs font-bold text-white">Noor</span>
+                </button>
+
+                <!-- Zoya Option -->
+                <button onclick="selectFriend('Zoya')" id="friendZoya" class="glass p-3 rounded-2xl border border-slate-700 flex flex-col items-center gap-2 cursor-pointer hover:border-purple-500 transition w-full">
+                    <div class="w-28 h-36 rounded-xl overflow-hidden border-2 border-purple-400/60 bg-slate-900 shadow-xl">
+                        <img src="zoya.jpg" alt="Zoya" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=300'">
+                    </div>
+                    <span class="text-xs font-bold text-white">Zoya</span>
+                </button>
+            </div>
+
+            <!-- Dodging 'Kisi se nahi' Button -->
+            <div class="relative pt-1 flex justify-center">
+                <button id="btnKisiSeNahi" onmouseover="dodgeButton('btnKisiSeNahi')" ontouchstart="dodgeButton('btnKisiSeNahi')" onclick="dodgeButton('btnKisiSeNahi')" class="glass px-4 py-2 rounded-xl border border-rose-500/50 text-rose-300 text-xs font-bold dodging-btn">
+                    🚫 Kisi se nahi
+                </button>
+            </div>
+
+            <button onclick="validateStep2()" class="w-full mt-3 py-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold transition shadow-lg">Confirm Friend & Continue ➔</button>
+        </div>
+
+        <!-- STEP 3 -->
+        <div id="step3" class="space-y-4 hidden">
+            <div class="w-14 h-14 mx-auto rounded-full bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 text-2xl">
+                <i class="fa-solid fa-bowl-food"></i>
+            </div>
+            <h2 class="text-xl font-extrabold text-white">Batao kya khaogi? (Indian Menu)</h2>
+            <p class="text-xs text-yellow-400 font-medium bg-yellow-500/10 py-1 px-3 rounded-lg border border-yellow-500/20">ℹ️ Ek dish select karna zaroori hai!</p>
+            
+            <div class="grid grid-cols-2 gap-2 text-left max-h-40 overflow-y-auto pr-1">
+                <label class="glass p-2.5 rounded-xl border border-slate-700 flex items-center gap-2 cursor-pointer hover:border-amber-500 transition">
+                    <input type="radio" name="menu" value="Butter Chicken & Naan" class="accent-amber-500">
+                    <span class="text-xs font-semibold">Butter Chicken</span>
+                </label>
+                <label class="glass p-2.5 rounded-xl border border-slate-700 flex items-center gap-2 cursor-pointer hover:border-amber-500 transition">
+                    <input type="radio" name="menu" value="Paneer Tikka Masala" class="accent-amber-500">
+                    <span class="text-xs font-semibold">Paneer Tikka</span>
+                </label>
+                <label class="glass p-2.5 rounded-xl border border-slate-700 flex items-center gap-2 cursor-pointer hover:border-amber-500 transition">
+                    <input type="radio" name="menu" value="Hyderabadi Biryani" class="accent-amber-500">
+                    <span class="text-xs font-semibold">Biryani</span>
+                </label>
+                <label class="glass p-2.5 rounded-xl border border-slate-700 flex items-center gap-2 cursor-pointer hover:border-amber-500 transition">
+                    <input type="radio" name="menu" value="Dal Makhani & Jeera Rice" class="accent-amber-500">
+                    <span class="text-xs font-semibold">Dal Makhani</span>
+                </label>
+            </div>
+            <button onclick="finalizeOrder()" class="w-full py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold transition shadow-lg">Finalize Order 🍽️</button>
+        </div>
+
+        <!-- STEP 4 -->
+        <div id="step4" class="space-y-6 hidden">
+            <div class="w-16 h-16 mx-auto rounded-full bg-green-500/20 border border-green-500/40 flex items-center justify-center text-green-400 text-3xl">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <h2 class="text-2xl font-extrabold text-white">Confirmed! 🎉</h2>
+            <p id="finalChoiceText" class="text-slate-300 text-sm font-medium leading-relaxed"></p>
+            <p class="text-xs text-slate-400">Screenshort bhjo Order ke leyi 🥲!</p>
+        </div>
+
+    </div>
+
+    <script>
+        let chosen1 = "";
+        let chosenFriend = "";
+
+        function selectOption(val) {
+            chosen1 = val;
+            document.getElementById('error1').classList.add('hidden');
+            const btnHaan = document.getElementById('btnHaan');
+            btnHaan.style.borderColor = '#ec4899';
+            btnHaan.style.backgroundColor = 'rgba(236, 72, 153, 0.15)';
+        }
+
+        function validateStep1() {
+            if(!chosen1) {
+                document.getElementById('error1').classList.remove('hidden');
+                return;
+            }
+            document.getElementById('step1').classList.add('hidden');
+            document.getElementById('step2').classList.remove('hidden');
+        }
+
+        function selectFriend(name) {
+            chosenFriend = name;
+            document.getElementById('error2').classList.add('hidden');
+            
+            const fNoor = document.getElementById('friendNoor');
+            const fZoya = document.getElementById('friendZoya');
+
+            if(name === 'Noor') {
+                fNoor.style.borderColor = '#a855f7';
+                fNoor.style.backgroundColor = 'rgba(168, 85, 247, 0.15)';
+                fZoya.style.borderColor = '#334155';
+                fZoya.style.backgroundColor = 'rgba(30, 41, 59, 0.85)';
+            } else {
+                fZoya.style.borderColor = '#a855f7';
+                fZoya.style.backgroundColor = 'rgba(168, 85, 247, 0.15)';
+                fNoor.style.borderColor = '#334155';
+                fNoor.style.backgroundColor = 'rgba(30, 41, 59, 0.85)';
+            }
+
+            alert(`⚠️ Warning: Khane ke baad palat mat jana  , wrna bill tumko dena pdega! 😉`);
+        }
+
+        function validateStep2() {
+            if(!chosenFriend) {
+                document.getElementById('error2').classList.remove('hidden');
+                return;
+            }
+            document.getElementById('step2').classList.add('hidden');
+            document.getElementById('step3').classList.remove('hidden');
+        }
+
+        function dodgeButton(btnId) {
+            const btn = document.getElementById(btnId);
+            const randomX = Math.floor(Math.random() * 160) - 80;
+            const randomY = Math.floor(Math.random() * 100) - 50;
+            btn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+        }
+
+        function finalizeOrder() {
+            const selected = document.querySelector('input[name="menu"]:checked');
+            if(!selected) {
+                alert('Pehle koi ek Indian dish toh select karo!');
+                return;
+            }
+            
+            const dish = selected.value;
+            
+            document.getElementById('finalChoiceText').innerHTML = `Dost selected: <b>${chosenFriend}</b><br>Tumne khane me select kiya hai: <b>"${dish}"</b>.<br><br><span class="text-amber-300 font-semibold text-xs leading-relaxed">"Mai bhut greeb hu Gulhasmi Didi , Amer tbhi banunga jab biwi aaegi log kehte hai biwi ke aane se rizq aate hai To Plzz ap thoda mere upr dhyaan do apke ek mehrabi se mai amer ban skta hu didi  ."</span><br><br><span class="text-yellow-400 text-xs"></span>`;
+            
+            document.getElementById('step3').classList.add('hidden');
+            document.getElementById('step4').classList.remove('hidden');
+        }
+    </script>
+</body>
