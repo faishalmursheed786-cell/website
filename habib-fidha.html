@@ -3,86 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Habib & Fidha Wedding Protocol</title>
+    <title>Habib's Marriage Contract</title>
     <style>
-        body {
-            background-color: #0f172a;
-            color: #38bdf8;
-            font-family: 'Courier New', Courier, monospace;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .terminal {
-            background-color: #1e293b;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-            max-width: 600px;
-            width: 100%;
-            border: 1px solid #334155;
-        }
-        pre {
-            white-space: pre-wrap;
-            word-wrap: break-word;
-            margin: 0;
-            font-size: 16px;
-            line-height: 1.5;
-        }
-        .cursor {
-            display: inline-block;
-            background-color: #38bdf8;
-            width: 10px;
-            height: 18px;
-            animation: blink 1s infinite;
-            vertical-align: bottom;
-            margin-left: 5px;
-        }
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
-        }
+        body { background: #0f172a; color: white; font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; overflow: hidden; }
+        .container { text-align: center; width: 90%; max-width: 500px; background: #1e293b; padding: 30px; border-radius: 20px; position: relative; min-height: 300px; display: flex; flex-direction: column; justify-content: center; }
+        h1 { font-size: 24px; color: #f43f5e; margin-bottom: 20px; }
+        .btn { padding: 15px 30px; border: none; border-radius: 10px; cursor: pointer; font-size: 18px; font-weight: bold; margin: 10px; transition: 0.2s; }
+        #yes-btn { background: #22c55e; color: white; }
+        #no-btn { background: #ef4444; color: white; position: absolute; }
+        .menu-item { margin: 10px; padding: 10px; background: #334155; cursor: pointer; border-radius: 5px; }
+        .menu-item:hover { background: #475569; }
+        .hidden { display: none; }
     </style>
 </head>
 <body>
 
-    <div class="terminal">
-        <pre id="output"></pre><span class="cursor"></span>
-    </div>
+<div class="container" id="page1">
+    <h1>Shaadi karni hai toh form fill karo!</h1>
+    <button class="btn" id="yes-btn" onclick="nextPage('page2')">Yes</button>
+    <button class="btn" id="no-btn" onmouseover="moveNoButton()">No</button>
+    <p id="error1" class="hidden" style="color: #f87171;">Ek option toh choose karna padega!</p>
+</div>
 
-    <script>
-        const text = `===========================================
-   ❤️  HABIB & FIDHA WEDDING PROTOCOL  ❤️
-===========================================
+<div class="container hidden" id="page2">
+    <h1>Shaadi ke baad mai azaad rahunga, jab man karega tab ghar aaunga (12 bje ya 2 bje).</h1>
+    <button class="btn" id="yes-btn" onclick="nextPage('page3')">Theek hai</button>
+    <button class="btn" id="no-btn" onmouseover="moveNoButton()">Nahi</button>
+</div>
 
-[+] Initializing Wedding Bells...
-[+] Bridging Hearts: Habib <--> Fidha...
-[+] Status: Forever Connected! 
+<div class="container hidden" id="page3">
+    <h1>Dinner Menu Select Karo:</h1>
+    <div class="menu-item" onclick="nextPage('page4')">Masala Dosa</div>
+    <div class="menu-item" onclick="nextPage('page4')">Idli Vada</div>
+    <div class="menu-item" onclick="nextPage('page4')">Uttapam</div>
+</div>
 
--------------------------------------------
- "Saj gayi hai duniya kuch is tarah, 
-  Habib ke naseeb mein Fidha jo aayi hai..."
--------------------------------------------
+<div class="container hidden" id="page4">
+    <h1>Shaadi ke baad palat mat jana! ❤️</h1>
+    <button class="btn" id="yes-btn" onclick="location.reload()">Reset</button>
+</div>
 
- Mubarak ho mere bhai Habib! 
- Dua hai ki yeh Jodi hamesha salamat rahe.
-===========================================`;
+<script>
+    function nextPage(id) {
+        document.querySelectorAll('.container').forEach(p => p.classList.add('hidden'));
+        document.getElementById(id).classList.remove('hidden');
+    }
 
-        let i = 0;
-        const speed = 30; // Typing speed in milliseconds
-
-        function typeWriter() {
-            if (i < text.length) {
-                document.getElementById("output").innerHTML += text.charAt(i);
-                i++;
-                setTimeout(typeWriter, speed);
-            }
-        }
-
-        window.onload = typeWriter;
-    </script>
+    function moveNoButton() {
+        const btn = document.getElementById('no-btn');
+        const x = Math.random() * (window.innerWidth - 100);
+        const y = Math.random() * (window.innerHeight - 100);
+        btn.style.left = x + 'px';
+        btn.style.top = y + 'px';
+    }
+</script>
 
 </body>
 </html>
