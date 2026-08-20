@@ -71,7 +71,12 @@
 
     <style>
         html { scroll-behavior: smooth; }
-        body { overflow-x: hidden; background-color: #030811; }
+        body { overflow-x: hidden; background-color: #030811; color: #cbd5e1; font-family: 'Plus Jakarta Sans', sans-serif; }
+
+        #energyCanvas {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: 0; pointer-events: none;
+        }
 
         #preloader {
             position: fixed; inset: 0; z-index: 999999; background: #030811;
@@ -82,20 +87,20 @@
         #preloaderCanvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0.6; }
 
         .preloader-heading {
-            font-family: 'Cinzel', serif; letter-spacing: 0.08em; color: #38bdf8;
-            text-shadow: 0 0 25px rgba(56, 189, 248, 0.5);
+            font-family: 'Cinzel', serif; letter-spacing: 0.08em; color: #ff4d4d;
+            text-shadow: 0 0 25px rgba(255, 77, 77, 0.5);
             animation: textZoomIn 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
             opacity: 0; transform: scale(0.5); display: flex; align-items: center;
         }
 
         #dropBox {
             display: inline-flex; align-items: center; justify-content: center;
-            padding: 0.02em 0.25em; margin: 0 0.1em; border: 1.5px solid #38bdf8;
-            background: #030811; border-radius: 5px; box-shadow: 0 0 15px rgba(56, 189, 248, 0.8);
+            padding: 0.02em 0.25em; margin: 0 0.1em; border: 1.5px solid #ff4d4d;
+            background: #030811; border-radius: 5px; box-shadow: 0 0 15px rgba(255, 77, 77, 0.8);
             animation: dropInBox 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.3s forwards;
             opacity: 0; transform: translateY(-120vh) scale(0.5);
         }
-        #dropBox span { color: #38bdf8 !important; }
+        #dropBox span { color: #ff4d4d !important; }
 
         @keyframes dropInBox {
             0% { opacity: 0; transform: translateY(-120vh) scale(0.5); }
@@ -106,8 +111,8 @@
         .full-screen-line {
             position: absolute; left: 50%; top: calc(50% + 40px); transform: translateX(-50%);
             height: 1.5px; width: 0vw;
-            background: linear-gradient(90deg, transparent 0%, rgba(56,189,248,0.2) 15%, #38bdf8 50%, rgba(0,255,204,0.8) 75%, transparent 100%);
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.9);
+            background: linear-gradient(90deg, transparent 0%, rgba(255,77,77,0.2) 15%, #ff4d4d 50%, rgba(249,115,22,0.8) 75%, transparent 100%);
+            box-shadow: 0 0 20px rgba(255, 77, 77, 0.9);
             animation: lineExpandFull 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
         }
 
@@ -127,31 +132,30 @@
         }
         .z-interactive-btn { animation: zPulse 2s infinite; }
 
-        #matrixCanvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; opacity: 0.25; }
-        .glass { background: rgba(7, 16, 30, 0.85) !important; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+        .glass { background: rgba(7, 16, 30, 0.85) !important; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.06); }
         
         .super-glass-sidebar {
             background: rgba(3, 8, 17, 0.35) !important;
             backdrop-filter: blur(16px) !important;
             -webkit-backdrop-filter: blur(16px) !important;
-            border-color: rgba(56, 189, 248, 0.2) !important;
+            border-color: rgba(255, 77, 77, 0.2) !important;
         }
 
-        .glow { box-shadow: 0 0 35px rgba(14, 165, 233, 0.18), inset 0 0 20px rgba(14, 165, 233, 0.05); }
+        .glow { box-shadow: 0 0 35px rgba(249, 115, 22, 0.18), inset 0 0 20px rgba(249, 115, 22, 0.05); }
         .grid-bg {
-            background-image: linear-gradient(rgba(56, 189, 248, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(56, 189, 248, 0.04) 1px, transparent 1px);
+            background-image: linear-gradient(rgba(255, 77, 77, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 77, 77, 0.03) 1px, transparent 1px);
             background-size: 50px 50px;
         }
         .fade-up { opacity: 0; transform: translateY(25px); transition: all 0.8s ease; }
         .fade-up.show { opacity: 1; transform: translateY(0); }
-        .gradient-text { background: linear-gradient(90deg, #38bdf8, #22d3ee, #00ffcc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .gradient-text { background: linear-gradient(90deg, #ff4d4d, #f97316, #eab308); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
         .skill {
             padding: 10px 16px; border-radius: 10px; background: rgba(13, 20, 32, 0.85);
-            border: 1px solid rgba(56, 189, 248, 0.2); color: #cbd5e1; font-size: 13px; font-weight: 500;
+            border: 1px solid rgba(255, 77, 77, 0.2); color: #cbd5e1; font-size: 13px; font-weight: 500;
             backdrop-filter: blur(8px); transition: all .25s ease;
         }
-        .skill:hover { border-color: #38bdf8; color: #ffffff; box-shadow: 0 0 15px rgba(56, 189, 248, 0.3); transform: translateY(-2px); }
+        .skill:hover { border-color: #ff4d4d; color: #ffffff; box-shadow: 0 0 15px rgba(255, 77, 77, 0.3); transform: translateY(-2px); }
 
         .partner-card {
             background: #ffffff; border-radius: 18px;
@@ -159,7 +163,7 @@
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex; align-items: center; justify-content: center; padding: 20px; min-height: 90px; cursor: pointer; position: relative; user-select: none;
         }
-        .partner-card:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 20px 30px -10px rgba(56, 189, 248, 0.35); }
+        .partner-card:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 20px 30px -10px rgba(255, 77, 77, 0.35); }
 
         section { position: relative; z-index: 10; }
         #detailModal, #partnerModal, #heartModal { transition: all 0.3s ease; }
@@ -183,8 +187,8 @@
     </div>
 </div>
 
-<!-- Live Matrix Background -->
-<canvas id="matrixCanvas"></canvas>
+<!-- FIRE ENERGY BACKGROUND CANVAS -->
+<canvas id="energyCanvas"></canvas>
 
 <!-- NAVBAR -->
 <header class="fixed top-0 left-0 right-0 z-50 glass border-b border-slate-800/80 notranslate" translate="no">
@@ -195,27 +199,26 @@
                         class="w-11 h-11 rounded-xl bg-gradient-to-tr from-rose-600 via-red-500 to-pink-500 flex items-center justify-center font-black text-pink-200 text-xl shadow-lg shadow-rose-500/30 border border-rose-400/40 hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer z-interactive-btn notranslate" translate="no">
                     Z
                 </button>
-                <span class="absolute left-14 top-1/2 -translate-y-1/2 px-2.5 py-1 rounded-md bg-dark-800 border border-brand-500/40 text-brand-400 text-[11px] font-mono whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none shadow-xl">
+                <span class="absolute left-14 top-1/2 -translate-y-1/2 px-2.5 py-1 rounded-md bg-dark-800 border border-orange-500/40 text-orange-400 text-[11px] font-mono whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none shadow-xl">
                     Play Game! 🎮
                 </span>
             </div>
 
             <a href="#home">
-                <div class="text-white font-bold leading-none hover:text-brand-400 transition notranslate" translate="no">Shah Faishal</div>
-                <div class="text-[10px] uppercase tracking-widest text-brand-400 mt-1 font-mono"></div>
+                <div class="text-white font-bold leading-none hover:text-orange-400 transition notranslate" translate="no">Shah Faishal</div>
             </a>
         </div>
 
         <nav class="hidden md:flex items-center gap-7 text-sm font-medium notranslate" translate="no">
-            <a href="#about" class="hover:text-brand-400 transition">About</a>
-            <a href="#services" class="hover:text-brand-400 transition">Projects & Specializations</a>
-            <a href="#ecosystem" class="hover:text-brand-400 transition">Ecosystem</a>
-            <a href="#skills" class="hover:text-brand-400 transition">Skills</a>
-            <a href="#experience" class="hover:text-brand-400 transition">Experience</a>
-            <a href="#contact" class="hover:text-brand-400 transition">Contact</a>
+            <a href="#about" class="hover:text-orange-400 transition">About</a>
+            <a href="#services" class="hover:text-orange-400 transition">Projects & Specializations</a>
+            <a href="#ecosystem" class="hover:text-orange-400 transition">Ecosystem</a>
+            <a href="#skills" class="hover:text-orange-400 transition">Skills</a>
+            <a href="#experience" class="hover:text-orange-400 transition">Experience</a>
+            <a href="#contact" class="hover:text-orange-400 transition">Contact</a>
         </nav>
 
-        <a href="#contact" class="hidden md:inline-flex px-5 py-2.5 rounded-full bg-brand-600 hover:bg-brand-500 text-white text-sm font-semibold transition shadow-lg shadow-brand-600/30">
+        <a href="#contact" class="hidden md:inline-flex px-5 py-2.5 rounded-full bg-orange-600 hover:bg-orange-500 text-white text-sm font-semibold transition shadow-lg shadow-orange-600/30">
             Let's Connect
         </a>
 
@@ -236,21 +239,20 @@
     </div>
 </header>
 
-<!-- HERO SECTION WITH HOVER-REVEAL IMAGE OVERLAY -->
+<!-- HERO SECTION WITH FIRE BACKGROUND AND HOVER-REVEAL IMAGE -->
 <section id="home" class="relative min-h-screen flex items-center pt-36 pb-24 overflow-hidden">
-    <canvas id="networkCanvas" class="absolute inset-0 w-full h-full z-0 pointer-events-none"></canvas>
     <div class="absolute inset-0 bg-gradient-to-b from-dark-900/70 via-dark-900/40 to-dark-900/95 z-0"></div>
     <div class="absolute inset-0 grid-bg z-0 opacity-40"></div>
-    <div class="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-brand-500/10 rounded-full blur-[120px] pointer-events-none z-0"></div>
-    <div class="absolute bottom-10 right-10 w-[400px] h-[400px] bg-cyan-500/10 rounded-full blur-[100px] pointer-events-none z-0"></div>
+    <div class="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-orange-600/10 rounded-full blur-[120px] pointer-events-none z-0"></div>
+    <div class="absolute bottom-10 right-10 w-[400px] h-[400px] bg-red-600/10 rounded-full blur-[100px] pointer-events-none z-0"></div>
 
     <div class="max-w-7xl mx-auto px-5 sm:px-8 relative z-10 w-full">
         <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             
             <!-- Left Content Column -->
             <div class="lg:col-span-7 fade-up text-center lg:text-left">
-                <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-brand-500/40 bg-brand-500/10 text-brand-400 text-xs sm:text-sm font-semibold mb-7 backdrop-blur-xl shadow-lg shadow-brand-500/5">
-                    <span class="w-2 h-2 rounded-full bg-brand-400 animate-ping"></span>
+                <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-orange-500/40 bg-orange-500/10 text-orange-400 text-xs sm:text-sm font-semibold mb-7 backdrop-blur-xl shadow-lg shadow-orange-500/5">
+                    <span class="w-2 h-2 rounded-full bg-orange-400 animate-ping"></span>
                     Network • ELV • Automation • AV • Infrastructure
                 </div>
                 
@@ -262,13 +264,13 @@
 
                 <p class="mt-7 text-lg sm:text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-normal">
                     A <strong class="text-white font-semibold">Senior Network, Automation, AV, ELV & Infrastructure Engineer</strong> from 
-                    <a href="https://dynamicworld.ae" target="_blank" rel="noopener noreferrer" class="text-brand-400 hover:text-cyan-300 underline underline-offset-4 decoration-brand-500/50 hover:decoration-cyan-300 transition inline-flex items-center gap-1 font-semibold">
+                    <a href="https://dynamicworld.ae" target="_blank" rel="noopener noreferrer" class="text-orange-400 hover:text-orange-300 underline underline-offset-4 decoration-orange-500/50 transition inline-flex items-center gap-1 font-semibold">
                         Dynamic World Computer LLC <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
                     </a>.
                 </p>
 
                 <div class="flex flex-wrap justify-center lg:justify-start gap-4 mt-9">
-                    <a href="#services" class="px-8 py-4 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold transition shadow-xl shadow-brand-600/30 border border-brand-400/30 inline-flex items-center group">
+                    <a href="#services" class="px-8 py-4 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold transition shadow-xl shadow-orange-600/30 border border-orange-400/30 inline-flex items-center group">
                         <i class="fa-solid fa-diagram-project mr-2 group-hover:rotate-12 transition-transform"></i> View Projects & Specializations
                     </a>
                     <a href="#contact" class="px-8 py-4 rounded-xl border border-slate-700 bg-dark-800/80 backdrop-blur-md hover:bg-dark-700 text-white font-semibold transition inline-flex items-center">
@@ -280,7 +282,7 @@
             <!-- Right Hover-Reveal Image Column -->
             <div class="lg:col-span-5 flex justify-center fade-up">
                 <div class="relative w-full max-w-sm sm:max-w-md group cursor-pointer">
-                    <div class="absolute -inset-1.5 bg-gradient-to-r from-brand-500 via-cyan-400 to-emerald-400 rounded-[30px] blur-xl opacity-30 group-hover:opacity-60 transition duration-500"></div>
+                    <div class="absolute -inset-1.5 bg-gradient-to-r from-orange-600 via-red-600 to-amber-500 rounded-[30px] blur-xl opacity-30 group-hover:opacity-75 transition duration-500"></div>
                     
                     <div class="relative p-2 rounded-3xl bg-dark-800/90 border border-slate-700/80 backdrop-blur-2xl shadow-2xl overflow-hidden">
                         <div class="rounded-[22px] overflow-hidden bg-dark-900 relative">
@@ -293,9 +295,9 @@
                                     <div class="flex items-center justify-between">
                                         <div>
                                             <div class="font-bold text-white text-left text-base">Shah Faishal</div>
-                                            <div class="text-xs text-brand-400 mt-1 text-left font-mono tracking-wide">Network • Automation • AV • ELV</div>
+                                            <div class="text-xs text-orange-400 mt-1 text-left font-mono tracking-wide">Network • Automation • AV • ELV</div>
                                         </div>
-                                        <div class="w-11 h-11 rounded-xl bg-brand-500/20 border border-brand-500/30 flex items-center justify-center text-brand-400 text-lg shadow-inner">
+                                        <div class="w-11 h-11 rounded-xl bg-orange-500/20 border border-orange-500/30 flex items-center justify-center text-orange-400 text-lg shadow-inner">
                                             <i class="fa-solid fa-network-wired"></i>
                                         </div>
                                     </div>
@@ -315,29 +317,29 @@
     <div class="max-w-7xl mx-auto px-5 sm:px-8">
         
         <div class="max-w-3xl mb-14 fade-up">
-            <div class="text-brand-400 text-xs font-bold uppercase tracking-widest mb-3 font-mono">What I Do</div>
+            <div class="text-orange-400 text-xs font-bold uppercase tracking-widest mb-3 font-mono">What I Do</div>
             <h2 class="text-3xl sm:text-4xl font-bold text-white">Technical Specializations</h2>
             <p class="text-slate-400 mt-4 leading-relaxed">
-                End-to-end engineering support for modern residential, commercial, and enterprise infrastructure projects. <span class="text-brand-400 font-semibold">(Click any card to view deployment details & live preview)</span>
+                End-to-end engineering support for modern residential, commercial, and enterprise infrastructure projects. <span class="text-orange-400 font-semibold">(Click any card to view deployment details & live preview)</span>
             </p>
         </div>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-24">
-            <div onclick="openServiceDetail(0)" class="cursor-pointer glass border border-slate-800/80 rounded-2xl p-7 hover:border-brand-500/60 hover:-translate-y-1.5 transition duration-300 fade-up group">
+            <div onclick="openServiceDetail(0)" class="cursor-pointer glass border border-slate-800/80 rounded-2xl p-7 hover:border-orange-500/60 hover:-translate-y-1.5 transition duration-300 fade-up group">
                 <div class="flex items-center justify-between mb-5">
-                    <div class="w-12 h-12 rounded-xl bg-brand-500/10 text-brand-400 flex items-center justify-center text-xl group-hover:bg-brand-500 group-hover:text-white transition"><i class="fa-solid fa-shield-halved"></i></div>
-                    <span class="text-xs text-brand-400/80 font-mono flex items-center gap-1 group-hover:text-brand-300">View Project <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+                    <div class="w-12 h-12 rounded-xl bg-orange-500/10 text-orange-400 flex items-center justify-center text-xl group-hover:bg-orange-500 group-hover:text-white transition"><i class="fa-solid fa-shield-halved"></i></div>
+                    <span class="text-xs text-orange-400/80 font-mono flex items-center gap-1 group-hover:text-orange-300">View Project <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
                 </div>
-                <h3 class="text-xl font-bold text-white group-hover:text-brand-400 transition">Networking</h3>
+                <h3 class="text-xl font-bold text-white group-hover:text-orange-400 transition">Networking</h3>
                 <p class="text-slate-400 text-sm leading-relaxed mt-3">FortiGate HA firewalls, Cisco L2/L3 routing, SD-WAN failover, gateway security, VLANs, Wi-Fi 6, and IT rack containment.</p>
             </div>
 
-            <div onclick="openServiceDetail(1)" class="cursor-pointer glass border border-slate-800/80 rounded-2xl p-7 hover:border-cyan-500/60 hover:-translate-y-1.5 transition duration-300 fade-up group">
+            <div onclick="openServiceDetail(1)" class="cursor-pointer glass border border-slate-800/80 rounded-2xl p-7 hover:border-amber-500/60 hover:-translate-y-1.5 transition duration-300 fade-up group">
                 <div class="flex items-center justify-between mb-5">
-                    <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-xl group-hover:bg-cyan-500 group-hover:text-white transition"><i class="fa-solid fa-house-chimney"></i></div>
-                    <span class="text-xs text-cyan-400/80 font-mono flex items-center gap-1 group-hover:text-cyan-300">View Project <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+                    <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl group-hover:bg-amber-500 group-hover:text-white transition"><i class="fa-solid fa-house-chimney"></i></div>
+                    <span class="text-xs text-amber-400/80 font-mono flex items-center gap-1 group-hover:text-amber-300">View Project <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
                 </div>
-                <h3 class="text-xl font-bold text-white group-hover:text-cyan-400 transition">Smart Estate & Home Automation</h3>
+                <h3 class="text-xl font-bold text-white group-hover:text-amber-400 transition">Smart Estate & Home Automation</h3>
                 <p class="text-slate-400 text-sm leading-relaxed mt-3">KNX lighting scenes, motorized drapery, DALI architecture, HVAC climate control, and iPad centralized touchpanels.</p>
             </div>
 
@@ -350,12 +352,12 @@
                 <p class="text-slate-400 text-sm leading-relaxed mt-3">Deployment of centralized Video Management Systems (VMS), high-density control room video walls, and AI CCTV analytics.</p>
             </div>
 
-            <div onclick="openServiceDetail(3)" class="cursor-pointer glass border border-slate-800/80 rounded-2xl p-7 hover:border-amber-500/60 hover:-translate-y-1.5 transition duration-300 fade-up group">
+            <div onclick="openServiceDetail(3)" class="cursor-pointer glass border border-slate-800/80 rounded-2xl p-7 hover:border-red-500/60 hover:-translate-y-1.5 transition duration-300 fade-up group">
                 <div class="flex items-center justify-between mb-5">
-                    <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl group-hover:bg-amber-500 group-hover:text-white transition"><i class="fa-solid fa-volume-high"></i></div>
-                    <span class="text-xs text-amber-400/80 font-mono flex items-center gap-1 group-hover:text-amber-300">View Project <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+                    <div class="w-12 h-12 rounded-xl bg-red-500/10 text-red-400 flex items-center justify-center text-xl group-hover:bg-red-500 group-hover:text-white transition"><i class="fa-solid fa-volume-high"></i></div>
+                    <span class="text-xs text-red-400/80 font-mono flex items-center gap-1 group-hover:text-red-300">View Project <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
                 </div>
-                <h3 class="text-xl font-bold text-white group-hover:text-amber-400 transition">Audio-visual Systems</h3>
+                <h3 class="text-xl font-bold text-white group-hover:text-red-400 transition">Audio-visual Systems</h3>
                 <p class="text-slate-400 text-sm leading-relaxed mt-3">Xilica DSP acoustic processing, Martin Audio pro speakers, Onkyo AVR 4K cinema routing, LEA Professional amps, and WiiM streamers.</p>
             </div>
 
@@ -379,20 +381,20 @@
         </div>
 
         <div class="max-w-3xl mb-14 fade-up pt-12 border-t border-slate-800/80">
-            <div class="text-brand-400 text-xs font-bold uppercase tracking-widest mb-3 font-mono">Project Experience</div>
+            <div class="text-orange-400 text-xs font-bold uppercase tracking-widest mb-3 font-mono">Project Experience</div>
             <h2 class="text-3xl sm:text-4xl font-bold text-white">Selected Project Locations</h2>
             <p class="text-slate-400 mt-4">Enterprise networks, IT cabinet installations, Martin Audio / Xilica AV systems, and luxury home-automation across Dubai.</p>
         </div>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
-            <div class="group glass border border-slate-800/80 rounded-2xl p-7 hover:border-brand-500/50 transition fade-up">
-                <div class="text-brand-400 text-2xl mb-5"><i class="fa-solid fa-building"></i></div>
+            <div class="group glass border border-slate-800/80 rounded-2xl p-7 hover:border-orange-500/50 transition fade-up">
+                <div class="text-orange-400 text-2xl mb-5"><i class="fa-solid fa-building"></i></div>
                 <h3 class="text-white font-bold text-lg">Emirates Hills</h3>
                 <p class="text-slate-400 text-sm mt-2">Premium home-automation, IT rack architecture, Xilica DSP, and multi-zone Martin Audio pro integration.</p>
             </div>
 
-            <div class="group glass border border-slate-800/80 rounded-2xl p-7 hover:border-cyan-500/50 transition fade-up">
-                <div class="text-cyan-400 text-2xl mb-5"><i class="fa-solid fa-city"></i></div>
+            <div class="group glass border border-slate-800/80 rounded-2xl p-7 hover:border-amber-500/50 transition fade-up">
+                <div class="text-amber-400 text-2xl mb-5"><i class="fa-solid fa-city"></i></div>
                 <h3 class="text-white font-bold text-lg">Dubai Hills</h3>
                 <p class="text-slate-400 text-sm mt-2">FortiGate security gateways, high-speed Wi-Fi 6, Onkyo 4K cinema AVR, and smart estate controls.</p>
             </div>
@@ -417,11 +419,11 @@
 <section id="ecosystem" class="py-24 relative overflow-hidden bg-dark-800/40 border-b border-slate-800/70">
     <div class="max-w-7xl mx-auto px-5 sm:px-8">
         <div class="text-center max-w-3xl mx-auto mb-16 fade-up">
-            <div class="text-brand-400 text-xs font-bold uppercase tracking-widest mb-3 font-mono">ENTERPRISE ECOSYSTEM</div>
+            <div class="text-orange-400 text-xs font-bold uppercase tracking-widest mb-3 font-mono">ENTERPRISE ECOSYSTEM</div>
             <h2 class="text-3xl sm:text-4xl font-bold text-white">Technology Stack & OEM Solutions</h2>
             <p class="text-slate-400 mt-4 leading-relaxed">
                 Strategic hardware & software technologies deployed across enterprise ICT, cybersecurity, server infrastructure, and luxury automation.
-                <span class="text-brand-400 font-semibold block mt-1">(Click any brand card to view system integration details)</span>
+                <span class="text-orange-400 font-semibold block mt-1">(Click any brand card to view system integration details)</span>
             </p>
         </div>
 
@@ -480,7 +482,7 @@
 
         <div class="mt-12 text-center fade-up">
             <span class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-dark-900/90 border border-slate-700 text-xs font-mono text-slate-300">
-                <i class="fa-solid fa-circle-check text-brand-400"></i> All hardware, switches, storage, & firewalls provisioned with active manufacturer warranties & SLA.
+                <i class="fa-solid fa-circle-check text-orange-400"></i> All hardware, switches, storage, & firewalls provisioned with active manufacturer warranties & SLA.
             </span>
         </div>
     </div>
@@ -491,7 +493,7 @@
     <div class="max-w-7xl mx-auto px-5 sm:px-8">
         <div class="grid lg:grid-cols-2 gap-14 items-center">
             <div class="fade-up">
-                <div class="text-brand-400 text-xs font-bold uppercase tracking-widest mb-3 font-mono">About Me</div>
+                <div class="text-orange-400 text-xs font-bold uppercase tracking-widest mb-3 font-mono">About Me</div>
                 <h2 class="text-3xl sm:text-4xl font-bold text-white leading-tight">Engineering technology that works in the real world.</h2>
                 <p class="mt-6 text-slate-400 text-lg leading-relaxed">
                      Specialize in high-availability enterprise networks, FortiGate security gateways, high-density network cabinet infrastructure, luxury estate automation, and audiophile-grade acoustic systems.
@@ -505,13 +507,13 @@
             </div>
 
             <div class="grid sm:grid-cols-2 gap-5 fade-up">
-                <div class="glass border border-slate-800/80 rounded-2xl p-7 hover:border-brand-500/40 transition glow">
-                    <div class="text-brand-400 text-3xl mb-5"><i class="fa-solid fa-shield-virus"></i></div>
+                <div class="glass border border-slate-800/80 rounded-2xl p-7 hover:border-orange-500/40 transition glow">
+                    <div class="text-orange-400 text-3xl mb-5"><i class="fa-solid fa-shield-virus"></i></div>
                     <h3 class="text-white font-bold text-lg">Firewalls & Gateways</h3>
                     <p class="text-slate-400 text-sm mt-3 leading-relaxed">FortiGate, gateway security policies, SD-WAN failover, and secure multi-WAN load balancing.</p>
                 </div>
-                <div class="glass border border-slate-800/80 rounded-2xl p-7 hover:border-cyan-500/40 transition glow">
-                    <div class="text-cyan-400 text-3xl mb-5"><i class="fa-solid fa-diagram-project"></i></div>
+                <div class="glass border border-slate-800/80 rounded-2xl p-7 hover:border-amber-500/40 transition glow">
+                    <div class="text-amber-400 text-3xl mb-5"><i class="fa-solid fa-diagram-project"></i></div>
                     <h3 class="text-white font-bold text-lg">Network Architecture</h3>
                     <p class="text-slate-400 text-sm mt-3 leading-relaxed">High-density IT rack dressing, spine-leaf fabric, SAN/NAS storage archiving, and thermal containment.</p>
                 </div>
@@ -534,7 +536,7 @@
 <section id="skills" class="py-24 border-t border-slate-800/70">
     <div class="max-w-7xl mx-auto px-5 sm:px-8">
         <div class="text-center max-w-3xl mx-auto mb-14 fade-up">
-            <div class="text-brand-400 text-xs font-bold uppercase tracking-widest mb-3 font-mono">Technical Skills</div>
+            <div class="text-orange-400 text-xs font-bold uppercase tracking-widest mb-3 font-mono">Technical Skills</div>
             <h2 class="text-3xl sm:text-4xl font-bold text-white">Tools, Systems & Technologies</h2>
         </div>
 
@@ -573,7 +575,7 @@
 <section id="experience" class="py-24 border-t border-slate-800/70">
     <div class="max-w-6xl mx-auto px-5 sm:px-8">
         <div class="text-center mb-16 fade-up">
-            <div class="text-brand-400 text-xs font-bold uppercase tracking-widest mb-3 font-mono">Career Track Record</div>
+            <div class="text-orange-400 text-xs font-bold uppercase tracking-widest mb-3 font-mono">Career Track Record</div>
             <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Professional Journey & Technical Scope</h2>
             <p class="text-slate-400 text-sm mt-3 max-w-2xl mx-auto">
                 Comprehensive international engineering expertise covering UAE, Europe, and India across Next-Gen Networks, DeepSpace telemetry, and ELV Automation.
@@ -581,15 +583,15 @@
         </div>
 
         <div class="space-y-8">
-            <div class="glass border border-brand-500/40 rounded-3xl p-6 sm:p-10 glow fade-up relative overflow-hidden">
-                <div class="absolute top-0 right-0 w-48 h-48 bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="glass border border-orange-500/40 rounded-3xl p-6 sm:p-10 glow fade-up relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-48 h-48 bg-orange-500/10 rounded-full blur-3xl pointer-events-none"></div>
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-6 mb-6">
                     <div>
                         <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 font-mono mb-3">
                             <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> ACTIVE ROLE • DUBAI
                         </span>
                         <h3 class="text-2xl sm:text-3xl font-extrabold text-white">Senior Network, Automation, ELV & Infrastructure Engineer</h3>
-                        <div class="text-brand-400 font-semibold mt-2 flex items-center gap-2 text-base">
+                        <div class="text-orange-400 font-semibold mt-2 flex items-center gap-2 text-base">
                             <i class="fa-solid fa-building text-sm"></i>
                             <a href="https://dynamicworld.ae" target="_blank" rel="noopener noreferrer" class="hover:underline flex items-center gap-1.5">
                                 Dynamic World Computer LLC <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
@@ -607,17 +609,17 @@
                         <p class="text-slate-400 text-xs mt-2 leading-relaxed">Fortinet FortiGate HA clustering, next-gen UTM firewall policies, SD-WAN multi-ISP failover, VPN tunnels, and gateway intrusion prevention.</p>
                     </div>
                     <div class="bg-dark-900/80 p-5 rounded-2xl border border-slate-800/80">
-                        <div class="w-10 h-10 rounded-xl bg-brand-500/15 text-brand-400 flex items-center justify-center mb-3"><i class="fa-solid fa-network-wired text-base"></i></div>
+                        <div class="w-10 h-10 rounded-xl bg-orange-500/15 text-orange-400 flex items-center justify-center mb-3"><i class="fa-solid fa-network-wired text-base"></i></div>
                         <h4 class="text-white font-bold text-sm">Core Routing & Switching</h4>
                         <p class="text-slate-400 text-xs mt-2 leading-relaxed">Cisco Catalyst and enterprise L2/L3 distribution, VLAN trunking, Inter-VLAN routing, QoS traffic prioritization, and high-density Wi-Fi 6 coverage.</p>
                     </div>
                     <div class="bg-dark-900/80 p-5 rounded-2xl border border-slate-800/80">
-                        <div class="w-10 h-10 rounded-xl bg-cyan-500/15 text-cyan-400 flex items-center justify-center mb-3"><i class="fa-solid fa-diagram-project text-base"></i></div>
+                        <div class="w-10 h-10 rounded-xl bg-amber-500/15 text-amber-400 flex items-center justify-center mb-3"><i class="fa-solid fa-diagram-project text-base"></i></div>
                         <h4 class="text-white font-bold text-sm">Network Cabinets & Racks</h4>
                         <p class="text-slate-400 text-xs mt-2 leading-relaxed">42U/48U IT cabinet elevation, spine-leaf fabric cabling, SAN/NAS video storage integration, redundant PDU power balancing, and thermal airflow management.</p>
                     </div>
                     <div class="bg-dark-900/80 p-5 rounded-2xl border border-slate-800/80">
-                        <div class="w-10 h-10 rounded-xl bg-amber-500/15 text-amber-400 flex items-center justify-center mb-3"><i class="fa-solid fa-sliders text-base"></i></div>
+                        <div class="w-10 h-10 rounded-xl bg-red-500/15 text-red-400 flex items-center justify-center mb-3"><i class="fa-solid fa-sliders text-base"></i></div>
                         <h4 class="text-white font-bold text-sm">AV, Amps, Onkyo & Xilica DSP</h4>
                         <p class="text-slate-400 text-xs mt-2 leading-relaxed">Xilica digital signal processors (DSP), Martin Audio pro loudspeakers, Onkyo AVR home cinema integration, LEA Professional power amps, and WiiM hi-res streamers.</p>
                     </div>
@@ -634,12 +636,12 @@
                 </div>
             </div>
 
-            <div class="glass border border-cyan-500/30 rounded-3xl p-6 sm:p-8 fade-up hover:border-cyan-500/50 transition relative overflow-hidden">
+            <div class="glass border border-amber-500/30 rounded-3xl p-6 sm:p-8 fade-up hover:border-amber-500/50 transition relative overflow-hidden">
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800/80 pb-5 mb-5">
                     <div>
-                        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 font-mono mb-2">INTERNATIONAL EXPERIENCE • EUROPE</span>
+                        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/30 font-mono mb-2">INTERNATIONAL EXPERIENCE • EUROPE</span>
                         <h3 class="text-xl sm:text-2xl font-bold text-white">DeepSpace Network (DSN) & Infrastructure Engineer</h3>
-                        <div class="text-cyan-400 font-semibold mt-1 flex items-center gap-2 text-sm">
+                        <div class="text-amber-400 font-semibold mt-1 flex items-center gap-2 text-sm">
                             <i class="fa-solid fa-satellite-dish"></i>
                             <a href="https://www.delvinacable.al/" target="_blank" rel="noopener noreferrer" class="hover:underline flex items-center gap-1.5">
                                 Delvina Cable <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
@@ -652,14 +654,14 @@
 
                 <div class="grid sm:grid-cols-3 gap-3">
                     <div class="bg-dark-900/70 p-4 rounded-xl border border-slate-800 flex items-start gap-3">
-                        <i class="fa-solid fa-satellite-dish text-cyan-400 mt-1 text-sm"></i>
+                        <i class="fa-solid fa-satellite-dish text-amber-400 mt-1 text-sm"></i>
                         <div>
                             <div class="text-white text-xs font-bold font-mono uppercase">DeepSpace Network (DSN)</div>
                             <div class="text-slate-400 text-xs mt-1">High-reliability telemetry links, ground station data pipes, latency optimization, and signal transmission infrastructure.</div>
                         </div>
                     </div>
                     <div class="bg-dark-900/70 p-4 rounded-xl border border-slate-800 flex items-start gap-3">
-                        <i class="fa-solid fa-wave-square text-brand-400 mt-1 text-sm"></i>
+                        <i class="fa-solid fa-wave-square text-orange-400 mt-1 text-sm"></i>
                         <div>
                             <div class="text-white text-xs font-bold font-mono uppercase">Fiber Optics Backbone</div>
                             <div class="text-slate-400 text-xs mt-1">Single-mode optical fusion splicing, low-attenuation patch distribution, and OTDR backscatter analysis.</div>
@@ -693,14 +695,14 @@
 
                 <div class="grid sm:grid-cols-3 gap-3">
                     <div class="bg-dark-900/70 p-4 rounded-xl border border-slate-800 flex items-start gap-3">
-                        <i class="fa-solid fa-network-wired text-brand-400 mt-1 text-sm"></i>
+                        <i class="fa-solid fa-network-wired text-orange-400 mt-1 text-sm"></i>
                         <div>
                             <div class="text-white text-xs font-bold font-mono uppercase">Enterprise Networking</div>
                             <div class="text-slate-400 text-xs mt-1">LAN/WAN deployment, subnetting, TCP/IP architecture, and structured network infrastructure staging.</div>
                         </div>
                     </div>
                     <div class="bg-dark-900/70 p-4 rounded-xl border border-slate-800 flex items-start gap-3">
-                        <i class="fa-solid fa-sliders text-cyan-400 mt-1 text-sm"></i>
+                        <i class="fa-solid fa-sliders text-amber-400 mt-1 text-sm"></i>
                         <div>
                             <div class="text-white text-xs font-bold font-mono uppercase">Switching & VLANs</div>
                             <div class="text-slate-400 text-xs mt-1">L2/L3 managed switch configuration, VLAN tagging, port security, and spanning tree protocol (STP).</div>
@@ -724,7 +726,7 @@
     <div class="max-w-7xl mx-auto px-5 sm:px-8">
         <div class="grid lg:grid-cols-2 gap-14 items-center">
             <div class="fade-up">
-                <div class="text-brand-400 text-xs font-bold uppercase tracking-widest mb-3 font-mono">Contact</div>
+                <div class="text-orange-400 text-xs font-bold uppercase tracking-widest mb-3 font-mono">Contact</div>
                 <h2 class="text-3xl sm:text-4xl font-bold text-white leading-tight">Let's talk about your next project.</h2>
                 <p class="text-slate-400 mt-5 leading-relaxed max-w-xl">
                     If you need support with enterprise networks, FortiGate firewalls, IT rack containment, Xilica DSP / Martin Audio / Onkyo AV systems, or smart building automation, feel free to get in touch.
@@ -732,7 +734,7 @@
 
                 <div class="space-y-5 mt-9">
                     <a href="mailto:s.faishal@dynamicworld.ae" class="flex items-center gap-4 group">
-                        <div class="w-12 h-12 rounded-xl bg-dark-800 border border-slate-700 flex items-center justify-center text-brand-400 group-hover:bg-brand-600 group-hover:text-white transition"><i class="fa-solid fa-envelope"></i></div>
+                        <div class="w-12 h-12 rounded-xl bg-dark-800 border border-slate-700 flex items-center justify-center text-orange-400 group-hover:bg-orange-600 group-hover:text-white transition"><i class="fa-solid fa-envelope"></i></div>
                         <div>
                             <div class="text-xs text-slate-500 uppercase tracking-wider">Email</div>
                             <div class="text-white font-semibold">s.faishal@dynamicworld.ae</div>
@@ -768,17 +770,17 @@
                 <form id="contactForm" class="mt-7 space-y-5">
                     <div>
                         <label class="text-xs text-slate-400 uppercase tracking-wider">Name</label>
-                        <input id="name" type="text" required placeholder="Your name" class="mt-2 w-full px-4 py-3.5 rounded-xl bg-dark-900/90 border border-slate-700 text-white placeholder-slate-600 focus:outline-none focus:border-brand-500 transition">
+                        <input id="name" type="text" required placeholder="Your name" class="mt-2 w-full px-4 py-3.5 rounded-xl bg-dark-900/90 border border-slate-700 text-white placeholder-slate-600 focus:outline-none focus:border-orange-500 transition">
                     </div>
                     <div>
                         <label class="text-xs text-slate-400 uppercase tracking-wider">Email</label>
-                        <input id="email" type="email" required placeholder="your@email.com" class="mt-2 w-full px-4 py-3.5 rounded-xl bg-dark-900/90 border border-slate-700 text-white placeholder-slate-600 focus:outline-none focus:border-brand-500 transition">
+                        <input id="email" type="email" required placeholder="your@email.com" class="mt-2 w-full px-4 py-3.5 rounded-xl bg-dark-900/90 border border-slate-700 text-white placeholder-slate-600 focus:outline-none focus:border-orange-500 transition">
                     </div>
                     <div>
                         <label class="text-xs text-slate-400 uppercase tracking-wider">Message</label>
-                        <textarea id="message" rows="5" required placeholder="Tell me about your project..." class="mt-2 w-full px-4 py-3.5 rounded-xl bg-dark-900/90 border border-slate-700 text-white placeholder-slate-600 focus:outline-none focus:border-brand-500 transition"></textarea>
+                        <textarea id="message" rows="5" required placeholder="Tell me about your project..." class="mt-2 w-full px-4 py-3.5 rounded-xl bg-dark-900/90 border border-slate-700 text-white placeholder-slate-600 focus:outline-none focus:border-orange-500 transition"></textarea>
                     </div>
-                    <button type="submit" class="w-full py-4 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold transition shadow-lg shadow-brand-600/30">
+                    <button type="submit" class="w-full py-4 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold transition shadow-lg shadow-orange-600/30">
                         <i class="fa-brands fa-whatsapp mr-2"></i> Send via WhatsApp
                     </button>
                 </form>
@@ -790,7 +792,7 @@
 <!-- DISCLAIMER SECTION -->
 <section class="py-12 border-t border-slate-800/80 bg-dark-900/60 relative z-10">
     <div class="max-w-5xl mx-auto px-5 sm:px-8 text-center">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-mono text-brand-400 bg-brand-500/10 border border-brand-500/30 mb-4">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-mono text-orange-400 bg-orange-500/10 border border-orange-500/30 mb-4">
             <i class="fa-solid fa-shield-halved"></i> DISCLAIMER & TRADEMARKS
         </div>
         <p class="text-xs text-slate-400 leading-relaxed font-sans max-w-4xl mx-auto">
@@ -814,24 +816,24 @@
     <a href="https://www.instagram.com/ffaishalll" target="_blank" rel="noopener noreferrer" title="Instagram" class="w-11 h-11 flex items-center justify-center text-white/95 hover:bg-gradient-to-tr hover:from-yellow-500 hover:via-pink-600 hover:to-purple-600 hover:text-white transition duration-200 border-b border-white/10"><i class="fa-brands fa-instagram text-base"></i></a>
     <a href="https://www.linkedin.com/in/shah-faishal-2000b6266" target="_blank" rel="noopener noreferrer" title="LinkedIn" class="w-11 h-11 flex items-center justify-center text-white/95 hover:bg-[#0077b5] hover:text-white transition duration-200 border-b border-white/10"><i class="fa-brands fa-linkedin-in text-base"></i></a>
     <a href="https://wa.me/971503928611" target="_blank" rel="noopener noreferrer" title="WhatsApp" class="w-11 h-11 flex items-center justify-center text-white/95 hover:bg-[#25D366] hover:text-white transition duration-200 border-b border-white/10"><i class="fa-brands fa-whatsapp text-base"></i></a>
-    <a href="mailto:s.faishal@dynamicworld.ae" title="Email" class="w-11 h-11 flex items-center justify-center text-white/95 hover:bg-brand-600 hover:text-white transition duration-200"><i class="fa-solid fa-envelope text-sm"></i></a>
+    <a href="mailto:s.faishal@dynamicworld.ae" title="Email" class="w-11 h-11 flex items-center justify-center text-white/95 hover:bg-orange-600 hover:text-white transition duration-200"><i class="fa-solid fa-envelope text-sm"></i></a>
 </div>
 
 <!-- MODALS -->
 <div id="detailModal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4 sm:p-6 overflow-y-auto">
     <div class="relative w-full max-w-4xl glass border border-slate-700/80 rounded-3xl overflow-hidden shadow-2xl my-auto">
-        <button onclick="closeServiceDetail()" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-dark-900/80 border border-slate-700 text-slate-300 hover:text-white hover:bg-brand-600 flex items-center justify-center transition"><i class="fa-solid fa-xmark text-lg"></i></button>
+        <button onclick="closeServiceDetail()" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-dark-900/80 border border-slate-700 text-slate-300 hover:text-white hover:bg-orange-600 flex items-center justify-center transition"><i class="fa-solid fa-xmark text-lg"></i></button>
         <div class="flex flex-col">
             <div id="modalMediaContainer" class="w-full h-64 sm:h-96 overflow-hidden bg-dark-900 relative flex items-center justify-center">
                 <!-- Dynamically injected Image -->
             </div>
             <div class="p-6 sm:p-8">
-                <div id="modalCategory" class="text-xs font-mono text-brand-400 font-bold uppercase tracking-widest mb-2"></div>
+                <div id="modalCategory" class="text-xs font-mono text-orange-400 font-bold uppercase tracking-widest mb-2"></div>
                 <h3 id="modalTitle" class="text-2xl sm:text-3xl font-extrabold text-white leading-tight italic"></h3>
                 <p id="modalDesc" class="text-slate-300 text-base sm:text-lg leading-relaxed mt-4"></p>
                 <div class="mt-8 pt-6 border-t border-slate-800 flex justify-between items-center">
                     <span class="text-xs text-slate-500 font-mono">Shah Faishal Engineering Archive</span>
-                    <button onclick="closeServiceDetail()" class="px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-sm font-semibold transition">Close Preview</button>
+                    <button onclick="closeServiceDetail()" class="px-5 py-2.5 rounded-xl bg-orange-600 hover:bg-orange-500 text-white text-sm font-semibold transition">Close Preview</button>
                 </div>
             </div>
         </div>
@@ -839,12 +841,12 @@
 </div>
 
 <div id="partnerModal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4 sm:p-6 overflow-y-auto">
-    <div class="relative w-full max-w-2xl glass border border-brand-500/40 rounded-3xl overflow-hidden shadow-2xl my-auto p-6 sm:p-8">
-        <button onclick="closePartnerDetail()" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-dark-900/80 border border-slate-700 text-slate-300 hover:text-white hover:bg-brand-600 flex items-center justify-center transition"><i class="fa-solid fa-xmark text-lg"></i></button>
+    <div class="relative w-full max-w-2xl glass border border-orange-500/40 rounded-3xl overflow-hidden shadow-2xl my-auto p-6 sm:p-8">
+        <button onclick="closePartnerDetail()" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-dark-900/80 border border-slate-700 text-slate-300 hover:text-white hover:bg-orange-600 flex items-center justify-center transition"><i class="fa-solid fa-xmark text-lg"></i></button>
         <div class="flex items-center gap-4 border-b border-slate-800 pb-5">
-            <div id="partnerModalIcon" class="w-14 h-14 rounded-2xl bg-brand-500/15 border border-brand-500/30 flex items-center justify-center text-brand-400 text-2xl"><i class="fa-solid fa-microchip"></i></div>
+            <div id="partnerModalIcon" class="w-14 h-14 rounded-2xl bg-orange-500/15 border border-orange-500/30 flex items-center justify-center text-orange-400 text-2xl"><i class="fa-solid fa-microchip"></i></div>
             <div>
-                <span id="partnerModalTag" class="text-[10px] uppercase font-mono tracking-widest text-brand-400 font-bold">Enterprise OEM Solution</span>
+                <span id="partnerModalTag" class="text-[10px] uppercase font-mono tracking-widest text-orange-400 font-bold">Enterprise OEM Solution</span>
                 <h3 id="partnerModalTitle" class="text-2xl font-bold text-white leading-tight"></h3>
             </div>
         </div>
@@ -853,7 +855,7 @@
             <p id="partnerModalDesc" class="text-slate-300 text-base leading-relaxed"></p>
         </div>
         <div class="pt-5 border-t border-slate-800 flex justify-between items-center gap-3">
-            <a id="partnerModalLink" href="#" target="_blank" rel="noopener noreferrer" class="hidden px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-sm font-semibold transition inline-flex items-center gap-2 shadow-lg shadow-brand-600/30">
+            <a id="partnerModalLink" href="#" target="_blank" rel="noopener noreferrer" class="hidden px-5 py-2.5 rounded-xl bg-orange-600 hover:bg-orange-500 text-white text-sm font-semibold transition inline-flex items-center gap-2 shadow-lg shadow-orange-600/30">
                 <i class="fa-solid fa-globe text-xs"></i> Official Website
             </a>
             <button onclick="closePartnerDetail()" class="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-sm font-semibold transition ml-auto">Got it</button>
@@ -867,7 +869,7 @@
     </div>
     <div id="heartArena" class="relative w-full h-[65vh] flex items-center justify-center overflow-hidden">
         <div id="dodgingHeartContainer" onmouseenter="dodgeHeart()" ontouchstart="dodgeHeart(event)">
-            <div id="heartHintText" class="mb-3 text-center whitespace-nowrap text-brand-400 font-mono text-xs sm:text-sm tracking-wide bg-brand-500/10 border border-brand-500/30 px-3 py-1.5 rounded-full shadow-lg backdrop-blur-md animate-pulse">Click the heart if you can! 👇</div>
+            <div id="heartHintText" class="mb-3 text-center whitespace-nowrap text-orange-400 font-mono text-xs sm:text-sm tracking-wide bg-orange-500/10 border border-orange-500/30 px-3 py-1.5 rounded-full shadow-lg backdrop-blur-md animate-pulse">Click the heart if you can! 👇</div>
             <div class="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-red-500/15 border border-red-500/30 flex items-center justify-center shadow-[0_0_50px_rgba(239,68,68,0.7)] active:scale-90">
                 <i class="fa-solid fa-heart text-5xl sm:text-6xl text-red-500 drop-shadow-[0_0_30px_rgba(239,68,68,1)] animate-pulse"></i>
                 <span class="absolute inset-0 flex items-center justify-center font-black text-pink-300 text-xl sm:text-2xl drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)] pb-1.5 pointer-events-none">Z</span>
@@ -882,16 +884,17 @@
 </div>
 
 <div id="alertPopupModal" class="fixed inset-0 z-[60] bg-black/80 backdrop-blur-md hidden items-center justify-center p-4">
-    <div class="relative w-full max-w-md glass border border-brand-500/50 rounded-3xl p-6 sm:p-8 text-center shadow-2xl">
-        <div class="w-14 h-14 mx-auto rounded-2xl bg-brand-500/20 border border-brand-500/40 flex items-center justify-center text-brand-400 text-2xl mb-4"><i class="fa-solid fa-shield-cat"></i></div>
+    <div class="relative w-full max-w-md glass border border-orange-500/50 rounded-3xl p-6 sm:p-8 text-center shadow-2xl">
+        <div class="w-14 h-14 mx-auto rounded-2xl bg-orange-500/20 border border-orange-500/40 flex items-center justify-center text-orange-400 text-2xl mb-4"><i class="fa-solid fa-shield-cat"></i></div>
         <h3 class="text-xl font-bold text-white">Attempt Limit Reached!</h3>
         <p id="alertPopupText" class="text-slate-300 text-sm mt-3 leading-relaxed">5 attempts failed! Looks like you applied network troubleshooting skills to a heart. Time to check the actual website?</p>
-        <button onclick="redirectToHome()" class="mt-6 w-full py-3 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-sm font-semibold transition">Continue Exploring Website</button>
+        <button onclick="redirectToHome()" class="mt-6 w-full py-3 rounded-xl bg-orange-600 hover:bg-orange-500 text-white text-sm font-semibold transition">Continue Exploring Website</button>
     </div>
 </div>
 
 <!-- SCRIPTS -->
 <script>
+    // PRELOADER CANVAS
     const pCanvas = document.getElementById('preloaderCanvas');
     const pCtx = pCanvas.getContext('2d');
     let preloaderParticles = [];
@@ -913,7 +916,7 @@
             if (this.y < 0 || this.y > pCanvas.height) this.speedY = -this.speedY;
         }
         draw() {
-            pCtx.fillStyle = '#38bdf8'; pCtx.beginPath(); pCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2); pCtx.fill();
+            pCtx.fillStyle = '#ff4d4d'; pCtx.beginPath(); pCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2); pCtx.fill();
         }
     }
     for (let i = 0; i < 70; i++) preloaderParticles.push(new PreParticle());
@@ -922,17 +925,6 @@
         pCtx.clearRect(0, 0, pCanvas.width, pCanvas.height);
         for (let i = 0; i < preloaderParticles.length; i++) {
             preloaderParticles[i].update(); preloaderParticles[i].draw();
-            for (let j = i; j < preloaderParticles.length; j++) {
-                let dx = preloaderParticles[i].x - preloaderParticles[j].x;
-                let dy = preloaderParticles[i].y - preloaderParticles[j].y;
-                let dist = Math.sqrt(dx * dx + dy * dy);
-                if (dist < 120) {
-                    pCtx.strokeStyle = `rgba(56, 189, 248, ${0.35 * (1 - dist / 120)})`;
-                    pCtx.lineWidth = 0.8; pCtx.beginPath();
-                    pCtx.moveTo(preloaderParticles[i].x, preloaderParticles[i].y);
-                    pCtx.lineTo(preloaderParticles[j].x, preloaderParticles[j].y); pCtx.stroke();
-                }
-            }
         }
         if (!document.getElementById('preloader').classList.contains('fade-out')) requestAnimationFrame(animatePreloader);
     }
@@ -945,6 +937,7 @@
         }, 2000);
     });
 
+    // MINI GAME LOGIC
     let dodgeAttempts = 0;
     function dodgeHeart(e) {
         if (e) e.preventDefault();
@@ -996,6 +989,7 @@
         document.body.style.overflow = 'auto';
     }
 
+    // SERVICES & PARTNERS DATA
     const servicesData = [
         { category: "Network & Security Gateways", title: "Enterprise Network & IT Rack Deployment", image: "rack.jpg", desc: "Deployment of Next-Generation Firewalls (FortiGate HA Cluster) and core edge routers for secure multi-WAN load balancing and SD-WAN branch interconnects." },
         { category: "Smart Home Automation", title: "Luxury Homes ICT & Home-Automation Projects In Dubai", image: "villa.jpg", desc: "Delivering seamless network reliability, advanced VMS surveillance, multi-room acoustic systems, and unified smart automation across Dubai's elite properties." },
@@ -1092,99 +1086,46 @@
         window.open("https://wa.me/971503928611?text=" + encodeURIComponent(text), "_blank");
     });
 
-    const mCanvas = document.getElementById('matrixCanvas');
-    const mCtx = mCanvas.getContext('2d');
-    function resizeMatrix() { mCanvas.width = window.innerWidth; mCanvas.height = window.innerHeight; }
-    resizeMatrix(); window.addEventListener('resize', resizeMatrix);
-
-    const matrixChars = '010101011001010123456789ABCDEFｦｱｳｴｵｶｷｹｺｻｼｽｾｿﾀﾂﾃﾅﾆﾇﾈﾊﾋﾎﾏﾐﾑﾒﾓﾔﾕﾗﾘﾜ';
-    const mFontSize = 14;
-    let mColumns = Math.floor(mCanvas.width / mFontSize);
-    let mDrops = [];
-    function initMatrixDrops() {
-        mColumns = Math.floor(mCanvas.width / mFontSize);
-        mDrops = [];
-        for (let i = 0; i < mColumns; i++) mDrops[i] = Math.random() * -100;
-    }
-    initMatrixDrops(); window.addEventListener('resize', initMatrixDrops);
-
-    setInterval(() => {
-        mCtx.fillStyle = 'rgba(3, 8, 17, 0.09)';
-        mCtx.fillRect(0, 0, mCanvas.width, mCanvas.height);
-        mCtx.fillStyle = '#00ff66';
-        mCtx.shadowColor = '#00ff88';
-        mCtx.shadowBlur = 8;
-        mCtx.font = mFontSize + 'px Share Tech Mono, monospace';
-        for (let i = 0; i < mDrops.length; i++) {
-            const char = matrixChars.charAt(Math.floor(Math.random() * matrixChars.length));
-            mCtx.fillText(char, i * mFontSize, mDrops[i] * mFontSize);
-            if (mDrops[i] * mFontSize > mCanvas.height && Math.random() > 0.975) mDrops[i] = 0;
-            mDrops[i]++;
-        }
-        mCtx.shadowBlur = 0;
-    }, 33);
-
-    const canvas = document.getElementById('networkCanvas');
+    // FIRE ENERGY BACKGROUND ANIMATION SCRIPT
+    const canvas = document.getElementById('energyCanvas');
     const ctx = canvas.getContext('2d');
-    let particlesArray = [];
-    function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = document.getElementById('home').offsetHeight; }
-    resizeCanvas(); window.addEventListener('resize', resizeCanvas);
+    let particles = [];
 
-    const mouse = { x: null, y: null, radius: 150 };
-    window.addEventListener('mousemove', function(e) {
-        const rect = canvas.getBoundingClientRect();
-        mouse.x = e.clientX - rect.left; mouse.y = e.clientY - rect.top;
-    });
-    window.addEventListener('mouseout', function() { mouse.x = null; mouse.y = null; });
+    function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
 
     class Particle {
         constructor() {
-            this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height;
-            this.size = Math.random() * 2 + 1;
-            this.speedX = (Math.random() - 0.5) * 0.8; this.speedY = (Math.random() - 0.5) * 0.8;
-        }
-        update() {
-            this.x += this.speedX; this.y += this.speedY;
-            if (this.x < 0 || this.x > canvas.width) this.speedX = -this.speedX;
-            if (this.y < 0 || this.y > canvas.height) this.speedY = -this.speedY;
-            if (mouse.x && mouse.y) {
-                let dx = mouse.x - this.x, dy = mouse.y - this.y, distance = Math.sqrt(dx * dx + dy * dy);
-                if (distance < mouse.radius) {
-                    let force = (mouse.radius - distance) / mouse.radius;
-                    this.x -= (dx / distance) * force * 3; this.y -= (dy / distance) * force * 3;
-                }
-            }
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.vx = (Math.random() - 0.5) * 1.5;
+            this.vy = (Math.random() - 0.5) * 1.5;
+            this.size = Math.random() * 3 + 1;
         }
         draw() {
-            ctx.fillStyle = '#38bdf8'; ctx.shadowBlur = 8; ctx.shadowColor = '#0ea5e9';
-            ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill();
-            ctx.shadowBlur = 0;
+            ctx.fillStyle = Math.random() > 0.5 ? 'rgba(255, 77, 77, 0.6)' : 'rgba(249, 115, 22, 0.4)';
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+        }
+        update() {
+            this.x += this.vx; this.y += this.vy;
+            if(this.x < 0 || this.x > canvas.width) this.vx *= -1;
+            if(this.y < 0 || this.y > canvas.height) this.vy *= -1;
         }
     }
 
     function initParticles() {
-        particlesArray = [];
-        let num = Math.floor((canvas.width * canvas.height) / 9000);
-        if (num > 120) num = 120;
-        for (let i = 0; i < num; i++) particlesArray.push(new Particle());
+        particles = [];
+        for(let i=0; i<80; i++) particles.push(new Particle());
     }
-    initParticles(); window.addEventListener('resize', initParticles);
+    initParticles();
 
     function animateParticles() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        for (let i = 0; i < particlesArray.length; i++) { particlesArray[i].update(); particlesArray[i].draw(); }
-        for (let a = 0; a < particlesArray.length; a++) {
-            for (let b = a; b < particlesArray.length; b++) {
-                let dx = particlesArray[a].x - particlesArray[b].x, dy = particlesArray[a].y - particlesArray[b].y;
-                let distance = Math.sqrt(dx * dx + dy * dy);
-                if (distance < 130) {
-                    ctx.strokeStyle = `rgba(14, 165, 233, ${(1 - (distance / 130)) * 0.35})`;
-                    ctx.lineWidth = 1; ctx.beginPath();
-                    ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
-                    ctx.lineTo(particlesArray[b].x, particlesArray[b].y); ctx.stroke();
-                }
-            }
-        }
+        ctx.fillStyle = 'rgba(3, 8, 17, 0.15)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => { p.update(); p.draw(); });
         requestAnimationFrame(animateParticles);
     }
     animateParticles();
