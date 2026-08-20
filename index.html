@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth" translate="no">
 <head>
@@ -40,7 +41,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,700;1,800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,700;1,800&family=Orbitron:wght@600;800;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
@@ -49,7 +50,8 @@
                     fontFamily: {
                         sans: ['Plus Jakarta Sans', 'sans-serif'],
                         mono: ['Share Tech Mono', 'monospace'],
-                        luxury: ['Cinzel', 'serif']
+                        luxury: ['Cinzel', 'serif'],
+                        cool: ['Orbitron', 'sans-serif']
                     },
                     colors: {
                         brand: {
@@ -59,9 +61,9 @@
                             700: '#0369a1'
                         },
                         dark: {
-                            900: '#030811',
-                            800: '#07101e',
-                            700: '#0f1d33'
+                            900: '#030303',
+                            800: '#0a0a0a',
+                            700: '#141414'
                         }
                     }
                 }
@@ -71,33 +73,33 @@
 
     <style>
         html { scroll-behavior: smooth; }
-        body { overflow-x: hidden; background-color: #030811; color: #cbd5e1; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { overflow-x: hidden; background-color: #030303; color: #cbd5e1; font-family: 'Plus Jakarta Sans', sans-serif; }
 
-        /* MATRIX RAIN BACKGROUND */
+        /* DARK MATRIX RAIN BACKGROUND */
         #matrixCanvas {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            z-index: 0; pointer-events: none; opacity: 0.25;
+            z-index: 0; pointer-events: none; opacity: 0.15;
         }
 
         #preloader {
-            position: fixed; inset: 0; z-index: 999999; background: #030811;
+            position: fixed; inset: 0; z-index: 999999; background: #030303;
             display: flex; align-items: center; justify-content: center; overflow: hidden;
             transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.8s ease;
         }
         #preloader.fade-out { opacity: 0; visibility: hidden; pointer-events: none; }
-        #preloaderCanvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0.6; }
+        #preloaderCanvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0.4; }
 
         .preloader-heading {
-            font-family: 'Cinzel', serif; letter-spacing: 0.08em; color: #ff4d4d;
-            text-shadow: 0 0 25px rgba(255, 77, 77, 0.5);
+            font-family: 'Orbitron', sans-serif; letter-spacing: 0.12em; color: #ff4d4d;
+            text-shadow: 0 0 25px rgba(255, 77, 77, 0.7);
             animation: textZoomIn 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
             opacity: 0; transform: scale(0.5); display: flex; align-items: center;
         }
 
         #dropBox {
             display: inline-flex; align-items: center; justify-content: center;
-            padding: 0.02em 0.25em; margin: 0 0.1em; border: 1.5px solid #ff4d4d;
-            background: #030811; border-radius: 5px; box-shadow: 0 0 15px rgba(255, 77, 77, 0.8);
+            padding: 0.05em 0.3em; margin: 0 0.15em; border: 2px solid #ff4d4d;
+            background: #030303; border-radius: 6px; box-shadow: 0 0 20px rgba(255, 77, 77, 0.9);
             animation: dropInBox 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.3s forwards;
             opacity: 0; transform: translateY(-120vh) scale(0.5);
         }
@@ -133,10 +135,10 @@
         }
         .z-interactive-btn { animation: zPulse 2s infinite; }
 
-        .glass { background: rgba(7, 16, 30, 0.85) !important; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.06); }
+        .glass { background: rgba(10, 10, 10, 0.85) !important; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.06); }
         
         .super-glass-sidebar {
-            background: rgba(3, 8, 17, 0.35) !important;
+            background: rgba(3, 3, 3, 0.4) !important;
             backdrop-filter: blur(16px) !important;
             -webkit-backdrop-filter: blur(16px) !important;
             border-color: rgba(255, 77, 77, 0.2) !important;
@@ -152,7 +154,7 @@
         .gradient-text { background: linear-gradient(90deg, #ff4d4d, #f97316, #eab308); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
         .skill {
-            padding: 10px 16px; border-radius: 10px; background: rgba(13, 20, 32, 0.85);
+            padding: 10px 16px; border-radius: 10px; background: rgba(15, 15, 15, 0.85);
             border: 1px solid rgba(255, 77, 77, 0.2); color: #cbd5e1; font-size: 13px; font-weight: 500;
             backdrop-filter: blur(8px); transition: all .25s ease;
         }
@@ -171,13 +173,13 @@
     </style>
 </head>
 
-<body class="bg-dark-900 text-slate-200 font-sans antialiased notranslate" translate="no">
+<body class="bg-[#030303] text-slate-200 font-sans antialiased notranslate" translate="no">
 
-<!-- CINEMATIC PRELOADER -->
+<!-- CINEMATIC PRELOADER WITH COOL FONT -->
 <div id="preloader" class="notranslate" translate="no">
     <canvas id="preloaderCanvas"></canvas>
     <div class="relative z-50 text-center px-4 select-none flex flex-col items-center justify-center">
-        <div class="preloader-heading font-bold text-3xl sm:text-5xl md:text-6xl notranslate" translate="no">
+        <div class="preloader-heading font-bold text-3xl sm:text-5xl md:text-6xl font-cool notranslate" translate="no">
             <span>F</span>
             <div id="dropBox">
                 <span class="lowercase tracking-normal text-xl sm:text-3xl md:text-4xl font-mono">ai.</span>
@@ -188,11 +190,11 @@
     </div>
 </div>
 
-<!-- MATRIX RAIN BACKGROUND CANVAS -->
+<!-- DARK MATRIX RAIN BACKGROUND -->
 <canvas id="matrixCanvas"></canvas>
 
 <!-- NAVBAR -->
-<header class="fixed top-0 left-0 right-0 z-50 glass border-b border-slate-800/80 notranslate" translate="no">
+<header class="fixed top-0 left-0 right-0 z-50 glass border-b border-neutral-800/85 notranslate" translate="no">
     <div class="max-w-7xl mx-auto px-5 sm:px-8 h-20 flex items-center justify-between">
         <div class="flex items-center gap-3">
             <div class="relative group">
@@ -206,7 +208,7 @@
             </div>
 
             <a href="#home">
-                <div class="text-white font-bold leading-none hover:text-orange-400 transition notranslate" translate="no">Shah Faishal</div>
+                <div class="text-white font-bold font-cool text-lg tracking-wider hover:text-orange-400 transition notranslate" translate="no">F<span class="text-orange-500">ai.</span>SHAL</div>
             </a>
         </div>
 
@@ -228,7 +230,7 @@
         </button>
     </div>
 
-    <div id="mobileMenu" class="hidden md:hidden border-t border-slate-800 px-5 py-5 bg-dark-800/95 backdrop-blur-lg notranslate" translate="no">
+    <div id="mobileMenu" class="hidden md:hidden border-t border-neutral-800 px-5 py-5 bg-dark-800/95 backdrop-blur-lg notranslate" translate="no">
         <div class="flex flex-col gap-5">
             <a href="#about">About</a>
             <a href="#services">Projects & Specializations</a>
@@ -242,8 +244,8 @@
 
 <!-- HERO SECTION WITH MATRIX BACKGROUND AND HOVER-REVEAL IMAGE -->
 <section id="home" class="relative min-h-screen flex items-center pt-36 pb-24 overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-b from-dark-900/70 via-dark-900/40 to-dark-900/95 z-0"></div>
-    <div class="absolute inset-0 grid-bg z-0 opacity-40"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-[#030303]/80 via-[#030303]/50 to-[#030303] z-0"></div>
+    <div class="absolute inset-0 grid-bg z-0 opacity-30"></div>
     <div class="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-orange-600/10 rounded-full blur-[120px] pointer-events-none z-0"></div>
     <div class="absolute bottom-10 right-10 w-[400px] h-[400px] bg-red-600/10 rounded-full blur-[100px] pointer-events-none z-0"></div>
 
@@ -259,7 +261,7 @@
                 
                 <h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white leading-[1.1] tracking-tight">
                     Architecting The Digital Backbone of
-                    <span class="gradient-text block mt-2">Elite Networks & Luxury</span>
+                    <span class="gradient-text block mt-2 font-cool tracking-wide">Elite Networks & Luxury</span>
                     Environments.
                 </h1>
 
@@ -274,7 +276,7 @@
                     <a href="#services" class="px-8 py-4 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold transition shadow-xl shadow-orange-600/30 border border-orange-400/30 inline-flex items-center group">
                         <i class="fa-solid fa-diagram-project mr-2 group-hover:rotate-12 transition-transform"></i> View Projects & Specializations
                     </a>
-                    <a href="#contact" class="px-8 py-4 rounded-xl border border-slate-700 bg-dark-800/80 backdrop-blur-md hover:bg-dark-700 text-white font-semibold transition inline-flex items-center">
+                    <a href="#contact" class="px-8 py-4 rounded-xl border border-neutral-700 bg-dark-800/80 backdrop-blur-md hover:bg-dark-700 text-white font-semibold transition inline-flex items-center">
                         <i class="fa-regular fa-paper-plane mr-2"></i> Contact Me
                     </a>
                 </div>
@@ -285,17 +287,17 @@
                 <div class="relative w-full max-w-sm sm:max-w-md group cursor-pointer">
                     <div class="absolute -inset-1.5 bg-gradient-to-r from-orange-600 via-red-600 to-amber-500 rounded-[30px] blur-xl opacity-30 group-hover:opacity-75 transition duration-500"></div>
                     
-                    <div class="relative p-2 rounded-3xl bg-dark-800/90 border border-slate-700/80 backdrop-blur-2xl shadow-2xl overflow-hidden">
-                        <div class="rounded-[22px] overflow-hidden bg-dark-900 relative">
+                    <div class="relative p-2 rounded-3xl bg-dark-800/90 border border-neutral-800 backdrop-blur-2xl shadow-2xl overflow-hidden">
+                        <div class="rounded-[22px] overflow-hidden bg-black relative">
                             <!-- Image -->
                             <img src="profile.jpg" alt="Shah Faishal - Senior Network and Automation Engineer" class="w-full aspect-[4/5] object-cover object-center group-hover:scale-105 transition duration-700">
                             
                             <!-- Hover Pop-up Overlay Card -->
                             <div class="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out z-20">
-                                <div class="glass border border-slate-700/80 rounded-2xl p-4 shadow-2xl backdrop-blur-xl">
+                                <div class="glass border border-neutral-700 rounded-2xl p-4 shadow-2xl backdrop-blur-xl">
                                     <div class="flex items-center justify-between">
                                         <div>
-                                            <div class="font-bold text-white text-left text-base">Shah Faishal</div>
+                                            <div class="font-bold text-white text-left text-base font-cool tracking-wider">F<span class="text-orange-500">ai.</span>SHAL</div>
                                             <div class="text-xs text-orange-400 mt-1 text-left font-mono tracking-wide">Network • Automation • AV • ELV</div>
                                         </div>
                                         <div class="w-11 h-11 rounded-xl bg-orange-500/20 border border-orange-500/30 flex items-center justify-center text-orange-400 text-lg shadow-inner">
@@ -314,7 +316,7 @@
 </section>
 
 <!-- MERGED SECTION: TECHNICAL SPECIALIZATIONS & PROJECT LOCATIONS -->
-<section id="services" class="py-24 border-y border-slate-800/70">
+<section id="services" class="py-24 border-y border-neutral-800/70">
     <div class="max-w-7xl mx-auto px-5 sm:px-8">
         
         <div class="max-w-3xl mb-14 fade-up">
@@ -326,7 +328,7 @@
         </div>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-24">
-            <div onclick="openServiceDetail(0)" class="cursor-pointer glass border border-slate-800/80 rounded-2xl p-7 hover:border-orange-500/60 hover:-translate-y-1.5 transition duration-300 fade-up group">
+            <div onclick="openServiceDetail(0)" class="cursor-pointer glass border border-neutral-800 rounded-2xl p-7 hover:border-orange-500/60 hover:-translate-y-1.5 transition duration-300 fade-up group">
                 <div class="flex items-center justify-between mb-5">
                     <div class="w-12 h-12 rounded-xl bg-orange-500/10 text-orange-400 flex items-center justify-center text-xl group-hover:bg-orange-500 group-hover:text-white transition"><i class="fa-solid fa-shield-halved"></i></div>
                     <span class="text-xs text-orange-400/80 font-mono flex items-center gap-1 group-hover:text-orange-300">View Project <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
@@ -335,7 +337,7 @@
                 <p class="text-slate-400 text-sm leading-relaxed mt-3">FortiGate HA firewalls, Cisco L2/L3 routing, SD-WAN failover, gateway security, VLANs, Wi-Fi 6, and IT rack containment.</p>
             </div>
 
-            <div onclick="openServiceDetail(1)" class="cursor-pointer glass border border-slate-800/80 rounded-2xl p-7 hover:border-amber-500/60 hover:-translate-y-1.5 transition duration-300 fade-up group">
+            <div onclick="openServiceDetail(1)" class="cursor-pointer glass border border-neutral-800 rounded-2xl p-7 hover:border-amber-500/60 hover:-translate-y-1.5 transition duration-300 fade-up group">
                 <div class="flex items-center justify-between mb-5">
                     <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl group-hover:bg-amber-500 group-hover:text-white transition"><i class="fa-solid fa-house-chimney"></i></div>
                     <span class="text-xs text-amber-400/80 font-mono flex items-center gap-1 group-hover:text-amber-300">View Project <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
@@ -344,7 +346,7 @@
                 <p class="text-slate-400 text-sm leading-relaxed mt-3">KNX lighting scenes, motorized drapery, DALI architecture, HVAC climate control, and iPad centralized touchpanels.</p>
             </div>
 
-            <div onclick="openServiceDetail(2)" class="cursor-pointer glass border border-slate-800/80 rounded-2xl p-7 hover:border-emerald-500/60 hover:-translate-y-1.5 transition duration-300 fade-up group">
+            <div onclick="openServiceDetail(2)" class="cursor-pointer glass border border-neutral-800 rounded-2xl p-7 hover:border-emerald-500/60 hover:-translate-y-1.5 transition duration-300 fade-up group">
                 <div class="flex items-center justify-between mb-5">
                     <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl group-hover:bg-emerald-500 group-hover:text-white transition"><i class="fa-solid fa-video"></i></div>
                     <span class="text-xs text-emerald-400/80 font-mono flex items-center gap-1 group-hover:text-emerald-300">View Project <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
@@ -353,7 +355,7 @@
                 <p class="text-slate-400 text-sm leading-relaxed mt-3">Deployment of centralized Video Management Systems (VMS), high-density control room video walls, and AI CCTV analytics.</p>
             </div>
 
-            <div onclick="openServiceDetail(3)" class="cursor-pointer glass border border-slate-800/80 rounded-2xl p-7 hover:border-red-500/60 hover:-translate-y-1.5 transition duration-300 fade-up group">
+            <div onclick="openServiceDetail(3)" class="cursor-pointer glass border border-neutral-800 rounded-2xl p-7 hover:border-red-500/60 hover:-translate-y-1.5 transition duration-300 fade-up group">
                 <div class="flex items-center justify-between mb-5">
                     <div class="w-12 h-12 rounded-xl bg-red-500/10 text-red-400 flex items-center justify-center text-xl group-hover:bg-red-500 group-hover:text-white transition"><i class="fa-solid fa-volume-high"></i></div>
                     <span class="text-xs text-red-400/80 font-mono flex items-center gap-1 group-hover:text-red-300">View Project <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
@@ -362,7 +364,7 @@
                 <p class="text-slate-400 text-sm leading-relaxed mt-3">Xilica DSP acoustic processing, Martin Audio pro speakers, Onkyo AVR 4K cinema routing, LEA Professional amps, and WiiM streamers.</p>
             </div>
 
-            <div onclick="openServiceDetail(4)" class="cursor-pointer glass border border-slate-800/80 rounded-2xl p-7 hover:border-purple-500/60 hover:-translate-y-1.5 transition duration-300 fade-up group">
+            <div onclick="openServiceDetail(4)" class="cursor-pointer glass border border-neutral-800 rounded-2xl p-7 hover:border-purple-500/60 hover:-translate-y-1.5 transition duration-300 fade-up group">
                 <div class="flex items-center justify-between mb-5">
                     <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center text-xl group-hover:bg-purple-500 group-hover:text-white transition"><i class="fa-solid fa-network-wired"></i></div>
                     <span class="text-xs text-purple-400/80 font-mono flex items-center gap-1 group-hover:text-purple-300">View Project <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
@@ -371,7 +373,7 @@
                 <p class="text-slate-400 text-sm leading-relaxed mt-3">High-density network cabinets, spine-leaf fabric, SAN/NAS video archiving, optical fusion splicing, and OTDR attenuation testing.</p>
             </div>
 
-            <div onclick="openServiceDetail(5)" class="cursor-pointer glass border border-slate-800/80 rounded-2xl p-7 hover:border-rose-500/60 hover:-translate-y-1.5 transition duration-300 fade-up group">
+            <div onclick="openServiceDetail(5)" class="cursor-pointer glass border border-neutral-800 rounded-2xl p-7 hover:border-rose-500/60 hover:-translate-y-1.5 transition duration-300 fade-up group">
                 <div class="flex items-center justify-between mb-5">
                     <div class="w-12 h-12 rounded-xl bg-rose-500/10 text-rose-400 flex items-center justify-center text-xl group-hover:bg-rose-500 group-hover:text-white transition"><i class="fa-solid fa-pen-ruler"></i></div>
                     <span class="text-xs text-rose-400/80 font-mono flex items-center gap-1 group-hover:text-rose-300">View Project <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
@@ -381,32 +383,32 @@
             </div>
         </div>
 
-        <div class="max-w-3xl mb-14 fade-up pt-12 border-t border-slate-800/80">
+        <div class="max-w-3xl mb-14 fade-up pt-12 border-t border-neutral-800">
             <div class="text-orange-400 text-xs font-bold uppercase tracking-widest mb-3 font-mono">Project Experience</div>
             <h2 class="text-3xl sm:text-4xl font-bold text-white">Selected Project Locations</h2>
             <p class="text-slate-400 mt-4">Enterprise networks, IT cabinet installations, Martin Audio / Xilica AV systems, and luxury home-automation across Dubai.</p>
         </div>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
-            <div class="group glass border border-slate-800/80 rounded-2xl p-7 hover:border-orange-500/50 transition fade-up">
+            <div class="group glass border border-neutral-800 rounded-2xl p-7 hover:border-orange-500/50 transition fade-up">
                 <div class="text-orange-400 text-2xl mb-5"><i class="fa-solid fa-building"></i></div>
                 <h3 class="text-white font-bold text-lg">Emirates Hills</h3>
                 <p class="text-slate-400 text-sm mt-2">Premium home-automation, IT rack architecture, Xilica DSP, and multi-zone Martin Audio pro integration.</p>
             </div>
 
-            <div class="group glass border border-slate-800/80 rounded-2xl p-7 hover:border-amber-500/50 transition fade-up">
+            <div class="group glass border border-neutral-800 rounded-2xl p-7 hover:border-amber-500/50 transition fade-up">
                 <div class="text-amber-400 text-2xl mb-5"><i class="fa-solid fa-city"></i></div>
                 <h3 class="text-white font-bold text-lg">Dubai Hills</h3>
                 <p class="text-slate-400 text-sm mt-2">FortiGate security gateways, high-speed Wi-Fi 6, Onkyo 4K cinema AVR, and smart estate controls.</p>
             </div>
 
-            <div class="group glass border border-slate-800/80 rounded-2xl p-7 hover:border-emerald-500/50 transition fade-up">
+            <div class="group glass border border-neutral-800 rounded-2xl p-7 hover:border-emerald-500/50 transition fade-up">
                 <div class="text-emerald-400 text-2xl mb-5"><i class="fa-solid fa-water"></i></div>
                 <h3 class="text-white font-bold text-lg">Jumeirah Bay Island</h3>
                 <p class="text-slate-400 text-sm mt-2">High-end residential automation, VMS CCTV, and LEA Professional DSP amplifier matrix deployment.</p>
             </div>
 
-            <div class="group glass border border-slate-800/80 rounded-2xl p-7 hover:border-purple-500/50 transition fade-up">
+            <div class="group glass border border-neutral-800 rounded-2xl p-7 hover:border-purple-500/50 transition fade-up">
                 <div class="text-purple-400 text-2xl mb-5"><i class="fa-solid fa-city"></i></div>
                 <h3 class="text-white font-bold text-lg">Downtown Dubai</h3>
                 <p class="text-slate-400 text-sm mt-2">Corporate network infrastructure, high-density IT rack hosting, fiber backbone, and security operations.</p>
@@ -417,7 +419,7 @@
 </section>
 
 <!-- ENTERPRISE ECOSYSTEM / OEM SOLUTIONS -->
-<section id="ecosystem" class="py-24 relative overflow-hidden bg-dark-800/40 border-b border-slate-800/70">
+<section id="ecosystem" class="py-24 relative overflow-hidden bg-dark-800/40 border-b border-neutral-800/70">
     <div class="max-w-7xl mx-auto px-5 sm:px-8">
         <div class="text-center max-w-3xl mx-auto mb-16 fade-up">
             <div class="text-orange-400 text-xs font-bold uppercase tracking-widest mb-3 font-mono">ENTERPRISE ECOSYSTEM</div>
@@ -482,7 +484,7 @@
         </div>
 
         <div class="mt-12 text-center fade-up">
-            <span class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-dark-900/90 border border-slate-700 text-xs font-mono text-slate-300">
+            <span class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-dark-900/90 border border-neutral-800 text-xs font-mono text-slate-300">
                 <i class="fa-solid fa-circle-check text-orange-400"></i> All hardware, switches, storage, & firewalls provisioned with active manufacturer warranties & SLA.
             </span>
         </div>
@@ -533,7 +535,7 @@
 
             <div class="lg:col-span-5 fade-up space-y-6">
                 <!-- Concept to Commissioning Box -->
-                <div class="glass border border-slate-700/80 rounded-3xl p-8 glow relative overflow-hidden">
+                <div class="glass border border-neutral-700 rounded-3xl p-8 glow relative overflow-hidden">
                     <div class="absolute -top-24 -right-24 w-48 h-48 bg-orange-500/10 rounded-full blur-2xl"></div>
                     <div class="text-orange-400 text-xs font-bold uppercase tracking-widest mb-2 font-mono">Workflow Pipeline</div>
                     <h3 class="text-2xl font-bold text-white mb-6">From Concept to Commissioning</h3>
@@ -549,7 +551,7 @@
                         <span class="px-3 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-300">Handover</span>
                     </div>
 
-                    <div class="mt-8 pt-6 border-t border-slate-800">
+                    <div class="mt-8 pt-6 border-t border-neutral-800">
                         <div class="text-slate-400 text-sm italic">
                             "My philosophy is simple: <br><strong class="text-white not-italic text-base block mt-1">Don’t just install technology. Engineer a system that performs.</strong>"
                         </div>
@@ -558,12 +560,12 @@
 
                 <!-- Quick Highlight Cards -->
                 <div class="grid sm:grid-cols-2 gap-4">
-                    <div class="glass border border-slate-800/80 rounded-2xl p-5 hover:border-orange-500/40 transition">
+                    <div class="glass border border-neutral-800 rounded-2xl p-5 hover:border-orange-500/40 transition">
                         <div class="text-orange-400 text-2xl mb-3"><i class="fa-solid fa-house-signal"></i></div>
                         <h4 class="text-white font-bold text-base">10+ Smart Homes</h4>
                         <p class="text-slate-400 text-xs mt-1">Luxury automation across Emirates Hills & Jumeirah Bay.</p>
                     </div>
-                    <div class="glass border border-slate-800/80 rounded-2xl p-5 hover:border-amber-500/40 transition">
+                    <div class="glass border border-neutral-800 rounded-2xl p-5 hover:border-amber-500/40 transition">
                         <div class="text-amber-400 text-2xl mb-3"><i class="fa-solid fa-network-wired"></i></div>
                         <h4 class="text-white font-bold text-base">50+ Networks</h4>
                         <p class="text-slate-400 text-xs mt-1">Enterprise-grade firewalls, switching & infrastructure.</p>
@@ -576,7 +578,7 @@
 </section>
 
 <!-- SKILLS SECTION -->
-<section id="skills" class="py-24 border-t border-slate-800/70">
+<section id="skills" class="py-24 border-t border-neutral-800/70">
     <div class="max-w-7xl mx-auto px-5 sm:px-8">
         <div class="text-center max-w-3xl mx-auto mb-14 fade-up">
             <div class="text-orange-400 text-xs font-bold uppercase tracking-widest mb-3 font-mono">Technical Skills</div>
@@ -615,7 +617,7 @@
 </section>
 
 <!-- EXPERIENCE SECTION -->
-<section id="experience" class="py-24 border-t border-slate-800/70">
+<section id="experience" class="py-24 border-t border-neutral-800/70">
     <div class="max-w-6xl mx-auto px-5 sm:px-8">
         <div class="text-center mb-16 fade-up">
             <div class="text-orange-400 text-xs font-bold uppercase tracking-widest mb-3 font-mono">Career Track Record</div>
@@ -628,7 +630,7 @@
         <div class="space-y-8">
             <div class="glass border border-orange-500/40 rounded-3xl p-6 sm:p-10 glow fade-up relative overflow-hidden">
                 <div class="absolute top-0 right-0 w-48 h-48 bg-orange-500/10 rounded-full blur-3xl pointer-events-none"></div>
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-6 mb-6">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-neutral-800 pb-6 mb-6">
                     <div>
                         <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 font-mono mb-3">
                             <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> ACTIVE ROLE • DUBAI
@@ -646,32 +648,32 @@
                 </div>
 
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <div class="bg-dark-900/80 p-5 rounded-2xl border border-slate-800/80">
+                    <div class="bg-dark-900/80 p-5 rounded-2xl border border-neutral-800">
                         <div class="w-10 h-10 rounded-xl bg-red-500/15 text-red-400 flex items-center justify-center mb-3"><i class="fa-solid fa-shield-halved text-base"></i></div>
                         <h4 class="text-white font-bold text-sm">Firewalls & Security Gateways</h4>
                         <p class="text-slate-400 text-xs mt-2 leading-relaxed">Fortinet FortiGate HA clustering, next-gen UTM firewall policies, SD-WAN multi-ISP failover, VPN tunnels, and gateway intrusion prevention.</p>
                     </div>
-                    <div class="bg-dark-900/80 p-5 rounded-2xl border border-slate-800/80">
+                    <div class="bg-dark-900/80 p-5 rounded-2xl border border-neutral-800">
                         <div class="w-10 h-10 rounded-xl bg-orange-500/15 text-orange-400 flex items-center justify-center mb-3"><i class="fa-solid fa-network-wired text-base"></i></div>
                         <h4 class="text-white font-bold text-sm">Core Routing & Switching</h4>
                         <p class="text-slate-400 text-xs mt-2 leading-relaxed">Cisco Catalyst and enterprise L2/L3 distribution, VLAN trunking, Inter-VLAN routing, QoS traffic prioritization, and high-density Wi-Fi 6 coverage.</p>
                     </div>
-                    <div class="bg-dark-900/80 p-5 rounded-2xl border border-slate-800/80">
+                    <div class="bg-dark-900/80 p-5 rounded-2xl border border-neutral-800">
                         <div class="w-10 h-10 rounded-xl bg-amber-500/15 text-amber-400 flex items-center justify-center mb-3"><i class="fa-solid fa-diagram-project text-base"></i></div>
                         <h4 class="text-white font-bold text-sm">Network Cabinets & Racks</h4>
                         <p class="text-slate-400 text-xs mt-2 leading-relaxed">42U/48U IT cabinet elevation, spine-leaf fabric cabling, SAN/NAS video storage integration, redundant PDU power balancing, and thermal airflow management.</p>
                     </div>
-                    <div class="bg-dark-900/80 p-5 rounded-2xl border border-slate-800/80">
+                    <div class="bg-dark-900/80 p-5 rounded-2xl border border-neutral-800">
                         <div class="w-10 h-10 rounded-xl bg-red-500/15 text-red-400 flex items-center justify-center mb-3"><i class="fa-solid fa-sliders text-base"></i></div>
                         <h4 class="text-white font-bold text-sm">AV, Amps, Onkyo & Xilica DSP</h4>
                         <p class="text-slate-400 text-xs mt-2 leading-relaxed">Xilica digital signal processors (DSP), Martin Audio pro loudspeakers, Onkyo AVR home cinema integration, LEA Professional power amps, and WiiM hi-res streamers.</p>
                     </div>
-                    <div class="bg-dark-900/80 p-5 rounded-2xl border border-slate-800/80">
+                    <div class="bg-dark-900/80 p-5 rounded-2xl border border-neutral-800">
                         <div class="w-10 h-10 rounded-xl bg-purple-500/15 text-purple-400 flex items-center justify-center mb-3"><i class="fa-solid fa-house-signal text-base"></i></div>
                         <h4 class="text-white font-bold text-sm">Smart Home Automation</h4>
                         <p class="text-slate-400 text-xs mt-2 leading-relaxed">Centralized KNX/Modbus controllers, GVS smart displays, architectural DALI lighting, motorized curtains, HVAC integration, and iPad touchscreens.</p>
                     </div>
-                    <div class="bg-dark-900/80 p-5 rounded-2xl border border-slate-800/80">
+                    <div class="bg-dark-900/80 p-5 rounded-2xl border border-neutral-800">
                         <div class="w-10 h-10 rounded-xl bg-emerald-500/15 text-emerald-400 flex items-center justify-center mb-3"><i class="fa-solid fa-wave-square text-base"></i></div>
                         <h4 class="text-white font-bold text-sm">Fiber Optics & IP ELV</h4>
                         <p class="text-slate-400 text-xs mt-2 leading-relaxed">Belden structured cabling, fusion optical splicing, OTDR loss testing, SIRA-certified centralized VMS CCTV, and biometric RFID access control.</p>
@@ -680,7 +682,7 @@
             </div>
 
             <div class="glass border border-amber-500/30 rounded-3xl p-6 sm:p-8 fade-up hover:border-amber-500/50 transition relative overflow-hidden">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800/80 pb-5 mb-5">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-neutral-800 pb-5 mb-5">
                     <div>
                         <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/30 font-mono mb-2">INTERNATIONAL EXPERIENCE • EUROPE</span>
                         <h3 class="text-xl sm:text-2xl font-bold text-white">DeepSpace Network (DSN) & Infrastructure Engineer</h3>
@@ -696,21 +698,21 @@
                 </div>
 
                 <div class="grid sm:grid-cols-3 gap-3">
-                    <div class="bg-dark-900/70 p-4 rounded-xl border border-slate-800 flex items-start gap-3">
+                    <div class="bg-dark-900/70 p-4 rounded-xl border border-neutral-800 flex items-start gap-3">
                         <i class="fa-solid fa-satellite-dish text-amber-400 mt-1 text-sm"></i>
                         <div>
                             <div class="text-white text-xs font-bold font-mono uppercase">DeepSpace Network (DSN)</div>
                             <div class="text-slate-400 text-xs mt-1">High-reliability telemetry links, ground station data pipes, latency optimization, and signal transmission infrastructure.</div>
                         </div>
                     </div>
-                    <div class="bg-dark-900/70 p-4 rounded-xl border border-slate-800 flex items-start gap-3">
+                    <div class="bg-dark-900/70 p-4 rounded-xl border border-neutral-800 flex items-start gap-3">
                         <i class="fa-solid fa-wave-square text-orange-400 mt-1 text-sm"></i>
                         <div>
                             <div class="text-white text-xs font-bold font-mono uppercase">Fiber Optics Backbone</div>
                             <div class="text-slate-400 text-xs mt-1">Single-mode optical fusion splicing, low-attenuation patch distribution, and OTDR backscatter analysis.</div>
                         </div>
                     </div>
-                    <div class="bg-dark-900/70 p-4 rounded-xl border border-slate-800 flex items-start gap-3">
+                    <div class="bg-dark-900/70 p-4 rounded-xl border border-neutral-800 flex items-start gap-3">
                         <i class="fa-solid fa-network-wired text-emerald-400 mt-1 text-sm"></i>
                         <div>
                             <div class="text-white text-xs font-bold font-mono uppercase">Enterprise Switch Topology</div>
@@ -721,7 +723,7 @@
             </div>
 
             <div class="glass border border-emerald-500/30 rounded-3xl p-6 sm:p-8 fade-up hover:border-emerald-500/50 transition relative overflow-hidden">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800/80 pb-5 mb-5">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-neutral-800 pb-5 mb-5">
                     <div>
                         <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 font-mono mb-2">PREVIOUS EXPERIENCE • INDIA</span>
                         <h3 class="text-xl sm:text-2xl font-bold text-white">Network, Switching & Routing Engineer</h3>
@@ -737,21 +739,21 @@
                 </div>
 
                 <div class="grid sm:grid-cols-3 gap-3">
-                    <div class="bg-dark-900/70 p-4 rounded-xl border border-slate-800 flex items-start gap-3">
+                    <div class="bg-dark-900/70 p-4 rounded-xl border border-neutral-800 flex items-start gap-3">
                         <i class="fa-solid fa-network-wired text-orange-400 mt-1 text-sm"></i>
                         <div>
                             <div class="text-white text-xs font-bold font-mono uppercase">Enterprise Networking</div>
                             <div class="text-slate-400 text-xs mt-1">LAN/WAN deployment, subnetting, TCP/IP architecture, and structured network infrastructure staging.</div>
                         </div>
                     </div>
-                    <div class="bg-dark-900/70 p-4 rounded-xl border border-slate-800 flex items-start gap-3">
+                    <div class="bg-dark-900/70 p-4 rounded-xl border border-neutral-800 flex items-start gap-3">
                         <i class="fa-solid fa-sliders text-amber-400 mt-1 text-sm"></i>
                         <div>
                             <div class="text-white text-xs font-bold font-mono uppercase">Switching & VLANs</div>
                             <div class="text-slate-400 text-xs mt-1">L2/L3 managed switch configuration, VLAN tagging, port security, and spanning tree protocol (STP).</div>
                         </div>
                     </div>
-                    <div class="bg-dark-900/70 p-4 rounded-xl border border-slate-800 flex items-start gap-3">
+                    <div class="bg-dark-900/70 p-4 rounded-xl border border-neutral-800 flex items-start gap-3">
                         <i class="fa-solid fa-route text-emerald-400 mt-1 text-sm"></i>
                         <div>
                             <div class="text-white text-xs font-bold font-mono uppercase">Routing & Troubleshooting</div>
@@ -765,7 +767,7 @@
 </section>
 
 <!-- CONTACT SECTION -->
-<section id="contact" class="py-24 border-t border-slate-800/80">
+<section id="contact" class="py-24 border-t border-neutral-800/80">
     <div class="max-w-7xl mx-auto px-5 sm:px-8">
         <div class="grid lg:grid-cols-2 gap-14 items-center">
             <div class="fade-up">
@@ -777,28 +779,28 @@
 
                 <div class="space-y-5 mt-9">
                     <a href="mailto:s.faishal@dynamicworld.ae" class="flex items-center gap-4 group">
-                        <div class="w-12 h-12 rounded-xl bg-dark-800 border border-slate-700 flex items-center justify-center text-orange-400 group-hover:bg-orange-600 group-hover:text-white transition"><i class="fa-solid fa-envelope"></i></div>
+                        <div class="w-12 h-12 rounded-xl bg-dark-800 border border-neutral-700 flex items-center justify-center text-orange-400 group-hover:bg-orange-600 group-hover:text-white transition"><i class="fa-solid fa-envelope"></i></div>
                         <div>
                             <div class="text-xs text-slate-500 uppercase tracking-wider">Email</div>
                             <div class="text-white font-semibold">s.faishal@dynamicworld.ae</div>
                         </div>
                     </a>
                     <a href="https://wa.me/971503928611" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 group">
-                        <div class="w-12 h-12 rounded-xl bg-dark-800 border border-slate-700 flex items-center justify-center text-green-400 group-hover:bg-green-600 group-hover:text-white transition"><i class="fa-brands fa-whatsapp"></i></div>
+                        <div class="w-12 h-12 rounded-xl bg-dark-800 border border-neutral-700 flex items-center justify-center text-green-400 group-hover:bg-green-600 group-hover:text-white transition"><i class="fa-brands fa-whatsapp"></i></div>
                         <div>
                             <div class="text-xs text-slate-500 uppercase tracking-wider">WhatsApp</div>
                             <div class="text-white font-semibold">Message on WhatsApp</div>
                         </div>
                     </a>
                     <a href="https://www.instagram.com/ffaishalll" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 group">
-                        <div class="w-12 h-12 rounded-xl bg-dark-800 border border-slate-700 flex items-center justify-center text-pink-400 group-hover:bg-pink-600 group-hover:text-white transition"><i class="fa-brands fa-instagram"></i></div>
+                        <div class="w-12 h-12 rounded-xl bg-dark-800 border border-neutral-700 flex items-center justify-center text-pink-400 group-hover:bg-pink-600 group-hover:text-white transition"><i class="fa-brands fa-instagram"></i></div>
                         <div>
                             <div class="text-xs text-slate-500 uppercase tracking-wider">Instagram</div>
                             <div class="text-white font-semibold group-hover:text-pink-400 transition">Instagram</div>
                         </div>
                     </a>
                     <a href="https://www.linkedin.com/in/shah-faishal-2000b6266" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 group">
-                        <div class="w-12 h-12 rounded-xl bg-dark-800 border border-slate-700 flex items-center justify-center text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition"><i class="fa-brands fa-linkedin-in"></i></div>
+                        <div class="w-12 h-12 rounded-xl bg-dark-800 border border-neutral-700 flex items-center justify-center text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition"><i class="fa-brands fa-linkedin-in"></i></div>
                         <div>
                             <div class="text-xs text-slate-500 uppercase tracking-wider">LinkedIn</div>
                             <div class="text-white font-semibold group-hover:text-blue-400 transition">LinkedIn</div>
@@ -807,21 +809,21 @@
                 </div>
             </div>
 
-            <div class="glass border border-slate-800 rounded-3xl p-8 glow fade-up">
+            <div class="glass border border-neutral-800 rounded-3xl p-8 glow fade-up">
                 <div class="text-white text-xl font-bold">Quick Contact</div>
                 <p class="text-slate-400 text-sm mt-2">Send your project requirements directly through WhatsApp.</p>
                 <form id="contactForm" class="mt-7 space-y-5">
                     <div>
                         <label class="text-xs text-slate-400 uppercase tracking-wider">Name</label>
-                        <input id="name" type="text" required placeholder="Your name" class="mt-2 w-full px-4 py-3.5 rounded-xl bg-dark-900/90 border border-slate-700 text-white placeholder-slate-600 focus:outline-none focus:border-orange-500 transition">
+                        <input id="name" type="text" required placeholder="Your name" class="mt-2 w-full px-4 py-3.5 rounded-xl bg-dark-900/90 border border-neutral-700 text-white placeholder-slate-600 focus:outline-none focus:border-orange-500 transition">
                     </div>
                     <div>
                         <label class="text-xs text-slate-400 uppercase tracking-wider">Email</label>
-                        <input id="email" type="email" required placeholder="your@email.com" class="mt-2 w-full px-4 py-3.5 rounded-xl bg-dark-900/90 border border-slate-700 text-white placeholder-slate-600 focus:outline-none focus:border-orange-500 transition">
+                        <input id="email" type="email" required placeholder="your@email.com" class="mt-2 w-full px-4 py-3.5 rounded-xl bg-dark-900/90 border border-neutral-700 text-white placeholder-slate-600 focus:outline-none focus:border-orange-500 transition">
                     </div>
                     <div>
                         <label class="text-xs text-slate-400 uppercase tracking-wider">Message</label>
-                        <textarea id="message" rows="5" required placeholder="Tell me about your project..." class="mt-2 w-full px-4 py-3.5 rounded-xl bg-dark-900/90 border border-slate-700 text-white placeholder-slate-600 focus:outline-none focus:border-orange-500 transition"></textarea>
+                        <textarea id="message" rows="5" required placeholder="Tell me about your project..." class="mt-2 w-full px-4 py-3.5 rounded-xl bg-dark-900/90 border border-neutral-700 text-white placeholder-slate-600 focus:outline-none focus:border-orange-500 transition"></textarea>
                     </div>
                     <button type="submit" class="w-full py-4 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold transition shadow-lg shadow-orange-600/30">
                         <i class="fa-brands fa-whatsapp mr-2"></i> Send via WhatsApp
@@ -833,7 +835,7 @@
 </section>
 
 <!-- DISCLAIMER SECTION -->
-<section class="py-12 border-t border-slate-800/80 bg-dark-900/60 relative z-10">
+<section class="py-12 border-t border-neutral-800/80 bg-dark-900/60 relative z-10">
     <div class="max-w-5xl mx-auto px-5 sm:px-8 text-center">
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-mono text-orange-400 bg-orange-500/10 border border-orange-500/30 mb-4">
             <i class="fa-solid fa-shield-halved"></i> DISCLAIMER & TRADEMARKS
@@ -845,7 +847,7 @@
 </section>
 
 <!-- FOOTER -->
-<footer class="py-8 border-t border-slate-800/80 bg-dark-900/90 relative z-10">
+<footer class="py-8 border-t border-neutral-800/80 bg-dark-900/90 relative z-10">
     <div class="max-w-7xl mx-auto px-5 sm:px-8">
         <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
             <div class="text-sm text-slate-500 font-mono">© <span id="year"></span> Shah Faishal. All rights reserved.</div>
@@ -864,8 +866,8 @@
 
 <!-- MODALS -->
 <div id="detailModal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4 sm:p-6 overflow-y-auto">
-    <div class="relative w-full max-w-4xl glass border border-slate-700/80 rounded-3xl overflow-hidden shadow-2xl my-auto">
-        <button onclick="closeServiceDetail()" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-dark-900/80 border border-slate-700 text-slate-300 hover:text-white hover:bg-orange-600 flex items-center justify-center transition"><i class="fa-solid fa-xmark text-lg"></i></button>
+    <div class="relative w-full max-w-4xl glass border border-neutral-700 rounded-3xl overflow-hidden shadow-2xl my-auto">
+        <button onclick="closeServiceDetail()" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-dark-900/80 border border-neutral-700 text-slate-300 hover:text-white hover:bg-orange-600 flex items-center justify-center transition"><i class="fa-solid fa-xmark text-lg"></i></button>
         <div class="flex flex-col">
             <div id="modalMediaContainer" class="w-full h-64 sm:h-96 overflow-hidden bg-dark-900 relative flex items-center justify-center">
                 <!-- Dynamically injected Image -->
@@ -874,7 +876,7 @@
                 <div id="modalCategory" class="text-xs font-mono text-orange-400 font-bold uppercase tracking-widest mb-2"></div>
                 <h3 id="modalTitle" class="text-2xl sm:text-3xl font-extrabold text-white leading-tight italic"></h3>
                 <p id="modalDesc" class="text-slate-300 text-base sm:text-lg leading-relaxed mt-4"></p>
-                <div class="mt-8 pt-6 border-t border-slate-800 flex justify-between items-center">
+                <div class="mt-8 pt-6 border-t border-neutral-800 flex justify-between items-center">
                     <span class="text-xs text-slate-500 font-mono">Shah Faishal Engineering Archive</span>
                     <button onclick="closeServiceDetail()" class="px-5 py-2.5 rounded-xl bg-orange-600 hover:bg-orange-500 text-white text-sm font-semibold transition">Close Preview</button>
                 </div>
@@ -885,8 +887,8 @@
 
 <div id="partnerModal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4 sm:p-6 overflow-y-auto">
     <div class="relative w-full max-w-2xl glass border border-orange-500/40 rounded-3xl overflow-hidden shadow-2xl my-auto p-6 sm:p-8">
-        <button onclick="closePartnerDetail()" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-dark-900/80 border border-slate-700 text-slate-300 hover:text-white hover:bg-orange-600 flex items-center justify-center transition"><i class="fa-solid fa-xmark text-lg"></i></button>
-        <div class="flex items-center gap-4 border-b border-slate-800 pb-5">
+        <button onclick="closePartnerDetail()" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-dark-900/80 border border-neutral-700 text-slate-300 hover:text-white hover:bg-orange-600 flex items-center justify-center transition"><i class="fa-solid fa-xmark text-lg"></i></button>
+        <div class="flex items-center gap-4 border-b border-neutral-800 pb-5">
             <div id="partnerModalIcon" class="w-14 h-14 rounded-2xl bg-orange-500/15 border border-orange-500/30 flex items-center justify-center text-orange-400 text-2xl"><i class="fa-solid fa-microchip"></i></div>
             <div>
                 <span id="partnerModalTag" class="text-[10px] uppercase font-mono tracking-widest text-orange-400 font-bold">Enterprise OEM Solution</span>
@@ -897,7 +899,7 @@
             <h4 class="text-xs font-mono uppercase text-slate-400 tracking-wider mb-2">Technical Implementation & Role</h4>
             <p id="partnerModalDesc" class="text-slate-300 text-base leading-relaxed"></p>
         </div>
-        <div class="pt-5 border-t border-slate-800 flex justify-between items-center gap-3">
+        <div class="pt-5 border-t border-neutral-800 flex justify-between items-center gap-3">
             <a id="partnerModalLink" href="#" target="_blank" rel="noopener noreferrer" class="hidden px-5 py-2.5 rounded-xl bg-orange-600 hover:bg-orange-500 text-white text-sm font-semibold transition inline-flex items-center gap-2 shadow-lg shadow-orange-600/30">
                 <i class="fa-solid fa-globe text-xs"></i> Official Website
             </a>
@@ -908,7 +910,7 @@
 
 <div id="heartModal" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-2xl hidden flex-col items-center justify-between p-6 sm:p-10 select-none">
     <div class="w-full flex justify-end">
-        <button onclick="closeHeartModal()" class="w-10 h-10 rounded-full bg-dark-800/80 border border-slate-700 text-slate-300 hover:text-white hover:bg-red-600 flex items-center justify-center transition shadow-lg"><i class="fa-solid fa-xmark text-base"></i></button>
+        <button onclick="closeHeartModal()" class="w-10 h-10 rounded-full bg-dark-800/80 border border-neutral-700 text-slate-300 hover:text-white hover:bg-red-600 flex items-center justify-center transition shadow-lg"><i class="fa-solid fa-xmark text-base"></i></button>
     </div>
     <div id="heartArena" class="relative w-full h-[65vh] flex items-center justify-center overflow-hidden">
         <div id="dodgingHeartContainer" onmouseenter="dodgeHeart()" ontouchstart="dodgeHeart(event)">
@@ -1094,7 +1096,7 @@
         const mediaContainer = document.getElementById('modalMediaContainer');
         mediaContainer.innerHTML = `
             <img src="${item.image}" alt="Deployment Visual" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-gradient-to-t from-dark-900 via-transparent to-transparent pointer-events-none"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#030303] via-transparent to-transparent pointer-events-none"></div>
         `;
 
         const modal = document.getElementById('detailModal');
@@ -1129,7 +1131,7 @@
         window.open("https://wa.me/971503928611?text=" + encodeURIComponent(text), "_blank");
     });
 
-    // MATRIX RAIN BACKGROUND ANIMATION SCRIPT
+    // DARK MATRIX RAIN ANIMATION SCRIPT
     const canvas = document.getElementById('matrixCanvas');
     const ctx = canvas.getContext('2d');
 
@@ -1146,7 +1148,7 @@
     initDrops();
 
     function drawMatrix() {
-        ctx.fillStyle = 'rgba(3, 8, 17, 0.08)';
+        ctx.fillStyle = 'rgba(3, 3, 3, 0.12)';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         
         ctx.fillStyle = '#ff4d4d'; 
@@ -1168,7 +1170,7 @@
     
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    setInterval(drawMatrix, 50);
+    setInterval(drawMatrix, 55);
 </script>
 
 </body>
