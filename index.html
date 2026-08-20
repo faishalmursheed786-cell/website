@@ -811,7 +811,7 @@
         <button onclick="closeServiceDetail()" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-dark-900/80 border border-slate-700 text-slate-300 hover:text-white hover:bg-brand-600 flex items-center justify-center transition"><i class="fa-solid fa-xmark text-lg"></i></button>
         <div class="flex flex-col">
             <div id="modalMediaContainer" class="w-full h-64 sm:h-96 overflow-hidden bg-dark-900 relative flex items-center justify-center">
-                <!-- Dynamically injected Image or Video with Fallback -->
+                <!-- Dynamically injected Image -->
             </div>
             <div class="p-6 sm:p-8">
                 <div id="modalCategory" class="text-xs font-mono text-brand-400 font-bold uppercase tracking-widest mb-2"></div>
@@ -985,11 +985,11 @@
     }
 
     const servicesData = [
-        { category: "Network & Security Gateways", title: "Enterprise Network & IT Rack Deployment", image: "rack.jpg", video: "rack-viedo.MP4", desc: "Deployment of Next-Generation Firewalls (FortiGate HA Cluster) and core edge routers for secure multi-WAN load balancing and SD-WAN branch interconnects." },
+        { category: "Network & Security Gateways", title: "Enterprise Network & IT Rack Deployment", image: "rack.jpg", desc: "Deployment of Next-Generation Firewalls (FortiGate HA Cluster) and core edge routers for secure multi-WAN load balancing and SD-WAN branch interconnects." },
         { category: "Villa Automation", title: "Luxury Villas ICT & Automation Projects In Dubai", image: "villa.jpg", desc: "Delivering seamless network reliability, advanced VMS surveillance, multi-room acoustic systems, and unified smart automation across Dubai's elite properties." },
         { category: "CCTV & Security", title: "Enterprise VMS & IP Surveillance", image: "cctv.jpg", desc: "Deployment of centralized Video Management Systems (VMS), high-density control room video walls, multi-tier SAN/NAS storage archiving, and AI-powered IP CCTV analytics for enterprise-grade security operations." },
         { category: "Pro Audio & AV Systems", title: "Multi-zone Audio & Cinema Integration", image: "audio.jpg", desc: "Transforming luxury spaces into immersive soundscapes with Xilica DSP processing, Martin Audio loudspeakers, Onkyo AVR 4K cinema routing, LEA Professional amps, and theater-grade acoustics." },
-        { category: "Core Infrastructure & Fiber", title: "Core Data Infrastructure & Spine-Leaf Cabling", image: "datacenter.jpg", video: "datacenter-viedo.MP4", desc: "Deployment of high-density open network cabinets featuring spine-leaf fabric architecture, structured blue fiber/copper cabling containment, and redundant enterprise power distribution." },
+        { category: "Core Infrastructure & Fiber", title: "Core Data Infrastructure & Spine-Leaf Cabling", image: "datacenter.jpg", desc: "Deployment of high-density open network cabinets featuring spine-leaf fabric architecture, structured blue fiber/copper cabling containment, and redundant enterprise power distribution." },
         { category: "Engineering Design", title: "Smart Villa ICT & Automation Design", image: "autocad.jpg", desc: "From schematic design to full deployment: robust ICT for modern smart villas. Architecting secure, high-speed, and unified smart automation ecosystems." }
     ];
 
@@ -1043,20 +1043,10 @@
         document.getElementById('modalDesc').textContent = item.desc;
         
         const mediaContainer = document.getElementById('modalMediaContainer');
-        if (item.video) {
-            mediaContainer.innerHTML = `
-                <video autoplay muted loop playsinline class="w-full h-full object-cover" onerror="this.onerror=null; this.parentElement.innerHTML='<img src=\x27${item.image}\x27 class=\x27w-full h-full object-cover\x27>';">
-                    <source src="${item.video}" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                <div class="absolute inset-0 bg-gradient-to-t from-dark-900 via-transparent to-transparent pointer-events-none"></div>
-            `;
-        } else {
-            mediaContainer.innerHTML = `
-                <img src="${item.image}" alt="Deployment Visual" class="w-full h-full object-cover">
-                <div class="absolute inset-0 bg-gradient-to-t from-dark-900 via-transparent to-transparent pointer-events-none"></div>
-            `;
-        }
+        mediaContainer.innerHTML = `
+            <img src="${item.image}" alt="Deployment Visual" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-dark-900 via-transparent to-transparent pointer-events-none"></div>
+        `;
 
         const modal = document.getElementById('detailModal');
         modal.classList.remove('hidden'); modal.classList.add('flex');
