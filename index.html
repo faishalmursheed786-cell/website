@@ -37,7 +37,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
-    <!-- Google Fonts (Including Cursive Dancing Script & Orbitron) -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Dancing+Script:wght@600;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,700;1,800&family=Orbitron:wght@600;800;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
@@ -90,10 +90,10 @@
         #preloaderMatrix { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0.25; z-index: 1; }
 
         .preloader-heading {
-            font-family: 'Orbitron', sans-serif; letter-spacing: 0.12em; color: #ff4d4d;
+            font-family: 'Dancing Script', cursive; letter-spacing: 0.05em; color: #ff4d4d;
             text-shadow: 0 0 25px rgba(255, 77, 77, 0.7);
             animation: textZoomIn 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-            opacity: 0; transform: scale(0.5); display: flex; align-items: center;
+            opacity: 0; transform: scale(0.5); display: flex; align-items: center; font-size: 4rem;
         }
 
         #dropBox {
@@ -103,7 +103,7 @@
             animation: dropInBox 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.3s forwards;
             opacity: 0; transform: translateY(-120vh) scale(0.5);
         }
-        #dropBox span { color: #ff4d4d !important; }
+        #dropBox span { color: #ff4d4d !important; font-family: 'Dancing Script', cursive; }
 
         @keyframes dropInBox {
             0% { opacity: 0; transform: translateY(-120vh) scale(0.5); }
@@ -112,7 +112,7 @@
         }
 
         .full-screen-line {
-            position: absolute; left: 50%; top: calc(50% + 40px); transform: translateX(-50%);
+            position: absolute; left: 50%; top: calc(50% + 50px); transform: translateX(-50%);
             height: 1.5px; width: 0vw;
             background: linear-gradient(90deg, transparent 0%, rgba(255,77,77,0.2) 15%, #ff4d4d 50%, rgba(249,115,22,0.8) 75%, transparent 100%);
             box-shadow: 0 0 20px rgba(255, 77, 77, 0.9);
@@ -175,14 +175,14 @@
 
 <body class="bg-[#030303] text-slate-200 font-sans antialiased notranslate" translate="no">
 
-<!-- CINEMATIC PRELOADER WITH MATRIX -->
+<!-- CINEMATIC PRELOADER WITH CURSIVE FONT & MATRIX -->
 <div id="preloader" class="notranslate" translate="no">
     <canvas id="preloaderMatrix"></canvas>
     <div class="relative z-50 text-center px-4 select-none flex flex-col items-center justify-center">
-        <div class="preloader-heading font-bold text-3xl sm:text-5xl md:text-6xl font-cool notranslate" translate="no">
+        <div class="preloader-heading font-bold font-cursive notranslate text-5xl sm:text-6xl md:text-7xl" translate="no">
             <span>F</span>
             <div id="dropBox">
-                <span class="lowercase tracking-normal text-xl sm:text-3xl md:text-4xl font-mono">ai.</span>
+                <span class="lowercase tracking-normal font-cursive text-3xl sm:text-4xl md:text-5xl">ai.</span>
             </div>
             <span>S</span><span>H</span><span>A</span><span>L</span>
         </div>
@@ -208,7 +208,7 @@
             </div>
 
             <a href="#home">
-                <div class="text-white font-bold font-cool text-lg tracking-wider hover:text-orange-400 transition notranslate" translate="no">F<span class="text-orange-500">ai.</span>SHAL</div>
+                <div class="text-white font-bold font-cursive text-2xl tracking-wider hover:text-orange-400 transition notranslate" translate="no">F<span class="text-orange-500">ai.</span>SHAL</div>
             </a>
         </div>
 
@@ -261,7 +261,7 @@
                 
                 <h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white leading-[1.1] tracking-tight">
                     Architecting The Digital Backbone of
-                    <span class="gradient-text block mt-2 font-cool tracking-wide">Elite Networks & Luxury</span>
+                    <span class="gradient-text block mt-2 font-cursive tracking-wide text-5xl sm:text-6xl">Elite Networks & Luxury</span>
                     Environments.
                 </h1>
 
@@ -297,7 +297,7 @@
                                 <div class="glass border border-neutral-700 rounded-2xl p-4 shadow-2xl backdrop-blur-xl">
                                     <div class="flex items-center justify-between">
                                         <div>
-                                            <div class="font-bold text-white text-left text-base font-cool tracking-wider">F<span class="text-orange-500">ai.</span>SHAL</div>
+                                            <div class="font-bold text-white text-left text-lg font-cursive tracking-wider">F<span class="text-orange-500">ai.</span>SHAL</div>
                                             <div class="text-xs text-orange-400 mt-1 text-left font-mono tracking-wide">Network • Automation • AV • ELV</div>
                                         </div>
                                         <div class="w-11 h-11 rounded-xl bg-orange-500/20 border border-orange-500/30 flex items-center justify-center text-orange-400 text-lg shadow-inner">
