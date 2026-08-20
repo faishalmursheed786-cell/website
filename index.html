@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth" translate="no">
 <head>
@@ -87,7 +86,7 @@
             transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.8s ease;
         }
         #preloader.fade-out { opacity: 0; visibility: hidden; pointer-events: none; }
-        #preloaderCanvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0.4; }
+        #preloaderMatrix { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0.25; z-index: 1; }
 
         .preloader-heading {
             font-family: 'Orbitron', sans-serif; letter-spacing: 0.12em; color: #ff4d4d;
@@ -175,9 +174,9 @@
 
 <body class="bg-[#030303] text-slate-200 font-sans antialiased notranslate" translate="no">
 
-<!-- CINEMATIC PRELOADER WITH COOL FONT -->
+<!-- CINEMATIC PRELOADER WITH MATRIX -->
 <div id="preloader" class="notranslate" translate="no">
-    <canvas id="preloaderCanvas"></canvas>
+    <canvas id="preloaderMatrix"></canvas>
     <div class="relative z-50 text-center px-4 select-none flex flex-col items-center justify-center">
         <div class="preloader-heading font-bold text-3xl sm:text-5xl md:text-6xl font-cool notranslate" translate="no">
             <span>F</span>
@@ -939,47 +938,39 @@
 
 <!-- SCRIPTS -->
 <script>
-    // PRELOADER CANVAS
-    const pCanvas = document.getElementById('preloaderCanvas');
+    // PRELOADER MATRIX CANVAS
+    const pCanvas = document.getElementById('preloaderMatrix');
     const pCtx = pCanvas.getContext('2d');
-    let preloaderParticles = [];
-    function resizePreloaderCanvas() { pCanvas.width = window.innerWidth; pCanvas.height = window.innerHeight; }
-    resizePreloaderCanvas();
-    window.addEventListener('resize', resizePreloaderCanvas);
-
-    class PreParticle {
-        constructor() {
-            this.x = Math.random() * pCanvas.width;
-            this.y = Math.random() * pCanvas.height;
-            this.size = Math.random() * 2 + 1;
-            this.speedX = (Math.random() - 0.5) * 1.2;
-            this.speedY = (Math.random() - 0.5) * 1.2;
-        }
-        update() {
-            this.x += this.speedX; this.y += this.speedY;
-            if (this.x < 0 || this.x > pCanvas.width) this.speedX = -this.speedX;
-            if (this.y < 0 || this.y > pCanvas.height) this.speedY = -this.speedY;
-        }
-        draw() {
-            pCtx.fillStyle = '#ff4d4d'; pCtx.beginPath(); pCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2); pCtx.fill();
-        }
+    let preloaderDrops = [];
+    function resizePreloaderMatrix() { 
+        pCanvas.width = window.innerWidth; 
+        pCanvas.height = window.innerHeight; 
+        let cols = Math.floor(pCanvas.width / 14);
+        preloaderDrops = Array(cols).fill(1);
     }
-    for (let i = 0; i < 70; i++) preloaderParticles.push(new PreParticle());
+    resizePreloaderMatrix();
+    window.addEventListener('resize', resizePreloaderMatrix);
 
-    function animatePreloader() {
-        pCtx.clearRect(0, 0, pCanvas.width, pCanvas.height);
-        for (let i = 0; i < preloaderParticles.length; i++) {
-            preloaderParticles[i].update(); preloaderParticles[i].draw();
-        }
-        if (!document.getElementById('preloader').classList.contains('fade-out')) requestAnimationFrame(animatePreloader);
+    function animatePreloaderMatrix() {
+        pCtx.fillStyle = 'rgba(3, 3, 3, 0.1)';
+        pCtx.fillRect(0, 0, pCanvas.width, pCanvas.height);
+        pCtx.fillStyle = '#ff4d4d';
+        pCtx.font = '14px monospace';
+        preloaderDrops.forEach((drop, i) => {
+            const text = '01'.charAt(Math.floor(Math.random() * 2));
+            pCtx.fillText(text, i * 14, drop * 14);
+            if (drop * 14 > pCanvas.height && Math.random() > 0.975) preloaderDrops[i] = 0;
+            preloaderDrops[i]++;
+        });
+        if (!document.getElementById('preloader').classList.contains('fade-out')) requestAnimationFrame(animatePreloaderMatrix);
     }
-    animatePreloader();
+    animatePreloaderMatrix();
 
     window.addEventListener('load', () => {
         setTimeout(() => {
             const preloader = document.getElementById('preloader');
             if (preloader) { preloader.classList.add('fade-out'); setTimeout(() => { preloader.style.display = 'none'; }, 800); }
-        }, 2000);
+        }, 1800);
     });
 
     // MINI GAME LOGIC
@@ -1131,7 +1122,7 @@
         window.open("https://wa.me/971503928611?text=" + encodeURIComponent(text), "_blank");
     });
 
-    // DARK MATRIX RAIN ANIMATION SCRIPT
+    // DARK MATRIX RAIN BACKGROUND ANIMATION SCRIPT
     const canvas = document.getElementById('matrixCanvas');
     const ctx = canvas.getContext('2d');
 
