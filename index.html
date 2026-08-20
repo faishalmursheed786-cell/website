@@ -73,9 +73,10 @@
         html { scroll-behavior: smooth; }
         body { overflow-x: hidden; background-color: #030811; color: #cbd5e1; font-family: 'Plus Jakarta Sans', sans-serif; }
 
-        #energyCanvas {
+        /* MATRIX RAIN BACKGROUND */
+        #matrixCanvas {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            z-index: 0; pointer-events: none;
+            z-index: 0; pointer-events: none; opacity: 0.25;
         }
 
         #preloader {
@@ -187,8 +188,8 @@
     </div>
 </div>
 
-<!-- FIRE ENERGY BACKGROUND CANVAS -->
-<canvas id="energyCanvas"></canvas>
+<!-- MATRIX RAIN BACKGROUND CANVAS -->
+<canvas id="matrixCanvas"></canvas>
 
 <!-- NAVBAR -->
 <header class="fixed top-0 left-0 right-0 z-50 glass border-b border-slate-800/80 notranslate" translate="no">
@@ -239,7 +240,7 @@
     </div>
 </header>
 
-<!-- HERO SECTION WITH FIRE BACKGROUND AND HOVER-REVEAL IMAGE -->
+<!-- HERO SECTION WITH MATRIX BACKGROUND AND HOVER-REVEAL IMAGE -->
 <section id="home" class="relative min-h-screen flex items-center pt-36 pb-24 overflow-hidden">
     <div class="absolute inset-0 bg-gradient-to-b from-dark-900/70 via-dark-900/40 to-dark-900/95 z-0"></div>
     <div class="absolute inset-0 grid-bg z-0 opacity-40"></div>
@@ -1128,49 +1129,46 @@
         window.open("https://wa.me/971503928611?text=" + encodeURIComponent(text), "_blank");
     });
 
-    // FIRE ENERGY BACKGROUND ANIMATION SCRIPT
-    const canvas = document.getElementById('energyCanvas');
+    // MATRIX RAIN BACKGROUND ANIMATION SCRIPT
+    const canvas = document.getElementById('matrixCanvas');
     const ctx = canvas.getContext('2d');
-    let particles = [];
 
-    function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
+    const chars = '010101011001010123456789ABCDEFｦｱｳｴｵｶｷｹｺｻｼｽｾｿﾀﾂﾃﾅﾆﾇﾈﾊﾋﾎﾏﾐﾑﾒﾓﾔﾕﾗﾘﾜ';
+    const fontSize = 14;
+    let columns = Math.floor(window.innerWidth / fontSize);
+    let drops = [];
 
-    class Particle {
-        constructor() {
-            this.x = Math.random() * canvas.width;
-            this.y = Math.random() * canvas.height;
-            this.vx = (Math.random() - 0.5) * 1.5;
-            this.vy = (Math.random() - 0.5) * 1.5;
-            this.size = Math.random() * 3 + 1;
-        }
-        draw() {
-            ctx.fillStyle = Math.random() > 0.5 ? 'rgba(255, 77, 77, 0.6)' : 'rgba(249, 115, 22, 0.4)';
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fill();
-        }
-        update() {
-            this.x += this.vx; this.y += this.vy;
-            if(this.x < 0 || this.x > canvas.width) this.vx *= -1;
-            if(this.y < 0 || this.y > canvas.height) this.vy *= -1;
-        }
+    function initDrops() {
+        columns = Math.floor(window.innerWidth / fontSize);
+        drops = [];
+        for (let i = 0; i < columns; i++) drops[i] = Math.random() * -100;
     }
+    initDrops();
 
-    function initParticles() {
-        particles = [];
-        for(let i=0; i<80; i++) particles.push(new Particle());
-    }
-    initParticles();
-
-    function animateParticles() {
-        ctx.fillStyle = 'rgba(3, 8, 17, 0.15)';
+    function drawMatrix() {
+        ctx.fillStyle = 'rgba(3, 8, 17, 0.08)';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-        particles.forEach(p => { p.update(); p.draw(); });
-        requestAnimationFrame(animateParticles);
+        
+        ctx.fillStyle = '#ff4d4d'; 
+        ctx.font = fontSize + 'px monospace';
+
+        for (let i = 0; i < drops.length; i++) {
+            const text = chars.charAt(Math.floor(Math.random() * chars.length));
+            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+            drops[i]++;
+        }
     }
-    animateParticles();
+
+    window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        initDrops();
+    });
+    
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    setInterval(drawMatrix, 50);
 </script>
 
 </body>
