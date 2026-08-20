@@ -127,8 +127,8 @@
         }
         .z-interactive-btn { animation: zPulse 2s infinite; }
 
-        #matrixCanvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; opacity: 0.5; }
-        .glass { background: rgba(7, 16, 30, 0.85) !important; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+        #matrixCanvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; opacity: 0.35; }
+        .glass { background: rgba(7, 16, 30, 0.88) !important; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
         
         .super-glass-sidebar {
             background: rgba(3, 8, 17, 0.35) !important;
@@ -237,16 +237,18 @@
 </header>
 
 <!-- HERO SECTION -->
-<section id="home" class="relative min-h-screen flex items-center pt-32 pb-24 overflow-hidden">
+<section id="home" class="relative min-h-screen flex items-center pt-36 pb-20 overflow-hidden">
     <canvas id="networkCanvas" class="absolute inset-0 w-full h-full z-0 pointer-events-none"></canvas>
-    <div class="absolute inset-0 bg-gradient-to-b from-dark-900/40 via-dark-900/20 to-dark-900/90 z-0"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-dark-900/60 via-dark-900/30 to-dark-900/95 z-0"></div>
     <div class="absolute inset-0 grid-bg z-0 opacity-30"></div>
     <div class="absolute -top-40 -right-40 w-96 h-96 bg-brand-500/10 rounded-full blur-3xl z-0"></div>
     <div class="absolute bottom-0 -left-40 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl z-0"></div>
 
     <div class="max-w-7xl mx-auto px-5 sm:px-8 relative z-10 w-full">
         <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-            <div class="lg:col-span-7 fade-up text-center lg:text-left">
+            
+            <!-- Left Content Column with safe padding to prevent overlap -->
+            <div class="lg:col-span-7 fade-up text-center lg:text-left pr-0 lg:pr-4">
                 <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-brand-500/30 bg-brand-500/10 text-brand-400 text-xs sm:text-sm font-semibold mb-6 backdrop-blur-md">
                     <span class="w-2 h-2 rounded-full bg-brand-400 animate-pulse"></span>
                     Network • ELV • Automation • AV • Infrastructure
@@ -256,13 +258,13 @@
                     <span class="gradient-text">Elite Networks & Luxury</span>
                     Environments.
                 </h1>
-                <p class="mt-7 text-lg sm:text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                <p class="mt-7 text-lg sm:text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto lg:mx-0 pb-4">
                     A <strong class="text-white">Senior Network, Automation, AV, ELV & Infrastructure Engineer</strong> from 
                     <a href="https://dynamicworld.ae" target="_blank" rel="noopener noreferrer" class="text-brand-400 hover:text-cyan-300 underline underline-offset-4 decoration-brand-500/50 hover:decoration-cyan-300 transition inline-flex items-center gap-1 font-semibold">
                         Dynamic World Computer LLC <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
                     </a>.
                 </p>
-                <div class="flex flex-wrap justify-center lg:justify-start gap-4 mt-10">
+                <div class="flex flex-wrap justify-center lg:justify-start gap-4 mt-6">
                     <a href="#services" class="px-8 py-4 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold transition shadow-xl shadow-brand-600/30 border border-brand-400/30 inline-flex items-center">
                         <i class="fa-solid fa-diagram-project mr-2"></i> View Projects & Specializations
                     </a>
@@ -272,6 +274,7 @@
                 </div>
             </div>
 
+            <!-- Right Photo Card Column -->
             <div class="lg:col-span-5 flex justify-center fade-up">
                 <div class="relative w-full max-w-sm sm:max-w-md">
                     <div class="absolute inset-0 bg-brand-500/15 blur-3xl rounded-full"></div>
