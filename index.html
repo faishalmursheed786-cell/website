@@ -127,8 +127,8 @@
         }
         .z-interactive-btn { animation: zPulse 2s infinite; }
 
-        #matrixCanvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; opacity: 0.35; }
-        .glass { background: rgba(7, 16, 30, 0.88) !important; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+        #matrixCanvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; opacity: 0.25; }
+        .glass { background: rgba(7, 16, 30, 0.85) !important; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
         
         .super-glass-sidebar {
             background: rgba(3, 8, 17, 0.35) !important;
@@ -139,8 +139,8 @@
 
         .glow { box-shadow: 0 0 35px rgba(14, 165, 233, 0.18), inset 0 0 20px rgba(14, 165, 233, 0.05); }
         .grid-bg {
-            background-image: linear-gradient(rgba(56, 189, 248, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(56, 189, 248, 0.03) 1px, transparent 1px);
-            background-size: 45px 45px;
+            background-image: linear-gradient(rgba(56, 189, 248, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(56, 189, 248, 0.04) 1px, transparent 1px);
+            background-size: 50px 50px;
         }
         .fade-up { opacity: 0; transform: translateY(25px); transition: all 0.8s ease; }
         .fade-up.show { opacity: 1; transform: translateY(0); }
@@ -236,37 +236,40 @@
     </div>
 </header>
 
-<!-- HERO SECTION -->
-<section id="home" class="relative min-h-screen flex items-center pt-36 pb-20 overflow-hidden">
+<!-- REDESIGNED HERO SECTION (ULTRA-MODERN CYBERPUNK ASYMMETRIC VIBE) -->
+<section id="home" class="relative min-h-screen flex items-center pt-36 pb-24 overflow-hidden">
     <canvas id="networkCanvas" class="absolute inset-0 w-full h-full z-0 pointer-events-none"></canvas>
-    <div class="absolute inset-0 bg-gradient-to-b from-dark-900/60 via-dark-900/30 to-dark-900/95 z-0"></div>
-    <div class="absolute inset-0 grid-bg z-0 opacity-30"></div>
-    <div class="absolute -top-40 -right-40 w-96 h-96 bg-brand-500/10 rounded-full blur-3xl z-0"></div>
-    <div class="absolute bottom-0 -left-40 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl z-0"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-dark-900/70 via-dark-900/40 to-dark-900/95 z-0"></div>
+    <div class="absolute inset-0 grid-bg z-0 opacity-40"></div>
+    <div class="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-brand-500/10 rounded-full blur-[120px] pointer-events-none z-0"></div>
+    <div class="absolute bottom-10 right-10 w-[400px] h-[400px] bg-cyan-500/10 rounded-full blur-[100px] pointer-events-none z-0"></div>
 
     <div class="max-w-7xl mx-auto px-5 sm:px-8 relative z-10 w-full">
         <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             
-            <!-- Left Content Column with safe padding to prevent overlap -->
-            <div class="lg:col-span-7 fade-up text-center lg:text-left pr-0 lg:pr-4">
-                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-brand-500/30 bg-brand-500/10 text-brand-400 text-xs sm:text-sm font-semibold mb-6 backdrop-blur-md">
-                    <span class="w-2 h-2 rounded-full bg-brand-400 animate-pulse"></span>
+            <!-- Left Content Column -->
+            <div class="lg:col-span-7 fade-up text-center lg:text-left">
+                <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-brand-500/40 bg-brand-500/10 text-brand-400 text-xs sm:text-sm font-semibold mb-7 backdrop-blur-xl shadow-lg shadow-brand-500/5">
+                    <span class="w-2 h-2 rounded-full bg-brand-400 animate-ping"></span>
                     Network • ELV • Automation • AV • Infrastructure
                 </div>
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white leading-tight tracking-tight">
+                
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white leading-[1.1] tracking-tight">
                     Architecting The Digital Backbone of
-                    <span class="gradient-text">Elite Networks & Luxury</span>
+                    <span class="gradient-text block mt-2">Elite Networks & Luxury</span>
                     Environments.
                 </h1>
-                <p class="mt-7 text-lg sm:text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto lg:mx-0 pb-4">
-                    A <strong class="text-white">Senior Network, Automation, AV, ELV & Infrastructure Engineer</strong> from 
+
+                <p class="mt-7 text-lg sm:text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-normal">
+                    A <strong class="text-white font-semibold">Senior Network, Automation, AV, ELV & Infrastructure Engineer</strong> from 
                     <a href="https://dynamicworld.ae" target="_blank" rel="noopener noreferrer" class="text-brand-400 hover:text-cyan-300 underline underline-offset-4 decoration-brand-500/50 hover:decoration-cyan-300 transition inline-flex items-center gap-1 font-semibold">
                         Dynamic World Computer LLC <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
                     </a>.
                 </p>
-                <div class="flex flex-wrap justify-center lg:justify-start gap-4 mt-6">
-                    <a href="#services" class="px-8 py-4 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold transition shadow-xl shadow-brand-600/30 border border-brand-400/30 inline-flex items-center">
-                        <i class="fa-solid fa-diagram-project mr-2"></i> View Projects & Specializations
+
+                <div class="flex flex-wrap justify-center lg:justify-start gap-4 mt-9">
+                    <a href="#services" class="px-8 py-4 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold transition shadow-xl shadow-brand-600/30 border border-brand-400/30 inline-flex items-center group">
+                        <i class="fa-solid fa-diagram-project mr-2 group-hover:rotate-12 transition-transform"></i> View Projects & Specializations
                     </a>
                     <a href="#contact" class="px-8 py-4 rounded-xl border border-slate-700 bg-dark-800/80 backdrop-blur-md hover:bg-dark-700 text-white font-semibold transition inline-flex items-center">
                         <i class="fa-regular fa-paper-plane mr-2"></i> Contact Me
@@ -274,20 +277,24 @@
                 </div>
             </div>
 
-            <!-- Right Photo Card Column -->
+            <!-- Right Floating Cyberpunk Card Column -->
             <div class="lg:col-span-5 flex justify-center fade-up">
-                <div class="relative w-full max-w-sm sm:max-w-md">
-                    <div class="absolute inset-0 bg-brand-500/15 blur-3xl rounded-full"></div>
-                    <div class="relative p-1 rounded-3xl bg-gradient-to-br from-brand-500 via-cyan-400 to-brand-700 shadow-2xl">
-                        <div class="rounded-[22px] overflow-hidden bg-dark-800 relative">
-                            <img src="profile.jpg" alt="Shah Faishal - Senior Network and Automation Engineer" class="w-full aspect-[4/5] object-cover object-center">
-                            <div class="absolute bottom-4 left-4 right-4 glass border border-slate-700/60 rounded-xl p-4">
+                <div class="relative w-full max-w-sm sm:max-w-md group">
+                    <div class="absolute -inset-1.5 bg-gradient-to-r from-brand-500 via-cyan-400 to-emerald-400 rounded-[30px] blur-xl opacity-30 group-hover:opacity-60 transition duration-500"></div>
+                    
+                    <div class="relative p-2 rounded-3xl bg-dark-800/90 border border-slate-700/80 backdrop-blur-2xl shadow-2xl">
+                        <div class="rounded-[22px] overflow-hidden bg-dark-900 relative">
+                            <img src="profile.jpg" alt="Shah Faishal - Senior Network and Automation Engineer" class="w-full aspect-[4/5] object-cover object-center group-hover:scale-105 transition duration-700">
+                            
+                            <div class="absolute inset-0 bg-gradient-to-t from-dark-900 via-dark-900/20 to-transparent opacity-90 pointer-events-none"></div>
+
+                            <div class="absolute bottom-4 left-4 right-4 glass border border-slate-700/80 rounded-2xl p-4 shadow-xl">
                                 <div class="flex items-center justify-between">
                                     <div>
-                                        <div class="font-bold text-white text-left">Shah Faishal</div>
-                                        <div class="text-xs text-brand-400 mt-1 text-left font-mono">Network • Automation • AV • ELV</div>
+                                        <div class="font-bold text-white text-left text-base">Shah Faishal</div>
+                                        <div class="text-xs text-brand-400 mt-1 text-left font-mono tracking-wide">Network • Automation • AV • ELV</div>
                                     </div>
-                                    <div class="w-10 h-10 rounded-lg bg-brand-500/20 flex items-center justify-center text-brand-400">
+                                    <div class="w-11 h-11 rounded-xl bg-brand-500/20 border border-brand-500/30 flex items-center justify-center text-brand-400 text-lg shadow-inner">
                                         <i class="fa-solid fa-network-wired"></i>
                                     </div>
                                 </div>
@@ -296,6 +303,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </section>
