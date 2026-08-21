@@ -90,10 +90,10 @@
         #preloaderMatrix { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0.25; z-index: 1; }
 
         .preloader-heading {
-            font-family: 'Dancing Script', cursive; letter-spacing: 0.05em; color: #ff4d4d;
+            font-family: 'Plus Jakarta Sans', sans-serif; letter-spacing: 0.05em; color: #ff4d4d;
             text-shadow: 0 0 25px rgba(255, 77, 77, 0.7);
             animation: textZoomIn 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-            opacity: 0; transform: scale(0.5); display: flex; align-items: center; font-size: 4rem;
+            opacity: 0; transform: scale(0.5); display: flex; align-items: center; font-size: 3.5rem; font-weight: 800;
         }
 
         #dropBox {
@@ -103,7 +103,7 @@
             animation: dropInBox 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.3s forwards;
             opacity: 0; transform: translateY(-120vh) scale(0.5);
         }
-        #dropBox span { color: #ff4d4d !important; font-family: 'Dancing Script', cursive; }
+        #dropBox span { color: #ff4d4d !important; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; }
 
         @keyframes dropInBox {
             0% { opacity: 0; transform: translateY(-120vh) scale(0.5); }
@@ -175,14 +175,14 @@
 
 <body class="bg-[#030303] text-slate-200 font-sans antialiased notranslate" translate="no">
 
-<!-- CINEMATIC PRELOADER WITH CURSIVE FONT & MATRIX -->
+<!-- CINEMATIC PRELOADER WITH NORMAL FONT & MATRIX -->
 <div id="preloader" class="notranslate" translate="no">
     <canvas id="preloaderMatrix"></canvas>
     <div class="relative z-50 text-center px-4 select-none flex flex-col items-center justify-center">
-        <div class="preloader-heading font-bold font-cursive notranslate text-5xl sm:text-6xl md:text-7xl" translate="no">
+        <div class="preloader-heading font-bold notranslate text-4xl sm:text-5xl md:text-6xl tracking-wider" translate="no">
             <span>F</span>
             <div id="dropBox">
-                <span class="lowercase tracking-normal font-cursive text-3xl sm:text-4xl md:text-5xl">ai.</span>
+                <span class="lowercase tracking-normal font-bold text-2xl sm:text-3xl md:text-4xl">ai.</span>
             </div>
             <span>S</span><span>H</span><span>A</span><span>L</span>
         </div>
@@ -208,7 +208,7 @@
             </div>
 
             <a href="#home">
-                <div class="text-white font-bold font-cursive text-2xl tracking-wider hover:text-orange-400 transition notranslate" translate="no"><span class="text-orange-500">SHAH</span>FAISHAL</div>
+                <div class="text-white font-bold text-xl tracking-wider hover:text-orange-400 transition notranslate" translate="no"><span class="text-orange-500">SHAH</span> FAISHAL</div>
             </a>
         </div>
 
@@ -297,7 +297,7 @@
                                 <div class="glass border border-neutral-700 rounded-2xl p-4 shadow-2xl backdrop-blur-xl">
                                     <div class="flex items-center justify-between">
                                         <div>
-                                            <div class="font-bold text-white text-left text-lg font-cursive tracking-wider"><span class="text-orange-500">SHAH</span>FAISHAL</div>
+                                            <div class="font-bold text-white text-left text-base tracking-wider"><span class="text-orange-500">SHAH</span> FAISHAL</div>
                                             <div class="text-xs text-orange-400 mt-1 text-left font-mono tracking-wide">Network • Automation • AV • ELV</div>
                                         </div>
                                         <div class="w-11 h-11 rounded-xl bg-orange-500/20 border border-orange-500/30 flex items-center justify-center text-orange-400 text-lg shadow-inner">
@@ -503,7 +503,7 @@
                 </div>
 
                 <p class="text-slate-300 text-lg leading-relaxed font-normal">
-                    I’m a Senior Network, Automation, ELV & Infrastructure Engineer focused on designing, integrating, and commissioning high-performance technology systems for demanding residential and commercial environments.
+                    I’m a Senior Network, Automation, AV, ELV & Infrastructure Engineer focused on designing, integrating, and commissioning high-performance technology systems for demanding residential and commercial environments.
                 </p>
 
                 <p class="text-slate-400 text-base leading-relaxed">
