@@ -61,9 +61,9 @@
                             700: '#0369a1'
                         },
                         dark: {
-                            900: '#050508',
-                            800: '#0b0b12',
-                            700: '#151522'
+                            900: '#09090b',
+                            800: '#121216',
+                            700: '#1c1c24'
                         }
                     }
                 }
@@ -73,19 +73,22 @@
 
     <style>
         html { scroll-behavior: smooth; }
-        body { overflow-x: hidden; background-color: #050508; color: #cbd5e1; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { overflow-x: hidden; background-color: #09090b; color: #a1a1aa; font-family: 'Plus Jakarta Sans', sans-serif; }
 
-        /* CYBERNETIC BACKGROUND GLOWS */
-        .cyber-bg-glow {
-            position: fixed; inset: 0; pointer-events: none; z-index: 0;
-            background: radial-gradient(circle at 15% 20%, rgba(249, 115, 22, 0.12) 0%, transparent 40%),
-                        radial-gradient(circle at 85% 80%, rgba(14, 165, 233, 0.08) 0%, transparent 40%),
-                        radial-gradient(circle at 50% 50%, rgba(239, 68, 68, 0.08) 0%, transparent 50%);
+        /* MODERN CLOUD / SAAS MESH GRADIENT AMBIENCE */
+        .cloud-mesh-bg {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: 0; pointer-events: none;
+            background-image: 
+                radial-gradient(circle 600px at 15% 15%, rgba(249, 115, 22, 0.07), transparent 70%),
+                radial-gradient(circle 800px at 85% 85%, rgba(14, 165, 233, 0.05), transparent 70%),
+                radial-gradient(circle 700px at 50% 50%, rgba(139, 92, 246, 0.04), transparent 70%);
         }
 
-        #matrixCanvas {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            z-index: 0; pointer-events: none; opacity: 0.15;
+        /* DOT GRID PATTERN */
+        .dot-grid {
+            background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+            background-size: 24px 24px;
         }
 
         #dodgingHeartContainer {
@@ -95,92 +98,88 @@
         }
 
         @keyframes zPulse {
-            0% { box-shadow: 0 0 0 0 rgba(244, 63, 94, 0.7); transform: scale(1); }
-            70% { box-shadow: 0 0 0 16px rgba(244, 63, 94, 0); transform: scale(1.08); }
+            0% { box-shadow: 0 0 0 0 rgba(244, 63, 94, 0.6); transform: scale(1); }
+            70% { box-shadow: 0 0 0 14px rgba(244, 63, 94, 0); transform: scale(1.06); }
             100% { box-shadow: 0 0 0 0 rgba(244, 63, 94, 0); transform: scale(1); }
         }
         .z-interactive-btn { animation: zPulse 2s infinite; }
 
-        /* ULTRA-MODERN GLASSMORPHISM & HOLOGRAPHIC BORDERS */
-        .glass { 
-            background: linear-gradient(135deg, rgba(18, 18, 28, 0.9) 0%, rgba(10, 10, 16, 0.95) 100%) !important; 
-            backdrop-filter: blur(25px); 
-            -webkit-backdrop-filter: blur(25px); 
-            border: 1px solid rgba(249, 115, 22, 0.25); 
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        /* VERCEL / LINEAR STYLE SAAS CARDS */
+        .saas-card {
+            background: rgba(18, 18, 22, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
         }
-        
-        .glass:hover {
-            border-color: rgba(249, 115, 22, 0.6);
-            box-shadow: 0 25px 60px rgba(249, 115, 22, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        .saas-card:hover {
+            border-color: rgba(249, 115, 22, 0.4);
+            background: rgba(24, 24, 32, 0.85);
+            box-shadow: 0 10px 30px -10px rgba(249, 115, 22, 0.2);
+            transform: translateY(-2px);
         }
-        
+
         .super-glass-sidebar {
-            background: rgba(8, 8, 14, 0.75) !important;
-            backdrop-filter: blur(20px) !important;
-            -webkit-backdrop-filter: blur(20px) !important;
-            border-color: rgba(249, 115, 22, 0.4) !important;
+            background: rgba(18, 18, 22, 0.65) !important;
+            backdrop-filter: blur(16px) !important;
+            -webkit-backdrop-filter: blur(16px) !important;
+            border-color: rgba(255, 255, 255, 0.1) !important;
         }
 
-        .glow { box-shadow: 0 0 60px rgba(249, 115, 22, 0.3), inset 0 0 30px rgba(249, 115, 22, 0.1); }
-        
-        .grid-bg {
-            background-image: linear-gradient(rgba(249, 115, 22, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(249, 115, 22, 0.05) 1px, transparent 1px);
-            background-size: 50px 50px;
-        }
-
-        .fade-up { opacity: 0; transform: translateY(35px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
+        .fade-up { opacity: 0; transform: translateY(20px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
         .fade-up.show { opacity: 1; transform: translateY(0); }
         
         .gradient-text { 
-            background: linear-gradient(135deg, #ff4d4d 0%, #f97316 45%, #eab308 100%); 
+            background: linear-gradient(135deg, #ffffff 0%, #a1a1aa 60%, #f97316 100%); 
             -webkit-background-clip: text; 
             -webkit-text-fill-color: transparent; 
-            filter: drop-shadow(0 0 30px rgba(249, 115, 22, 0.4));
         }
 
-        .skill {
-            padding: 11px 20px; border-radius: 14px; background: linear-gradient(135deg, rgba(25, 25, 38, 0.95), rgba(12, 12, 20, 0.95));
-            border: 1px solid rgba(249, 115, 22, 0.3); color: #e2e8f0; font-size: 13px; font-weight: 600;
-            backdrop-filter: blur(12px); transition: all .35s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        .skill-badge {
+            padding: 8px 14px; border-radius: 8px; background: rgba(24, 24, 32, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.07); color: #d4d4d8; font-size: 13px; font-weight: 500;
+            backdrop-filter: blur(8px); transition: all .2s ease;
         }
-        .skill:hover { 
+        .skill-badge:hover { 
             border-color: #f97316; color: #ffffff; 
-            box-shadow: 0 0 25px rgba(249, 115, 22, 0.5), inset 0 0 12px rgba(249, 115, 22, 0.3); 
-            transform: translateY(-4px) scale(1.03); 
+            background: rgba(39, 39, 45, 0.9);
+            box-shadow: 0 0 15px rgba(249, 115, 22, 0.2); 
+            transform: translateY(-2px); 
         }
 
         .partner-card {
-            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%); border-radius: 22px;
-            box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.5), 0 0 20px rgba(249, 115, 22, 0.15);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex; align-items: center; justify-content: center; padding: 24px; min-height: 100px; cursor: pointer; position: relative; user-select: none;
-            border: 1.5px solid rgba(255, 255, 255, 0.9);
+            background: rgba(18, 18, 22, 0.8); border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.25s ease;
+            display: flex; align-items: center; justify-content: center; padding: 20px; min-height: 90px; cursor: pointer; position: relative; user-select: none;
         }
         .partner-card:hover { 
-            transform: translateY(-7px) scale(1.04); 
-            box-shadow: 0 30px 50px -12px rgba(249, 115, 22, 0.6), 0 0 30px rgba(249, 115, 22, 0.4); 
+            transform: translateY(-3px); 
             border-color: #f97316;
+            background: rgba(28, 28, 36, 0.95);
+            box-shadow: 0 10px 25px -5px rgba(249, 115, 22, 0.25); 
         }
 
         section { position: relative; z-index: 10; }
-        #detailModal, #partnerModal, #heartModal { transition: all 0.4s ease; }
+        #detailModal, #partnerModal, #heartModal { transition: all 0.3s ease; }
 
         /* ZOYA POPUP HEART ANIMATION STYLES */
         .zoya-card-custom {
-            background: linear-gradient(135deg, #fff 0%, #fff1f2 100%) !important;
-            border: 2px solid rgba(244, 63, 94, 0.4) !important;
+            background: rgba(24, 24, 32, 0.9) !important;
+            border: 1px solid rgba(244, 63, 94, 0.3) !important;
         }
         .zoya-card-custom:hover {
             border-color: #f43f5e !important;
-            box-shadow: 0 30px 50px -12px rgba(244, 63, 94, 0.6) !important;
+            box-shadow: 0 10px 25px -5px rgba(244, 63, 94, 0.3) !important;
         }
         @keyframes heartbeatModal {
             0% { transform: scale(0.95); }
-            5% { transform: scale(1.12); }
+            5% { transform: scale(1.1); }
             10% { transform: scale(0.9); }
-            15% { transform: scale(1.22); }
+            15% { transform: scale(1.2); }
             50% { transform: scale(0.95); }
             100% { transform: scale(0.95); }
         }
@@ -199,11 +198,10 @@
             width: 45px;
             height: 72px;
             border-radius: 45px 45px 0 0;
-            background: linear-gradient(135deg, #f43f5e, #e11d48);
+            background: #f43f5e;
             left: 45px;
             transform: rotate(-45deg);
             transform-origin: 0 100%;
-            box-shadow: 0 0 25px rgba(244, 63, 94, 0.7);
         }
         .modal-beating-heart::after {
             left: 0;
@@ -213,118 +211,109 @@
     </style>
 </head>
 
-<body class="bg-[#050508] text-slate-200 font-sans antialiased notranslate" translate="no">
+<body class="bg-[#09090b] text-zinc-300 font-sans antialiased notranslate" translate="no">
 
-<div class="cyber-bg-glow"></div>
-<!-- VIBRANT MATRIX RAIN BACKGROUND -->
-<canvas id="matrixCanvas"></canvas>
+<div class="cloud-mesh-bg"></div>
 
 <!-- NAVBAR -->
-<header class="fixed top-0 left-0 right-0 z-50 glass border-b border-orange-500/30 notranslate" translate="no">
-    <div class="max-w-7xl mx-auto px-5 sm:px-8 h-20 flex items-center justify-between">
+<header class="fixed top-0 left-0 right-0 z-50 bg-[#09090b]/80 backdrop-blur-xl border-b border-white/10 notranslate" translate="no">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 h-18 flex items-center justify-between">
         <div class="flex items-center gap-3">
             <div class="relative group">
                 <button onclick="openHeartModal(event)" title="Play Mini-Game"
-                        class="w-11 h-11 rounded-xl bg-gradient-to-tr from-rose-600 via-red-500 to-pink-500 flex items-center justify-center font-black text-pink-100 text-xl shadow-lg shadow-rose-500/40 border border-rose-300/60 hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer z-interactive-btn notranslate" translate="no">
+                        class="w-10 h-10 rounded-lg bg-gradient-to-tr from-rose-600 via-red-500 to-pink-500 flex items-center justify-center font-black text-white text-base shadow-lg shadow-rose-500/20 border border-rose-400/30 hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer z-interactive-btn notranslate" translate="no">
                     Z
                 </button>
-                <span class="absolute left-14 top-1/2 -translate-y-1/2 px-3.5 py-1.5 rounded-lg bg-dark-800 border border-orange-500/60 text-orange-400 text-[11px] font-mono whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none shadow-2xl">
+                <span class="absolute left-13 top-1/2 -translate-y-1/2 px-2.5 py-1 rounded-md bg-zinc-900 border border-white/10 text-orange-400 text-[11px] font-mono whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none shadow-xl">
                     Play Game! 🎮
                 </span>
             </div>
 
             <a href="#home">
-                <div class="text-white font-bold text-xl tracking-wider hover:text-orange-400 transition notranslate" translate="no"><span class="text-orange-500">SHAH</span> FAISHAL</div>
+                <div class="text-white font-bold text-lg tracking-wide notranslate" translate="no"><span class="text-orange-500">SHAH</span> FAISHAL</div>
             </a>
         </div>
 
-        <nav class="hidden md:flex items-center gap-7 text-sm font-medium notranslate" translate="no">
-            <a href="#about" class="hover:text-orange-400 transition">About</a>
-            <a href="#services" class="hover:text-orange-400 transition">Projects & Specializations</a>
-            <a href="#ecosystem" class="hover:text-orange-400 transition">Ecosystem</a>
-            <a href="#skills" class="hover:text-orange-400 transition">Skills</a>
-            <a href="#experience" class="hover:text-orange-400 transition">Experience</a>
-            <a href="#contact" class="hover:text-orange-400 transition">Contact</a>
+        <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-zinc-400 notranslate" translate="no">
+            <a href="#about" class="hover:text-white transition">About</a>
+            <a href="#services" class="hover:text-white transition">Projects & Specializations</a>
+            <a href="#ecosystem" class="hover:text-white transition">Ecosystem</a>
+            <a href="#skills" class="hover:text-white transition">Skills</a>
+            <a href="#experience" class="hover:text-white transition">Experience</a>
+            <a href="#contact" class="hover:text-white transition">Contact</a>
         </nav>
 
-        <a href="#contact" class="hidden md:inline-flex px-6 py-2.5 rounded-full bg-gradient-to-r from-orange-600 via-amber-600 to-red-600 hover:from-orange-500 hover:to-amber-500 text-white text-sm font-bold transition shadow-xl shadow-orange-600/40 border border-orange-400/40">
+        <a href="#contact" class="hidden md:inline-flex px-4 py-2 rounded-lg bg-white text-zinc-950 hover:bg-zinc-200 text-xs font-semibold transition shadow-sm">
             Let's Connect
         </a>
 
-        <button id="menuBtn" class="md:hidden text-slate-300 text-2xl">
+        <button id="menuBtn" class="md:hidden text-zinc-300 text-xl">
             <i class="fa-solid fa-bars"></i>
         </button>
     </div>
 
-    <div id="mobileMenu" class="hidden md:hidden border-t border-orange-500/35 px-5 py-6 bg-dark-800/95 backdrop-blur-2xl notranslate" translate="no">
-        <div class="flex flex-col gap-5">
-            <a href="#about">About</a>
-            <a href="#services">Projects & Specializations</a>
-            <a href="#ecosystem">Ecosystem</a>
-            <a href="#skills">Skills</a>
-            <a href="#experience">Experience</a>
-            <a href="#contact">Contact</a>
+    <div id="mobileMenu" class="hidden md:hidden border-t border-white/10 px-5 py-5 bg-[#09090b]/95 backdrop-blur-2xl notranslate" translate="no">
+        <div class="flex flex-col gap-4 text-sm text-zinc-300">
+            <a href="#about" class="hover:text-white">About</a>
+            <a href="#services" class="hover:text-white">Projects & Specializations</a>
+            <a href="#ecosystem" class="hover:text-white">Ecosystem</a>
+            <a href="#skills" class="hover:text-white">Skills</a>
+            <a href="#experience" class="hover:text-white">Experience</a>
+            <a href="#contact" class="hover:text-white">Contact</a>
         </div>
     </div>
 </header>
 
 <!-- HERO SECTION -->
-<section id="home" class="relative min-h-screen flex items-center pt-36 pb-24 overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-b from-[#050508]/80 via-[#050508]/40 to-[#050508] z-0"></div>
-    <div class="absolute inset-0 grid-bg z-0 opacity-50"></div>
-    <div class="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-orange-600/20 rounded-full blur-[150px] pointer-events-none z-0"></div>
-    <div class="absolute bottom-10 right-10 w-[500px] h-[500px] bg-red-600/20 rounded-full blur-[130px] pointer-events-none z-0"></div>
-
+<section id="home" class="relative min-h-screen flex items-center pt-32 pb-24 dot-grid">
     <div class="max-w-7xl mx-auto px-5 sm:px-8 relative z-10 w-full">
         <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             
             <div class="lg:col-span-7 fade-up text-center lg:text-left">
-                <div class="inline-flex items-center gap-2.5 px-4.5 py-2 rounded-full border border-orange-500/60 bg-orange-500/15 text-orange-400 text-xs sm:text-sm font-semibold mb-7 backdrop-blur-xl shadow-2xl shadow-orange-500/20">
-                    <span class="w-2.5 h-2.5 rounded-full bg-orange-400 animate-ping"></span>
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-zinc-900/80 text-orange-400 text-xs font-mono mb-6 backdrop-blur-md shadow-sm">
+                    <span class="w-1.5 h-1.5 rounded-full bg-orange-400 animate-ping"></span>
                     Network • ELV • Automation • AV • Infrastructure
                 </div>
                 
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white leading-[1.1] tracking-tight">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-[1.1] tracking-tight">
                     Architecting The Digital Backbone of
-                    <span class="gradient-text block mt-2 tracking-wide">Elite Networks & Luxury</span>
+                    <span class="gradient-text block mt-1">Elite Networks & Luxury</span>
                     Environments.
                 </h1>
 
-                <p class="mt-7 text-lg sm:text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-normal">
+                <p class="mt-6 text-base sm:text-lg text-zinc-400 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-normal">
                     A <strong class="text-white font-semibold"> Network, Automation, AV, ELV & Infrastructure Project Engineer</strong> from 
-                    <a href="https://dynamicworld.ae" target="_blank" rel="noopener noreferrer" class="text-orange-400 hover:text-orange-300 underline underline-offset-4 decoration-orange-500/60 transition inline-flex items-center gap-1 font-semibold">
+                    <a href="https://dynamicworld.ae" target="_blank" rel="noopener noreferrer" class="text-orange-400 hover:text-orange-300 underline underline-offset-4 decoration-orange-500/40 transition inline-flex items-center gap-1 font-medium">
                         Dynamic World Computer LLC <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
                     </a>.
                 </p>
 
-                <div class="flex flex-wrap justify-center lg:justify-start gap-4 mt-9">
-                    <a href="#services" class="px-8 py-4 rounded-xl bg-gradient-to-r from-orange-600 via-amber-600 to-red-600 hover:from-orange-500 hover:to-amber-500 text-white font-bold transition shadow-2xl shadow-orange-600/50 border border-orange-400/50 inline-flex items-center group">
+                <div class="flex flex-wrap justify-center lg:justify-start gap-4 mt-8">
+                    <a href="#services" class="px-6 py-3 rounded-lg bg-orange-600 hover:bg-orange-500 text-white font-semibold text-sm transition shadow-lg shadow-orange-600/20 inline-flex items-center group">
                         <i class="fa-solid fa-diagram-project mr-2 group-hover:rotate-12 transition-transform"></i> View Projects & Specializations
                     </a>
-                    <a href="#contact" class="px-8 py-4 rounded-xl border border-neutral-700 bg-dark-800/85 backdrop-blur-md hover:bg-dark-700 hover:border-orange-500/60 text-white font-semibold transition inline-flex items-center shadow-lg">
+                    <a href="#contact" class="px-6 py-3 rounded-lg border border-white/10 bg-zinc-900/50 hover:bg-zinc-800 text-zinc-200 font-semibold text-sm transition inline-flex items-center">
                         <i class="fa-regular fa-paper-plane mr-2"></i> Contact Me
                     </a>
                 </div>
             </div>
 
             <div class="lg:col-span-5 flex justify-center fade-up">
-                <div class="relative w-full max-w-sm sm:max-w-md group cursor-pointer">
-                    <div class="absolute -inset-2.5 bg-gradient-to-r from-orange-600 via-red-600 to-amber-500 rounded-[38px] blur-2xl opacity-50 group-hover:opacity-95 transition duration-500"></div>
+                <div class="relative w-full max-w-sm sm:max-w-md group">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-orange-500/20 to-sky-500/20 rounded-2xl blur-xl opacity-70"></div>
                     
-                    <div class="relative p-3 rounded-3xl bg-dark-800/95 border border-orange-500/40 backdrop-blur-2xl shadow-2xl overflow-hidden">
-                        <div class="rounded-[22px] overflow-hidden bg-black relative">
-                            <img src="profile.jpg" alt="Shah Faishal - Senior Network and Automation Engineer" class="w-full aspect-[4/5] object-cover object-center group-hover:scale-105 transition duration-700">
+                    <div class="relative p-2 rounded-2xl saas-card overflow-hidden">
+                        <div class="rounded-xl overflow-hidden bg-zinc-950 relative">
+                            <img src="profile.jpg" alt="Shah Faishal - Senior Network and Automation Engineer" class="w-full aspect-[4/5] object-cover object-center group-hover:scale-102 transition duration-500">
                             
-                            <div class="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out z-20">
-                                <div class="glass border border-orange-500/50 rounded-2xl p-4 shadow-2xl backdrop-blur-2xl">
-                                    <div class="flex items-center justify-between">
-                                        <div>
-                                            <div class="font-bold text-white text-left text-base tracking-wider"><span class="text-orange-500">SHAH</span> FAISHAL</div>
-                                            <div class="text-xs text-orange-400 mt-1 text-left font-mono tracking-wide">Network • Automation • AV • ELV</div>
-                                        </div>
-                                        <div class="w-11 h-11 rounded-xl bg-orange-500/25 border border-orange-500/50 flex items-center justify-center text-orange-400 text-lg shadow-inner">
-                                            <i class="fa-solid fa-network-wired"></i>
-                                        </div>
+                            <div class="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-zinc-950 via-zinc-950/80 to-transparent">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <div class="font-bold text-white text-xs tracking-wider"><span class="text-orange-500">SHAH</span> FAISHAL</div>
+                                        <div class="text-[11px] text-zinc-400 mt-0.5 font-mono">Network • Automation • AV • ELV</div>
+                                    </div>
+                                    <div class="w-8 h-8 rounded-lg bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-orange-400 text-xs">
+                                        <i class="fa-solid fa-network-wired"></i>
                                     </div>
                                 </div>
                             </div>
@@ -338,102 +327,102 @@
 </section>
 
 <!-- SERVICES SECTION -->
-<section id="services" class="py-24 border-y border-orange-500/30">
+<section id="services" class="py-24 border-y border-white/10 bg-zinc-950/50">
     <div class="max-w-7xl mx-auto px-5 sm:px-8">
         
         <div class="max-w-3xl mb-14 fade-up">
-            <div class="text-orange-400 text-xs font-bold uppercase tracking-widest mb-3 font-mono">What I Do</div>
+            <div class="text-orange-400 text-xs font-bold uppercase tracking-widest mb-2 font-mono">What I Do</div>
             <h2 class="text-3xl sm:text-4xl font-bold text-white">Technical Specializations</h2>
-            <p class="text-slate-400 mt-4 leading-relaxed">
+            <p class="text-zinc-400 mt-3 text-sm sm:text-base leading-relaxed">
                 End-to-end engineering support for modern residential, commercial, and enterprise infrastructure projects. <span class="text-orange-400 font-semibold">(Click any card to view deployment details & live preview)</span>
             </p>
         </div>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-24">
-            <div onclick="openServiceDetail(0)" class="cursor-pointer glass rounded-2xl p-7 hover:-translate-y-2 transition duration-300 fade-up group">
-                <div class="flex items-center justify-between mb-5">
-                    <div class="w-12 h-12 rounded-xl bg-orange-500/15 text-orange-400 flex items-center justify-center text-xl group-hover:bg-orange-600 group-hover:text-white transition shadow-lg"><i class="fa-solid fa-shield-halved"></i></div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
+            <div onclick="openServiceDetail(0)" class="cursor-pointer saas-card p-6 fade-up group">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="w-10 h-10 rounded-lg bg-orange-500/10 text-orange-400 flex items-center justify-center text-base group-hover:bg-orange-600 group-hover:text-white transition"><i class="fa-solid fa-shield-halved"></i></div>
                     <span class="text-xs text-orange-400 font-mono flex items-center gap-1 group-hover:text-orange-300">View Project <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
                 </div>
-                <h3 class="text-xl font-bold text-white group-hover:text-orange-400 transition">Networking</h3>
-                <p class="text-slate-400 text-sm leading-relaxed mt-3">FortiGate HA firewalls, Cisco L2/L3 routing, SD-WAN failover, gateway security, VLANs, Wi-Fi 6, and IT rack containment.</p>
+                <h3 class="text-lg font-bold text-white group-hover:text-orange-400 transition">Networking</h3>
+                <p class="text-zinc-400 text-xs sm:text-sm leading-relaxed mt-2.5">FortiGate HA firewalls, Cisco L2/L3 routing, SD-WAN failover, gateway security, VLANs, Wi-Fi 6, and IT rack containment.</p>
             </div>
 
-            <div onclick="openServiceDetail(1)" class="cursor-pointer glass rounded-2xl p-7 hover:-translate-y-2 transition duration-300 fade-up group">
-                <div class="flex items-center justify-between mb-5">
-                    <div class="w-12 h-12 rounded-xl bg-amber-500/15 text-amber-400 flex items-center justify-center text-xl group-hover:bg-amber-600 group-hover:text-white transition shadow-lg"><i class="fa-solid fa-house-chimney"></i></div>
+            <div onclick="openServiceDetail(1)" class="cursor-pointer saas-card p-6 fade-up group">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="w-10 h-10 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center text-base group-hover:bg-amber-600 group-hover:text-white transition"><i class="fa-solid fa-house-chimney"></i></div>
                     <span class="text-xs text-amber-400 font-mono flex items-center gap-1 group-hover:text-amber-300">View Project <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
                 </div>
-                <h3 class="text-xl font-bold text-white group-hover:text-amber-400 transition">Smart Estate & Home Automation</h3>
-                <p class="text-slate-400 text-sm leading-relaxed mt-3">KNX lighting scenes, motorized drapery, DALI architecture, HVAC climate control, and iPad centralized touchpanels.</p>
+                <h3 class="text-lg font-bold text-white group-hover:text-amber-400 transition">Smart Estate & Home Automation</h3>
+                <p class="text-zinc-400 text-xs sm:text-sm leading-relaxed mt-2.5">KNX lighting scenes, motorized drapery, DALI architecture, HVAC climate control, and iPad centralized touchpanels.</p>
             </div>
 
-            <div onclick="openServiceDetail(2)" class="cursor-pointer glass rounded-2xl p-7 hover:-translate-y-2 transition duration-300 fade-up group">
-                <div class="flex items-center justify-between mb-5">
-                    <div class="w-12 h-12 rounded-xl bg-emerald-500/15 text-emerald-400 flex items-center justify-center text-xl group-hover:bg-emerald-600 group-hover:text-white transition shadow-lg"><i class="fa-solid fa-video"></i></div>
+            <div onclick="openServiceDetail(2)" class="cursor-pointer saas-card p-6 fade-up group">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="w-10 h-10 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-base group-hover:bg-emerald-600 group-hover:text-white transition"><i class="fa-solid fa-video"></i></div>
                     <span class="text-xs text-emerald-400 font-mono flex items-center gap-1 group-hover:text-emerald-300">View Project <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
                 </div>
-                <h3 class="text-xl font-bold text-white group-hover:text-emerald-400 transition">Enterprise VMS & IP Surveillance</h3>
-                <p class="text-slate-400 text-sm leading-relaxed mt-3">Deployment of centralized Video Management Systems (VMS), high-density control room video walls, and AI CCTV analytics.</p>
+                <h3 class="text-lg font-bold text-white group-hover:text-emerald-400 transition">Enterprise VMS & IP Surveillance</h3>
+                <p class="text-zinc-400 text-xs sm:text-sm leading-relaxed mt-2.5">Deployment of centralized Video Management Systems (VMS), high-density control room video walls, and AI CCTV analytics.</p>
             </div>
 
-            <div onclick="openServiceDetail(3)" class="cursor-pointer glass rounded-2xl p-7 hover:-translate-y-2 transition duration-300 fade-up group">
-                <div class="flex items-center justify-between mb-5">
-                    <div class="w-12 h-12 rounded-xl bg-red-500/15 text-red-400 flex items-center justify-center text-xl group-hover:bg-red-600 group-hover:text-white transition shadow-lg"><i class="fa-solid fa-volume-high"></i></div>
+            <div onclick="openServiceDetail(3)" class="cursor-pointer saas-card p-6 fade-up group">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="w-10 h-10 rounded-lg bg-red-500/10 text-red-400 flex items-center justify-center text-base group-hover:bg-red-600 group-hover:text-white transition"><i class="fa-solid fa-volume-high"></i></div>
                     <span class="text-xs text-red-400 font-mono flex items-center gap-1 group-hover:text-red-300">View Project <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
                 </div>
-                <h3 class="text-xl font-bold text-white group-hover:text-red-400 transition">Audio-visual Systems</h3>
-                <p class="text-slate-400 text-sm leading-relaxed mt-3">Xilica DSP acoustic processing, Martin Audio pro speakers, Onkyo AVR 4K cinema routing, LEA Professional amps, and WiiM streamers.</p>
+                <h3 class="text-lg font-bold text-white group-hover:text-red-400 transition">Audio-visual Systems</h3>
+                <p class="text-zinc-400 text-xs sm:text-sm leading-relaxed mt-2.5">Xilica DSP acoustic processing, Martin Audio pro speakers, Onkyo AVR 4K cinema routing, LEA Professional amps, and WiiM streamers.</p>
             </div>
 
-            <div onclick="openServiceDetail(4)" class="cursor-pointer glass rounded-2xl p-7 hover:-translate-y-2 transition duration-300 fade-up group">
-                <div class="flex items-center justify-between mb-5">
-                    <div class="w-12 h-12 rounded-xl bg-purple-500/15 text-purple-400 flex items-center justify-center text-xl group-hover:bg-purple-600 group-hover:text-white transition shadow-lg"><i class="fa-solid fa-network-wired"></i></div>
+            <div onclick="openServiceDetail(4)" class="cursor-pointer saas-card p-6 fade-up group">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="w-10 h-10 rounded-lg bg-purple-500/10 text-purple-400 flex items-center justify-center text-base group-hover:bg-purple-600 group-hover:text-white transition"><i class="fa-solid fa-network-wired"></i></div>
                     <span class="text-xs text-purple-400 font-mono flex items-center gap-1 group-hover:text-purple-300">View Project <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
                 </div>
-                <h3 class="text-xl font-bold text-white group-hover:text-purple-400 transition">Core Data Infrastructure & Fiber</h3>
-                <p class="text-slate-400 text-sm leading-relaxed mt-3">High-density network cabinets, spine-leaf fabric, SAN/NAS video archiving, optical fusion splicing, and OTDR attenuation testing.</p>
+                <h3 class="text-lg font-bold text-white group-hover:text-purple-400 transition">Core Data Infrastructure & Fiber</h3>
+                <p class="text-zinc-400 text-xs sm:text-sm leading-relaxed mt-2.5">High-density network cabinets, spine-leaf fabric, SAN/NAS video archiving, optical fusion splicing, and OTDR attenuation testing.</p>
             </div>
 
-            <div onclick="openServiceDetail(5)" class="cursor-pointer glass rounded-2xl p-7 hover:-translate-y-2 transition duration-300 fade-up group">
-                <div class="flex items-center justify-between mb-5">
-                    <div class="w-12 h-12 rounded-xl bg-rose-500/15 text-rose-400 flex items-center justify-center text-xl group-hover:bg-rose-600 group-hover:text-white transition shadow-lg"><i class="fa-solid fa-pen-ruler"></i></div>
+            <div onclick="openServiceDetail(5)" class="cursor-pointer saas-card p-6 fade-up group">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="w-10 h-10 rounded-lg bg-rose-500/10 text-rose-400 flex items-center justify-center text-base group-hover:bg-rose-600 group-hover:text-white transition"><i class="fa-solid fa-pen-ruler"></i></div>
                     <span class="text-xs text-rose-400 font-mono flex items-center gap-1 group-hover:text-rose-300">View Project <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
                 </div>
-                <h3 class="text-xl font-bold text-white group-hover:text-rose-400 transition">AutoCAD & Systems Design</h3>
-                <p class="text-slate-400 text-sm leading-relaxed mt-3">Schematic AutoCAD drafting, cable containment routing, single line diagrams (SLDs), MEP coordination, and commissioning.</p>
+                <h3 class="text-lg font-bold text-white group-hover:text-rose-400 transition">AutoCAD & Systems Design</h3>
+                <p class="text-zinc-400 text-xs sm:text-sm leading-relaxed mt-2.5">Schematic AutoCAD drafting, cable containment routing, single line diagrams (SLDs), MEP coordination, and commissioning.</p>
             </div>
         </div>
 
-        <div class="max-w-3xl mb-14 fade-up pt-12 border-t border-orange-500/30">
-            <div class="text-orange-400 text-xs font-bold uppercase tracking-widest mb-3 font-mono">Project Experience</div>
-            <h2 class="text-3xl sm:text-4xl font-bold text-white">Selected Project Locations</h2>
-            <p class="text-slate-400 mt-4">Enterprise networks, IT cabinet installations, Martin Audio / Xilica AV systems, and luxury home-automation across Dubai.</p>
+        <div class="max-w-3xl mb-10 fade-up pt-10 border-t border-white/10">
+            <div class="text-orange-400 text-xs font-bold uppercase tracking-widest mb-2 font-mono">Project Experience</div>
+            <h2 class="text-2xl sm:text-3xl font-bold text-white">Selected Project Locations</h2>
+            <p class="text-zinc-400 text-sm mt-2">Enterprise networks, IT cabinet installations, Martin Audio / Xilica AV systems, and luxury home-automation across Dubai.</p>
         </div>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
-            <div class="group glass rounded-2xl p-7 hover:border-orange-500/70 transition fade-up">
-                <div class="text-orange-400 text-2xl mb-5"><i class="fa-solid fa-building"></i></div>
-                <h3 class="text-white font-bold text-lg">Emirates Hills</h3>
-                <p class="text-slate-400 text-sm mt-2">Premium home-automation, IT rack architecture, Xilica DSP, and multi-zone Martin Audio pro integration.</p>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="saas-card p-5 fade-up">
+                <div class="text-orange-400 text-xl mb-3"><i class="fa-solid fa-building"></i></div>
+                <h3 class="text-white font-bold text-base">Emirates Hills</h3>
+                <p class="text-zinc-400 text-xs mt-1.5 leading-relaxed">Premium home-automation, IT rack architecture, Xilica DSP, and multi-zone Martin Audio pro integration.</p>
             </div>
 
-            <div class="group glass rounded-2xl p-7 hover:border-amber-500/70 transition fade-up">
-                <div class="text-amber-400 text-2xl mb-5"><i class="fa-solid fa-city"></i></div>
-                <h3 class="text-white font-bold text-lg">Dubai Hills</h3>
-                <p class="text-slate-400 text-sm mt-2">FortiGate security gateways, high-speed Wi-Fi 6, Onkyo 4K cinema AVR, and smart estate controls.</p>
+            <div class="saas-card p-5 fade-up">
+                <div class="text-amber-400 text-xl mb-3"><i class="fa-solid fa-city"></i></div>
+                <h3 class="text-white font-bold text-base">Dubai Hills</h3>
+                <p class="text-zinc-400 text-xs mt-1.5 leading-relaxed">FortiGate security gateways, high-speed Wi-Fi 6, Onkyo 4K cinema AVR, and smart estate controls.</p>
             </div>
 
-            <div class="group glass rounded-2xl p-7 hover:border-emerald-500/70 transition fade-up">
-                <div class="text-emerald-400 text-2xl mb-5"><i class="fa-solid fa-water"></i></div>
-                <h3 class="text-white font-bold text-lg">Jumeirah Bay Island</h3>
-                <p class="text-slate-400 text-sm mt-2">High-end residential automation, VMS CCTV, and LEA Professional DSP amplifier matrix deployment.</p>
+            <div class="saas-card p-5 fade-up">
+                <div class="text-emerald-400 text-xl mb-3"><i class="fa-solid fa-water"></i></div>
+                <h3 class="text-white font-bold text-base">Jumeirah Bay Island</h3>
+                <p class="text-zinc-400 text-xs mt-1.5 leading-relaxed">High-end residential automation, VMS CCTV, and LEA Professional DSP amplifier matrix deployment.</p>
             </div>
 
-            <div class="group glass rounded-2xl p-7 hover:border-purple-500/70 transition fade-up">
-                <div class="text-purple-400 text-2xl mb-5"><i class="fa-solid fa-city"></i></div>
-                <h3 class="text-white font-bold text-lg">Downtown Dubai</h3>
-                <p class="text-slate-400 text-sm mt-2">Corporate network infrastructure, high-density IT rack hosting, fiber backbone, and security operations.</p>
+            <div class="saas-card p-5 fade-up">
+                <div class="text-purple-400 text-xl mb-3"><i class="fa-solid fa-city"></i></div>
+                <h3 class="text-white font-bold text-base">Downtown Dubai</h3>
+                <p class="text-zinc-400 text-xs mt-1.5 leading-relaxed">Corporate network infrastructure, high-density IT rack hosting, fiber backbone, and security operations.</p>
             </div>
         </div>
 
@@ -441,12 +430,12 @@
 </section>
 
 <!-- ENTERPRISE ECOSYSTEM / GROUP COMPANIES -->
-<section id="ecosystem" class="py-24 relative overflow-hidden bg-dark-800/80 border-b border-orange-500/30">
+<section id="ecosystem" class="py-24 relative overflow-hidden bg-zinc-950 border-b border-white/10">
     <div class="max-w-7xl mx-auto px-5 sm:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16 fade-up">
-            <div class="text-orange-400 text-xs font-bold uppercase tracking-widest mb-3 font-mono">ENTERPRISE ECOSYSTEM & GROUP NETWORK</div>
+        <div class="text-center max-w-3xl mx-auto mb-14 fade-up">
+            <div class="text-orange-400 text-xs font-bold uppercase tracking-widest mb-2 font-mono">ENTERPRISE ECOSYSTEM & GROUP NETWORK</div>
             <h2 class="text-3xl sm:text-4xl font-bold text-white">Our Group Companies & Technology Stack</h2>
-            <p class="text-slate-400 mt-4 leading-relaxed">
+            <p class="text-zinc-400 mt-3 text-sm sm:text-base leading-relaxed">
                 Strategic group entities, authorized distribution networks, SIRA-licensed security divisions, boutique real estate, and global OEM partnerships.
                 <span class="text-orange-400 font-semibold block mt-1">(Click any brand or entity card to view complete integration details)</span>
             </p>
@@ -454,95 +443,95 @@
 
         <!-- GROUP ENTITIES SECTION -->
         <div class="mb-12">
-            <h3 class="text-orange-400 text-sm font-bold uppercase tracking-widest mb-6 font-mono text-center">Group Entities & Sister Concerns</h3>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5 fade-up">
+            <h3 class="text-orange-400 text-xs font-bold uppercase tracking-widest mb-5 font-mono text-center">Group Entities & Sister Concerns</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 fade-up">
                 <div onclick="openPartnerDetail('Dynamic World Computers')" class="partner-card flex-col items-center">
-                    <span class="text-[#0284c7] font-black text-lg tracking-wider font-sans text-center">DYNAMIC WORLD</span>
-                    <span class="text-slate-500 text-[9px] font-bold uppercase tracking-wider mt-1">Core ELV & ICT Hub</span>
+                    <span class="text-[#0284c7] font-black text-sm tracking-wider font-sans text-center">DYNAMIC WORLD</span>
+                    <span class="text-zinc-500 text-[9px] font-bold uppercase tracking-wider mt-1">Core ELV & ICT Hub</span>
                 </div>
                 <div onclick="openPartnerDetail('Shiva IT Distribution')" class="partner-card flex-col items-center">
-                    <span class="text-slate-900 font-black text-lg tracking-wider font-sans text-center">SHIVA IT DIST.</span>
-                    <span class="text-slate-500 text-[9px] font-bold uppercase tracking-wider mt-1">Authorized Distributor</span>
+                    <span class="text-zinc-200 font-black text-sm tracking-wider font-sans text-center">SHIVA IT DIST.</span>
+                    <span class="text-zinc-500 text-[9px] font-bold uppercase tracking-wider mt-1">Authorized Distributor</span>
                 </div>
                 <div onclick="openPartnerDetail('Om Computer')" class="partner-card flex-col items-center">
-                    <span class="text-emerald-700 font-black text-lg tracking-wider font-sans text-center">OM COMPUTER</span>
-                    <span class="text-slate-500 text-[9px] font-bold uppercase tracking-wider mt-1">Retail & Hardware</span>
+                    <span class="text-emerald-400 font-black text-sm tracking-wider font-sans text-center">OM COMPUTER</span>
+                    <span class="text-zinc-500 text-[9px] font-bold uppercase tracking-wider mt-1">Retail & Hardware</span>
                 </div>
                 <div onclick="openPartnerDetail('Neoterra')" class="partner-card flex-col items-center">
-                    <span class="text-amber-700 font-black text-lg tracking-widest font-serif text-center">NEOTERRA</span>
-                    <span class="text-slate-500 text-[9px] font-bold uppercase tracking-wider mt-1">Real Estate Developer</span>
+                    <span class="text-amber-400 font-black text-sm tracking-widest font-serif text-center">NEOTERRA</span>
+                    <span class="text-zinc-500 text-[9px] font-bold uppercase tracking-wider mt-1">Real Estate Developer</span>
                 </div>
                 <div onclick="openPartnerDetail('Dynamic World Security')" class="partner-card flex-col items-center">
-                    <span class="text-red-600 font-black text-base tracking-wider font-sans text-center">DYNAMIC SECURITY</span>
-                    <span class="text-slate-500 text-[9px] font-bold uppercase tracking-wider mt-1">SIRA Licensed Division</span>
+                    <span class="text-red-500 font-black text-xs tracking-wider font-sans text-center">DYNAMIC SECURITY</span>
+                    <span class="text-zinc-500 text-[9px] font-bold uppercase tracking-wider mt-1">SIRA Licensed Division</span>
                 </div>
             </div>
         </div>
 
         <!-- OEM & TECHNOLOGY PARTNERS SECTION -->
-        <div class="mt-16">
-            <h3 class="text-orange-400 text-sm font-bold uppercase tracking-widest mb-6 font-mono text-center">Technology Stack & OEM Partners</h3>
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-5 fade-up">
+        <div class="mt-14">
+            <h3 class="text-orange-400 text-xs font-bold uppercase tracking-widest mb-5 font-mono text-center">Technology Stack & OEM Partners</h3>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 fade-up">
                 <div onclick="openPartnerDetail('KNX')" class="partner-card flex-col items-center">
-                    <span class="text-[#207c38] font-black text-2xl tracking-widest font-mono">KNX</span>
-                    <span class="text-slate-500 text-[8px] font-bold uppercase tracking-wider mt-0.5">Smart Standard</span>
+                    <span class="text-[#22c55e] font-black text-xl tracking-widest font-mono">KNX</span>
+                    <span class="text-zinc-500 text-[8px] font-bold uppercase tracking-wider mt-0.5">Smart Standard</span>
                 </div>
                 <div onclick="openPartnerDetail('GVS')" class="partner-card flex-col items-center">
-                    <span class="text-[#00529b] font-extrabold text-2xl tracking-wider font-sans">GVS</span>
-                    <span class="text-slate-500 text-[8px] font-bold uppercase tracking-wider mt-0.5">Touch & Automation</span>
+                    <span class="text-[#38bdf8] font-extrabold text-xl tracking-wider font-sans">GVS</span>
+                    <span class="text-zinc-500 text-[8px] font-bold uppercase tracking-wider mt-0.5">Touch & Automation</span>
                 </div>
                 <div onclick="openPartnerDetail('BELDEN')" class="partner-card flex-col items-center">
-                    <span class="text-[#102b4e] font-black text-xl tracking-widest font-sans">BELDEN</span>
-                    <span class="text-slate-500 text-[8px] font-bold uppercase tracking-wider mt-0.5">Signal & Cabling</span>
+                    <span class="text-zinc-200 font-black text-lg tracking-widest font-sans">BELDEN</span>
+                    <span class="text-zinc-500 text-[8px] font-bold uppercase tracking-wider mt-0.5">Signal & Cabling</span>
                 </div>
                 <div onclick="openPartnerDetail('Fortinet')" class="partner-card">
-                    <span class="text-red-600 font-extrabold text-xl tracking-wider font-mono">FORTINET.</span>
+                    <span class="text-red-500 font-extrabold text-base tracking-wider font-mono">FORTINET.</span>
                 </div>
                 <div onclick="openPartnerDetail('Cisco')" class="partner-card flex-col gap-1">
-                    <span class="text-slate-800 text-[10px] tracking-widest">.ıııllıl.ıııllıl.</span>
-                    <span class="text-red-600 font-bold text-lg font-mono">CISCO</span>
+                    <span class="text-zinc-500 text-[9px] tracking-widest">.ıııllıl.ıııllıl.</span>
+                    <span class="text-red-500 font-bold text-base font-mono">CISCO</span>
                 </div>
                 <div onclick="openPartnerDetail('Huawei')" class="partner-card flex items-center gap-2">
-                    <i class="fa-brands fa-huawei text-red-600 text-2xl"></i>
-                    <span class="text-slate-900 font-bold text-sm tracking-wide font-sans">HUAWEI</span>
+                    <i class="fa-brands fa-huawei text-red-500 text-xl"></i>
+                    <span class="text-zinc-200 font-bold text-xs tracking-wide font-sans">HUAWEI</span>
                 </div>
                 <div onclick="openPartnerDetail('Dell EMC')" class="partner-card">
-                    <span class="text-[#007db8] font-black text-lg tracking-tight font-sans">DELLEMC</span>
+                    <span class="text-[#38bdf8] font-black text-base tracking-tight font-sans">DELLEMC</span>
                 </div>
                 <div onclick="openPartnerDetail('Hikvision')" class="partner-card">
-                    <span class="text-[#d71920] font-extrabold text-lg tracking-wide italic font-sans">HIKVISION</span>
+                    <span class="text-red-500 font-extrabold text-sm tracking-wide italic font-sans">HIKVISION</span>
                 </div>
                 <div onclick="openPartnerDetail('Martin Audio')" class="partner-card flex-col items-center">
-                    <span class="text-slate-950 font-black text-xl font-serif">M</span>
-                    <span class="text-slate-700 text-[8px] font-bold tracking-widest uppercase">Martin Audio</span>
+                    <span class="text-zinc-200 font-black text-lg font-serif">M</span>
+                    <span class="text-zinc-400 text-[8px] font-bold tracking-widest uppercase">Martin Audio</span>
                 </div>
                 <div onclick="openPartnerDetail('Bose')" class="partner-card">
-                    <span class="text-black font-extrabold text-lg tracking-widest italic font-serif">BOSE</span>
+                    <span class="text-zinc-200 font-extrabold text-base tracking-widest italic font-serif">BOSE</span>
                 </div>
                 <div onclick="openPartnerDetail('Control4')" class="partner-card">
-                    <span class="text-slate-900 font-bold text-base">Control<span class="text-red-600 font-extrabold text-lg">4</span></span>
+                    <span class="text-zinc-200 font-bold text-sm">Control<span class="text-red-500 font-extrabold text-base">4</span></span>
                 </div>
                 <div onclick="openPartnerDetail('VMware')" class="partner-card">
-                    <span class="text-slate-800 font-bold text-base font-sans">vm<span class="font-light">ware</span></span>
+                    <span class="text-zinc-200 font-bold text-sm font-sans">vm<span class="font-light text-zinc-400">ware</span></span>
                 </div>
                 <div onclick="openPartnerDetail('Poly / HP')" class="partner-card flex items-center gap-2">
-                    <span class="text-red-500 font-bold text-sm">poly</span>
-                    <span class="text-slate-400">|</span>
-                    <span class="text-[#0096d6] font-bold text-sm">hp</span>
+                    <span class="text-red-400 font-bold text-xs">poly</span>
+                    <span class="text-zinc-600">|</span>
+                    <span class="text-sky-400 font-bold text-xs">hp</span>
                 </div>
                 <div onclick="openPartnerDetail('Fujitsu')" class="partner-card">
-                    <span class="text-red-600 font-bold text-lg font-serif">FUJITSU</span>
+                    <span class="text-red-500 font-bold text-sm font-serif">FUJITSU</span>
                 </div>
                 <!-- Zoya Card -->
                 <div onclick="openZoyaModal()" class="partner-card zoya-card-custom flex-col items-center justify-center cursor-pointer">
-                    <span class="text-rose-600 font-black text-2xl tracking-widest font-serif">ZOYA</span>
-                    <span class="text-rose-500 text-[8px] font-bold uppercase tracking-widest mt-0.5">Heartfelt Integration</span>
+                    <span class="text-rose-500 font-black text-xl tracking-widest font-serif">ZOYA</span>
+                    <span class="text-rose-400 text-[8px] font-bold uppercase tracking-widest mt-0.5">Heartfelt Integration</span>
                 </div>
             </div>
         </div>
 
-        <div class="mt-12 text-center fade-up">
-            <span class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-dark-900/90 border border-orange-500/40 text-xs font-mono text-slate-300 shadow-2xl">
+        <div class="mt-10 text-center fade-up">
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-zinc-900 border border-white/10 text-xs font-mono text-zinc-400 shadow-sm">
                 <i class="fa-solid fa-circle-check text-orange-400"></i> All hardware, switches, storage, & firewalls provisioned with active manufacturer warranties & SLA.
             </span>
         </div>
@@ -556,75 +545,74 @@
             
             <div class="lg:col-span-7 fade-up space-y-6">
                 <div>
-                    <div class="text-orange-400 text-xs font-bold uppercase tracking-widest mb-3 font-mono">About Me</div>
-                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">Turning Complex Technology Into Systems That Simply Work.</h2>
+                    <div class="text-orange-400 text-xs font-bold uppercase tracking-widest mb-2 font-mono">About Me</div>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-white leading-tight">Turning Complex Technology Into Systems That Simply Work.</h2>
                 </div>
 
-                <p class="text-slate-300 text-lg leading-relaxed font-normal">
+                <p class="text-zinc-300 text-base sm:text-lg leading-relaxed font-normal">
                     I’m a Senior Network, Automation, AV, ELV & Infrastructure Engineer focused on designing, integrating, and commissioning high-performance technology systems for demanding residential and commercial environments.
                 </p>
 
-                <p class="text-slate-400 text-base leading-relaxed">
+                <p class="text-zinc-400 text-sm sm:text-base leading-relaxed">
                     My expertise spans enterprise networking, FortiGate security infrastructure, structured cabling, high-density IT infrastructure, luxury villa automation, ELV systems, and professional audio-visual solutions — bringing multiple technologies together into one reliable, intelligently engineered ecosystem.
                 </p>
 
-                <p class="text-slate-400 text-base leading-relaxed">
+                <p class="text-zinc-400 text-sm sm:text-base leading-relaxed">
                     I work across the complete project lifecycle — from interpreting architectural and MEP requirements and developing detailed AutoCAD shop drawings to hardware staging, rack infrastructure, network configuration, firewall provisioning, system integration, DSP programming, acoustic calibration, testing, commissioning, and final handover.
                 </p>
 
-                <div class="p-6 rounded-2xl glass border border-orange-500/50 space-y-3">
-                    <p class="text-white font-semibold text-base">What sets my approach apart is the ability to look beyond individual systems:</p>
-                    <ul class="list-disc list-inside text-slate-300 text-sm space-y-1.5 font-mono">
+                <div class="p-5 rounded-xl saas-card space-y-2.5">
+                    <p class="text-white font-semibold text-sm">What sets my approach apart is the ability to look beyond individual systems:</p>
+                    <ul class="list-disc list-inside text-zinc-400 text-xs sm:text-sm space-y-1 font-mono">
                         <li>A network is not just switches and cables.</li>
                         <li>An automation system is not just lighting and control.</li>
                         <li>An AV system is not just speakers and amplifiers.</li>
                     </ul>
-                    <p class="text-orange-400 font-bold text-base pt-2">Every system has to work together.</p>
+                    <p class="text-orange-400 font-bold text-sm pt-1">Every system has to work together.</p>
                 </div>
 
-                <p class="text-slate-400 text-base leading-relaxed">
+                <p class="text-zinc-400 text-sm sm:text-base leading-relaxed">
                     I focus on creating technology infrastructure that is stable, scalable, serviceable, and built for real-world performance — whether it is a high-end private residence, enterprise network, or integrated ELV and AV environment.
                 </p>
 
-                <p class="text-slate-300 text-base leading-relaxed font-medium">
+                <p class="text-zinc-300 text-sm sm:text-base leading-relaxed font-medium">
                     With <strong class="text-white">10+ home automation projects</strong> and <strong class="text-white">50+ network infrastructure projects</strong> delivered across Dubai, including Emirates Hills, Dubai Hills, Jumeirah Bay Island, and Downtown Dubai, I bring hands-on site experience together with engineering design and system-level thinking.
                 </p>
             </div>
 
-            <div class="lg:col-span-5 fade-up space-y-6">
-                <div class="glass border border-orange-500/50 rounded-3xl p-8 glow relative overflow-hidden">
-                    <div class="absolute -top-24 -right-24 w-48 h-48 bg-orange-500/20 rounded-full blur-2xl"></div>
-                    <div class="text-orange-400 text-xs font-bold uppercase tracking-widest mb-2 font-mono">Workflow Pipeline</div>
-                    <h3 class="text-2xl font-bold text-white mb-6">From Concept to Commissioning</h3>
+            <div class="lg:col-span-5 fade-up space-y-5">
+                <div class="saas-card p-7 relative overflow-hidden">
+                    <div class="text-orange-400 text-xs font-bold uppercase tracking-widest mb-1 font-mono">Workflow Pipeline</div>
+                    <h3 class="text-xl font-bold text-white mb-5">From Concept to Commissioning</h3>
                     
                     <div class="flex flex-wrap gap-2 text-xs font-mono">
-                        <span class="px-3 py-1.5 rounded-lg bg-orange-500/20 border border-orange-500/50 text-orange-300">Design</span> →
-                        <span class="px-3 py-1.5 rounded-lg bg-orange-500/20 border border-orange-500/50 text-orange-300">Engineering</span> →
-                        <span class="px-3 py-1.5 rounded-lg bg-orange-500/20 border border-orange-500/50 text-orange-300">Infrastructure</span> →
-                        <span class="px-3 py-1.5 rounded-lg bg-orange-500/20 border border-orange-500/50 text-orange-300">Integration</span> →
-                        <span class="px-3 py-1.5 rounded-lg bg-orange-500/20 border border-orange-500/50 text-orange-300">Programming</span> →
-                        <span class="px-3 py-1.5 rounded-lg bg-orange-500/20 border border-orange-500/50 text-orange-300">Testing</span> →
-                        <span class="px-3 py-1.5 rounded-lg bg-orange-500/20 border border-orange-500/50 text-orange-300">Commissioning</span> →
-                        <span class="px-3 py-1.5 rounded-lg bg-emerald-500/20 border border-emerald-500/50 text-emerald-300">Handover</span>
+                        <span class="px-2.5 py-1 rounded bg-zinc-900 border border-white/10 text-orange-300">Design</span> →
+                        <span class="px-2.5 py-1 rounded bg-zinc-900 border border-white/10 text-orange-300">Engineering</span> →
+                        <span class="px-2.5 py-1 rounded bg-zinc-900 border border-white/10 text-orange-300">Infrastructure</span> →
+                        <span class="px-2.5 py-1 rounded bg-zinc-900 border border-white/10 text-orange-300">Integration</span> →
+                        <span class="px-2.5 py-1 rounded bg-zinc-900 border border-white/10 text-orange-300">Programming</span> →
+                        <span class="px-2.5 py-1 rounded bg-zinc-900 border border-white/10 text-orange-300">Testing</span> →
+                        <span class="px-2.5 py-1 rounded bg-zinc-900 border border-white/10 text-orange-300">Commissioning</span> →
+                        <span class="px-2.5 py-1 rounded bg-emerald-950/50 border border-emerald-500/30 text-emerald-300">Handover</span>
                     </div>
 
-                    <div class="mt-8 pt-6 border-t border-orange-500/30">
-                        <div class="text-slate-400 text-sm italic">
-                            "My philosophy is simple: <br><strong class="text-white not-italic text-base block mt-1">Don’t just install technology. Engineer a system that performs.</strong>"
+                    <div class="mt-6 pt-5 border-t border-white/10">
+                        <div class="text-zinc-400 text-xs italic">
+                            "My philosophy is simple: <br><strong class="text-white not-italic text-sm block mt-1">Don’t just install technology. Engineer a system that performs.</strong>"
                         </div>
                     </div>
                 </div>
 
                 <div class="grid sm:grid-cols-2 gap-4">
-                    <div class="glass rounded-2xl p-5 hover:border-orange-500/70 transition">
-                        <div class="text-orange-400 text-2xl mb-3"><i class="fa-solid fa-house-signal"></i></div>
-                        <h4 class="text-white font-bold text-base">10+ Smart Homes</h4>
-                        <p class="text-slate-400 text-xs mt-1">Luxury automation across Emirates Hills & Jumeirah Bay.</p>
+                    <div class="saas-card p-4">
+                        <div class="text-orange-400 text-xl mb-2"><i class="fa-solid fa-house-signal"></i></div>
+                        <h4 class="text-white font-bold text-sm">10+ Smart Homes</h4>
+                        <p class="text-zinc-400 text-xs mt-1">Luxury automation across Emirates Hills & Jumeirah Bay.</p>
                     </div>
-                    <div class="glass rounded-2xl p-5 hover:border-amber-500/70 transition">
-                        <div class="text-amber-400 text-2xl mb-3"><i class="fa-solid fa-network-wired"></i></div>
-                        <h4 class="text-white font-bold text-base">50+ Networks</h4>
-                        <p class="text-slate-400 text-xs mt-1">Enterprise-grade firewalls, switching & infrastructure.</p>
+                    <div class="saas-card p-4">
+                        <div class="text-amber-400 text-xl mb-2"><i class="fa-solid fa-network-wired"></i></div>
+                        <h4 class="text-white font-bold text-sm">50+ Networks</h4>
+                        <p class="text-zinc-400 text-xs mt-1">Enterprise-grade firewalls, switching & infrastructure.</p>
                     </div>
                 </div>
             </div>
@@ -634,186 +622,185 @@
 </section>
 
 <!-- SKILLS SECTION -->
-<section id="skills" class="py-24 border-t border-orange-500/30">
+<section id="skills" class="py-24 border-t border-white/10 bg-zinc-950/40">
     <div class="max-w-7xl mx-auto px-5 sm:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-14 fade-up">
-            <div class="text-orange-400 text-xs font-bold uppercase tracking-widest mb-3 font-mono">Technical Skills</div>
+        <div class="text-center max-w-3xl mx-auto mb-12 fade-up">
+            <div class="text-orange-400 text-xs font-bold uppercase tracking-widest mb-2 font-mono">Technical Skills</div>
             <h2 class="text-3xl sm:text-4xl font-bold text-white">Tools, Systems & Technologies</h2>
         </div>
 
-        <div class="flex flex-wrap justify-center gap-3 max-w-5xl mx-auto fade-up">
-            <span class="skill">Fortinet FortiGate Next-Gen Firewalls (NGFW)</span>
-            <span class="skill">Multi-WAN SD-WAN & Gateway Security Policies</span>
-            <span class="skill">Cisco Catalyst Core & Edge L2/L3 Switching</span>
-            <span class="skill">VLAN Segmentation, Inter-VLAN & DHCP Snooping</span>
-            <span class="skill">Enterprise Wi-Fi 6 Architecture & Gateway Provisioning</span>
-            <span class="skill">Xilica Digital Signal Processors (DSP) Tuning</span>
-            <span class="skill">Martin Audio Professional Loudspeaker Systems</span>
-            <span class="skill">Onkyo Audio/Video Receivers (AVR) & 4K Cinema</span>
-            <span class="skill">LEA Professional Multi-Channel DSP Power Amplifiers</span>
-            <span class="skill">WiiM Hi-Res Multi-Room Audio Streaming Networks</span>
-            <span class="skill">Pro-Series Stage & Architectural Loudspeaker Setup</span>
-            <span class="skill">DeepSpace Network (DSN) Telemetry & Link Infrastructure</span>
-            <span class="skill">Network Cabinet Elevation & Containment Routing</span>
-            <span class="skill">SAN / NAS Tiered Video & Data Archiving</span>
-            <span class="skill">Spine-Leaf Fabric Architecture & Patch Management</span>
-            <span class="skill">Optical Fiber Splicing & OTDR Power Metering</span>
-            <span class="skill">Structured Cabling Standards (Cat6A / Cat7 / MPO)</span>
-            <span class="skill">Smart Home-Automation (KNX / Modbus / IoT)</span>
-            <span class="skill">GVS Smart Touchscreens & KNX Actuators</span>
-            <span class="skill">Belden Structured Industrial & Enterprise Cabling</span>
-            <span class="skill">Centralized Video Management Systems (VMS)</span>
-            <span class="skill">AI-Powered IP CCTV & Facial Recognition</span>
-            <span class="skill">Biometric Access Control & SIP Intercom</span>
-            <span class="skill">AutoCAD Engineering Shop Drawings & Layouts</span>
-            <span class="skill">Single Line Diagrams (SLD) & Containment Routes</span>
-            <span class="skill">MEP Coordination & Authority BOQ Compliance</span>
+        <div class="flex flex-wrap justify-center gap-2.5 max-w-5xl mx-auto fade-up">
+            <span class="skill-badge">Fortinet FortiGate Next-Gen Firewalls (NGFW)</span>
+            <span class="skill-badge">Multi-WAN SD-WAN & Gateway Security Policies</span>
+            <span class="skill-badge">Cisco Catalyst Core & Edge L2/L3 Switching</span>
+            <span class="skill-badge">VLAN Segmentation, Inter-VLAN & DHCP Snooping</span>
+            <span class="skill-badge">Enterprise Wi-Fi 6 Architecture & Gateway Provisioning</span>
+            <span class="skill-badge">Xilica Digital Signal Processors (DSP) Tuning</span>
+            <span class="skill-badge">Martin Audio Professional Loudspeaker Systems</span>
+            <span class="skill-badge">Onkyo Audio/Video Receivers (AVR) & 4K Cinema</span>
+            <span class="skill-badge">LEA Professional Multi-Channel DSP Power Amplifiers</span>
+            <span class="skill-badge">WiiM Hi-Res Multi-Room Audio Streaming Networks</span>
+            <span class="skill-badge">Pro-Series Stage & Architectural Loudspeaker Setup</span>
+            <span class="skill-badge">DeepSpace Network (DSN) Telemetry & Link Infrastructure</span>
+            <span class="skill-badge">Network Cabinet Elevation & Containment Routing</span>
+            <span class="skill-badge">SAN / NAS Tiered Video & Data Archiving</span>
+            <span class="skill-badge">Spine-Leaf Fabric Architecture & Patch Management</span>
+            <span class="skill-badge">Optical Fiber Splicing & OTDR Power Metering</span>
+            <span class="skill-badge">Structured Cabling Standards (Cat6A / Cat7 / MPO)</span>
+            <span class="skill-badge">Smart Home-Automation (KNX / Modbus / IoT)</span>
+            <span class="skill-badge">GVS Smart Touchscreens & KNX Actuators</span>
+            <span class="skill-badge">Belden Structured Industrial & Enterprise Cabling</span>
+            <span class="skill-badge">Centralized Video Management Systems (VMS)</span>
+            <span class="skill-badge">AI-Powered IP CCTV & Facial Recognition</span>
+            <span class="skill-badge">Biometric Access Control & SIP Intercom</span>
+            <span class="skill-badge">AutoCAD Engineering Shop Drawings & Layouts</span>
+            <span class="skill-badge">Single Line Diagrams (SLD) & Containment Routes</span>
+            <span class="skill-badge">MEP Coordination & Authority BOQ Compliance</span>
         </div>
     </div>
 </section>
 
 <!-- EXPERIENCE SECTION -->
-<section id="experience" class="py-24 border-t border-orange-500/30">
+<section id="experience" class="py-24 border-t border-white/10">
     <div class="max-w-6xl mx-auto px-5 sm:px-8">
-        <div class="text-center mb-16 fade-up">
-            <div class="text-orange-400 text-xs font-bold uppercase tracking-widest mb-3 font-mono">Career Track Record</div>
+        <div class="text-center mb-14 fade-up">
+            <div class="text-orange-400 text-xs font-bold uppercase tracking-widest mb-2 font-mono">Career Track Record</div>
             <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Professional Journey & Technical Scope</h2>
-            <p class="text-slate-400 text-sm mt-3 max-w-2xl mx-auto">
+            <p class="text-zinc-400 text-sm mt-2 max-w-2xl mx-auto">
                 Comprehensive international engineering expertise covering UAE, Europe, and India across Next-Gen Networks, DeepSpace telemetry, and ELV Automation.
             </p>
         </div>
 
-        <div class="space-y-8">
-            <div class="glass border border-orange-500/60 rounded-3xl p-6 sm:p-10 glow fade-up relative overflow-hidden">
-                <div class="absolute top-0 right-0 w-48 h-48 bg-orange-500/20 rounded-full blur-3xl pointer-events-none"></div>
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-orange-500/30 pb-6 mb-6">
+        <div class="space-y-6">
+            <div class="saas-card p-6 sm:p-8 fade-up">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/10 pb-5 mb-5">
                     <div>
-                        <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold bg-emerald-500/20 text-emerald-400 border border-emerald-500/50 font-mono mb-3">
-                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span> ACTIVE ROLE • DUBAI
+                        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-mono mb-2.5">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> ACTIVE ROLE • DUBAI
                         </span>
-                        <h3 class="text-2xl sm:text-3xl font-extrabold text-white">Senior Network, Automation, ELV & Infrastructure Engineer</h3>
-                        <div class="text-orange-400 font-semibold mt-2 flex items-center gap-2 text-base">
-                            <i class="fa-solid fa-building text-sm"></i>
-                            <a href="https://dynamicworld.ae" target="_blank" rel="noopener noreferrer" class="hover:underline flex items-center gap-1.5">
-                                Dynamic World Computer LLC <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                        <h3 class="text-xl sm:text-2xl font-extrabold text-white">Senior Network, Automation, ELV & Infrastructure Engineer</h3>
+                        <div class="text-orange-400 font-semibold mt-1.5 flex items-center gap-2 text-sm">
+                            <i class="fa-solid fa-building text-xs"></i>
+                            <a href="https://dynamicworld.ae" target="_blank" rel="noopener noreferrer" class="hover:underline flex items-center gap-1">
+                                Dynamic World Computer LLC <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
                             </a>
-                            <span class="text-slate-600">•</span>
-                            <span class="text-slate-400 font-normal text-sm">Dubai, United Arab Emirates</span>
+                            <span class="text-zinc-600">•</span>
+                            <span class="text-zinc-400 font-normal">Dubai, United Arab Emirates</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <div class="bg-dark-900/95 p-5 rounded-2xl border border-orange-500/30">
-                        <div class="w-10 h-10 rounded-xl bg-red-500/25 text-red-400 flex items-center justify-center mb-3 shadow"><i class="fa-solid fa-shield-halved text-base"></i></div>
-                        <h4 class="text-white font-bold text-sm">Firewalls & Security Gateways</h4>
-                        <p class="text-slate-400 text-xs mt-2 leading-relaxed">Fortinet FortiGate HA clustering, next-gen UTM firewall policies, SD-WAN multi-ISP failover, VPN tunnels, and gateway intrusion prevention.</p>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-3.5">
+                    <div class="bg-zinc-900/60 p-4 rounded-xl border border-white/5">
+                        <div class="w-8 h-8 rounded-lg bg-red-500/10 text-red-400 flex items-center justify-center mb-2.5"><i class="fa-solid fa-shield-halved text-sm"></i></div>
+                        <h4 class="text-white font-bold text-xs">Firewalls & Security Gateways</h4>
+                        <p class="text-zinc-400 text-[11px] mt-1.5 leading-relaxed">Fortinet FortiGate HA clustering, next-gen UTM firewall policies, SD-WAN multi-ISP failover, VPN tunnels, and gateway intrusion prevention.</p>
                     </div>
-                    <div class="bg-dark-900/95 p-5 rounded-2xl border border-orange-500/30">
-                        <div class="w-10 h-10 rounded-xl bg-orange-500/25 text-orange-400 flex items-center justify-center mb-3 shadow"><i class="fa-solid fa-network-wired text-base"></i></div>
-                        <h4 class="text-white font-bold text-sm">Core Routing & Switching</h4>
-                        <p class="text-slate-400 text-xs mt-2 leading-relaxed">Cisco Catalyst and enterprise L2/L3 distribution, VLAN trunking, Inter-VLAN routing, QoS traffic prioritization, and high-density Wi-Fi 6 coverage.</p>
+                    <div class="bg-zinc-900/60 p-4 rounded-xl border border-white/5">
+                        <div class="w-8 h-8 rounded-lg bg-orange-500/10 text-orange-400 flex items-center justify-center mb-2.5"><i class="fa-solid fa-network-wired text-sm"></i></div>
+                        <h4 class="text-white font-bold text-xs">Core Routing & Switching</h4>
+                        <p class="text-zinc-400 text-[11px] mt-1.5 leading-relaxed">Cisco Catalyst and enterprise L2/L3 distribution, VLAN trunking, Inter-VLAN routing, QoS traffic prioritization, and high-density Wi-Fi 6 coverage.</p>
                     </div>
-                    <div class="bg-dark-900/95 p-5 rounded-2xl border border-orange-500/30">
-                        <div class="w-10 h-10 rounded-xl bg-amber-500/25 text-amber-400 flex items-center justify-center mb-3 shadow"><i class="fa-solid fa-diagram-project text-base"></i></div>
-                        <h4 class="text-white font-bold text-sm">Network Cabinets & Racks</h4>
-                        <p class="text-slate-400 text-xs mt-2 leading-relaxed">42U/48U IT cabinet elevation, spine-leaf fabric cabling, SAN/NAS video storage integration, redundant PDU power balancing, and thermal airflow management.</p>
+                    <div class="bg-zinc-900/60 p-4 rounded-xl border border-white/5">
+                        <div class="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center mb-2.5"><i class="fa-solid fa-diagram-project text-sm"></i></div>
+                        <h4 class="text-white font-bold text-xs">Network Cabinets & Racks</h4>
+                        <p class="text-zinc-400 text-[11px] mt-1.5 leading-relaxed">42U/48U IT cabinet elevation, spine-leaf fabric cabling, SAN/NAS video storage integration, redundant PDU power balancing, and thermal airflow management.</p>
                     </div>
-                    <div class="bg-dark-900/95 p-5 rounded-2xl border border-orange-500/30">
-                        <div class="w-10 h-10 rounded-xl bg-red-500/25 text-red-400 flex items-center justify-center mb-3 shadow"><i class="fa-solid fa-sliders text-base"></i></div>
-                        <h4 class="text-white font-bold text-sm">AV, Amps, Onkyo & Xilica DSP</h4>
-                        <p class="text-slate-400 text-xs mt-2 leading-relaxed">Xilica digital signal processors (DSP), Martin Audio pro loudspeakers, Onkyo AVR home cinema integration, LEA Professional power amps, and WiiM hi-res streamers.</p>
+                    <div class="bg-zinc-900/60 p-4 rounded-xl border border-white/5">
+                        <div class="w-8 h-8 rounded-lg bg-red-500/10 text-red-400 flex items-center justify-center mb-2.5"><i class="fa-solid fa-sliders text-sm"></i></div>
+                        <h4 class="text-white font-bold text-xs">AV, Amps, Onkyo & Xilica DSP</h4>
+                        <p class="text-zinc-400 text-[11px] mt-1.5 leading-relaxed">Xilica digital signal processors (DSP), Martin Audio pro loudspeakers, Onkyo AVR home cinema integration, LEA Professional power amps, and WiiM hi-res streamers.</p>
                     </div>
-                    <div class="bg-dark-900/95 p-5 rounded-2xl border border-orange-500/30">
-                        <div class="w-10 h-10 rounded-xl bg-purple-500/25 text-purple-400 flex items-center justify-center mb-3 shadow"><i class="fa-solid fa-house-signal text-base"></i></div>
-                        <h4 class="text-white font-bold text-sm">Smart Home Automation</h4>
-                        <p class="text-slate-400 text-xs mt-2 leading-relaxed">Centralized KNX/Modbus controllers, GVS smart displays, architectural DALI lighting, motorized curtains, HVAC integration, and iPad touchscreens.</p>
+                    <div class="bg-zinc-900/60 p-4 rounded-xl border border-white/5">
+                        <div class="w-8 h-8 rounded-lg bg-purple-500/10 text-purple-400 flex items-center justify-center mb-2.5"><i class="fa-solid fa-house-signal text-sm"></i></div>
+                        <h4 class="text-white font-bold text-xs">Smart Home Automation</h4>
+                        <p class="text-zinc-400 text-[11px] mt-1.5 leading-relaxed">Centralized KNX/Modbus controllers, GVS smart displays, architectural DALI lighting, motorized curtains, HVAC integration, and iPad touchscreens.</p>
                     </div>
-                    <div class="bg-dark-900/95 p-5 rounded-2xl border border-orange-500/30">
-                        <div class="w-10 h-10 rounded-xl bg-emerald-500/25 text-emerald-400 flex items-center justify-center mb-3 shadow"><i class="fa-solid fa-wave-square text-base"></i></div>
-                        <h4 class="text-white font-bold text-sm">Fiber Optics & IP ELV</h4>
-                        <p class="text-slate-400 text-xs mt-2 leading-relaxed">Belden structured cabling, fusion optical splicing, OTDR loss testing, SIRA-certified centralized VMS CCTV, and biometric RFID access control.</p>
+                    <div class="bg-zinc-900/60 p-4 rounded-xl border border-white/5">
+                        <div class="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-2.5"><i class="fa-solid fa-wave-square text-sm"></i></div>
+                        <h4 class="text-white font-bold text-xs">Fiber Optics & IP ELV</h4>
+                        <p class="text-zinc-400 text-[11px] mt-1.5 leading-relaxed">Belden structured cabling, fusion optical splicing, OTDR loss testing, SIRA-certified centralized VMS CCTV, and biometric RFID access control.</p>
                     </div>
                 </div>
             </div>
 
-            <div class="glass border border-amber-500/50 rounded-3xl p-6 sm:p-8 fade-up hover:border-amber-500/80 transition relative overflow-hidden">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-amber-500/30 pb-5 mb-5">
+            <div class="saas-card p-6 sm:p-7 fade-up">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/10 pb-4 mb-4">
                     <div>
-                        <span class="inline-block px-4 py-1.5 rounded-full text-xs font-semibold bg-amber-500/20 text-amber-400 border border-amber-500/50 font-mono mb-2">INTERNATIONAL EXPERIENCE • EUROPE</span>
-                        <h3 class="text-xl sm:text-2xl font-bold text-white">DeepSpace Network (DSN) & Infrastructure Engineer</h3>
-                        <div class="text-amber-400 font-semibold mt-1 flex items-center gap-2 text-sm">
+                        <span class="inline-block px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/20 font-mono mb-2">INTERNATIONAL EXPERIENCE • EUROPE</span>
+                        <h3 class="text-lg sm:text-xl font-bold text-white">DeepSpace Network (DSN) & Infrastructure Engineer</h3>
+                        <div class="text-amber-400 font-semibold mt-1 flex items-center gap-2 text-xs">
                             <i class="fa-solid fa-satellite-dish"></i>
-                            <a href="https://www.delvinacable.al/" target="_blank" rel="noopener noreferrer" class="hover:underline flex items-center gap-1.5">
-                                Delvina Cable <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                            <a href="https://www.delvinacable.al/" target="_blank" rel="noopener noreferrer" class="hover:underline flex items-center gap-1">
+                                Delvina Cable <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
                             </a>
-                            <span class="text-slate-600">•</span>
-                            <span class="text-slate-400 font-normal">Europe</span>
+                            <span class="text-zinc-600">•</span>
+                            <span class="text-zinc-400 font-normal">Europe</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="grid sm:grid-cols-3 gap-3">
-                    <div class="bg-dark-900/90 p-4 rounded-xl border border-amber-500/30 flex items-start gap-3">
-                        <i class="fa-solid fa-satellite-dish text-amber-400 mt-1 text-sm"></i>
+                    <div class="bg-zinc-900/50 p-3.5 rounded-xl border border-white/5 flex items-start gap-3">
+                        <i class="fa-solid fa-satellite-dish text-amber-400 mt-0.5 text-xs"></i>
                         <div>
-                            <div class="text-white text-xs font-bold font-mono uppercase">DeepSpace Network (DSN)</div>
-                            <div class="text-slate-400 text-xs mt-1">High-reliability telemetry links, ground station data pipes, latency optimization, and signal transmission infrastructure.</div>
+                            <div class="text-white text-xs font-bold font-mono uppercase">DeepSpace Network</div>
+                            <div class="text-zinc-400 text-[11px] mt-0.5">High-reliability telemetry links, ground station data pipes, latency optimization, and signal transmission infrastructure.</div>
                         </div>
                     </div>
-                    <div class="bg-dark-900/90 p-4 rounded-xl border border-amber-500/30 flex items-start gap-3">
-                        <i class="fa-solid fa-wave-square text-orange-400 mt-1 text-sm"></i>
+                    <div class="bg-zinc-900/50 p-3.5 rounded-xl border border-white/5 flex items-start gap-3">
+                        <i class="fa-solid fa-wave-square text-orange-400 mt-0.5 text-xs"></i>
                         <div>
-                            <div class="text-white text-xs font-bold font-mono uppercase">Fiber Optics Backbone</div>
-                            <div class="text-slate-400 text-xs mt-1">Single-mode optical fusion splicing, low-attenuation patch distribution, and OTDR backscatter analysis.</div>
+                            <div class="text-white text-xs font-bold font-mono uppercase">Fiber Backbone</div>
+                            <div class="text-zinc-400 text-[11px] mt-0.5">Single-mode optical fusion splicing, low-attenuation patch distribution, and OTDR backscatter analysis.</div>
                         </div>
                     </div>
-                    <div class="bg-dark-900/90 p-4 rounded-xl border border-amber-500/30 flex items-start gap-3">
-                        <i class="fa-solid fa-network-wired text-emerald-400 mt-1 text-sm"></i>
+                    <div class="bg-zinc-900/50 p-3.5 rounded-xl border border-white/5 flex items-start gap-3">
+                        <i class="fa-solid fa-network-wired text-emerald-400 mt-0.5 text-xs"></i>
                         <div>
-                            <div class="text-white text-xs font-bold font-mono uppercase">Enterprise Switch Topology</div>
-                            <div class="text-slate-400 text-xs mt-1">Core/Edge managed switch staging, VLAN trunk isolation, port redundancy, and hardware troubleshooting.</div>
+                            <div class="text-white text-xs font-bold font-mono uppercase">Switch Topology</div>
+                            <div class="text-zinc-400 text-[11px] mt-0.5">Core/Edge managed switch staging, VLAN trunk isolation, port redundancy, and hardware troubleshooting.</div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="glass border border-emerald-500/50 rounded-3xl p-6 sm:p-8 fade-up hover:border-emerald-500/80 transition relative overflow-hidden">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-emerald-500/30 pb-5 mb-5">
+            <div class="saas-card p-6 sm:p-7 fade-up">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/10 pb-4 mb-4">
                     <div>
-                        <span class="inline-block px-4 py-1.5 rounded-full text-xs font-semibold bg-emerald-500/20 text-emerald-400 border border-emerald-500/50 font-mono mb-2">PREVIOUS EXPERIENCE • INDIA</span>
-                        <h3 class="text-xl sm:text-2xl font-bold text-white">Network, Switching & Routing Engineer</h3>
-                        <div class="text-emerald-400 font-semibold mt-1 flex items-center gap-2 text-sm">
+                        <span class="inline-block px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-mono mb-2">PREVIOUS EXPERIENCE • INDIA</span>
+                        <h3 class="text-lg sm:text-xl font-bold text-white">Network, Switching & Routing Engineer</h3>
+                        <div class="text-emerald-400 font-semibold mt-1 flex items-center gap-2 text-xs">
                             <i class="fa-solid fa-building"></i>
-                            <a href="https://www.softproindia.in/" target="_blank" rel="noopener noreferrer" class="hover:underline flex items-center gap-1.5">
-                                Softpro India Computer Technologies Pvt Ltd <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                            <a href="https://www.softproindia.in/" target="_blank" rel="noopener noreferrer" class="hover:underline flex items-center gap-1">
+                                Softpro India Computer Technologies Pvt Ltd <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
                             </a>
-                            <span class="text-slate-600">•</span>
-                            <span class="text-slate-400 font-normal">India</span>
+                            <span class="text-zinc-600">•</span>
+                            <span class="text-zinc-400 font-normal">India</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="grid sm:grid-cols-3 gap-3">
-                    <div class="bg-dark-900/90 p-4 rounded-xl border border-emerald-500/30 flex items-start gap-3">
-                        <i class="fa-solid fa-network-wired text-orange-400 mt-1 text-sm"></i>
+                    <div class="bg-zinc-900/50 p-3.5 rounded-xl border border-white/5 flex items-start gap-3">
+                        <i class="fa-solid fa-network-wired text-orange-400 mt-0.5 text-xs"></i>
                         <div>
                             <div class="text-white text-xs font-bold font-mono uppercase">Enterprise Networking</div>
-                            <div class="text-slate-400 text-xs mt-1">LAN/WAN deployment, subnetting, TCP/IP architecture, and structured network infrastructure staging.</div>
+                            <div class="text-zinc-400 text-[11px] mt-0.5">LAN/WAN deployment, subnetting, TCP/IP architecture, and structured network infrastructure staging.</div>
                         </div>
                     </div>
-                    <div class="bg-dark-900/90 p-4 rounded-xl border border-emerald-500/30 flex items-start gap-3">
-                        <i class="fa-solid fa-sliders text-amber-400 mt-1 text-sm"></i>
+                    <div class="bg-zinc-900/50 p-3.5 rounded-xl border border-white/5 flex items-start gap-3">
+                        <i class="fa-solid fa-sliders text-amber-400 mt-0.5 text-xs"></i>
                         <div>
                             <div class="text-white text-xs font-bold font-mono uppercase">Switching & VLANs</div>
-                            <div class="text-slate-400 text-xs mt-1">L2/L3 managed switch configuration, VLAN tagging, port security, and spanning tree protocol (STP).</div>
+                            <div class="text-zinc-400 text-[11px] mt-0.5">L2/L3 managed switch configuration, VLAN tagging, port security, and spanning tree protocol (STP).</div>
                         </div>
                     </div>
-                    <div class="bg-dark-900/90 p-4 rounded-xl border border-emerald-500/30 flex items-start gap-3">
-                        <i class="fa-solid fa-route text-emerald-400 mt-1 text-sm"></i>
+                    <div class="bg-zinc-900/50 p-3.5 rounded-xl border border-white/5 flex items-start gap-3">
+                        <i class="fa-solid fa-route text-emerald-400 mt-0.5 text-xs"></i>
                         <div>
                             <div class="text-white text-xs font-bold font-mono uppercase">Routing & Troubleshooting</div>
-                            <div class="text-slate-400 text-xs mt-1">Static and dynamic IP routing, default gateway management, packet tracing, and network fault resolution.</div>
+                            <div class="text-zinc-400 text-[11px] mt-0.5">Static and dynamic IP routing, default gateway management, packet tracing, and network fault resolution.</div>
                         </div>
                     </div>
                 </div>
@@ -823,66 +810,66 @@
 </section>
 
 <!-- CONTACT SECTION -->
-<section id="contact" class="py-24 border-t border-orange-500/30">
+<section id="contact" class="py-24 border-t border-white/10 bg-zinc-950/30">
     <div class="max-w-7xl mx-auto px-5 sm:px-8">
         <div class="grid lg:grid-cols-2 gap-14 items-center">
             <div class="fade-up">
-                <div class="text-orange-400 text-xs font-bold uppercase tracking-widest mb-3 font-mono">Contact</div>
+                <div class="text-orange-400 text-xs font-bold uppercase tracking-widest mb-2 font-mono">Contact</div>
                 <h2 class="text-3xl sm:text-4xl font-bold text-white leading-tight">Let's talk about your next project.</h2>
-                <p class="text-slate-400 mt-5 leading-relaxed max-w-xl">
+                <p class="text-zinc-400 mt-4 text-sm sm:text-base leading-relaxed max-w-xl">
                     If you need support with enterprise networks, FortiGate firewalls, IT rack containment, Xilica DSP / Martin Audio / Onkyo AV systems, or smart building automation, feel free to get in touch.
                 </p>
 
-                <div class="space-y-5 mt-9">
+                <div class="space-y-4 mt-8">
                     <a href="mailto:s.faishal@dynamicworld.ae" class="flex items-center gap-4 group">
-                        <div class="w-12 h-12 rounded-xl bg-dark-800 border border-orange-500/40 flex items-center justify-center text-orange-400 group-hover:bg-orange-600 group-hover:text-white transition shadow"><i class="fa-solid fa-envelope"></i></div>
+                        <div class="w-10 h-10 rounded-lg bg-zinc-900 border border-white/10 flex items-center justify-center text-orange-400 group-hover:bg-orange-600 group-hover:text-white transition"><i class="fa-solid fa-envelope text-sm"></i></div>
                         <div>
-                            <div class="text-xs text-slate-500 uppercase tracking-wider">Email</div>
-                            <div class="text-white font-semibold">s.faishal@dynamicworld.ae</div>
+                            <div class="text-[11px] text-zinc-500 uppercase tracking-wider font-mono">Email</div>
+                            <div class="text-white font-semibold text-sm">s.faishal@dynamicworld.ae</div>
                         </div>
                     </a>
                     <a href="https://wa.me/971503928611" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 group">
-                        <div class="w-12 h-12 rounded-xl bg-dark-800 border border-orange-500/40 flex items-center justify-center text-green-400 group-hover:bg-green-600 group-hover:text-white transition shadow"><i class="fa-brands fa-whatsapp"></i></div>
+                        <div class="w-10 h-10 rounded-lg bg-zinc-900 border border-white/10 flex items-center justify-center text-green-400 group-hover:bg-green-600 group-hover:text-white transition"><i class="fa-brands fa-whatsapp text-sm"></i></div>
                         <div>
-                            <div class="text-xs text-slate-500 uppercase tracking-wider">WhatsApp</div>
-                            <div class="text-white font-semibold">Message on WhatsApp</div>
+                            <div class="text-[11px] text-zinc-500 uppercase tracking-wider font-mono">WhatsApp</div>
+                            <div class="text-white font-semibold text-sm">Message on WhatsApp</div>
                         </div>
                     </a>
                     <a href="https://www.instagram.com/ffaishalll" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 group">
-                        <div class="w-12 h-12 rounded-xl bg-dark-800 border border-orange-500/40 flex items-center justify-center text-pink-400 group-hover:bg-pink-600 group-hover:text-white transition shadow"><i class="fa-brands fa-instagram"></i></div>
+                        <div class="w-10 h-10 rounded-lg bg-zinc-900 border border-white/10 flex items-center justify-center text-pink-400 group-hover:bg-pink-600 group-hover:text-white transition"><i class="fa-brands fa-instagram text-sm"></i></div>
                         <div>
-                            <div class="text-xs text-slate-500 uppercase tracking-wider">Instagram</div>
-                            <div class="text-white font-semibold group-hover:text-pink-400 transition">Instagram</div>
+                            <div class="text-[11px] text-zinc-500 uppercase tracking-wider font-mono">Instagram</div>
+                            <div class="text-white font-semibold text-sm group-hover:text-pink-400 transition">Instagram</div>
                         </div>
                     </a>
                     <a href="https://www.linkedin.com/in/shah-faishal-2000b6266" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 group">
-                        <div class="w-12 h-12 rounded-xl bg-dark-800 border border-orange-500/40 flex items-center justify-center text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition shadow"><i class="fa-brands fa-linkedin-in"></i></div>
+                        <div class="w-10 h-10 rounded-lg bg-zinc-900 border border-white/10 flex items-center justify-center text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition"><i class="fa-brands fa-linkedin-in text-sm"></i></div>
                         <div>
-                            <div class="text-xs text-slate-500 uppercase tracking-wider">LinkedIn</div>
-                            <div class="text-white font-semibold group-hover:text-blue-400 transition">LinkedIn</div>
+                            <div class="text-[11px] text-zinc-500 uppercase tracking-wider font-mono">LinkedIn</div>
+                            <div class="text-white font-semibold text-sm group-hover:text-blue-400 transition">LinkedIn</div>
                         </div>
                     </a>
                 </div>
             </div>
 
-            <div class="glass border border-orange-500/50 rounded-3xl p-8 glow fade-up">
-                <div class="text-white text-xl font-bold">Quick Contact</div>
-                <p class="text-slate-400 text-sm mt-2">Send your project requirements directly through WhatsApp.</p>
-                <form id="contactForm" class="mt-7 space-y-5">
+            <div class="saas-card p-8 fade-up">
+                <div class="text-white text-lg font-bold">Quick Contact</div>
+                <p class="text-zinc-400 text-xs sm:text-sm mt-1.5">Send your project requirements directly through WhatsApp.</p>
+                <form id="contactForm" class="mt-6 space-y-4">
                     <div>
-                        <label class="text-xs text-slate-400 uppercase tracking-wider">Name</label>
-                        <input id="name" type="text" required placeholder="Your name" class="mt-2 w-full px-4 py-3.5 rounded-xl bg-dark-900/95 border border-orange-500/40 text-white placeholder-slate-600 focus:outline-none focus:border-orange-500 transition shadow-inner">
+                        <label class="text-xs text-zinc-400 uppercase tracking-wider font-mono">Name</label>
+                        <input id="name" type="text" required placeholder="Your name" class="mt-1.5 w-full px-4 py-3 rounded-lg bg-zinc-900/90 border border-white/10 text-white placeholder-zinc-600 focus:outline-none focus:border-orange-500 transition text-sm">
                     </div>
                     <div>
-                        <label class="text-xs text-slate-400 uppercase tracking-wider">Email</label>
-                        <input id="email" type="email" required placeholder="your@email.com" class="mt-2 w-full px-4 py-3.5 rounded-xl bg-dark-900/95 border border-orange-500/40 text-white placeholder-slate-600 focus:outline-none focus:border-orange-500 transition shadow-inner">
+                        <label class="text-xs text-zinc-400 uppercase tracking-wider font-mono">Email</label>
+                        <input id="email" type="email" required placeholder="your@email.com" class="mt-1.5 w-full px-4 py-3 rounded-lg bg-zinc-900/90 border border-white/10 text-white placeholder-zinc-600 focus:outline-none focus:border-orange-500 transition text-sm">
                     </div>
                     <div>
-                        <label class="text-xs text-slate-400 uppercase tracking-wider">Message</label>
-                        <textarea id="message" rows="5" required placeholder="Tell me about your project..." class="mt-2 w-full px-4 py-3.5 rounded-xl bg-dark-900/95 border border-orange-500/40 text-white placeholder-slate-600 focus:outline-none focus:border-orange-500 transition shadow-inner"></textarea>
+                        <label class="text-xs text-zinc-400 uppercase tracking-wider font-mono">Message</label>
+                        <textarea id="message" rows="4" required placeholder="Tell me about your project..." class="mt-1.5 w-full px-4 py-3 rounded-lg bg-zinc-900/90 border border-white/10 text-white placeholder-zinc-600 focus:outline-none focus:border-orange-500 transition text-sm"></textarea>
                     </div>
-                    <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-orange-600 via-amber-600 to-red-600 hover:from-orange-500 hover:to-amber-500 text-white font-bold transition shadow-2xl shadow-orange-600/50 border border-orange-400/40">
-                        <i class="fa-brands fa-whatsapp mr-2"></i> Send via WhatsApp
+                    <button type="submit" class="w-full py-3.5 rounded-lg bg-white hover:bg-zinc-200 text-zinc-950 font-bold text-sm transition shadow-lg">
+                        <i class="fa-brands fa-whatsapp mr-2 text-green-600"></i> Send via WhatsApp
                     </button>
                 </form>
             </div>
@@ -891,96 +878,96 @@
 </section>
 
 <!-- DISCLAIMER SECTION -->
-<section class="py-12 border-t border-orange-500/30 bg-dark-900/90 relative z-10">
+<section class="py-10 border-t border-white/10 bg-zinc-950 relative z-10">
     <div class="max-w-5xl mx-auto px-5 sm:px-8 text-center">
-        <div class="inline-flex items-center gap-2 px-4.5 py-1.5 rounded-full text-[11px] font-mono text-orange-400 bg-orange-500/20 border border-orange-500/50 mb-4 shadow">
-            <i class="fa-solid fa-shield-halved"></i> DISCLAIMER & TRADEMARKS
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-mono text-zinc-400 bg-zinc-900 border border-white/10 mb-3">
+            <i class="fa-solid fa-shield-halved text-orange-400"></i> DISCLAIMER & TRADEMARKS
         </div>
-        <p class="text-xs text-slate-400 leading-relaxed font-sans max-w-4xl mx-auto">
-            All brand names, product names, logos, trademarks, and registered service marks displayed on <strong class="text-slate-300">shahfaishal.com</strong> (including Cisco, Fortinet, KNX, GVS, Belden, Martin Audio, Onkyo, and others) are the property of their respective corporate owners. References to these hardware brands, software platforms, or protocols are strictly for technical demonstration, portfolio showcase, and engineering scope representation. This portfolio is independently managed and does not imply official sponsorship, endorsement, or commercial affiliation with the respective OEM manufacturers.
+        <p class="text-[11px] sm:text-xs text-zinc-500 leading-relaxed font-sans max-w-4xl mx-auto">
+            All brand names, product names, logos, trademarks, and registered service marks displayed on <strong class="text-zinc-400">shahfaishal.com</strong> (including Cisco, Fortinet, KNX, GVS, Belden, Martin Audio, Onkyo, and others) are the property of their respective corporate owners. References to these hardware brands, software platforms, or protocols are strictly for technical demonstration, portfolio showcase, and engineering scope representation. This portfolio is independently managed and does not imply official sponsorship, endorsement, or commercial affiliation with the respective OEM manufacturers.
         </p>
     </div>
 </section>
 
 <!-- FOOTER -->
-<footer class="py-8 border-t border-orange-500/30 bg-dark-900 relative z-10">
+<footer class="py-6 border-t border-white/10 bg-[#09090b] relative z-10">
     <div class="max-w-7xl mx-auto px-5 sm:px-8">
-        <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div class="text-sm text-slate-500 font-mono">© <span id="year"></span> Shah Faishal. All rights reserved.</div>
-            <div class="text-xs text-slate-500 font-mono">Network • Automation • ELV • Pro AV Infrastructure</div>
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+            <div class="text-zinc-500 font-mono">© <span id="year"></span> Shah Faishal. All rights reserved.</div>
+            <div class="text-zinc-500 font-mono">Network • Automation • ELV • Pro AV Infrastructure</div>
         </div>
     </div>
 </footer>
 
 <!-- SIDEBAR -->
 <div class="fixed left-0 top-[62%] -translate-y-1/2 z-40 flex flex-col super-glass-sidebar rounded-r-xl shadow-2xl border-y border-r overflow-hidden notranslate" translate="no">
-    <a href="https://www.instagram.com/ffaishalll" target="_blank" rel="noopener noreferrer" title="Instagram" class="w-11 h-11 flex items-center justify-center text-white/95 hover:bg-gradient-to-tr hover:from-yellow-500 hover:via-pink-600 hover:to-purple-600 hover:text-white transition duration-200 border-b border-white/10"><i class="fa-brands fa-instagram text-base"></i></a>
-    <a href="https://www.linkedin.com/in/shah-faishal-2000b6266" target="_blank" rel="noopener noreferrer" title="LinkedIn" class="w-11 h-11 flex items-center justify-center text-white/95 hover:bg-[#0077b5] hover:text-white transition duration-200 border-b border-white/10"><i class="fa-brands fa-linkedin-in text-base"></i></a>
-    <a href="https://wa.me/971503928611" target="_blank" rel="noopener noreferrer" title="WhatsApp" class="w-11 h-11 flex items-center justify-center text-white/95 hover:bg-[#25D366] hover:text-white transition duration-200 border-b border-white/10"><i class="fa-brands fa-whatsapp text-base"></i></a>
-    <a href="mailto:s.faishal@dynamicworld.ae" title="Email" class="w-11 h-11 flex items-center justify-center text-white/95 hover:bg-orange-600 hover:text-white transition duration-200"><i class="fa-solid fa-envelope text-sm"></i></a>
+    <a href="https://www.instagram.com/ffaishalll" target="_blank" rel="noopener noreferrer" title="Instagram" class="w-10 h-10 flex items-center justify-center text-zinc-300 hover:bg-gradient-to-tr hover:from-yellow-500 hover:via-pink-600 hover:to-purple-600 hover:text-white transition duration-200 border-b border-white/10"><i class="fa-brands fa-instagram text-sm"></i></a>
+    <a href="https://www.linkedin.com/in/shah-faishal-2000b6266" target="_blank" rel="noopener noreferrer" title="LinkedIn" class="w-10 h-10 flex items-center justify-center text-zinc-300 hover:bg-[#0077b5] hover:text-white transition duration-200 border-b border-white/10"><i class="fa-brands fa-linkedin-in text-sm"></i></a>
+    <a href="https://wa.me/971503928611" target="_blank" rel="noopener noreferrer" title="WhatsApp" class="w-10 h-10 flex items-center justify-center text-zinc-300 hover:bg-[#25D366] hover:text-white transition duration-200 border-b border-white/10"><i class="fa-brands fa-whatsapp text-sm"></i></a>
+    <a href="mailto:s.faishal@dynamicworld.ae" title="Email" class="w-10 h-10 flex items-center justify-center text-zinc-300 hover:bg-orange-600 hover:text-white transition duration-200"><i class="fa-solid fa-envelope text-xs"></i></a>
 </div>
 
 <!-- MODALS -->
-<div id="detailModal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4 sm:p-6 overflow-y-auto">
-    <div class="relative w-full max-w-4xl glass border border-orange-500/50 rounded-3xl overflow-hidden shadow-2xl my-auto">
-        <button onclick="closeServiceDetail()" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-dark-900/90 border border-orange-500/50 text-slate-300 hover:text-white hover:bg-orange-600 flex items-center justify-center transition"><i class="fa-solid fa-xmark text-lg"></i></button>
+<div id="detailModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4 sm:p-6 overflow-y-auto">
+    <div class="relative w-full max-w-4xl saas-card border-white/20 overflow-hidden shadow-2xl my-auto">
+        <button onclick="closeServiceDetail()" class="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-zinc-900 border border-white/10 text-zinc-300 hover:text-white hover:bg-orange-600 flex items-center justify-center transition"><i class="fa-solid fa-xmark text-sm"></i></button>
         <div class="flex flex-col">
-            <div id="modalMediaContainer" class="w-full h-64 sm:h-96 overflow-hidden bg-dark-900 relative flex items-center justify-center">
+            <div id="modalMediaContainer" class="w-full h-64 sm:h-96 overflow-hidden bg-zinc-950 relative flex items-center justify-center">
                 <!-- Dynamically injected Image -->
             </div>
             <div class="p-6 sm:p-8">
                 <div id="modalCategory" class="text-xs font-mono text-orange-400 font-bold uppercase tracking-widest mb-2"></div>
-                <h3 id="modalTitle" class="text-2xl sm:text-3xl font-extrabold text-white leading-tight italic"></h3>
-                <p id="modalDesc" class="text-slate-300 text-base sm:text-lg leading-relaxed mt-4"></p>
-                <div class="mt-8 pt-6 border-t border-orange-500/30 flex justify-between items-center">
-                    <span class="text-xs text-slate-500 font-mono">Shah Faishal Engineering Archive</span>
-                    <button onclick="closeServiceDetail()" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white text-sm font-semibold transition shadow-lg">Close Preview</button>
+                <h3 id="modalTitle" class="text-2xl sm:text-3xl font-extrabold text-white leading-tight"></h3>
+                <p id="modalDesc" class="text-zinc-300 text-sm sm:text-base leading-relaxed mt-3"></p>
+                <div class="mt-8 pt-5 border-t border-white/10 flex justify-between items-center">
+                    <span class="text-xs text-zinc-500 font-mono">Shah Faishal Engineering Archive</span>
+                    <button onclick="closeServiceDetail()" class="px-4 py-2 rounded-lg bg-white text-zinc-950 hover:bg-zinc-200 text-xs font-semibold transition">Close Preview</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<div id="partnerModal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4 sm:p-6 overflow-y-auto">
-    <div class="relative w-full max-w-2xl glass border border-orange-500/60 rounded-3xl overflow-hidden shadow-2xl my-auto p-6 sm:p-8">
-        <button onclick="closePartnerDetail()" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-dark-900/90 border border-orange-500/50 text-slate-300 hover:text-white hover:bg-orange-600 flex items-center justify-center transition"><i class="fa-solid fa-xmark text-lg"></i></button>
-        <div class="flex items-center gap-4 border-b border-orange-500/30 pb-5">
-            <div id="partnerModalIcon" class="w-14 h-14 rounded-2xl bg-orange-500/25 border border-orange-500/50 flex items-center justify-center text-orange-400 text-2xl shadow"><i class="fa-solid fa-microchip"></i></div>
+<div id="partnerModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4 sm:p-6 overflow-y-auto">
+    <div class="relative w-full max-w-2xl saas-card border-white/20 overflow-hidden shadow-2xl my-auto p-6 sm:p-8">
+        <button onclick="closePartnerDetail()" class="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-zinc-900 border border-white/10 text-zinc-300 hover:text-white hover:bg-orange-600 flex items-center justify-center transition"><i class="fa-solid fa-xmark text-sm"></i></button>
+        <div class="flex items-center gap-4 border-b border-white/10 pb-4">
+            <div id="partnerModalIcon" class="w-12 h-12 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-orange-400 text-xl"><i class="fa-solid fa-microchip"></i></div>
             <div>
                 <span id="partnerModalTag" class="text-[10px] uppercase font-mono tracking-widest text-orange-400 font-bold">Enterprise Solution</span>
-                <h3 id="partnerModalTitle" class="text-2xl font-bold text-white leading-tight"></h3>
+                <h3 id="partnerModalTitle" class="text-xl font-bold text-white leading-tight"></h3>
             </div>
         </div>
-        <div class="py-6">
-            <h4 class="text-xs font-mono uppercase text-slate-400 tracking-wider mb-2">Overview & Technical Scope</h4>
-            <p id="partnerModalDesc" class="text-slate-300 text-base leading-relaxed"></p>
+        <div class="py-5">
+            <h4 class="text-xs font-mono uppercase text-zinc-400 tracking-wider mb-2">Overview & Technical Scope</h4>
+            <p id="partnerModalDesc" class="text-zinc-300 text-sm sm:text-base leading-relaxed"></p>
         </div>
-        <div class="pt-5 border-t border-orange-500/30 flex justify-between items-center gap-3">
-            <a id="partnerModalLink" href="#" target="_blank" rel="noopener noreferrer" class="hidden px-5 py-2.5 rounded-xl bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white text-sm font-semibold transition inline-flex items-center gap-2 shadow-lg shadow-orange-600/40">
+        <div class="pt-4 border-t border-white/10 flex justify-between items-center gap-3">
+            <a id="partnerModalLink" href="#" target="_blank" rel="noopener noreferrer" class="hidden px-4 py-2 rounded-lg bg-orange-600 hover:bg-orange-500 text-white text-xs font-semibold transition inline-flex items-center gap-2 shadow-lg">
                 <i class="fa-solid fa-globe text-xs"></i> Visit Official Site
             </a>
-            <button onclick="closePartnerDetail()" class="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-sm font-semibold transition ml-auto border border-orange-500/40">Got it</button>
+            <button onclick="closePartnerDetail()" class="px-4 py-2 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-300 hover:text-white text-xs font-semibold transition ml-auto">Got it</button>
         </div>
     </div>
 </div>
 
 <!-- ZOYA MODAL WITH HEART ANIMATION -->
-<div id="zoyaModal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4 sm:p-6 overflow-y-auto">
-    <div class="relative w-full max-w-md glass border border-rose-500/60 rounded-3xl overflow-hidden shadow-2xl my-auto p-6 sm:p-8 text-center">
-        <button onclick="closeZoyaModal()" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-dark-900/90 border border-rose-500/50 text-slate-300 hover:text-white hover:bg-rose-600 flex items-center justify-center transition"><i class="fa-solid fa-xmark text-lg"></i></button>
+<div id="zoyaModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4 sm:p-6 overflow-y-auto">
+    <div class="relative w-full max-w-md saas-card border-rose-500/30 overflow-hidden shadow-2xl my-auto p-6 sm:p-8 text-center">
+        <button onclick="closeZoyaModal()" class="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-zinc-900 border border-white/10 text-zinc-300 hover:text-white hover:bg-rose-600 flex items-center justify-center transition"><i class="fa-solid fa-xmark text-sm"></i></button>
         
-        <div class="my-6">
+        <div class="my-5">
             <div class="modal-beating-heart"></div>
         </div>
 
         <h3 class="text-2xl font-bold text-white tracking-wider font-serif">ZOYA</h3>
         <p class="text-xs uppercase font-mono tracking-widest text-rose-400 font-bold mt-1 mb-4">Heartfelt Integration & Automation</p>
         
-        <p class="text-slate-300 text-sm leading-relaxed mb-6">
+        <p class="text-zinc-300 text-xs sm:text-sm leading-relaxed mb-6">
             Dedicated to the most special part of life — bringing warmth, care, and seamless harmony into everyday engineering and personal ecosystems.
         </p>
 
-        <button onclick="closeZoyaModal()" class="w-full py-3 rounded-xl bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-500 hover:to-pink-500 text-white text-sm font-semibold transition shadow-xl shadow-rose-600/50 border border-rose-400/50">
+        <button onclick="closeZoyaModal()" class="w-full py-2.5 rounded-lg bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-500 hover:to-pink-500 text-white text-xs font-semibold transition shadow-lg shadow-rose-600/30">
             Close
         </button>
     </div>
@@ -988,30 +975,30 @@
 
 <div id="heartModal" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-2xl hidden flex-col items-center justify-between p-6 sm:p-10 select-none">
     <div class="w-full flex justify-end">
-        <button onclick="closeHeartModal()" class="w-10 h-10 rounded-full bg-dark-800/90 border border-orange-500/50 text-slate-300 hover:text-white hover:bg-red-600 flex items-center justify-center transition shadow-lg"><i class="fa-solid fa-xmark text-base"></i></button>
+        <button onclick="closeHeartModal()" class="w-9 h-9 rounded-full bg-zinc-900 border border-white/10 text-zinc-300 hover:text-white hover:bg-red-600 flex items-center justify-center transition shadow-lg"><i class="fa-solid fa-xmark text-sm"></i></button>
     </div>
     <div id="heartArena" class="relative w-full h-[65vh] flex items-center justify-center overflow-hidden">
         <div id="dodgingHeartContainer" onmouseenter="dodgeHeart()" ontouchstart="dodgeHeart(event)">
-            <div id="heartHintText" class="mb-3 text-center whitespace-nowrap text-orange-400 font-mono text-xs sm:text-sm tracking-wide bg-orange-500/15 border border-orange-500/50 px-4 py-1.5 rounded-full shadow-xl backdrop-blur-md animate-pulse">Click the heart if you can! 👇</div>
-            <div class="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-red-500/20 border border-red-500/50 flex items-center justify-center shadow-[0_0_60px_rgba(239,68,68,0.8)] active:scale-90">
-                <i class="fa-solid fa-heart text-5xl sm:text-6xl text-red-500 drop-shadow-[0_0_35px_rgba(239,68,68,1)] animate-pulse"></i>
+            <div id="heartHintText" class="mb-3 text-center whitespace-nowrap text-orange-400 font-mono text-xs tracking-wide bg-zinc-900 border border-white/10 px-3.5 py-1.5 rounded-full shadow-lg backdrop-blur-md animate-pulse">Click the heart if you can! 👇</div>
+            <div class="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-red-500/10 border border-red-500/30 flex items-center justify-center shadow-[0_0_40px_rgba(239,68,68,0.5)] active:scale-90">
+                <i class="fa-solid fa-heart text-5xl sm:text-6xl text-red-500 drop-shadow-[0_0_25px_rgba(239,68,68,0.8)] animate-pulse"></i>
                 <span class="absolute inset-0 flex items-center justify-center font-black text-pink-200 text-xl sm:text-2xl drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)] pb-1.5 pointer-events-none">Z</span>
             </div>
         </div>
     </div>
     <div class="w-full max-w-xs pb-4">
-        <button onclick="closeHeartModal()" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-red-600 via-rose-600 to-red-700 hover:from-red-500 hover:to-rose-500 text-white text-xs sm:text-sm font-bold tracking-[0.2em] uppercase transition shadow-2xl shadow-red-600/50 border border-red-400/50">
+        <button onclick="closeHeartModal()" class="w-full py-3 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-white text-xs font-bold tracking-[0.2em] uppercase transition border border-white/10 shadow-lg">
             <i class="fa-solid fa-arrow-right-from-bracket mr-2"></i> Exit
         </button>
     </div>
 </div>
 
 <div id="alertPopupModal" class="fixed inset-0 z-[60] bg-black/80 backdrop-blur-md hidden items-center justify-center p-4">
-    <div class="relative w-full max-w-md glass border border-orange-500/70 rounded-3xl p-6 sm:p-8 text-center shadow-2xl">
-        <div class="w-14 h-14 mx-auto rounded-2xl bg-orange-500/25 border border-orange-500/50 flex items-center justify-center text-orange-400 text-2xl mb-4 shadow"><i class="fa-solid fa-shield-cat"></i></div>
-        <h3 class="text-xl font-bold text-white">Attempt Limit Reached!</h3>
-        <p id="alertPopupText" class="text-slate-300 text-sm mt-3 leading-relaxed">5 attempts failed! Looks like you applied network troubleshooting skills to a heart. Time to check the actual website?</p>
-        <button onclick="redirectToHome()" class="mt-6 w-full py-3 rounded-xl bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white text-sm font-semibold transition shadow-lg">Continue Exploring Website</button>
+    <div class="relative w-full max-w-md saas-card border-orange-500/40 p-6 text-center shadow-2xl">
+        <div class="w-12 h-12 mx-auto rounded-xl bg-orange-500/10 border border-orange-500/30 flex items-center justify-center text-orange-400 text-xl mb-3"><i class="fa-solid fa-shield-cat"></i></div>
+        <h3 class="text-lg font-bold text-white">Attempt Limit Reached!</h3>
+        <p id="alertPopupText" class="text-zinc-300 text-xs sm:text-sm mt-2 leading-relaxed">5 attempts failed! Looks like you applied network troubleshooting skills to a heart. Time to check the actual website?</p>
+        <button onclick="redirectToHome()" class="mt-5 w-full py-2.5 rounded-lg bg-white text-zinc-950 hover:bg-zinc-200 text-xs font-semibold transition">Continue Exploring Website</button>
     </div>
 </div>
 
@@ -1151,7 +1138,7 @@
         const mediaContainer = document.getElementById('modalMediaContainer');
         mediaContainer.innerHTML = `
             <img src="${item.image}" alt="Deployment Visual" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-gradient-to-t from-[#050508] via-transparent to-transparent pointer-events-none"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent pointer-events-none"></div>
         `;
 
         const modal = document.getElementById('detailModal');
@@ -1185,47 +1172,6 @@
         const text = "Hello Shah Faishal,\n\nName: " + name + "\nEmail: " + email + "\n\nProject Details:\n" + message;
         window.open("https://wa.me/971503928611?text=" + encodeURIComponent(text), "_blank");
     });
-
-    // VIBRANT MATRIX RAIN BACKGROUND ANIMATION SCRIPT
-    const canvas = document.getElementById('matrixCanvas');
-    const ctx = canvas.getContext('2d');
-
-    const chars = '010101011001010123456789ABCDEFｦｱｳｴｵｶｷｹｺｻｼｽｾｿﾀﾂﾃﾅﾆﾇﾈﾊﾋﾎﾏﾐﾑﾒﾓﾔﾕﾗﾘﾜ';
-    const fontSize = 14;
-    let columns = Math.floor(window.innerWidth / fontSize);
-    let drops = [];
-
-    function initDrops() {
-        columns = Math.floor(window.innerWidth / fontSize);
-        drops = [];
-        for (let i = 0; i < columns; i++) drops[i] = Math.random() * -100;
-    }
-    initDrops();
-
-    function drawMatrix() {
-        ctx.fillStyle = 'rgba(5, 5, 8, 0.12)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        
-        ctx.fillStyle = '#ff6b35'; 
-        ctx.font = fontSize + 'px monospace';
-
-        for (let i = 0; i < drops.length; i++) {
-            const text = chars.charAt(Math.floor(Math.random() * chars.length));
-            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
-            drops[i]++;
-        }
-    }
-
-    window.addEventListener('resize', () => {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        initDrops();
-    });
-    
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    setInterval(drawMatrix, 45);
 </script>
 
 </body>
