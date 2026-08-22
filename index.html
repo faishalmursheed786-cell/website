@@ -170,6 +170,49 @@
 
         section { position: relative; z-index: 10; }
         #detailModal, #partnerModal, #heartModal { transition: all 0.3s ease; }
+
+        /* ZOYA POPUP HEART ANIMATION STYLES */
+        .zoya-card-custom {
+            background: linear-gradient(135deg, #fff 0%, #f8fafc 100%);
+            border: 2px solid rgba(244, 63, 94, 0.2);
+        }
+        .zoya-card-custom:hover {
+            border-color: #f43f5e;
+            box-shadow: 0 20px 30px -10px rgba(244, 63, 94, 0.4) !important;
+        }
+        @keyframes heartbeatModal {
+            0% { transform: scale(0.95); }
+            5% { transform: scale(1.1); }
+            10% { transform: scale(0.9); }
+            15% { transform: scale(1.2); }
+            50% { transform: scale(0.95); }
+            100% { transform: scale(0.95); }
+        }
+        .modal-beating-heart {
+            position: relative;
+            width: 90px;
+            height: 90px;
+            animation: heartbeatModal 1.2s infinite cubic-bezier(0.215, 0.610, 0.355, 1);
+            margin: 0 auto;
+        }
+        .modal-beating-heart::before,
+        .modal-beating-heart::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 45px;
+            height: 72px;
+            border-radius: 45px 45px 0 0;
+            background: #f43f5e;
+            left: 45px;
+            transform: rotate(-45deg);
+            transform-origin: 0 100%;
+        }
+        .modal-beating-heart::after {
+            left: 0;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+        }
     </style>
 </head>
 
@@ -242,7 +285,7 @@
     </div>
 </header>
 
-<!-- HERO SECTION WITH MATRIX BACKGROUND AND HOVER-REVEAL IMAGE -->
+<!-- HERO SECTION -->
 <section id="home" class="relative min-h-screen flex items-center pt-36 pb-24 overflow-hidden">
     <div class="absolute inset-0 bg-gradient-to-b from-[#030303]/80 via-[#030303]/50 to-[#030303] z-0"></div>
     <div class="absolute inset-0 grid-bg z-0 opacity-30"></div>
@@ -282,17 +325,15 @@
                 </div>
             </div>
 
-            <!-- Right Hover-Reveal Image Column -->
+            <!-- Right Image Column -->
             <div class="lg:col-span-5 flex justify-center fade-up">
                 <div class="relative w-full max-w-sm sm:max-w-md group cursor-pointer">
                     <div class="absolute -inset-1.5 bg-gradient-to-r from-orange-600 via-red-600 to-amber-500 rounded-[30px] blur-xl opacity-30 group-hover:opacity-75 transition duration-500"></div>
                     
                     <div class="relative p-2 rounded-3xl bg-dark-800/90 border border-neutral-800 backdrop-blur-2xl shadow-2xl overflow-hidden">
                         <div class="rounded-[22px] overflow-hidden bg-black relative">
-                            <!-- Image -->
                             <img src="profile.jpg" alt="Shah Faishal - Senior Network and Automation Engineer" class="w-full aspect-[4/5] object-cover object-center group-hover:scale-105 transition duration-700">
                             
-                            <!-- Hover Pop-up Overlay Card -->
                             <div class="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out z-20">
                                 <div class="glass border border-neutral-700 rounded-2xl p-4 shadow-2xl backdrop-blur-xl">
                                     <div class="flex items-center justify-between">
@@ -315,7 +356,7 @@
     </div>
 </section>
 
-<!-- MERGED SECTION: TECHNICAL SPECIALIZATIONS & PROJECT LOCATIONS -->
+<!-- SERVICES SECTION -->
 <section id="services" class="py-24 border-y border-neutral-800/70">
     <div class="max-w-7xl mx-auto px-5 sm:px-8">
         
@@ -481,6 +522,11 @@
             <div onclick="openPartnerDetail('Fujitsu')" class="partner-card">
                 <span class="text-red-600 font-bold text-lg font-serif">FUJITSU</span>
             </div>
+            <!-- Added Zoya Card here -->
+            <div onclick="openZoyaModal()" class="partner-card zoya-card-custom flex-col items-center justify-center cursor-pointer">
+                <span class="text-rose-600 font-black text-2xl tracking-widest font-serif">ZOYA</span>
+                <span class="text-rose-500 text-[8px] font-bold uppercase tracking-widest mt-0.5">Heartfelt Integration</span>
+            </div>
         </div>
 
         <div class="mt-12 text-center fade-up">
@@ -491,7 +537,7 @@
     </div>
 </section>
 
-<!-- UPDATED ABOUT SECTION -->
+<!-- ABOUT SECTION -->
 <section id="about" class="py-24">
     <div class="max-w-7xl mx-auto px-5 sm:px-8">
         <div class="grid lg:grid-cols-12 gap-14 items-center">
@@ -534,7 +580,6 @@
             </div>
 
             <div class="lg:col-span-5 fade-up space-y-6">
-                <!-- Concept to Commissioning Box -->
                 <div class="glass border border-neutral-700 rounded-3xl p-8 glow relative overflow-hidden">
                     <div class="absolute -top-24 -right-24 w-48 h-48 bg-orange-500/10 rounded-full blur-2xl"></div>
                     <div class="text-orange-400 text-xs font-bold uppercase tracking-widest mb-2 font-mono">Workflow Pipeline</div>
@@ -558,7 +603,6 @@
                     </div>
                 </div>
 
-                <!-- Quick Highlight Cards -->
                 <div class="grid sm:grid-cols-2 gap-4">
                     <div class="glass border border-neutral-800 rounded-2xl p-5 hover:border-orange-500/40 transition">
                         <div class="text-orange-400 text-2xl mb-3"><i class="fa-solid fa-house-signal"></i></div>
@@ -908,6 +952,28 @@
     </div>
 </div>
 
+<!-- ZOYA MODAL WITH HEART ANIMATION -->
+<div id="zoyaModal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4 sm:p-6 overflow-y-auto">
+    <div class="relative w-full max-w-md glass border border-rose-500/40 rounded-3xl overflow-hidden shadow-2xl my-auto p-6 sm:p-8 text-center">
+        <button onclick="closeZoyaModal()" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-dark-900/80 border border-neutral-700 text-slate-300 hover:text-white hover:bg-rose-600 flex items-center justify-center transition"><i class="fa-solid fa-xmark text-lg"></i></button>
+        
+        <div class="my-6">
+            <div class="modal-beating-heart"></div>
+        </div>
+
+        <h3 class="text-2xl font-bold text-white tracking-wider font-serif">ZOYA</h3>
+        <p class="text-xs uppercase font-mono tracking-widest text-rose-400 font-bold mt-1 mb-4">Heartfelt Integration & Automation</p>
+        
+        <p class="text-slate-300 text-sm leading-relaxed mb-6">
+            Dedicated to the most special part of life — bringing warmth, care, and seamless harmony into everyday engineering and personal ecosystems.
+        </p>
+
+        <button onclick="closeZoyaModal()" class="w-full py-3 rounded-xl bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-500 hover:to-pink-500 text-white text-sm font-semibold transition shadow-lg shadow-rose-600/30">
+            Close
+        </button>
+    </div>
+</div>
+
 <div id="heartModal" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-2xl hidden flex-col items-center justify-between p-6 sm:p-10 select-none">
     <div class="w-full flex justify-end">
         <button onclick="closeHeartModal()" class="w-10 h-10 rounded-full bg-dark-800/80 border border-neutral-700 text-slate-300 hover:text-white hover:bg-red-600 flex items-center justify-center transition shadow-lg"><i class="fa-solid fa-xmark text-base"></i></button>
@@ -1023,6 +1089,21 @@
     function closeHeartModal() {
         document.getElementById('heartModal').classList.add('hidden');
         document.getElementById('heartModal').classList.remove('flex');
+        document.body.style.overflow = 'auto';
+    }
+
+    // ZOYA MODAL FUNCTIONS
+    function openZoyaModal() {
+        const modal = document.getElementById('zoyaModal');
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeZoyaModal() {
+        const modal = document.getElementById('zoyaModal');
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
         document.body.style.overflow = 'auto';
     }
 
