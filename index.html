@@ -389,6 +389,7 @@
             <p class="text-zinc-600 mt-3 text-sm sm:text-base leading-relaxed">Turnkey network architecture, cyber-security gateways, and smart estate controls engineered across prime residential and commercial hubs in the UAE.</p>
         </div>
 
+        <!-- 4 FEATURED LOCATIONS (SHOWN BY DEFAULT) -->
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
             <div class="saas-card p-5 fade-up flex flex-col justify-between">
                 <div>
@@ -433,8 +434,11 @@
                     <i class="fa-solid fa-map-pin"></i> View on Map
                 </a>
             </div>
+        </div>
 
-            <div class="saas-card p-5 fade-up flex flex-col justify-between">
+        <!-- REMAINING 9 LOCATIONS (EXPANDABLE) -->
+        <div id="extraLocations" class="hidden grid md:grid-cols-2 lg:grid-cols-4 gap-4 mt-4 transition-all duration-500">
+            <div class="saas-card p-5 flex flex-col justify-between">
                 <div>
                     <div class="text-sky-600 text-xl mb-3"><i class="fa-solid fa-water"></i></div>
                     <h3 class="text-zinc-900 font-bold text-base">Dubai Marina</h3>
@@ -445,7 +449,7 @@
                 </a>
             </div>
 
-            <div class="saas-card p-5 fade-up flex flex-col justify-between">
+            <div class="saas-card p-5 flex flex-col justify-between">
                 <div>
                     <div class="text-amber-500 text-xl mb-3"><i class="fa-solid fa-tree"></i></div>
                     <h3 class="text-zinc-900 font-bold text-base">Palm Jumeirah</h3>
@@ -456,7 +460,7 @@
                 </a>
             </div>
 
-            <div class="saas-card p-5 fade-up flex flex-col justify-between">
+            <div class="saas-card p-5 flex flex-col justify-between">
                 <div>
                     <div class="text-teal-600 text-xl mb-3"><i class="fa-solid fa-gem"></i></div>
                     <h3 class="text-zinc-900 font-bold text-base">Pearl Jumeirah</h3>
@@ -467,7 +471,7 @@
                 </a>
             </div>
 
-            <div class="saas-card p-5 fade-up flex flex-col justify-between">
+            <div class="saas-card p-5 flex flex-col justify-between">
                 <div>
                     <div class="text-indigo-600 text-xl mb-3"><i class="fa-solid fa-umbrella-beach"></i></div>
                     <h3 class="text-zinc-900 font-bold text-base">Yas Island</h3>
@@ -478,7 +482,7 @@
                 </a>
             </div>
 
-            <div class="saas-card p-5 fade-up flex flex-col justify-between">
+            <div class="saas-card p-5 flex flex-col justify-between">
                 <div>
                     <div class="text-blue-600 text-xl mb-3"><i class="fa-solid fa-landmark"></i></div>
                     <h3 class="text-zinc-900 font-bold text-base">Abu Dhabi</h3>
@@ -489,7 +493,7 @@
                 </a>
             </div>
 
-            <div class="saas-card p-5 fade-up flex flex-col justify-between">
+            <div class="saas-card p-5 flex flex-col justify-between">
                 <div>
                     <div class="text-rose-600 text-xl mb-3"><i class="fa-solid fa-bridge"></i></div>
                     <h3 class="text-zinc-900 font-bold text-base">Sharjah</h3>
@@ -500,7 +504,7 @@
                 </a>
             </div>
 
-            <div class="saas-card p-5 fade-up flex flex-col justify-between">
+            <div class="saas-card p-5 flex flex-col justify-between">
                 <div>
                     <div class="text-teal-500 text-xl mb-3"><i class="fa-solid fa-sun"></i></div>
                     <h3 class="text-zinc-900 font-bold text-base">Ajman</h3>
@@ -511,7 +515,7 @@
                 </a>
             </div>
 
-            <div class="saas-card p-5 fade-up flex flex-col justify-between">
+            <div class="saas-card p-5 flex flex-col justify-between">
                 <div>
                     <div class="text-amber-700 text-xl mb-3"><i class="fa-solid fa-mountain"></i></div>
                     <h3 class="text-zinc-900 font-bold text-base">Ras Al Khaimah</h3>
@@ -522,7 +526,7 @@
                 </a>
             </div>
 
-            <div class="saas-card p-5 fade-up flex flex-col justify-between">
+            <div class="saas-card p-5 flex flex-col justify-between">
                 <div>
                     <div class="text-blue-500 text-xl mb-3"><i class="fa-solid fa-globe"></i></div>
                     <h3 class="text-zinc-900 font-bold text-base">Expo City Dubai</h3>
@@ -534,6 +538,245 @@
             </div>
         </div>
 
+        <!-- STYLISH EXPAND/COLLAPSE TOGGLE BUTTON -->
+        <div class="mt-8 text-center fade-up">
+            <button onclick="toggleLocations()" id="toggleLocBtn" class="px-6 py-3 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-white font-semibold text-sm transition shadow-lg inline-flex items-center gap-2 cursor-pointer">
+                <span id="toggleBtnText">View All 13 Locations</span> <i id="toggleIcon" class="fa-solid fa-chevron-down text-xs transition-transform duration-300"></i>
+            </button>
+        </div>
+
+    </div>
+</section>
+
+<!-- EXPERIENCE SECTION -->
+<section id="experience" class="py-24 border-t border-zinc-200 bg-zinc-50/50">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8">
+        <div class="text-center mb-14 fade-up">
+            <div class="text-orange-600 text-xs font-bold uppercase tracking-widest mb-2 font-mono">Career Track Record</div>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-zinc-900">Professional Journey & Technical Scope</h2>
+            <p class="text-zinc-600 text-sm sm:text-base mt-2 max-w-2xl mx-auto">
+                Comprehensive international engineering expertise covering UAE, Europe, and India across Next-Gen Networks, DeepSpace telemetry, and ELV Automation.
+            </p>
+        </div>
+
+        <!-- QUICK STATS / COUNTER BAND -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16 text-center fade-up">
+            <div class="saas-card p-6">
+                <div class="text-3xl sm:text-4xl font-extrabold text-orange-600 font-mono">7+</div>
+                <div class="text-zinc-600 text-xs sm:text-sm font-semibold mt-1">Years Experience</div>
+            </div>
+            <div class="saas-card p-6">
+                <div class="text-3xl sm:text-4xl font-extrabold text-orange-600 font-mono">50+</div>
+                <div class="text-zinc-600 text-xs sm:text-sm font-semibold mt-1">Networks Deployed</div>
+            </div>
+            <div class="saas-card p-6">
+                <div class="text-3xl sm:text-4xl font-extrabold text-orange-600 font-mono">10+</div>
+                <div class="text-zinc-600 text-xs sm:text-sm font-semibold mt-1">Luxury Smart Estates</div>
+            </div>
+            <div class="saas-card p-6">
+                <div class="text-3xl sm:text-4xl font-extrabold text-orange-600 font-mono">3</div>
+                <div class="text-zinc-600 text-xs sm:text-sm font-semibold mt-1">Regions (UAE, Europe, India)</div>
+            </div>
+        </div>
+
+        <div class="space-y-6">
+            <div class="saas-card p-6 sm:p-8 fade-up">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-zinc-200 pb-5 mb-5">
+                    <div>
+                        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 font-mono mb-2.5">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> ACTIVE ROLE • DUBAI
+                        </span>
+                        <h3 class="text-xl sm:text-2xl font-extrabold text-zinc-900">Senior Network, Automation, ELV & Infrastructure Engineer</h3>
+                        <div class="text-orange-600 font-semibold mt-1.5 flex items-center gap-2 text-sm">
+                            <i class="fa-solid fa-building text-xs"></i>
+                            <a href="https://dynamicworld.ae" target="_blank" rel="noopener noreferrer" class="hover:underline flex items-center gap-1">
+                                Dynamic World Computer LLC <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                            </a>
+                            <span class="text-zinc-300">•</span>
+                            <span class="text-zinc-500 font-normal">Dubai, United Arab Emirates</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-3.5">
+                    <div class="bg-white p-4 rounded-xl border border-zinc-200 shadow-sm">
+                        <div class="w-8 h-8 rounded-lg bg-red-50 text-red-600 flex items-center justify-center mb-2.5"><i class="fa-solid fa-shield-halved text-sm"></i></div>
+                        <h4 class="text-zinc-900 font-bold text-xs">Firewalls & Security Gateways</h4>
+                        <p class="text-zinc-600 text-[11px] mt-1.5 leading-relaxed">Fortinet FortiGate HA clustering, next-gen UTM firewall policies, SD-WAN multi-ISP failover, VPN tunnels, and gateway intrusion prevention.</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl border border-zinc-200 shadow-sm">
+                        <div class="w-8 h-8 rounded-lg bg-orange-50 text-orange-600 flex items-center justify-center mb-2.5"><i class="fa-solid fa-network-wired text-sm"></i></div>
+                        <h4 class="text-zinc-900 font-bold text-xs">Core Routing & Switching</h4>
+                        <p class="text-zinc-600 text-[11px] mt-1.5 leading-relaxed">Cisco Catalyst and enterprise L2/L3 distribution, VLAN trunking, Inter-VLAN routing, QoS traffic prioritization, and high-density Wi-Fi 6 coverage.</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl border border-zinc-200 shadow-sm">
+                        <div class="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center mb-2.5"><i class="fa-solid fa-diagram-project text-sm"></i></div>
+                        <h4 class="text-zinc-900 font-bold text-xs">Network Cabinets & Racks</h4>
+                        <p class="text-zinc-600 text-[11px] mt-1.5 leading-relaxed">42U/48U IT cabinet elevation, spine-leaf fabric cabling, SAN/NAS video storage integration, redundant PDU power balancing, and thermal airflow management.</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl border border-zinc-200 shadow-sm">
+                        <div class="w-8 h-8 rounded-lg bg-red-50 text-red-600 flex items-center justify-center mb-2.5"><i class="fa-solid fa-sliders text-sm"></i></div>
+                        <h4 class="text-zinc-900 font-bold text-xs">AV, Amps, Onkyo & Xilica DSP</h4>
+                        <p class="text-zinc-600 text-[11px] mt-1.5 leading-relaxed">Xilica digital signal processors (DSP), Martin Audio pro loudspeakers, Onkyo AVR home cinema integration, LEA Professional power amps, and WiiM hi-res streamers.</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl border border-zinc-200 shadow-sm">
+                        <div class="w-8 h-8 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center mb-2.5"><i class="fa-solid fa-house-signal text-sm"></i></div>
+                        <h4 class="text-zinc-900 font-bold text-xs">Smart Home Automation</h4>
+                        <p class="text-zinc-600 text-[11px] mt-1.5 leading-relaxed">Centralized KNX/Modbus controllers, GVS smart displays, architectural DALI lighting, motorized curtains, HVAC integration, and iPad touchscreens.</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl border border-zinc-200 shadow-sm">
+                        <div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center mb-2.5"><i class="fa-solid fa-wave-square text-sm"></i></div>
+                        <h4 class="text-zinc-900 font-bold text-xs">Fiber Optics & IP ELV</h4>
+                        <p class="text-zinc-600 text-[11px] mt-1.5 leading-relaxed">Belden structured cabling, fusion optical splicing, OTDR loss testing, SIRA-certified centralized VMS CCTV, and biometric RFID access control.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="saas-card p-6 sm:p-7 fade-up">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-zinc-200 pb-4 mb-4">
+                    <div>
+                        <span class="inline-block px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-50 text-amber-700 border border-amber-200 font-mono mb-2">INTERNATIONAL EXPERIENCE • EUROPE</span>
+                        <h3 class="text-lg sm:text-xl font-bold text-zinc-900">DeepSpace Network (DSN) & Infrastructure Engineer</h3>
+                        <div class="text-amber-600 font-semibold mt-1 flex items-center gap-2 text-xs">
+                            <i class="fa-solid fa-satellite-dish"></i>
+                            <a href="https://www.delvinacable.al/" target="_blank" rel="noopener noreferrer" class="hover:underline flex items-center gap-1">
+                                Delvina Cable <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                            </a>
+                            <span class="text-zinc-300">•</span>
+                            <span class="text-zinc-500 font-normal">Europe</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid sm:grid-cols-3 gap-3">
+                    <div class="bg-white p-3.5 rounded-xl border border-zinc-200 shadow-sm flex items-start gap-3">
+                        <i class="fa-solid fa-satellite-dish text-amber-600 mt-0.5 text-xs"></i>
+                        <div>
+                            <div class="text-zinc-900 text-xs font-bold font-mono uppercase">DeepSpace Network</div>
+                            <div class="text-zinc-600 text-[11px] mt-0.5">High-reliability telemetry links, ground station data pipes, latency optimization, and signal transmission infrastructure.</div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-3.5 rounded-xl border border-zinc-200 shadow-sm flex items-start gap-3">
+                        <i class="fa-solid fa-wave-square text-orange-600 mt-0.5 text-xs"></i>
+                        <div>
+                            <div class="text-zinc-900 text-xs font-bold font-mono uppercase">Fiber Backbone</div>
+                            <div class="text-zinc-600 text-[11px] mt-0.5">Single-mode optical fusion splicing, low-attenuation patch distribution, and OTDR backscatter analysis.</div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-3.5 rounded-xl border border-zinc-200 shadow-sm flex items-start gap-3">
+                        <i class="fa-solid fa-network-wired text-emerald-600 mt-0.5 text-xs"></i>
+                        <div>
+                            <div class="text-zinc-900 text-xs font-bold font-mono uppercase">Switch Topology</div>
+                            <div class="text-zinc-600 text-[11px] mt-0.5">Core/Edge managed switch staging, VLAN trunk isolation, port redundancy, and hardware troubleshooting.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="saas-card p-6 sm:p-7 fade-up">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-zinc-200 pb-4 mb-4">
+                    <div>
+                        <span class="inline-block px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 font-mono mb-2">PREVIOUS EXPERIENCE • INDIA</span>
+                        <h3 class="text-lg sm:text-xl font-bold text-zinc-900">Network, Switching & Routing Engineer</h3>
+                        <div class="text-emerald-600 font-semibold mt-1 flex items-center gap-2 text-xs">
+                            <i class="fa-solid fa-building"></i>
+                            <a href="https://www.softproindia.in/" target="_blank" rel="noopener noreferrer" class="hover:underline flex items-center gap-1">
+                                Softpro India Computer Technologies Pvt Ltd <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                            </a>
+                            <span class="text-zinc-300">•</span>
+                            <span class="text-zinc-500 font-normal">India</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid sm:grid-cols-3 gap-3">
+                    <div class="bg-white p-3.5 rounded-xl border border-zinc-200 shadow-sm flex items-start gap-3">
+                        <i class="fa-solid fa-network-wired text-orange-600 mt-0.5 text-xs"></i>
+                        <div>
+                            <div class="text-zinc-900 text-xs font-bold font-mono uppercase">Enterprise Networking</div>
+                            <div class="text-zinc-600 text-[11px] mt-0.5">LAN/WAN deployment, subnetting, TCP/IP architecture, and structured network infrastructure staging.</div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-3.5 rounded-xl border border-zinc-200 shadow-sm flex items-start gap-3">
+                        <i class="fa-solid fa-sliders text-amber-600 mt-0.5 text-xs"></i>
+                        <div>
+                            <div class="text-zinc-900 text-xs font-bold font-mono uppercase">Switching & VLANs</div>
+                            <div class="text-zinc-600 text-[11px] mt-0.5">L2/L3 managed switch configuration, VLAN tagging, port security, and spanning tree protocol (STP).</div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-3.5 rounded-xl border border-zinc-200 shadow-sm flex items-start gap-3">
+                        <i class="fa-solid fa-route text-emerald-600 mt-0.5 text-xs"></i>
+                        <div>
+                            <div class="text-zinc-900 text-xs font-bold font-mono uppercase">Routing & Troubleshooting</div>
+                            <div class="text-zinc-600 text-[11px] mt-0.5">Static and dynamic IP routing, default gateway management, packet tracing, and network fault resolution.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONIALS / CLIENT ENDORSEMENTS SECTION -->
+<section class="py-24 bg-white border-t border-zinc-200">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-14 fade-up">
+            <div class="text-orange-600 text-xs font-bold uppercase tracking-widest mb-2 font-mono">CLIENT & PARTNER ENDORSEMENTS</div>
+            <h2 class="text-3xl sm:text-4xl font-bold text-zinc-900">Trusted by Leading Consultants & Estates</h2>
+            <p class="text-zinc-600 mt-3 text-sm sm:text-base leading-relaxed">
+                Feedback from technical directors, general contractors, and luxury homeowners on network stability and automation execution.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="saas-card p-6 sm:p-8 fade-up flex flex-col justify-between">
+                <div>
+                    <div class="text-orange-500 text-sm mb-4"><i class="fa-solid fa-quote-left text-2xl opacity-40"></i></div>
+                    <p class="text-zinc-700 text-sm leading-relaxed italic">
+                        "Faishal’s technical execution on our Jumeirah Bay Island smart villa integration was exceptional. His mastery over FortiGate networks and multi-zone pro-AV made commissioning seamless."
+                    </p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-zinc-100 flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center font-bold text-sm">PM</div>
+                    <div>
+                        <div class="text-zinc-900 font-bold text-xs">Project Management Office</div>
+                        <div class="text-zinc-500 text-[11px]">Luxury Residential Developments, Dubai</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="saas-card p-6 sm:p-8 fade-up flex flex-col justify-between">
+                <div>
+                    <div class="text-orange-500 text-sm mb-4"><i class="fa-solid fa-quote-left text-2xl opacity-40"></i></div>
+                    <p class="text-zinc-700 text-sm leading-relaxed italic">
+                        "When it comes to complex IT rack architecture, structured cabling, and zero-downtime firewall configuration, Faishal is one of the most reliable ELV engineers we've worked with in the UAE."
+                    </p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-zinc-100 flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-sm">TC</div>
+                    <div>
+                        <div class="text-zinc-900 font-bold text-xs">Technical Consultant</div>
+                        <div class="text-zinc-500 text-[11px]">ICT & ELV Contracting, Dubai</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="saas-card p-6 sm:p-8 fade-up flex flex-col justify-between">
+                <div>
+                    <div class="text-orange-500 text-sm mb-4"><i class="fa-solid fa-quote-left text-2xl opacity-40"></i></div>
+                    <p class="text-zinc-700 text-sm leading-relaxed italic">
+                        "From Emirates Hills to Dubai Hills, his attention to detail in Xilica DSP acoustic calibration and KNX lighting scenes truly transformed our living spaces."
+                    </p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-zinc-100 flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold text-sm">HO</div>
+                    <div>
+                        <div class="text-zinc-900 font-bold text-xs">Homeowner / Client</div>
+                        <div class="text-zinc-500 text-[11px]">Elite Private Estate, Dubai</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -941,69 +1184,6 @@
     </div>
 </section>
 
-<!-- TESTIMONIALS / CLIENT ENDORSEMENTS SECTION -->
-<section class="py-24 bg-white border-t border-zinc-200">
-    <div class="max-w-7xl mx-auto px-5 sm:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-14 fade-up">
-            <div class="text-orange-600 text-xs font-bold uppercase tracking-widest mb-2 font-mono">CLIENT & PARTNER ENDORSEMENTS</div>
-            <h2 class="text-3xl sm:text-4xl font-bold text-zinc-900">Trusted by Leading Consultants & Estates</h2>
-            <p class="text-zinc-600 mt-3 text-sm sm:text-base leading-relaxed">
-                Feedback from technical directors, general contractors, and luxury homeowners on network stability and automation execution.
-            </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-6">
-            <div class="saas-card p-6 sm:p-8 fade-up flex flex-col justify-between">
-                <div>
-                    <div class="text-orange-500 text-sm mb-4"><i class="fa-solid fa-quote-left text-2xl opacity-40"></i></div>
-                    <p class="text-zinc-700 text-sm leading-relaxed italic">
-                        "Faishal’s technical execution on our Jumeirah Bay Island smart villa integration was exceptional. His mastery over FortiGate networks and multi-zone pro-AV made commissioning seamless."
-                    </p>
-                </div>
-                <div class="mt-6 pt-4 border-t border-zinc-100 flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center font-bold text-sm">PM</div>
-                    <div>
-                        <div class="text-zinc-900 font-bold text-xs">Project Management Office</div>
-                        <div class="text-zinc-500 text-[11px]">Luxury Residential Developments, Dubai</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="saas-card p-6 sm:p-8 fade-up flex flex-col justify-between">
-                <div>
-                    <div class="text-orange-500 text-sm mb-4"><i class="fa-solid fa-quote-left text-2xl opacity-40"></i></div>
-                    <p class="text-zinc-700 text-sm leading-relaxed italic">
-                        "When it comes to complex IT rack architecture, structured cabling, and zero-downtime firewall configuration, Faishal is one of the most reliable ELV engineers we've worked with in the UAE."
-                    </p>
-                </div>
-                <div class="mt-6 pt-4 border-t border-zinc-100 flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-sm">TC</div>
-                    <div>
-                        <div class="text-zinc-900 font-bold text-xs">Technical Consultant</div>
-                        <div class="text-zinc-500 text-[11px]">ICT & ELV Contracting, Dubai</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="saas-card p-6 sm:p-8 fade-up flex flex-col justify-between">
-                <div>
-                    <div class="text-orange-500 text-sm mb-4"><i class="fa-solid fa-quote-left text-2xl opacity-40"></i></div>
-                    <p class="text-zinc-700 text-sm leading-relaxed italic">
-                        "From Emirates Hills to Dubai Hills, his attention to detail in Xilica DSP acoustic calibration and KNX lighting scenes truly transformed our living spaces."
-                    </p>
-                </div>
-                <div class="mt-6 pt-4 border-t border-zinc-100 flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold text-sm">HO</div>
-                    <div>
-                        <div class="text-zinc-900 font-bold text-xs">Homeowner / Client</div>
-                        <div class="text-zinc-500 text-[11px]">Elite Private Estate, Dubai</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
 <!-- CONTACT SECTION -->
 <section id="contact" class="py-24 border-t border-zinc-200 bg-white">
     <div class="max-w-7xl mx-auto px-5 sm:px-8">
@@ -1199,6 +1379,23 @@
 
 <!-- SCRIPTS -->
 <script>
+    // TOGGLE LOCATIONS EXPAND / COLLAPSE
+    function toggleLocations() {
+        const extraLocs = document.getElementById('extraLocations');
+        const btnText = document.getElementById('toggleBtnText');
+        const icon = document.getElementById('toggleIcon');
+
+        if (extraLocs.classList.contains('hidden')) {
+            extraLocs.classList.remove('hidden');
+            btnText.textContent = "Show Less Locations";
+            icon.classList.add('rotate-180');
+        } else {
+            extraLocs.classList.add('hidden');
+            btnText.textContent = "View All 13 Locations";
+            icon.classList.remove('rotate-180');
+        }
+    }
+
     // MINI GAME LOGIC
     let dodgeAttempts = 0;
     function dodgeHeart(e) {
