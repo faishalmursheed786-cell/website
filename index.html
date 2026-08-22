@@ -158,7 +158,7 @@
         }
 
         section { position: relative; z-index: 10; }
-        #detailModal, #partnerModal, #heartModal { transition: all 0.3s ease; }
+        #detailModal, #partnerModal, #heartModal, #locationsModal { transition: all 0.3s ease; }
 
         /* ZOYA POPUP HEART ANIMATION STYLES */
         .zoya-card-custom {
@@ -383,154 +383,19 @@
             </div>
         </div>
 
-        <div class="max-w-3xl mb-10 fade-up pt-10 border-t border-zinc-200">
-            <div class="text-orange-600 text-xs font-bold uppercase tracking-widest mb-2 font-mono">DEPLOYMENT LOCATIONS</div>
-            <h2 class="text-3xl sm:text-4xl font-bold text-zinc-900">Key Project Deployments</h2>
-            <p class="text-zinc-600 mt-3 text-sm sm:text-base leading-relaxed">Turnkey network architecture, cyber-security gateways, and smart estate controls engineered across prime residential and commercial hubs in the UAE.</p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div class="saas-card p-5 fade-up flex flex-col justify-between">
-                <div>
-                    <div class="text-orange-600 text-xl mb-3"><i class="fa-solid fa-building"></i></div>
-                    <h3 class="text-zinc-900 font-bold text-base">Emirates Hills</h3>
-                    <p class="text-zinc-600 text-xs mt-1.5 leading-relaxed">Premium home-automation, IT rack architecture, Xilica DSP, and multi-zone Martin Audio pro integration.</p>
-                </div>
-                <a href="https://www.google.com/maps/search/?api=1&query=Emirates+Hills+Dubai" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center gap-1 text-xs font-mono font-semibold text-orange-600 hover:text-orange-700">
-                    <i class="fa-solid fa-map-pin"></i> View on Map
-                </a>
+        <!-- DEPLOYMENT LOCATIONS COMPACT PREVIEW BANNER -->
+        <div class="saas-card p-8 sm:p-10 fade-up text-center bg-gradient-to-r from-orange-500/5 via-sky-500/5 to-transparent border-orange-500/20">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-100 text-orange-700 text-xs font-mono font-bold uppercase tracking-widest mb-3">
+                <i class="fa-solid fa-map-location-dot"></i> UAE Footprint
             </div>
-
-            <div class="saas-card p-5 fade-up flex flex-col justify-between">
-                <div>
-                    <div class="text-amber-600 text-xl mb-3"><i class="fa-solid fa-city"></i></div>
-                    <h3 class="text-zinc-900 font-bold text-base">Dubai Hills</h3>
-                    <p class="text-zinc-600 text-xs mt-1.5 leading-relaxed">FortiGate security gateways, high-speed Wi-Fi 6, Onkyo 4K cinema AVR, and smart estate controls.</p>
-                </div>
-                <a href="https://www.google.com/maps/search/?api=1&query=Dubai+Hills+Estate+Dubai" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center gap-1 text-xs font-mono font-semibold text-orange-600 hover:text-orange-700">
-                    <i class="fa-solid fa-map-pin"></i> View on Map
-                </a>
-            </div>
-
-            <div class="saas-card p-5 fade-up flex flex-col justify-between">
-                <div>
-                    <div class="text-emerald-600 text-xl mb-3"><i class="fa-solid fa-water"></i></div>
-                    <h3 class="text-zinc-900 font-bold text-base">Jumeirah Bay Island</h3>
-                    <p class="text-zinc-600 text-xs mt-1.5 leading-relaxed">High-end residential automation, VMS CCTV, and LEA Professional DSP amplifier matrix deployment.</p>
-                </div>
-                <a href="https://www.google.com/maps/search/?api=1&query=Jumeirah+Bay+Island+Dubai" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center gap-1 text-xs font-mono font-semibold text-orange-600 hover:text-orange-700">
-                    <i class="fa-solid fa-map-pin"></i> View on Map
-                </a>
-            </div>
-
-            <div class="saas-card p-5 fade-up flex flex-col justify-between">
-                <div>
-                    <div class="text-purple-600 text-xl mb-3"><i class="fa-solid fa-city"></i></div>
-                    <h3 class="text-zinc-900 font-bold text-base">Downtown Dubai</h3>
-                    <p class="text-zinc-600 text-xs mt-1.5 leading-relaxed">Corporate network infrastructure, high-density IT rack hosting, fiber backbone, and security operations.</p>
-                </div>
-                <a href="https://www.google.com/maps/search/?api=1&query=Downtown+Dubai" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center gap-1 text-xs font-mono font-semibold text-orange-600 hover:text-orange-700">
-                    <i class="fa-solid fa-map-pin"></i> View on Map
-                </a>
-            </div>
-
-            <div class="saas-card p-5 fade-up flex flex-col justify-between">
-                <div>
-                    <div class="text-sky-600 text-xl mb-3"><i class="fa-solid fa-water"></i></div>
-                    <h3 class="text-zinc-900 font-bold text-base">Dubai Marina</h3>
-                    <p class="text-zinc-600 text-xs mt-1.5 leading-relaxed">High-rise residential network architecture, structured cabling, VMS surveillance, and smart home audio setups.</p>
-                </div>
-                <a href="https://www.google.com/maps/search/?api=1&query=Dubai+Marina+Dubai" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center gap-1 text-xs font-mono font-semibold text-orange-600 hover:text-orange-700">
-                    <i class="fa-solid fa-map-pin"></i> View on Map
-                </a>
-            </div>
-
-            <div class="saas-card p-5 fade-up flex flex-col justify-between">
-                <div>
-                    <div class="text-amber-500 text-xl mb-3"><i class="fa-solid fa-tree"></i></div>
-                    <h3 class="text-zinc-900 font-bold text-base">Palm Jumeirah</h3>
-                    <p class="text-zinc-600 text-xs mt-1.5 leading-relaxed">Luxury beachfront villa automation, robust Wi-Fi 6 coverage, Martin Audio soundscapes, and FortiGate security.</p>
-                </div>
-                <a href="https://www.google.com/maps/search/?api=1&query=Palm+Jumeirah+Dubai" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center gap-1 text-xs font-mono font-semibold text-orange-600 hover:text-orange-700">
-                    <i class="fa-solid fa-map-pin"></i> View on Map
-                </a>
-            </div>
-
-            <div class="saas-card p-5 fade-up flex flex-col justify-between">
-                <div>
-                    <div class="text-teal-600 text-xl mb-3"><i class="fa-solid fa-gem"></i></div>
-                    <h3 class="text-zinc-900 font-bold text-base">Pearl Jumeirah</h3>
-                    <p class="text-zinc-600 text-xs mt-1.5 leading-relaxed">Exclusive coastal estate ICT infrastructure, centralized KNX automation, and multi-zone audio integration.</p>
-                </div>
-                <a href="https://www.google.com/maps/search/?api=1&query=Pearl+Jumeirah+Dubai" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center gap-1 text-xs font-mono font-semibold text-orange-600 hover:text-orange-700">
-                    <i class="fa-solid fa-map-pin"></i> View on Map
-                </a>
-            </div>
-
-            <div class="saas-card p-5 fade-up flex flex-col justify-between">
-                <div>
-                    <div class="text-indigo-600 text-xl mb-3"><i class="fa-solid fa-umbrella-beach"></i></div>
-                    <h3 class="text-zinc-900 font-bold text-base">Yas Island</h3>
-                    <p class="text-zinc-600 text-xs mt-1.5 leading-relaxed">Yas Acres & Water's Edge — advanced smart villa automation, high-density Wi-Fi 6, and architectural sound systems.</p>
-                </div>
-                <a href="https://www.google.com/maps/search/?api=1&query=Yas+Island+Abu+Dhabi" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center gap-1 text-xs font-mono font-semibold text-orange-600 hover:text-orange-700">
-                    <i class="fa-solid fa-map-pin"></i> View on Map
-                </a>
-            </div>
-
-            <div class="saas-card p-5 fade-up flex flex-col justify-between">
-                <div>
-                    <div class="text-blue-600 text-xl mb-3"><i class="fa-solid fa-landmark"></i></div>
-                    <h3 class="text-zinc-900 font-bold text-base">Abu Dhabi</h3>
-                    <p class="text-zinc-600 text-xs mt-1.5 leading-relaxed">Al Reem Island & Saadiyat Island — luxury smart automation, FortiGate security firewalls, and pro-AV integration.</p>
-                </div>
-                <a href="https://www.google.com/maps/search/?api=1&query=Abu+Dhabi" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center gap-1 text-xs font-mono font-semibold text-orange-600 hover:text-orange-700">
-                    <i class="fa-solid fa-map-pin"></i> View on Map
-                </a>
-            </div>
-
-            <div class="saas-card p-5 fade-up flex flex-col justify-between">
-                <div>
-                    <div class="text-rose-600 text-xl mb-3"><i class="fa-solid fa-bridge"></i></div>
-                    <h3 class="text-zinc-900 font-bold text-base">Sharjah</h3>
-                    <p class="text-zinc-600 text-xs mt-1.5 leading-relaxed">Al Majaz & Muwaileh — high-speed enterprise networking, structural cabling, and commercial ELV & VMS installations.</p>
-                </div>
-                <a href="https://www.google.com/maps/search/?api=1&query=Sharjah" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center gap-1 text-xs font-mono font-semibold text-orange-600 hover:text-orange-700">
-                    <i class="fa-solid fa-map-pin"></i> View on Map
-                </a>
-            </div>
-
-            <div class="saas-card p-5 fade-up flex flex-col justify-between">
-                <div>
-                    <div class="text-teal-500 text-xl mb-3"><i class="fa-solid fa-sun"></i></div>
-                    <h3 class="text-zinc-900 font-bold text-base">Ajman</h3>
-                    <p class="text-zinc-600 text-xs mt-1.5 leading-relaxed">Al Jurf & Ajman Corniche — premium residential automation, network cabinet architecture, and multi-zone audio setups.</p>
-                </div>
-                <a href="https://www.google.com/maps/search/?api=1&query=Ajman" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center gap-1 text-xs font-mono font-semibold text-orange-600 hover:text-orange-700">
-                    <i class="fa-solid fa-map-pin"></i> View on Map
-                </a>
-            </div>
-
-            <div class="saas-card p-5 fade-up flex flex-col justify-between">
-                <div>
-                    <div class="text-amber-700 text-xl mb-3"><i class="fa-solid fa-mountain"></i></div>
-                    <h3 class="text-zinc-900 font-bold text-base">Ras Al Khaimah</h3>
-                    <p class="text-zinc-600 text-xs mt-1.5 leading-relaxed">Al Hamra Village & Mina Al Arab — resort and luxury villa network infrastructure, AV routing, and security automation.</p>
-                </div>
-                <a href="https://www.google.com/maps/search/?api=1&query=Ras+Al+Khaimah" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center gap-1 text-xs font-mono font-semibold text-orange-600 hover:text-orange-700">
-                    <i class="fa-solid fa-map-pin"></i> View on Map
-                </a>
-            </div>
-
-            <div class="saas-card p-5 fade-up flex flex-col justify-between">
-                <div>
-                    <div class="text-blue-500 text-xl mb-3"><i class="fa-solid fa-globe"></i></div>
-                    <h3 class="text-zinc-900 font-bold text-base">Expo City Dubai</h3>
-                    <p class="text-zinc-600 text-xs mt-1.5 leading-relaxed">Sustainable smart district infrastructure, high-density fiber backbones, and smart building integration systems.</p>
-                </div>
-                <a href="https://www.google.com/maps/search/?api=1&query=Expo+City+Dubai" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center gap-1 text-xs font-mono font-semibold text-orange-600 hover:text-orange-700">
-                    <i class="fa-solid fa-map-pin"></i> View on Map
-                </a>
+            <h3 class="text-2xl sm:text-3xl font-bold text-zinc-900">Key Project Deployments (13 Hubs)</h3>
+            <p class="text-zinc-600 text-sm max-w-2xl mx-auto mt-2 leading-relaxed">
+                Turnkey network architecture, cyber-security gateways, and smart estate controls engineered across prime residential and commercial hubs in Emirates Hills, Dubai Hills, Palm Jumeirah, Yas Island, Abu Dhabi, Sharjah, Ajman, and more.
+            </p>
+            <div class="mt-6">
+                <button onclick="openLocationsModal()" class="px-6 py-3 rounded-lg bg-orange-600 hover:bg-orange-500 text-white font-semibold text-sm transition shadow-lg shadow-orange-600/20 inline-flex items-center gap-2 cursor-pointer">
+                    <i class="fa-solid fa-map-pin"></i> View All 13 Project Locations & Maps <i class="fa-solid fa-arrow-right text-xs"></i>
+                </button>
             </div>
         </div>
 
@@ -911,6 +776,155 @@
     </div>
 </div>
 
+<!-- LOCATIONS MODAL -->
+<div id="locationsModal" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden items-center justify-center p-4 sm:p-6 overflow-y-auto">
+    <div class="relative w-full max-w-5xl saas-card border-zinc-200 overflow-hidden shadow-2xl my-auto p-6 sm:p-8 bg-white max-h-[85vh] flex flex-col">
+        <div class="flex items-center justify-between border-b border-zinc-200 pb-4 mb-6">
+            <div>
+                <span class="text-xs font-mono text-orange-600 font-bold uppercase tracking-widest">UAE PROJECT FOOTPRINT</span>
+                <h3 class="text-2xl font-bold text-zinc-900">All 13 Project Deployments & Locations</h3>
+            </div>
+            <button onclick="closeLocationsModal()" class="w-9 h-9 rounded-full bg-zinc-100 border border-zinc-200 text-zinc-700 hover:text-white hover:bg-orange-600 flex items-center justify-center transition cursor-pointer"><i class="fa-solid fa-xmark text-sm"></i></button>
+        </div>
+        
+        <div class="overflow-y-auto pr-2 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div class="p-4 rounded-xl bg-zinc-50 border border-zinc-200 flex flex-col justify-between">
+                <div>
+                    <h4 class="text-zinc-900 font-bold text-sm"><i class="fa-solid fa-building text-orange-600 mr-2"></i> Emirates Hills</h4>
+                    <p class="text-zinc-600 text-xs mt-1">Premium home-automation, IT rack architecture, Xilica DSP, and multi-zone Martin Audio pro integration.</p>
+                </div>
+                <a href="https://www.google.com/maps/search/?api=1&query=Emirates+Hills+Dubai" target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex items-center gap-1 text-xs font-mono font-semibold text-orange-600 hover:text-orange-700">
+                    <i class="fa-solid fa-map-pin"></i> View on Map
+                </a>
+            </div>
+
+            <div class="p-4 rounded-xl bg-zinc-50 border border-zinc-200 flex flex-col justify-between">
+                <div>
+                    <h4 class="text-zinc-900 font-bold text-sm"><i class="fa-solid fa-city text-amber-600 mr-2"></i> Dubai Hills</h4>
+                    <p class="text-zinc-600 text-xs mt-1">FortiGate security gateways, high-speed Wi-Fi 6, Onkyo 4K cinema AVR, and smart estate controls.</p>
+                </div>
+                <a href="https://www.google.com/maps/search/?api=1&query=Dubai+Hills+Estate+Dubai" target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex items-center gap-1 text-xs font-mono font-semibold text-orange-600 hover:text-orange-700">
+                    <i class="fa-solid fa-map-pin"></i> View on Map
+                </a>
+            </div>
+
+            <div class="p-4 rounded-xl bg-zinc-50 border border-zinc-200 flex flex-col justify-between">
+                <div>
+                    <h4 class="text-zinc-900 font-bold text-sm"><i class="fa-solid fa-water text-emerald-600 mr-2"></i> Jumeirah Bay Island</h4>
+                    <p class="text-zinc-600 text-xs mt-1">High-end residential automation, VMS CCTV, and LEA Professional DSP amplifier matrix deployment.</p>
+                </div>
+                <a href="https://www.google.com/maps/search/?api=1&query=Jumeirah+Bay+Island+Dubai" target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex items-center gap-1 text-xs font-mono font-semibold text-orange-600 hover:text-orange-700">
+                    <i class="fa-solid fa-map-pin"></i> View on Map
+                </a>
+            </div>
+
+            <div class="p-4 rounded-xl bg-zinc-50 border border-zinc-200 flex flex-col justify-between">
+                <div>
+                    <h4 class="text-zinc-900 font-bold text-sm"><i class="fa-solid fa-city text-purple-600 mr-2"></i> Downtown Dubai</h4>
+                    <p class="text-zinc-600 text-xs mt-1">Corporate network infrastructure, high-density IT rack hosting, fiber backbone, and security operations.</p>
+                </div>
+                <a href="https://www.google.com/maps/search/?api=1&query=Downtown+Dubai" target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex items-center gap-1 text-xs font-mono font-semibold text-orange-600 hover:text-orange-700">
+                    <i class="fa-solid fa-map-pin"></i> View on Map
+                </a>
+            </div>
+
+            <div class="p-4 rounded-xl bg-zinc-50 border border-zinc-200 flex flex-col justify-between">
+                <div>
+                    <h4 class="text-zinc-900 font-bold text-sm"><i class="fa-solid fa-water text-sky-600 mr-2"></i> Dubai Marina</h4>
+                    <p class="text-zinc-600 text-xs mt-1">High-rise residential network architecture, structured cabling, VMS surveillance, and smart home audio setups.</p>
+                </div>
+                <a href="https://www.google.com/maps/search/?api=1&query=Dubai+Marina+Dubai" target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex items-center gap-1 text-xs font-mono font-semibold text-orange-600 hover:text-orange-700">
+                    <i class="fa-solid fa-map-pin"></i> View on Map
+                </a>
+            </div>
+
+            <div class="p-4 rounded-xl bg-zinc-50 border border-zinc-200 flex flex-col justify-between">
+                <div>
+                    <h4 class="text-zinc-900 font-bold text-sm"><i class="fa-solid fa-tree text-amber-500 mr-2"></i> Palm Jumeirah</h4>
+                    <p class="text-zinc-600 text-xs mt-1">Luxury beachfront villa automation, robust Wi-Fi 6 coverage, Martin Audio soundscapes, and FortiGate security.</p>
+                </div>
+                <a href="https://www.google.com/maps/search/?api=1&query=Palm+Jumeirah+Dubai" target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex items-center gap-1 text-xs font-mono font-semibold text-orange-600 hover:text-orange-700">
+                    <i class="fa-solid fa-map-pin"></i> View on Map
+                </a>
+            </div>
+
+            <div class="p-4 rounded-xl bg-zinc-50 border border-zinc-200 flex flex-col justify-between">
+                <div>
+                    <h4 class="text-zinc-900 font-bold text-sm"><i class="fa-solid fa-gem text-teal-600 mr-2"></i> Pearl Jumeirah</h4>
+                    <p class="text-zinc-600 text-xs mt-1">Exclusive coastal estate ICT infrastructure, centralized KNX automation, and multi-zone audio integration.</p>
+                </div>
+                <a href="https://www.google.com/maps/search/?api=1&query=Pearl+Jumeirah+Dubai" target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex items-center gap-1 text-xs font-mono font-semibold text-orange-600 hover:text-orange-700">
+                    <i class="fa-solid fa-map-pin"></i> View on Map
+                </a>
+            </div>
+
+            <div class="p-4 rounded-xl bg-zinc-50 border border-zinc-200 flex flex-col justify-between">
+                <div>
+                    <h4 class="text-zinc-900 font-bold text-sm"><i class="fa-solid fa-umbrella-beach text-indigo-600 mr-2"></i> Yas Island</h4>
+                    <p class="text-zinc-600 text-xs mt-1">Yas Acres & Water's Edge — advanced smart villa automation, high-density Wi-Fi 6, and architectural sound systems.</p>
+                </div>
+                <a href="https://www.google.com/maps/search/?api=1&query=Yas+Island+Abu+Dhabi" target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex items-center gap-1 text-xs font-mono font-semibold text-orange-600 hover:text-orange-700">
+                    <i class="fa-solid fa-map-pin"></i> View on Map
+                </a>
+            </div>
+
+            <div class="p-4 rounded-xl bg-zinc-50 border border-zinc-200 flex flex-col justify-between">
+                <div>
+                    <h4 class="text-zinc-900 font-bold text-sm"><i class="fa-solid fa-landmark text-blue-600 mr-2"></i> Abu Dhabi</h4>
+                    <p class="text-zinc-600 text-xs mt-1">Al Reem Island & Saadiyat Island — luxury smart automation, FortiGate security firewalls, and pro-AV integration.</p>
+                </div>
+                <a href="https://www.google.com/maps/search/?api=1&query=Abu+Dhabi" target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex items-center gap-1 text-xs font-mono font-semibold text-orange-600 hover:text-orange-700">
+                    <i class="fa-solid fa-map-pin"></i> View on Map
+                </a>
+            </div>
+
+            <div class="p-4 rounded-xl bg-zinc-50 border border-zinc-200 flex flex-col justify-between">
+                <div>
+                    <h4 class="text-zinc-900 font-bold text-sm"><i class="fa-solid fa-bridge text-rose-600 mr-2"></i> Sharjah</h4>
+                    <p class="text-zinc-600 text-xs mt-1">Al Majaz & Muwaileh — high-speed enterprise networking, structural cabling, and commercial ELV & VMS installations.</p>
+                </div>
+                <a href="https://www.google.com/maps/search/?api=1&query=Sharjah" target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex items-center gap-1 text-xs font-mono font-semibold text-orange-600 hover:text-orange-700">
+                    <i class="fa-solid fa-map-pin"></i> View on Map
+                </a>
+            </div>
+
+            <div class="p-4 rounded-xl bg-zinc-50 border border-zinc-200 flex flex-col justify-between">
+                <div>
+                    <h4 class="text-zinc-900 font-bold text-sm"><i class="fa-solid fa-sun text-teal-500 mr-2"></i> Ajman</h4>
+                    <p class="text-zinc-600 text-xs mt-1">Al Jurf & Ajman Corniche — premium residential automation, network cabinet architecture, and multi-zone audio setups.</p>
+                </div>
+                <a href="https://www.google.com/maps/search/?api=1&query=Ajman" target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex items-center gap-1 text-xs font-mono font-semibold text-orange-600 hover:text-orange-700">
+                    <i class="fa-solid fa-map-pin"></i> View on Map
+                </a>
+            </div>
+
+            <div class="p-4 rounded-xl bg-zinc-50 border border-zinc-200 flex flex-col justify-between">
+                <div>
+                    <h4 class="text-zinc-900 font-bold text-sm"><i class="fa-solid fa-mountain text-amber-700 mr-2"></i> Ras Al Khaimah</h4>
+                    <p class="text-zinc-600 text-xs mt-1">Al Hamra Village & Mina Al Arab — resort and luxury villa network infrastructure, AV routing, and security automation.</p>
+                </div>
+                <a href="https://www.google.com/maps/search/?api=1&query=Ras+Al+Khaimah" target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex items-center gap-1 text-xs font-mono font-semibold text-orange-600 hover:text-orange-700">
+                    <i class="fa-solid fa-map-pin"></i> View on Map
+                </a>
+            </div>
+
+            <div class="p-4 rounded-xl bg-zinc-50 border border-zinc-200 flex flex-col justify-between">
+                <div>
+                    <h4 class="text-zinc-900 font-bold text-sm"><i class="fa-solid fa-globe text-blue-500 mr-2"></i> Expo City Dubai</h4>
+                    <p class="text-zinc-600 text-xs mt-1">Sustainable smart district infrastructure, high-density fiber backbones, and smart building integration systems.</p>
+                </div>
+                <a href="https://www.google.com/maps/search/?api=1&query=Expo+City+Dubai" target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex items-center gap-1 text-xs font-mono font-semibold text-orange-600 hover:text-orange-700">
+                    <i class="fa-solid fa-map-pin"></i> View on Map
+                </a>
+            </div>
+        </div>
+
+        <div class="mt-6 pt-4 border-t border-zinc-200 flex justify-end">
+            <button onclick="closeLocationsModal()" class="px-5 py-2 rounded-lg bg-zinc-900 text-white hover:bg-zinc-800 text-xs font-semibold transition cursor-pointer">Close Window</button>
+        </div>
+    </div>
+</div>
+
 <!-- ZOYA MODAL WITH HEART ANIMATION -->
 <div id="zoyaModal" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden items-center justify-center p-4 sm:p-6 overflow-y-auto">
     <div class="relative w-full max-w-md saas-card border-rose-200 overflow-hidden shadow-2xl my-auto p-6 sm:p-8 text-center bg-white">
@@ -964,6 +978,21 @@
 
 <!-- SCRIPTS -->
 <script>
+    // LOCATIONS MODAL LOGIC
+    function openLocationsModal() {
+        const modal = document.getElementById('locationsModal');
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLocationsModal() {
+        const modal = document.getElementById('locationsModal');
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        document.body.style.overflow = 'auto';
+    }
+
     // MINI GAME LOGIC
     let dodgeAttempts = 0;
     function dodgeHeart(e) {
