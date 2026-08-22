@@ -61,9 +61,9 @@
                             700: '#0369a1'
                         },
                         dark: {
-                            900: '#030303',
-                            800: '#0a0a0a',
-                            700: '#141414'
+                            900: '#020205',
+                            800: '#08080c',
+                            700: '#12121a'
                         }
                     }
                 }
@@ -73,12 +73,12 @@
 
     <style>
         html { scroll-behavior: smooth; }
-        body { overflow-x: hidden; background-color: #030303; color: #cbd5e1; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { overflow-x: hidden; background-color: #020205; color: #cbd5e1; font-family: 'Plus Jakarta Sans', sans-serif; }
 
-        /* DARK MATRIX RAIN BACKGROUND */
+        /* VIBRANT CYBER MATRIX RAIN BACKGROUND */
         #matrixCanvas {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            z-index: 0; pointer-events: none; opacity: 0.15;
+            z-index: 0; pointer-events: none; opacity: 0.22;
         }
 
         #dodgingHeartContainer {
@@ -88,62 +88,91 @@
         }
 
         @keyframes zPulse {
-            0% { box-shadow: 0 0 0 0 rgba(244, 63, 94, 0.6); transform: scale(1); }
-            70% { box-shadow: 0 0 0 12px rgba(244, 63, 94, 0); transform: scale(1.05); }
+            0% { box-shadow: 0 0 0 0 rgba(244, 63, 94, 0.7); transform: scale(1); }
+            70% { box-shadow: 0 0 0 16px rgba(244, 63, 94, 0); transform: scale(1.08); }
             100% { box-shadow: 0 0 0 0 rgba(244, 63, 94, 0); transform: scale(1); }
         }
         .z-interactive-btn { animation: zPulse 2s infinite; }
 
-        .glass { background: rgba(10, 10, 10, 0.85) !important; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.06); }
+        /* ULTRA GLASS & HOLOGRAPHIC NEON BORDERS */
+        .glass { 
+            background: linear-gradient(135deg, rgba(15, 15, 25, 0.85) 0%, rgba(8, 8, 12, 0.9) 100%) !important; 
+            backdrop-filter: blur(20px); 
+            -webkit-backdrop-filter: blur(20px); 
+            border: 1px solid rgba(249, 115, 22, 0.15); 
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+        
+        .glass:hover {
+            border-color: rgba(249, 115, 22, 0.4);
+            box-shadow: 0 20px 40px rgba(249, 115, 22, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
         
         .super-glass-sidebar {
-            background: rgba(3, 3, 3, 0.4) !important;
-            backdrop-filter: blur(16px) !important;
-            -webkit-backdrop-filter: blur(16px) !important;
-            border-color: rgba(255, 77, 77, 0.2) !important;
+            background: rgba(5, 5, 10, 0.6) !important;
+            backdrop-filter: blur(20px) !important;
+            -webkit-backdrop-filter: blur(20px) !important;
+            border-color: rgba(249, 115, 22, 0.3) !important;
         }
 
-        .glow { box-shadow: 0 0 35px rgba(249, 115, 22, 0.18), inset 0 0 20px rgba(249, 115, 22, 0.05); }
+        .glow { box-shadow: 0 0 50px rgba(249, 115, 22, 0.25), inset 0 0 25px rgba(249, 115, 22, 0.08); }
+        
         .grid-bg {
-            background-image: linear-gradient(rgba(255, 77, 77, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 77, 77, 0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
+            background-image: linear-gradient(rgba(249, 115, 22, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(249, 115, 22, 0.04) 1px, transparent 1px);
+            background-size: 60px 60px;
         }
-        .fade-up { opacity: 0; transform: translateY(25px); transition: all 0.8s ease; }
+
+        .fade-up { opacity: 0; transform: translateY(30px); transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1); }
         .fade-up.show { opacity: 1; transform: translateY(0); }
-        .gradient-text { background: linear-gradient(90deg, #ff4d4d, #f97316, #eab308); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        .gradient-text { 
+            background: linear-gradient(135deg, #ff4d4d 0%, #f97316 50%, #eab308 100%); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            filter: drop-shadow(0 0 25px rgba(249, 115, 22, 0.3));
+        }
 
         .skill {
-            padding: 10px 16px; border-radius: 10px; background: rgba(15, 15, 15, 0.85);
-            border: 1px solid rgba(255, 77, 77, 0.2); color: #cbd5e1; font-size: 13px; font-weight: 500;
-            backdrop-filter: blur(8px); transition: all .25s ease;
+            padding: 10px 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(20, 20, 30, 0.9), rgba(10, 10, 15, 0.9));
+            border: 1px solid rgba(249, 115, 22, 0.25); color: #e2e8f0; font-size: 13px; font-weight: 600;
+            backdrop-filter: blur(10px); transition: all .3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .skill:hover { border-color: #ff4d4d; color: #ffffff; box-shadow: 0 0 15px rgba(255, 77, 77, 0.3); transform: translateY(-2px); }
+        .skill:hover { 
+            border-color: #f97316; color: #ffffff; 
+            box-shadow: 0 0 20px rgba(249, 115, 22, 0.4), inset 0 0 10px rgba(249, 115, 22, 0.2); 
+            transform: translateY(-3px) scale(1.02); 
+        }
 
         .partner-card {
-            background: #ffffff; border-radius: 18px;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex; align-items: center; justify-content: center; padding: 20px; min-height: 90px; cursor: pointer; position: relative; user-select: none;
+            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%); border-radius: 20px;
+            box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.4), 0 0 15px rgba(249, 115, 22, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex; align-items: center; justify-content: center; padding: 22px; min-height: 95px; cursor: pointer; position: relative; user-select: none;
+            border: 1px solid rgba(255, 255, 255, 0.8);
         }
-        .partner-card:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 20px 30px -10px rgba(255, 77, 77, 0.35); }
+        .partner-card:hover { 
+            transform: translateY(-6px) scale(1.03); 
+            box-shadow: 0 25px 40px -10px rgba(249, 115, 22, 0.5), 0 0 25px rgba(249, 115, 22, 0.3); 
+            border-color: #f97316;
+        }
 
         section { position: relative; z-index: 10; }
-        #detailModal, #partnerModal, #heartModal { transition: all 0.3s ease; }
+        #detailModal, #partnerModal, #heartModal { transition: all 0.4s ease; }
 
         /* ZOYA POPUP HEART ANIMATION STYLES */
         .zoya-card-custom {
-            background: linear-gradient(135deg, #fff 0%, #f8fafc 100%);
-            border: 2px solid rgba(244, 63, 94, 0.2);
+            background: linear-gradient(135deg, #fff 0%, #fff1f2 100%) !important;
+            border: 2px solid rgba(244, 63, 94, 0.3) !important;
         }
         .zoya-card-custom:hover {
-            border-color: #f43f5e;
-            box-shadow: 0 20px 30px -10px rgba(244, 63, 94, 0.4) !important;
+            border-color: #f43f5e !important;
+            box-shadow: 0 25px 40px -10px rgba(244, 63, 94, 0.5) !important;
         }
         @keyframes heartbeatModal {
             0% { transform: scale(0.95); }
-            5% { transform: scale(1.1); }
+            5% { transform: scale(1.12); }
             10% { transform: scale(0.9); }
-            15% { transform: scale(1.2); }
+            15% { transform: scale(1.22); }
             50% { transform: scale(0.95); }
             100% { transform: scale(0.95); }
         }
@@ -162,10 +191,11 @@
             width: 45px;
             height: 72px;
             border-radius: 45px 45px 0 0;
-            background: #f43f5e;
+            background: linear-gradient(135deg, #f43f5e, #e11d48);
             left: 45px;
             transform: rotate(-45deg);
             transform-origin: 0 100%;
+            box-shadow: 0 0 20px rgba(244, 63, 94, 0.6);
         }
         .modal-beating-heart::after {
             left: 0;
@@ -175,21 +205,21 @@
     </style>
 </head>
 
-<body class="bg-[#030303] text-slate-200 font-sans antialiased notranslate" translate="no">
+<body class="bg-[#020205] text-slate-200 font-sans antialiased notranslate" translate="no">
 
-<!-- DARK MATRIX RAIN BACKGROUND -->
+<!-- VIBRANT CYBER MATRIX RAIN BACKGROUND -->
 <canvas id="matrixCanvas"></canvas>
 
 <!-- NAVBAR -->
-<header class="fixed top-0 left-0 right-0 z-50 glass border-b border-neutral-800/85 notranslate" translate="no">
+<header class="fixed top-0 left-0 right-0 z-50 glass border-b border-orange-500/20 notranslate" translate="no">
     <div class="max-w-7xl mx-auto px-5 sm:px-8 h-20 flex items-center justify-between">
         <div class="flex items-center gap-3">
             <div class="relative group">
                 <button onclick="openHeartModal(event)" title="Play Mini-Game"
-                        class="w-11 h-11 rounded-xl bg-gradient-to-tr from-rose-600 via-red-500 to-pink-500 flex items-center justify-center font-black text-pink-200 text-xl shadow-lg shadow-rose-500/30 border border-rose-400/40 hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer z-interactive-btn notranslate" translate="no">
+                        class="w-11 h-11 rounded-xl bg-gradient-to-tr from-rose-600 via-red-500 to-pink-500 flex items-center justify-center font-black text-pink-100 text-xl shadow-lg shadow-rose-500/40 border border-rose-300/60 hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer z-interactive-btn notranslate" translate="no">
                     Z
                 </button>
-                <span class="absolute left-14 top-1/2 -translate-y-1/2 px-2.5 py-1 rounded-md bg-dark-800 border border-orange-500/40 text-orange-400 text-[11px] font-mono whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none shadow-xl">
+                <span class="absolute left-14 top-1/2 -translate-y-1/2 px-3 py-1 rounded-lg bg-dark-800 border border-orange-500/50 text-orange-400 text-[11px] font-mono whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none shadow-2xl">
                     Play Game! 🎮
                 </span>
             </div>
@@ -208,7 +238,7 @@
             <a href="#contact" class="hover:text-orange-400 transition">Contact</a>
         </nav>
 
-        <a href="#contact" class="hidden md:inline-flex px-5 py-2.5 rounded-full bg-orange-600 hover:bg-orange-500 text-white text-sm font-semibold transition shadow-lg shadow-orange-600/30">
+        <a href="#contact" class="hidden md:inline-flex px-6 py-2.5 rounded-full bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white text-sm font-bold transition shadow-lg shadow-orange-600/40 border border-orange-400/30">
             Let's Connect
         </a>
 
@@ -217,7 +247,7 @@
         </button>
     </div>
 
-    <div id="mobileMenu" class="hidden md:hidden border-t border-neutral-800 px-5 py-5 bg-dark-800/95 backdrop-blur-lg notranslate" translate="no">
+    <div id="mobileMenu" class="hidden md:hidden border-t border-orange-500/20 px-5 py-5 bg-dark-800/95 backdrop-blur-xl notranslate" translate="no">
         <div class="flex flex-col gap-5">
             <a href="#about">About</a>
             <a href="#services">Projects & Specializations</a>
@@ -231,16 +261,16 @@
 
 <!-- HERO SECTION -->
 <section id="home" class="relative min-h-screen flex items-center pt-36 pb-24 overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-b from-[#030303]/80 via-[#030303]/50 to-[#030303] z-0"></div>
-    <div class="absolute inset-0 grid-bg z-0 opacity-30"></div>
-    <div class="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-orange-600/10 rounded-full blur-[120px] pointer-events-none z-0"></div>
-    <div class="absolute bottom-10 right-10 w-[400px] h-[400px] bg-red-600/10 rounded-full blur-[100px] pointer-events-none z-0"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-[#020205]/90 via-[#020205]/60 to-[#020205] z-0"></div>
+    <div class="absolute inset-0 grid-bg z-0 opacity-40"></div>
+    <div class="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-orange-600/15 rounded-full blur-[140px] pointer-events-none z-0"></div>
+    <div class="absolute bottom-10 right-10 w-[500px] h-[500px] bg-red-600/15 rounded-full blur-[120px] pointer-events-none z-0"></div>
 
     <div class="max-w-7xl mx-auto px-5 sm:px-8 relative z-10 w-full">
         <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             
             <div class="lg:col-span-7 fade-up text-center lg:text-left">
-                <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-orange-500/40 bg-orange-500/10 text-orange-400 text-xs sm:text-sm font-semibold mb-7 backdrop-blur-xl shadow-lg shadow-orange-500/5">
+                <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-orange-500/50 bg-orange-500/10 text-orange-400 text-xs sm:text-sm font-semibold mb-7 backdrop-blur-xl shadow-xl shadow-orange-500/10">
                     <span class="w-2 h-2 rounded-full bg-orange-400 animate-ping"></span>
                     Network • ELV • Automation • AV • Infrastructure
                 </div>
@@ -259,10 +289,10 @@
                 </p>
 
                 <div class="flex flex-wrap justify-center lg:justify-start gap-4 mt-9">
-                    <a href="#services" class="px-8 py-4 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold transition shadow-xl shadow-orange-600/30 border border-orange-400/30 inline-flex items-center group">
+                    <a href="#services" class="px-8 py-4 rounded-xl bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white font-bold transition shadow-2xl shadow-orange-600/40 border border-orange-400/40 inline-flex items-center group">
                         <i class="fa-solid fa-diagram-project mr-2 group-hover:rotate-12 transition-transform"></i> View Projects & Specializations
                     </a>
-                    <a href="#contact" class="px-8 py-4 rounded-xl border border-neutral-700 bg-dark-800/80 backdrop-blur-md hover:bg-dark-700 text-white font-semibold transition inline-flex items-center">
+                    <a href="#contact" class="px-8 py-4 rounded-xl border border-neutral-700 bg-dark-800/80 backdrop-blur-md hover:bg-dark-700 hover:border-orange-500/40 text-white font-semibold transition inline-flex items-center">
                         <i class="fa-regular fa-paper-plane mr-2"></i> Contact Me
                     </a>
                 </div>
@@ -270,20 +300,20 @@
 
             <div class="lg:col-span-5 flex justify-center fade-up">
                 <div class="relative w-full max-w-sm sm:max-w-md group cursor-pointer">
-                    <div class="absolute -inset-1.5 bg-gradient-to-r from-orange-600 via-red-600 to-amber-500 rounded-[30px] blur-xl opacity-30 group-hover:opacity-75 transition duration-500"></div>
+                    <div class="absolute -inset-2 bg-gradient-to-r from-orange-600 via-red-600 to-amber-500 rounded-[35px] blur-2xl opacity-40 group-hover:opacity-85 transition duration-500"></div>
                     
-                    <div class="relative p-2 rounded-3xl bg-dark-800/90 border border-neutral-800 backdrop-blur-2xl shadow-2xl overflow-hidden">
+                    <div class="relative p-2.5 rounded-3xl bg-dark-800/95 border border-orange-500/30 backdrop-blur-2xl shadow-2xl overflow-hidden">
                         <div class="rounded-[22px] overflow-hidden bg-black relative">
                             <img src="profile.jpg" alt="Shah Faishal - Senior Network and Automation Engineer" class="w-full aspect-[4/5] object-cover object-center group-hover:scale-105 transition duration-700">
                             
                             <div class="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out z-20">
-                                <div class="glass border border-neutral-700 rounded-2xl p-4 shadow-2xl backdrop-blur-xl">
+                                <div class="glass border border-orange-500/40 rounded-2xl p-4 shadow-2xl backdrop-blur-xl">
                                     <div class="flex items-center justify-between">
                                         <div>
                                             <div class="font-bold text-white text-left text-base tracking-wider"><span class="text-orange-500">SHAH</span> FAISHAL</div>
                                             <div class="text-xs text-orange-400 mt-1 text-left font-mono tracking-wide">Network • Automation • AV • ELV</div>
                                         </div>
-                                        <div class="w-11 h-11 rounded-xl bg-orange-500/20 border border-orange-500/30 flex items-center justify-center text-orange-400 text-lg shadow-inner">
+                                        <div class="w-11 h-11 rounded-xl bg-orange-500/20 border border-orange-500/40 flex items-center justify-center text-orange-400 text-lg shadow-inner">
                                             <i class="fa-solid fa-network-wired"></i>
                                         </div>
                                     </div>
@@ -299,7 +329,7 @@
 </section>
 
 <!-- SERVICES SECTION -->
-<section id="services" class="py-24 border-y border-neutral-800/70">
+<section id="services" class="py-24 border-y border-orange-500/20">
     <div class="max-w-7xl mx-auto px-5 sm:px-8">
         
         <div class="max-w-3xl mb-14 fade-up">
@@ -311,87 +341,87 @@
         </div>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-24">
-            <div onclick="openServiceDetail(0)" class="cursor-pointer glass border border-neutral-800 rounded-2xl p-7 hover:border-orange-500/60 hover:-translate-y-1.5 transition duration-300 fade-up group">
+            <div onclick="openServiceDetail(0)" class="cursor-pointer glass rounded-2xl p-7 hover:-translate-y-2 transition duration-300 fade-up group">
                 <div class="flex items-center justify-between mb-5">
-                    <div class="w-12 h-12 rounded-xl bg-orange-500/10 text-orange-400 flex items-center justify-center text-xl group-hover:bg-orange-500 group-hover:text-white transition"><i class="fa-solid fa-shield-halved"></i></div>
-                    <span class="text-xs text-orange-400/80 font-mono flex items-center gap-1 group-hover:text-orange-300">View Project <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+                    <div class="w-12 h-12 rounded-xl bg-orange-500/10 text-orange-400 flex items-center justify-center text-xl group-hover:bg-orange-600 group-hover:text-white transition shadow-lg"><i class="fa-solid fa-shield-halved"></i></div>
+                    <span class="text-xs text-orange-400 font-mono flex items-center gap-1 group-hover:text-orange-300">View Project <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
                 </div>
                 <h3 class="text-xl font-bold text-white group-hover:text-orange-400 transition">Networking</h3>
                 <p class="text-slate-400 text-sm leading-relaxed mt-3">FortiGate HA firewalls, Cisco L2/L3 routing, SD-WAN failover, gateway security, VLANs, Wi-Fi 6, and IT rack containment.</p>
             </div>
 
-            <div onclick="openServiceDetail(1)" class="cursor-pointer glass border border-neutral-800 rounded-2xl p-7 hover:border-amber-500/60 hover:-translate-y-1.5 transition duration-300 fade-up group">
+            <div onclick="openServiceDetail(1)" class="cursor-pointer glass rounded-2xl p-7 hover:-translate-y-2 transition duration-300 fade-up group">
                 <div class="flex items-center justify-between mb-5">
-                    <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl group-hover:bg-amber-500 group-hover:text-white transition"><i class="fa-solid fa-house-chimney"></i></div>
-                    <span class="text-xs text-amber-400/80 font-mono flex items-center gap-1 group-hover:text-amber-300">View Project <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+                    <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl group-hover:bg-amber-600 group-hover:text-white transition shadow-lg"><i class="fa-solid fa-house-chimney"></i></div>
+                    <span class="text-xs text-amber-400 font-mono flex items-center gap-1 group-hover:text-amber-300">View Project <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
                 </div>
                 <h3 class="text-xl font-bold text-white group-hover:text-amber-400 transition">Smart Estate & Home Automation</h3>
                 <p class="text-slate-400 text-sm leading-relaxed mt-3">KNX lighting scenes, motorized drapery, DALI architecture, HVAC climate control, and iPad centralized touchpanels.</p>
             </div>
 
-            <div onclick="openServiceDetail(2)" class="cursor-pointer glass border border-neutral-800 rounded-2xl p-7 hover:border-emerald-500/60 hover:-translate-y-1.5 transition duration-300 fade-up group">
+            <div onclick="openServiceDetail(2)" class="cursor-pointer glass rounded-2xl p-7 hover:-translate-y-2 transition duration-300 fade-up group">
                 <div class="flex items-center justify-between mb-5">
-                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl group-hover:bg-emerald-500 group-hover:text-white transition"><i class="fa-solid fa-video"></i></div>
-                    <span class="text-xs text-emerald-400/80 font-mono flex items-center gap-1 group-hover:text-emerald-300">View Project <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl group-hover:bg-emerald-600 group-hover:text-white transition shadow-lg"><i class="fa-solid fa-video"></i></div>
+                    <span class="text-xs text-emerald-400 font-mono flex items-center gap-1 group-hover:text-emerald-300">View Project <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
                 </div>
                 <h3 class="text-xl font-bold text-white group-hover:text-emerald-400 transition">Enterprise VMS & IP Surveillance</h3>
                 <p class="text-slate-400 text-sm leading-relaxed mt-3">Deployment of centralized Video Management Systems (VMS), high-density control room video walls, and AI CCTV analytics.</p>
             </div>
 
-            <div onclick="openServiceDetail(3)" class="cursor-pointer glass border border-neutral-800 rounded-2xl p-7 hover:border-red-500/60 hover:-translate-y-1.5 transition duration-300 fade-up group">
+            <div onclick="openServiceDetail(3)" class="cursor-pointer glass rounded-2xl p-7 hover:-translate-y-2 transition duration-300 fade-up group">
                 <div class="flex items-center justify-between mb-5">
-                    <div class="w-12 h-12 rounded-xl bg-red-500/10 text-red-400 flex items-center justify-center text-xl group-hover:bg-red-500 group-hover:text-white transition"><i class="fa-solid fa-volume-high"></i></div>
-                    <span class="text-xs text-red-400/80 font-mono flex items-center gap-1 group-hover:text-red-300">View Project <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+                    <div class="w-12 h-12 rounded-xl bg-red-500/10 text-red-400 flex items-center justify-center text-xl group-hover:bg-red-600 group-hover:text-white transition shadow-lg"><i class="fa-solid fa-volume-high"></i></div>
+                    <span class="text-xs text-red-400 font-mono flex items-center gap-1 group-hover:text-red-300">View Project <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
                 </div>
                 <h3 class="text-xl font-bold text-white group-hover:text-red-400 transition">Audio-visual Systems</h3>
                 <p class="text-slate-400 text-sm leading-relaxed mt-3">Xilica DSP acoustic processing, Martin Audio pro speakers, Onkyo AVR 4K cinema routing, LEA Professional amps, and WiiM streamers.</p>
             </div>
 
-            <div onclick="openServiceDetail(4)" class="cursor-pointer glass border border-neutral-800 rounded-2xl p-7 hover:border-purple-500/60 hover:-translate-y-1.5 transition duration-300 fade-up group">
+            <div onclick="openServiceDetail(4)" class="cursor-pointer glass rounded-2xl p-7 hover:-translate-y-2 transition duration-300 fade-up group">
                 <div class="flex items-center justify-between mb-5">
-                    <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center text-xl group-hover:bg-purple-500 group-hover:text-white transition"><i class="fa-solid fa-network-wired"></i></div>
-                    <span class="text-xs text-purple-400/80 font-mono flex items-center gap-1 group-hover:text-purple-300">View Project <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+                    <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center text-xl group-hover:bg-purple-600 group-hover:text-white transition shadow-lg"><i class="fa-solid fa-network-wired"></i></div>
+                    <span class="text-xs text-purple-400 font-mono flex items-center gap-1 group-hover:text-purple-300">View Project <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
                 </div>
                 <h3 class="text-xl font-bold text-white group-hover:text-purple-400 transition">Core Data Infrastructure & Fiber</h3>
                 <p class="text-slate-400 text-sm leading-relaxed mt-3">High-density network cabinets, spine-leaf fabric, SAN/NAS video archiving, optical fusion splicing, and OTDR attenuation testing.</p>
             </div>
 
-            <div onclick="openServiceDetail(5)" class="cursor-pointer glass border border-neutral-800 rounded-2xl p-7 hover:border-rose-500/60 hover:-translate-y-1.5 transition duration-300 fade-up group">
+            <div onclick="openServiceDetail(5)" class="cursor-pointer glass rounded-2xl p-7 hover:-translate-y-2 transition duration-300 fade-up group">
                 <div class="flex items-center justify-between mb-5">
-                    <div class="w-12 h-12 rounded-xl bg-rose-500/10 text-rose-400 flex items-center justify-center text-xl group-hover:bg-rose-500 group-hover:text-white transition"><i class="fa-solid fa-pen-ruler"></i></div>
-                    <span class="text-xs text-rose-400/80 font-mono flex items-center gap-1 group-hover:text-rose-300">View Project <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+                    <div class="w-12 h-12 rounded-xl bg-rose-500/10 text-rose-400 flex items-center justify-center text-xl group-hover:bg-rose-600 group-hover:text-white transition shadow-lg"><i class="fa-solid fa-pen-ruler"></i></div>
+                    <span class="text-xs text-rose-400 font-mono flex items-center gap-1 group-hover:text-rose-300">View Project <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
                 </div>
                 <h3 class="text-xl font-bold text-white group-hover:text-rose-400 transition">AutoCAD & Systems Design</h3>
                 <p class="text-slate-400 text-sm leading-relaxed mt-3">Schematic AutoCAD drafting, cable containment routing, single line diagrams (SLDs), MEP coordination, and commissioning.</p>
             </div>
         </div>
 
-        <div class="max-w-3xl mb-14 fade-up pt-12 border-t border-neutral-800">
+        <div class="max-w-3xl mb-14 fade-up pt-12 border-t border-orange-500/20">
             <div class="text-orange-400 text-xs font-bold uppercase tracking-widest mb-3 font-mono">Project Experience</div>
             <h2 class="text-3xl sm:text-4xl font-bold text-white">Selected Project Locations</h2>
             <p class="text-slate-400 mt-4">Enterprise networks, IT cabinet installations, Martin Audio / Xilica AV systems, and luxury home-automation across Dubai.</p>
         </div>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
-            <div class="group glass border border-neutral-800 rounded-2xl p-7 hover:border-orange-500/50 transition fade-up">
+            <div class="group glass rounded-2xl p-7 hover:border-orange-500/60 transition fade-up">
                 <div class="text-orange-400 text-2xl mb-5"><i class="fa-solid fa-building"></i></div>
                 <h3 class="text-white font-bold text-lg">Emirates Hills</h3>
                 <p class="text-slate-400 text-sm mt-2">Premium home-automation, IT rack architecture, Xilica DSP, and multi-zone Martin Audio pro integration.</p>
             </div>
 
-            <div class="group glass border border-neutral-800 rounded-2xl p-7 hover:border-amber-500/50 transition fade-up">
+            <div class="group glass rounded-2xl p-7 hover:border-amber-500/60 transition fade-up">
                 <div class="text-amber-400 text-2xl mb-5"><i class="fa-solid fa-city"></i></div>
                 <h3 class="text-white font-bold text-lg">Dubai Hills</h3>
                 <p class="text-slate-400 text-sm mt-2">FortiGate security gateways, high-speed Wi-Fi 6, Onkyo 4K cinema AVR, and smart estate controls.</p>
             </div>
 
-            <div class="group glass border border-neutral-800 rounded-2xl p-7 hover:border-emerald-500/50 transition fade-up">
+            <div class="group glass rounded-2xl p-7 hover:border-emerald-500/60 transition fade-up">
                 <div class="text-emerald-400 text-2xl mb-5"><i class="fa-solid fa-water"></i></div>
                 <h3 class="text-white font-bold text-lg">Jumeirah Bay Island</h3>
                 <p class="text-slate-400 text-sm mt-2">High-end residential automation, VMS CCTV, and LEA Professional DSP amplifier matrix deployment.</p>
             </div>
 
-            <div class="group glass border border-neutral-800 rounded-2xl p-7 hover:border-purple-500/50 transition fade-up">
+            <div class="group glass rounded-2xl p-7 hover:border-purple-500/60 transition fade-up">
                 <div class="text-purple-400 text-2xl mb-5"><i class="fa-solid fa-city"></i></div>
                 <h3 class="text-white font-bold text-lg">Downtown Dubai</h3>
                 <p class="text-slate-400 text-sm mt-2">Corporate network infrastructure, high-density IT rack hosting, fiber backbone, and security operations.</p>
@@ -402,7 +432,7 @@
 </section>
 
 <!-- ENTERPRISE ECOSYSTEM / GROUP COMPANIES -->
-<section id="ecosystem" class="py-24 relative overflow-hidden bg-dark-800/40 border-b border-neutral-800/70">
+<section id="ecosystem" class="py-24 relative overflow-hidden bg-dark-800/60 border-b border-orange-500/20">
     <div class="max-w-7xl mx-auto px-5 sm:px-8">
         <div class="text-center max-w-3xl mx-auto mb-16 fade-up">
             <div class="text-orange-400 text-xs font-bold uppercase tracking-widest mb-3 font-mono">ENTERPRISE ECOSYSTEM & GROUP NETWORK</div>
@@ -503,7 +533,7 @@
         </div>
 
         <div class="mt-12 text-center fade-up">
-            <span class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-dark-900/90 border border-neutral-800 text-xs font-mono text-slate-300">
+            <span class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-dark-900/90 border border-orange-500/30 text-xs font-mono text-slate-300 shadow-xl">
                 <i class="fa-solid fa-circle-check text-orange-400"></i> All hardware, switches, storage, & firewalls provisioned with active manufacturer warranties & SLA.
             </span>
         </div>
@@ -533,7 +563,7 @@
                     I work across the complete project lifecycle — from interpreting architectural and MEP requirements and developing detailed AutoCAD shop drawings to hardware staging, rack infrastructure, network configuration, firewall provisioning, system integration, DSP programming, acoustic calibration, testing, commissioning, and final handover.
                 </p>
 
-                <div class="p-6 rounded-2xl glass border border-orange-500/30 space-y-3">
+                <div class="p-6 rounded-2xl glass border border-orange-500/40 space-y-3">
                     <p class="text-white font-semibold text-base">What sets my approach apart is the ability to look beyond individual systems:</p>
                     <ul class="list-disc list-inside text-slate-300 text-sm space-y-1.5 font-mono">
                         <li>A network is not just switches and cables.</li>
@@ -553,23 +583,23 @@
             </div>
 
             <div class="lg:col-span-5 fade-up space-y-6">
-                <div class="glass border border-neutral-700 rounded-3xl p-8 glow relative overflow-hidden">
-                    <div class="absolute -top-24 -right-24 w-48 h-48 bg-orange-500/10 rounded-full blur-2xl"></div>
+                <div class="glass border border-orange-500/40 rounded-3xl p-8 glow relative overflow-hidden">
+                    <div class="absolute -top-24 -right-24 w-48 h-48 bg-orange-500/15 rounded-full blur-2xl"></div>
                     <div class="text-orange-400 text-xs font-bold uppercase tracking-widest mb-2 font-mono">Workflow Pipeline</div>
                     <h3 class="text-2xl font-bold text-white mb-6">From Concept to Commissioning</h3>
                     
                     <div class="flex flex-wrap gap-2 text-xs font-mono">
-                        <span class="px-3 py-1.5 rounded-lg bg-orange-500/10 border border-orange-500/30 text-orange-300">Design</span> →
-                        <span class="px-3 py-1.5 rounded-lg bg-orange-500/10 border border-orange-500/30 text-orange-300">Engineering</span> →
-                        <span class="px-3 py-1.5 rounded-lg bg-orange-500/10 border border-orange-500/30 text-orange-300">Infrastructure</span> →
-                        <span class="px-3 py-1.5 rounded-lg bg-orange-500/10 border border-orange-500/30 text-orange-300">Integration</span> →
-                        <span class="px-3 py-1.5 rounded-lg bg-orange-500/10 border border-orange-500/30 text-orange-300">Programming</span> →
-                        <span class="px-3 py-1.5 rounded-lg bg-orange-500/10 border border-orange-500/30 text-orange-300">Testing</span> →
-                        <span class="px-3 py-1.5 rounded-lg bg-orange-500/10 border border-orange-500/30 text-orange-300">Commissioning</span> →
-                        <span class="px-3 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-300">Handover</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-orange-500/15 border border-orange-500/40 text-orange-300">Design</span> →
+                        <span class="px-3 py-1.5 rounded-lg bg-orange-500/15 border border-orange-500/40 text-orange-300">Engineering</span> →
+                        <span class="px-3 py-1.5 rounded-lg bg-orange-500/15 border border-orange-500/40 text-orange-300">Infrastructure</span> →
+                        <span class="px-3 py-1.5 rounded-lg bg-orange-500/15 border border-orange-500/40 text-orange-300">Integration</span> →
+                        <span class="px-3 py-1.5 rounded-lg bg-orange-500/15 border border-orange-500/40 text-orange-300">Programming</span> →
+                        <span class="px-3 py-1.5 rounded-lg bg-orange-500/15 border border-orange-500/40 text-orange-300">Testing</span> →
+                        <span class="px-3 py-1.5 rounded-lg bg-orange-500/15 border border-orange-500/40 text-orange-300">Commissioning</span> →
+                        <span class="px-3 py-1.5 rounded-lg bg-emerald-500/15 border border-emerald-500/40 text-emerald-300">Handover</span>
                     </div>
 
-                    <div class="mt-8 pt-6 border-t border-neutral-800">
+                    <div class="mt-8 pt-6 border-t border-orange-500/20">
                         <div class="text-slate-400 text-sm italic">
                             "My philosophy is simple: <br><strong class="text-white not-italic text-base block mt-1">Don’t just install technology. Engineer a system that performs.</strong>"
                         </div>
@@ -577,12 +607,12 @@
                 </div>
 
                 <div class="grid sm:grid-cols-2 gap-4">
-                    <div class="glass border border-neutral-800 rounded-2xl p-5 hover:border-orange-500/40 transition">
+                    <div class="glass rounded-2xl p-5 hover:border-orange-500/60 transition">
                         <div class="text-orange-400 text-2xl mb-3"><i class="fa-solid fa-house-signal"></i></div>
                         <h4 class="text-white font-bold text-base">10+ Smart Homes</h4>
                         <p class="text-slate-400 text-xs mt-1">Luxury automation across Emirates Hills & Jumeirah Bay.</p>
                     </div>
-                    <div class="glass border border-neutral-800 rounded-2xl p-5 hover:border-amber-500/40 transition">
+                    <div class="glass rounded-2xl p-5 hover:border-amber-500/60 transition">
                         <div class="text-amber-400 text-2xl mb-3"><i class="fa-solid fa-network-wired"></i></div>
                         <h4 class="text-white font-bold text-base">50+ Networks</h4>
                         <p class="text-slate-400 text-xs mt-1">Enterprise-grade firewalls, switching & infrastructure.</p>
@@ -595,7 +625,7 @@
 </section>
 
 <!-- SKILLS SECTION -->
-<section id="skills" class="py-24 border-t border-neutral-800/70">
+<section id="skills" class="py-24 border-t border-orange-500/20">
     <div class="max-w-7xl mx-auto px-5 sm:px-8">
         <div class="text-center max-w-3xl mx-auto mb-14 fade-up">
             <div class="text-orange-400 text-xs font-bold uppercase tracking-widest mb-3 font-mono">Technical Skills</div>
@@ -634,7 +664,7 @@
 </section>
 
 <!-- EXPERIENCE SECTION -->
-<section id="experience" class="py-24 border-t border-neutral-800/70">
+<section id="experience" class="py-24 border-t border-orange-500/20">
     <div class="max-w-6xl mx-auto px-5 sm:px-8">
         <div class="text-center mb-16 fade-up">
             <div class="text-orange-400 text-xs font-bold uppercase tracking-widest mb-3 font-mono">Career Track Record</div>
@@ -645,11 +675,11 @@
         </div>
 
         <div class="space-y-8">
-            <div class="glass border border-orange-500/40 rounded-3xl p-6 sm:p-10 glow fade-up relative overflow-hidden">
-                <div class="absolute top-0 right-0 w-48 h-48 bg-orange-500/10 rounded-full blur-3xl pointer-events-none"></div>
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-neutral-800 pb-6 mb-6">
+            <div class="glass border border-orange-500/50 rounded-3xl p-6 sm:p-10 glow fade-up relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-48 h-48 bg-orange-500/15 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-orange-500/20 pb-6 mb-6">
                     <div>
-                        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 font-mono mb-3">
+                        <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-emerald-500/15 text-emerald-400 border border-emerald-500/40 font-mono mb-3">
                             <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> ACTIVE ROLE • DUBAI
                         </span>
                         <h3 class="text-2xl sm:text-3xl font-extrabold text-white">Senior Network, Automation, ELV & Infrastructure Engineer</h3>
@@ -665,43 +695,43 @@
                 </div>
 
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <div class="bg-dark-900/80 p-5 rounded-2xl border border-neutral-800">
-                        <div class="w-10 h-10 rounded-xl bg-red-500/15 text-red-400 flex items-center justify-center mb-3"><i class="fa-solid fa-shield-halved text-base"></i></div>
+                    <div class="bg-dark-900/90 p-5 rounded-2xl border border-orange-500/20">
+                        <div class="w-10 h-10 rounded-xl bg-red-500/20 text-red-400 flex items-center justify-center mb-3 shadow"><i class="fa-solid fa-shield-halved text-base"></i></div>
                         <h4 class="text-white font-bold text-sm">Firewalls & Security Gateways</h4>
                         <p class="text-slate-400 text-xs mt-2 leading-relaxed">Fortinet FortiGate HA clustering, next-gen UTM firewall policies, SD-WAN multi-ISP failover, VPN tunnels, and gateway intrusion prevention.</p>
                     </div>
-                    <div class="bg-dark-900/80 p-5 rounded-2xl border border-neutral-800">
-                        <div class="w-10 h-10 rounded-xl bg-orange-500/15 text-orange-400 flex items-center justify-center mb-3"><i class="fa-solid fa-network-wired text-base"></i></div>
+                    <div class="bg-dark-900/90 p-5 rounded-2xl border border-orange-500/20">
+                        <div class="w-10 h-10 rounded-xl bg-orange-500/20 text-orange-400 flex items-center justify-center mb-3 shadow"><i class="fa-solid fa-network-wired text-base"></i></div>
                         <h4 class="text-white font-bold text-sm">Core Routing & Switching</h4>
                         <p class="text-slate-400 text-xs mt-2 leading-relaxed">Cisco Catalyst and enterprise L2/L3 distribution, VLAN trunking, Inter-VLAN routing, QoS traffic prioritization, and high-density Wi-Fi 6 coverage.</p>
                     </div>
-                    <div class="bg-dark-900/80 p-5 rounded-2xl border border-neutral-800">
-                        <div class="w-10 h-10 rounded-xl bg-amber-500/15 text-amber-400 flex items-center justify-center mb-3"><i class="fa-solid fa-diagram-project text-base"></i></div>
+                    <div class="bg-dark-900/90 p-5 rounded-2xl border border-orange-500/20">
+                        <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center mb-3 shadow"><i class="fa-solid fa-diagram-project text-base"></i></div>
                         <h4 class="text-white font-bold text-sm">Network Cabinets & Racks</h4>
                         <p class="text-slate-400 text-xs mt-2 leading-relaxed">42U/48U IT cabinet elevation, spine-leaf fabric cabling, SAN/NAS video storage integration, redundant PDU power balancing, and thermal airflow management.</p>
                     </div>
-                    <div class="bg-dark-900/80 p-5 rounded-2xl border border-neutral-800">
-                        <div class="w-10 h-10 rounded-xl bg-red-500/15 text-red-400 flex items-center justify-center mb-3"><i class="fa-solid fa-sliders text-base"></i></div>
+                    <div class="bg-dark-900/90 p-5 rounded-2xl border border-orange-500/20">
+                        <div class="w-10 h-10 rounded-xl bg-red-500/20 text-red-400 flex items-center justify-center mb-3 shadow"><i class="fa-solid fa-sliders text-base"></i></div>
                         <h4 class="text-white font-bold text-sm">AV, Amps, Onkyo & Xilica DSP</h4>
                         <p class="text-slate-400 text-xs mt-2 leading-relaxed">Xilica digital signal processors (DSP), Martin Audio pro loudspeakers, Onkyo AVR home cinema integration, LEA Professional power amps, and WiiM hi-res streamers.</p>
                     </div>
-                    <div class="bg-dark-900/80 p-5 rounded-2xl border border-neutral-800">
-                        <div class="w-10 h-10 rounded-xl bg-purple-500/15 text-purple-400 flex items-center justify-center mb-3"><i class="fa-solid fa-house-signal text-base"></i></div>
+                    <div class="bg-dark-900/90 p-5 rounded-2xl border border-orange-500/20">
+                        <div class="w-10 h-10 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center mb-3 shadow"><i class="fa-solid fa-house-signal text-base"></i></div>
                         <h4 class="text-white font-bold text-sm">Smart Home Automation</h4>
                         <p class="text-slate-400 text-xs mt-2 leading-relaxed">Centralized KNX/Modbus controllers, GVS smart displays, architectural DALI lighting, motorized curtains, HVAC integration, and iPad touchscreens.</p>
                     </div>
-                    <div class="bg-dark-900/80 p-5 rounded-2xl border border-neutral-800">
-                        <div class="w-10 h-10 rounded-xl bg-emerald-500/15 text-emerald-400 flex items-center justify-center mb-3"><i class="fa-solid fa-wave-square text-base"></i></div>
+                    <div class="bg-dark-900/90 p-5 rounded-2xl border border-orange-500/20">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center mb-3 shadow"><i class="fa-solid fa-wave-square text-base"></i></div>
                         <h4 class="text-white font-bold text-sm">Fiber Optics & IP ELV</h4>
                         <p class="text-slate-400 text-xs mt-2 leading-relaxed">Belden structured cabling, fusion optical splicing, OTDR loss testing, SIRA-certified centralized VMS CCTV, and biometric RFID access control.</p>
                     </div>
                 </div>
             </div>
 
-            <div class="glass border border-amber-500/30 rounded-3xl p-6 sm:p-8 fade-up hover:border-amber-500/50 transition relative overflow-hidden">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-neutral-800 pb-5 mb-5">
+            <div class="glass border border-amber-500/40 rounded-3xl p-6 sm:p-8 fade-up hover:border-amber-500/70 transition relative overflow-hidden">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-amber-500/20 pb-5 mb-5">
                     <div>
-                        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/30 font-mono mb-2">INTERNATIONAL EXPERIENCE • EUROPE</span>
+                        <span class="inline-block px-3.5 py-1.5 rounded-full text-xs font-semibold bg-amber-500/15 text-amber-400 border border-amber-500/40 font-mono mb-2">INTERNATIONAL EXPERIENCE • EUROPE</span>
                         <h3 class="text-xl sm:text-2xl font-bold text-white">DeepSpace Network (DSN) & Infrastructure Engineer</h3>
                         <div class="text-amber-400 font-semibold mt-1 flex items-center gap-2 text-sm">
                             <i class="fa-solid fa-satellite-dish"></i>
@@ -715,21 +745,21 @@
                 </div>
 
                 <div class="grid sm:grid-cols-3 gap-3">
-                    <div class="bg-dark-900/70 p-4 rounded-xl border border-neutral-800 flex items-start gap-3">
+                    <div class="bg-dark-900/80 p-4 rounded-xl border border-amber-500/20 flex items-start gap-3">
                         <i class="fa-solid fa-satellite-dish text-amber-400 mt-1 text-sm"></i>
                         <div>
                             <div class="text-white text-xs font-bold font-mono uppercase">DeepSpace Network (DSN)</div>
                             <div class="text-slate-400 text-xs mt-1">High-reliability telemetry links, ground station data pipes, latency optimization, and signal transmission infrastructure.</div>
                         </div>
                     </div>
-                    <div class="bg-dark-900/70 p-4 rounded-xl border border-neutral-800 flex items-start gap-3">
+                    <div class="bg-dark-900/80 p-4 rounded-xl border border-amber-500/20 flex items-start gap-3">
                         <i class="fa-solid fa-wave-square text-orange-400 mt-1 text-sm"></i>
                         <div>
                             <div class="text-white text-xs font-bold font-mono uppercase">Fiber Optics Backbone</div>
                             <div class="text-slate-400 text-xs mt-1">Single-mode optical fusion splicing, low-attenuation patch distribution, and OTDR backscatter analysis.</div>
                         </div>
                     </div>
-                    <div class="bg-dark-900/70 p-4 rounded-xl border border-neutral-800 flex items-start gap-3">
+                    <div class="bg-dark-900/80 p-4 rounded-xl border border-amber-500/20 flex items-start gap-3">
                         <i class="fa-solid fa-network-wired text-emerald-400 mt-1 text-sm"></i>
                         <div>
                             <div class="text-white text-xs font-bold font-mono uppercase">Enterprise Switch Topology</div>
@@ -739,10 +769,10 @@
                 </div>
             </div>
 
-            <div class="glass border border-emerald-500/30 rounded-3xl p-6 sm:p-8 fade-up hover:border-emerald-500/50 transition relative overflow-hidden">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-neutral-800 pb-5 mb-5">
+            <div class="glass border border-emerald-500/40 rounded-3xl p-6 sm:p-8 fade-up hover:border-emerald-500/70 transition relative overflow-hidden">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-emerald-500/20 pb-5 mb-5">
                     <div>
-                        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 font-mono mb-2">PREVIOUS EXPERIENCE • INDIA</span>
+                        <span class="inline-block px-3.5 py-1.5 rounded-full text-xs font-semibold bg-emerald-500/15 text-emerald-400 border border-emerald-500/40 font-mono mb-2">PREVIOUS EXPERIENCE • INDIA</span>
                         <h3 class="text-xl sm:text-2xl font-bold text-white">Network, Switching & Routing Engineer</h3>
                         <div class="text-emerald-400 font-semibold mt-1 flex items-center gap-2 text-sm">
                             <i class="fa-solid fa-building"></i>
@@ -756,21 +786,21 @@
                 </div>
 
                 <div class="grid sm:grid-cols-3 gap-3">
-                    <div class="bg-dark-900/70 p-4 rounded-xl border border-neutral-800 flex items-start gap-3">
+                    <div class="bg-dark-900/80 p-4 rounded-xl border border-emerald-500/20 flex items-start gap-3">
                         <i class="fa-solid fa-network-wired text-orange-400 mt-1 text-sm"></i>
                         <div>
                             <div class="text-white text-xs font-bold font-mono uppercase">Enterprise Networking</div>
                             <div class="text-slate-400 text-xs mt-1">LAN/WAN deployment, subnetting, TCP/IP architecture, and structured network infrastructure staging.</div>
                         </div>
                     </div>
-                    <div class="bg-dark-900/70 p-4 rounded-xl border border-neutral-800 flex items-start gap-3">
+                    <div class="bg-dark-900/80 p-4 rounded-xl border border-emerald-500/20 flex items-start gap-3">
                         <i class="fa-solid fa-sliders text-amber-400 mt-1 text-sm"></i>
                         <div>
                             <div class="text-white text-xs font-bold font-mono uppercase">Switching & VLANs</div>
                             <div class="text-slate-400 text-xs mt-1">L2/L3 managed switch configuration, VLAN tagging, port security, and spanning tree protocol (STP).</div>
                         </div>
                     </div>
-                    <div class="bg-dark-900/70 p-4 rounded-xl border border-neutral-800 flex items-start gap-3">
+                    <div class="bg-dark-900/80 p-4 rounded-xl border border-emerald-500/20 flex items-start gap-3">
                         <i class="fa-solid fa-route text-emerald-400 mt-1 text-sm"></i>
                         <div>
                             <div class="text-white text-xs font-bold font-mono uppercase">Routing & Troubleshooting</div>
@@ -784,7 +814,7 @@
 </section>
 
 <!-- CONTACT SECTION -->
-<section id="contact" class="py-24 border-t border-neutral-800/80">
+<section id="contact" class="py-24 border-t border-orange-500/20">
     <div class="max-w-7xl mx-auto px-5 sm:px-8">
         <div class="grid lg:grid-cols-2 gap-14 items-center">
             <div class="fade-up">
@@ -796,28 +826,28 @@
 
                 <div class="space-y-5 mt-9">
                     <a href="mailto:s.faishal@dynamicworld.ae" class="flex items-center gap-4 group">
-                        <div class="w-12 h-12 rounded-xl bg-dark-800 border border-neutral-700 flex items-center justify-center text-orange-400 group-hover:bg-orange-600 group-hover:text-white transition"><i class="fa-solid fa-envelope"></i></div>
+                        <div class="w-12 h-12 rounded-xl bg-dark-800 border border-orange-500/30 flex items-center justify-center text-orange-400 group-hover:bg-orange-600 group-hover:text-white transition shadow"><i class="fa-solid fa-envelope"></i></div>
                         <div>
                             <div class="text-xs text-slate-500 uppercase tracking-wider">Email</div>
                             <div class="text-white font-semibold">s.faishal@dynamicworld.ae</div>
                         </div>
                     </a>
                     <a href="https://wa.me/971503928611" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 group">
-                        <div class="w-12 h-12 rounded-xl bg-dark-800 border border-neutral-700 flex items-center justify-center text-green-400 group-hover:bg-green-600 group-hover:text-white transition"><i class="fa-brands fa-whatsapp"></i></div>
+                        <div class="w-12 h-12 rounded-xl bg-dark-800 border border-orange-500/30 flex items-center justify-center text-green-400 group-hover:bg-green-600 group-hover:text-white transition shadow"><i class="fa-brands fa-whatsapp"></i></div>
                         <div>
                             <div class="text-xs text-slate-500 uppercase tracking-wider">WhatsApp</div>
                             <div class="text-white font-semibold">Message on WhatsApp</div>
                         </div>
                     </a>
                     <a href="https://www.instagram.com/ffaishalll" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 group">
-                        <div class="w-12 h-12 rounded-xl bg-dark-800 border border-neutral-700 flex items-center justify-center text-pink-400 group-hover:bg-pink-600 group-hover:text-white transition"><i class="fa-brands fa-instagram"></i></div>
+                        <div class="w-12 h-12 rounded-xl bg-dark-800 border border-orange-500/30 flex items-center justify-center text-pink-400 group-hover:bg-pink-600 group-hover:text-white transition shadow"><i class="fa-brands fa-instagram"></i></div>
                         <div>
                             <div class="text-xs text-slate-500 uppercase tracking-wider">Instagram</div>
                             <div class="text-white font-semibold group-hover:text-pink-400 transition">Instagram</div>
                         </div>
                     </a>
                     <a href="https://www.linkedin.com/in/shah-faishal-2000b6266" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 group">
-                        <div class="w-12 h-12 rounded-xl bg-dark-800 border border-neutral-700 flex items-center justify-center text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition"><i class="fa-brands fa-linkedin-in"></i></div>
+                        <div class="w-12 h-12 rounded-xl bg-dark-800 border border-orange-500/30 flex items-center justify-center text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition shadow"><i class="fa-brands fa-linkedin-in"></i></div>
                         <div>
                             <div class="text-xs text-slate-500 uppercase tracking-wider">LinkedIn</div>
                             <div class="text-white font-semibold group-hover:text-blue-400 transition">LinkedIn</div>
@@ -826,23 +856,23 @@
                 </div>
             </div>
 
-            <div class="glass border border-neutral-800 rounded-3xl p-8 glow fade-up">
+            <div class="glass border border-orange-500/40 rounded-3xl p-8 glow fade-up">
                 <div class="text-white text-xl font-bold">Quick Contact</div>
                 <p class="text-slate-400 text-sm mt-2">Send your project requirements directly through WhatsApp.</p>
                 <form id="contactForm" class="mt-7 space-y-5">
                     <div>
                         <label class="text-xs text-slate-400 uppercase tracking-wider">Name</label>
-                        <input id="name" type="text" required placeholder="Your name" class="mt-2 w-full px-4 py-3.5 rounded-xl bg-dark-900/90 border border-neutral-700 text-white placeholder-slate-600 focus:outline-none focus:border-orange-500 transition">
+                        <input id="name" type="text" required placeholder="Your name" class="mt-2 w-full px-4 py-3.5 rounded-xl bg-dark-900/90 border border-orange-500/30 text-white placeholder-slate-600 focus:outline-none focus:border-orange-500 transition shadow-inner">
                     </div>
                     <div>
                         <label class="text-xs text-slate-400 uppercase tracking-wider">Email</label>
-                        <input id="email" type="email" required placeholder="your@email.com" class="mt-2 w-full px-4 py-3.5 rounded-xl bg-dark-900/90 border border-neutral-700 text-white placeholder-slate-600 focus:outline-none focus:border-orange-500 transition">
+                        <input id="email" type="email" required placeholder="your@email.com" class="mt-2 w-full px-4 py-3.5 rounded-xl bg-dark-900/90 border border-orange-500/30 text-white placeholder-slate-600 focus:outline-none focus:border-orange-500 transition shadow-inner">
                     </div>
                     <div>
                         <label class="text-xs text-slate-400 uppercase tracking-wider">Message</label>
-                        <textarea id="message" rows="5" required placeholder="Tell me about your project..." class="mt-2 w-full px-4 py-3.5 rounded-xl bg-dark-900/90 border border-neutral-700 text-white placeholder-slate-600 focus:outline-none focus:border-orange-500 transition"></textarea>
+                        <textarea id="message" rows="5" required placeholder="Tell me about your project..." class="mt-2 w-full px-4 py-3.5 rounded-xl bg-dark-900/90 border border-orange-500/30 text-white placeholder-slate-600 focus:outline-none focus:border-orange-500 transition shadow-inner"></textarea>
                     </div>
-                    <button type="submit" class="w-full py-4 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold transition shadow-lg shadow-orange-600/30">
+                    <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white font-bold transition shadow-xl shadow-orange-600/40 border border-orange-400/30">
                         <i class="fa-brands fa-whatsapp mr-2"></i> Send via WhatsApp
                     </button>
                 </form>
@@ -852,9 +882,9 @@
 </section>
 
 <!-- DISCLAIMER SECTION -->
-<section class="py-12 border-t border-neutral-800/80 bg-dark-900/60 relative z-10">
+<section class="py-12 border-t border-orange-500/20 bg-dark-900/80 relative z-10">
     <div class="max-w-5xl mx-auto px-5 sm:px-8 text-center">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-mono text-orange-400 bg-orange-500/10 border border-orange-500/30 mb-4">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-[11px] font-mono text-orange-400 bg-orange-500/15 border border-orange-500/40 mb-4 shadow">
             <i class="fa-solid fa-shield-halved"></i> DISCLAIMER & TRADEMARKS
         </div>
         <p class="text-xs text-slate-400 leading-relaxed font-sans max-w-4xl mx-auto">
@@ -864,7 +894,7 @@
 </section>
 
 <!-- FOOTER -->
-<footer class="py-8 border-t border-neutral-800/80 bg-dark-900/90 relative z-10">
+<footer class="py-8 border-t border-orange-500/20 bg-dark-900/95 relative z-10">
     <div class="max-w-7xl mx-auto px-5 sm:px-8">
         <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
             <div class="text-sm text-slate-500 font-mono">© <span id="year"></span> Shah Faishal. All rights reserved.</div>
@@ -883,8 +913,8 @@
 
 <!-- MODALS -->
 <div id="detailModal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4 sm:p-6 overflow-y-auto">
-    <div class="relative w-full max-w-4xl glass border border-neutral-700 rounded-3xl overflow-hidden shadow-2xl my-auto">
-        <button onclick="closeServiceDetail()" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-dark-900/80 border border-neutral-700 text-slate-300 hover:text-white hover:bg-orange-600 flex items-center justify-center transition"><i class="fa-solid fa-xmark text-lg"></i></button>
+    <div class="relative w-full max-w-4xl glass border border-orange-500/40 rounded-3xl overflow-hidden shadow-2xl my-auto">
+        <button onclick="closeServiceDetail()" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-dark-900/80 border border-orange-500/40 text-slate-300 hover:text-white hover:bg-orange-600 flex items-center justify-center transition"><i class="fa-solid fa-xmark text-lg"></i></button>
         <div class="flex flex-col">
             <div id="modalMediaContainer" class="w-full h-64 sm:h-96 overflow-hidden bg-dark-900 relative flex items-center justify-center">
                 <!-- Dynamically injected Image -->
@@ -893,9 +923,9 @@
                 <div id="modalCategory" class="text-xs font-mono text-orange-400 font-bold uppercase tracking-widest mb-2"></div>
                 <h3 id="modalTitle" class="text-2xl sm:text-3xl font-extrabold text-white leading-tight italic"></h3>
                 <p id="modalDesc" class="text-slate-300 text-base sm:text-lg leading-relaxed mt-4"></p>
-                <div class="mt-8 pt-6 border-t border-neutral-800 flex justify-between items-center">
+                <div class="mt-8 pt-6 border-t border-orange-500/20 flex justify-between items-center">
                     <span class="text-xs text-slate-500 font-mono">Shah Faishal Engineering Archive</span>
-                    <button onclick="closeServiceDetail()" class="px-5 py-2.5 rounded-xl bg-orange-600 hover:bg-orange-500 text-white text-sm font-semibold transition">Close Preview</button>
+                    <button onclick="closeServiceDetail()" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white text-sm font-semibold transition shadow-lg">Close Preview</button>
                 </div>
             </div>
         </div>
@@ -903,10 +933,10 @@
 </div>
 
 <div id="partnerModal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4 sm:p-6 overflow-y-auto">
-    <div class="relative w-full max-w-2xl glass border border-orange-500/40 rounded-3xl overflow-hidden shadow-2xl my-auto p-6 sm:p-8">
-        <button onclick="closePartnerDetail()" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-dark-900/80 border border-neutral-700 text-slate-300 hover:text-white hover:bg-orange-600 flex items-center justify-center transition"><i class="fa-solid fa-xmark text-lg"></i></button>
-        <div class="flex items-center gap-4 border-b border-neutral-800 pb-5">
-            <div id="partnerModalIcon" class="w-14 h-14 rounded-2xl bg-orange-500/15 border border-orange-500/30 flex items-center justify-center text-orange-400 text-2xl"><i class="fa-solid fa-microchip"></i></div>
+    <div class="relative w-full max-w-2xl glass border border-orange-500/50 rounded-3xl overflow-hidden shadow-2xl my-auto p-6 sm:p-8">
+        <button onclick="closePartnerDetail()" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-dark-900/80 border border-orange-500/40 text-slate-300 hover:text-white hover:bg-orange-600 flex items-center justify-center transition"><i class="fa-solid fa-xmark text-lg"></i></button>
+        <div class="flex items-center gap-4 border-b border-orange-500/20 pb-5">
+            <div id="partnerModalIcon" class="w-14 h-14 rounded-2xl bg-orange-500/20 border border-orange-500/40 flex items-center justify-center text-orange-400 text-2xl shadow"><i class="fa-solid fa-microchip"></i></div>
             <div>
                 <span id="partnerModalTag" class="text-[10px] uppercase font-mono tracking-widest text-orange-400 font-bold">Enterprise Solution</span>
                 <h3 id="partnerModalTitle" class="text-2xl font-bold text-white leading-tight"></h3>
@@ -916,19 +946,19 @@
             <h4 class="text-xs font-mono uppercase text-slate-400 tracking-wider mb-2">Overview & Technical Scope</h4>
             <p id="partnerModalDesc" class="text-slate-300 text-base leading-relaxed"></p>
         </div>
-        <div class="pt-5 border-t border-neutral-800 flex justify-between items-center gap-3">
-            <a id="partnerModalLink" href="#" target="_blank" rel="noopener noreferrer" class="hidden px-5 py-2.5 rounded-xl bg-orange-600 hover:bg-orange-500 text-white text-sm font-semibold transition inline-flex items-center gap-2 shadow-lg shadow-orange-600/30">
+        <div class="pt-5 border-t border-orange-500/20 flex justify-between items-center gap-3">
+            <a id="partnerModalLink" href="#" target="_blank" rel="noopener noreferrer" class="hidden px-5 py-2.5 rounded-xl bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white text-sm font-semibold transition inline-flex items-center gap-2 shadow-lg shadow-orange-600/30">
                 <i class="fa-solid fa-globe text-xs"></i> Visit Official Site
             </a>
-            <button onclick="closePartnerDetail()" class="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-sm font-semibold transition ml-auto">Got it</button>
+            <button onclick="closePartnerDetail()" class="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-sm font-semibold transition ml-auto border border-orange-500/30">Got it</button>
         </div>
     </div>
 </div>
 
 <!-- ZOYA MODAL WITH HEART ANIMATION -->
 <div id="zoyaModal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4 sm:p-6 overflow-y-auto">
-    <div class="relative w-full max-w-md glass border border-rose-500/40 rounded-3xl overflow-hidden shadow-2xl my-auto p-6 sm:p-8 text-center">
-        <button onclick="closeZoyaModal()" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-dark-900/80 border border-neutral-700 text-slate-300 hover:text-white hover:bg-rose-600 flex items-center justify-center transition"><i class="fa-solid fa-xmark text-lg"></i></button>
+    <div class="relative w-full max-w-md glass border border-rose-500/50 rounded-3xl overflow-hidden shadow-2xl my-auto p-6 sm:p-8 text-center">
+        <button onclick="closeZoyaModal()" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-dark-900/80 border border-rose-500/40 text-slate-300 hover:text-white hover:bg-rose-600 flex items-center justify-center transition"><i class="fa-solid fa-xmark text-lg"></i></button>
         
         <div class="my-6">
             <div class="modal-beating-heart"></div>
@@ -941,7 +971,7 @@
             Dedicated to the most special part of life — bringing warmth, care, and seamless harmony into everyday engineering and personal ecosystems.
         </p>
 
-        <button onclick="closeZoyaModal()" class="w-full py-3 rounded-xl bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-500 hover:to-pink-500 text-white text-sm font-semibold transition shadow-lg shadow-rose-600/30">
+        <button onclick="closeZoyaModal()" class="w-full py-3 rounded-xl bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-500 hover:to-pink-500 text-white text-sm font-semibold transition shadow-xl shadow-rose-600/40 border border-rose-400/40">
             Close
         </button>
     </div>
@@ -949,30 +979,30 @@
 
 <div id="heartModal" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-2xl hidden flex-col items-center justify-between p-6 sm:p-10 select-none">
     <div class="w-full flex justify-end">
-        <button onclick="closeHeartModal()" class="w-10 h-10 rounded-full bg-dark-800/80 border border-neutral-700 text-slate-300 hover:text-white hover:bg-red-600 flex items-center justify-center transition shadow-lg"><i class="fa-solid fa-xmark text-base"></i></button>
+        <button onclick="closeHeartModal()" class="w-10 h-10 rounded-full bg-dark-800/80 border border-orange-500/40 text-slate-300 hover:text-white hover:bg-red-600 flex items-center justify-center transition shadow-lg"><i class="fa-solid fa-xmark text-base"></i></button>
     </div>
     <div id="heartArena" class="relative w-full h-[65vh] flex items-center justify-center overflow-hidden">
         <div id="dodgingHeartContainer" onmouseenter="dodgeHeart()" ontouchstart="dodgeHeart(event)">
-            <div id="heartHintText" class="mb-3 text-center whitespace-nowrap text-orange-400 font-mono text-xs sm:text-sm tracking-wide bg-orange-500/10 border border-orange-500/30 px-3 py-1.5 rounded-full shadow-lg backdrop-blur-md animate-pulse">Click the heart if you can! 👇</div>
-            <div class="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-red-500/15 border border-red-500/30 flex items-center justify-center shadow-[0_0_50px_rgba(239,68,68,0.7)] active:scale-90">
+            <div id="heartHintText" class="mb-3 text-center whitespace-nowrap text-orange-400 font-mono text-xs sm:text-sm tracking-wide bg-orange-500/10 border border-orange-500/40 px-3.5 py-1.5 rounded-full shadow-lg backdrop-blur-md animate-pulse">Click the heart if you can! 👇</div>
+            <div class="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-red-500/15 border border-red-500/40 flex items-center justify-center shadow-[0_0_50px_rgba(239,68,68,0.7)] active:scale-90">
                 <i class="fa-solid fa-heart text-5xl sm:text-6xl text-red-500 drop-shadow-[0_0_30px_rgba(239,68,68,1)] animate-pulse"></i>
-                <span class="absolute inset-0 flex items-center justify-center font-black text-pink-300 text-xl sm:text-2xl drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)] pb-1.5 pointer-events-none">Z</span>
+                <span class="absolute inset-0 flex items-center justify-center font-black text-pink-200 text-xl sm:text-2xl drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)] pb-1.5 pointer-events-none">Z</span>
             </div>
         </div>
     </div>
     <div class="w-full max-w-xs pb-4">
-        <button onclick="closeHeartModal()" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-red-600 via-rose-600 to-red-700 hover:from-red-500 hover:to-rose-500 text-white text-xs sm:text-sm font-bold tracking-[0.2em] uppercase transition shadow-xl shadow-red-600/30 border border-red-400/30">
+        <button onclick="closeHeartModal()" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-red-600 via-rose-600 to-red-700 hover:from-red-500 hover:to-rose-500 text-white text-xs sm:text-sm font-bold tracking-[0.2em] uppercase transition shadow-2xl shadow-red-600/40 border border-red-400/40">
             <i class="fa-solid fa-arrow-right-from-bracket mr-2"></i> Exit
         </button>
     </div>
 </div>
 
 <div id="alertPopupModal" class="fixed inset-0 z-[60] bg-black/80 backdrop-blur-md hidden items-center justify-center p-4">
-    <div class="relative w-full max-w-md glass border border-orange-500/50 rounded-3xl p-6 sm:p-8 text-center shadow-2xl">
-        <div class="w-14 h-14 mx-auto rounded-2xl bg-orange-500/20 border border-orange-500/40 flex items-center justify-center text-orange-400 text-2xl mb-4"><i class="fa-solid fa-shield-cat"></i></div>
+    <div class="relative w-full max-w-md glass border border-orange-500/60 rounded-3xl p-6 sm:p-8 text-center shadow-2xl">
+        <div class="w-14 h-14 mx-auto rounded-2xl bg-orange-500/20 border border-orange-500/40 flex items-center justify-center text-orange-400 text-2xl mb-4 shadow"><i class="fa-solid fa-shield-cat"></i></div>
         <h3 class="text-xl font-bold text-white">Attempt Limit Reached!</h3>
         <p id="alertPopupText" class="text-slate-300 text-sm mt-3 leading-relaxed">5 attempts failed! Looks like you applied network troubleshooting skills to a heart. Time to check the actual website?</p>
-        <button onclick="redirectToHome()" class="mt-6 w-full py-3 rounded-xl bg-orange-600 hover:bg-orange-500 text-white text-sm font-semibold transition">Continue Exploring Website</button>
+        <button onclick="redirectToHome()" class="mt-6 w-full py-3 rounded-xl bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white text-sm font-semibold transition shadow-lg">Continue Exploring Website</button>
     </div>
 </div>
 
@@ -1112,7 +1142,7 @@
         const mediaContainer = document.getElementById('modalMediaContainer');
         mediaContainer.innerHTML = `
             <img src="${item.image}" alt="Deployment Visual" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-gradient-to-t from-[#030303] via-transparent to-transparent pointer-events-none"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#020205] via-transparent to-transparent pointer-events-none"></div>
         `;
 
         const modal = document.getElementById('detailModal');
@@ -1147,7 +1177,7 @@
         window.open("https://wa.me/971503928611?text=" + encodeURIComponent(text), "_blank");
     });
 
-    // DARK MATRIX RAIN BACKGROUND ANIMATION SCRIPT
+    // VIBRANT MATRIX RAIN BACKGROUND ANIMATION SCRIPT
     const canvas = document.getElementById('matrixCanvas');
     const ctx = canvas.getContext('2d');
 
@@ -1164,10 +1194,10 @@
     initDrops();
 
     function drawMatrix() {
-        ctx.fillStyle = 'rgba(3, 3, 3, 0.12)';
+        ctx.fillStyle = 'rgba(2, 2, 5, 0.12)';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         
-        ctx.fillStyle = '#ff4d4d'; 
+        ctx.fillStyle = '#ff6b35'; 
         ctx.font = fontSize + 'px monospace';
 
         for (let i = 0; i < drops.length; i++) {
@@ -1186,7 +1216,7 @@
     
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    setInterval(drawMatrix, 55);
+    setInterval(drawMatrix, 50);
 </script>
 
 </body>
