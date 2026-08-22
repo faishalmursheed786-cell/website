@@ -295,7 +295,6 @@
     <div class="max-w-7xl mx-auto px-5 sm:px-8 relative z-10 w-full">
         <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             
-            <!-- Left Content Column -->
             <div class="lg:col-span-7 fade-up text-center lg:text-left">
                 <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-orange-500/40 bg-orange-500/10 text-orange-400 text-xs sm:text-sm font-semibold mb-7 backdrop-blur-xl shadow-lg shadow-orange-500/5">
                     <span class="w-2 h-2 rounded-full bg-orange-400 animate-ping"></span>
@@ -325,7 +324,6 @@
                 </div>
             </div>
 
-            <!-- Right Image Column -->
             <div class="lg:col-span-5 flex justify-center fade-up">
                 <div class="relative w-full max-w-sm sm:max-w-md group cursor-pointer">
                     <div class="absolute -inset-1.5 bg-gradient-to-r from-orange-600 via-red-600 to-amber-500 rounded-[30px] blur-xl opacity-30 group-hover:opacity-75 transition duration-500"></div>
@@ -459,73 +457,104 @@
     </div>
 </section>
 
-<!-- ENTERPRISE ECOSYSTEM / OEM SOLUTIONS -->
+<!-- ENTERPRISE ECOSYSTEM / GROUP COMPANIES -->
 <section id="ecosystem" class="py-24 relative overflow-hidden bg-dark-800/40 border-b border-neutral-800/70">
     <div class="max-w-7xl mx-auto px-5 sm:px-8">
         <div class="text-center max-w-3xl mx-auto mb-16 fade-up">
-            <div class="text-orange-400 text-xs font-bold uppercase tracking-widest mb-3 font-mono">ENTERPRISE ECOSYSTEM</div>
-            <h2 class="text-3xl sm:text-4xl font-bold text-white">Technology Stack & OEM Solutions</h2>
+            <div class="text-orange-400 text-xs font-bold uppercase tracking-widest mb-3 font-mono">ENTERPRISE ECOSYSTEM & GROUP NETWORK</div>
+            <h2 class="text-3xl sm:text-4xl font-bold text-white">Our Group Companies & Technology Stack</h2>
             <p class="text-slate-400 mt-4 leading-relaxed">
-                Strategic hardware & software technologies deployed across enterprise ICT, cybersecurity, server infrastructure, and luxury automation.
-                <span class="text-orange-400 font-semibold block mt-1">(Click any brand card to view system integration details)</span>
+                Strategic group entities, authorized distribution networks, SIRA-licensed security divisions, boutique real estate, and global OEM partnerships.
+                <span class="text-orange-400 font-semibold block mt-1">(Click any brand or entity card to view complete integration details)</span>
             </p>
         </div>
 
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-5 fade-up">
-            <div onclick="openPartnerDetail('KNX')" class="partner-card flex-col items-center">
-                <span class="text-[#207c38] font-black text-2xl tracking-widest font-mono">KNX</span>
-                <span class="text-slate-500 text-[8px] font-bold uppercase tracking-wider mt-0.5">Smart Standard</span>
+        <!-- GROUP ENTITIES SECTION -->
+        <div class="mb-12">
+            <h3 class="text-orange-400 text-sm font-bold uppercase tracking-widest mb-6 font-mono text-center">Group Entities & Sister Concerns</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5 fade-up">
+                <div onclick="openPartnerDetail('Dynamic World Computers')" class="partner-card flex-col items-center">
+                    <span class="text-[#0284c7] font-black text-lg tracking-wider font-sans text-center">DYNAMIC WORLD</span>
+                    <span class="text-slate-500 text-[9px] font-bold uppercase tracking-wider mt-1">Core ELV & ICT Hub</span>
+                </div>
+                <div onclick="openPartnerDetail('Shiva IT Distribution')" class="partner-card flex-col items-center">
+                    <span class="text-slate-900 font-black text-lg tracking-wider font-sans text-center">SHIVA IT DIST.</span>
+                    <span class="text-slate-500 text-[9px] font-bold uppercase tracking-wider mt-1">Authorized Distributor</span>
+                </div>
+                <div onclick="openPartnerDetail('Om Computer')" class="partner-card flex-col items-center">
+                    <span class="text-emerald-700 font-black text-lg tracking-wider font-sans text-center">OM COMPUTER</span>
+                    <span class="text-slate-500 text-[9px] font-bold uppercase tracking-wider mt-1">Retail & Hardware</span>
+                </div>
+                <div onclick="openPartnerDetail('Neoterra')" class="partner-card flex-col items-center">
+                    <span class="text-amber-700 font-black text-lg tracking-widest font-serif text-center">NEOTERRA</span>
+                    <span class="text-slate-500 text-[9px] font-bold uppercase tracking-wider mt-1">Real Estate Developer</span>
+                </div>
+                <div onclick="openPartnerDetail('Dynamic World Security')" class="partner-card flex-col items-center">
+                    <span class="text-red-600 font-black text-base tracking-wider font-sans text-center">DYNAMIC SECURITY</span>
+                    <span class="text-slate-500 text-[9px] font-bold uppercase tracking-wider mt-1">SIRA Licensed Division</span>
+                </div>
             </div>
-            <div onclick="openPartnerDetail('GVS')" class="partner-card flex-col items-center">
-                <span class="text-[#00529b] font-extrabold text-2xl tracking-wider font-sans">GVS</span>
-                <span class="text-slate-500 text-[8px] font-bold uppercase tracking-wider mt-0.5">Touch & Automation</span>
-            </div>
-            <div onclick="openPartnerDetail('BELDEN')" class="partner-card flex-col items-center">
-                <span class="text-[#102b4e] font-black text-xl tracking-widest font-sans">BELDEN</span>
-                <span class="text-slate-500 text-[8px] font-bold uppercase tracking-wider mt-0.5">Signal & Cabling</span>
-            </div>
-            <div onclick="openPartnerDetail('Fortinet')" class="partner-card">
-                <span class="text-red-600 font-extrabold text-xl tracking-wider font-mono">FORTINET.</span>
-            </div>
-            <div onclick="openPartnerDetail('Cisco')" class="partner-card flex-col gap-1">
-                <span class="text-slate-800 text-[10px] tracking-widest">.ıııllıl.ıııllıl.</span>
-                <span class="text-red-600 font-bold text-lg font-mono">CISCO</span>
-            </div>
-            <div onclick="openPartnerDetail('Huawei')" class="partner-card flex items-center gap-2">
-                <i class="fa-brands fa-huawei text-red-600 text-2xl"></i>
-                <span class="text-slate-900 font-bold text-sm tracking-wide font-sans">HUAWEI</span>
-            </div>
-            <div onclick="openPartnerDetail('Dell EMC')" class="partner-card">
-                <span class="text-[#007db8] font-black text-lg tracking-tight font-sans">DELLEMC</span>
-            </div>
-            <div onclick="openPartnerDetail('Hikvision')" class="partner-card">
-                <span class="text-[#d71920] font-extrabold text-lg tracking-wide italic font-sans">HIKVISION</span>
-            </div>
-            <div onclick="openPartnerDetail('Martin Audio')" class="partner-card flex-col items-center">
-                <span class="text-slate-950 font-black text-xl font-serif">M</span>
-                <span class="text-slate-700 text-[8px] font-bold tracking-widest uppercase">Martin Audio</span>
-            </div>
-            <div onclick="openPartnerDetail('Bose')" class="partner-card">
-                <span class="text-black font-extrabold text-lg tracking-widest italic font-serif">BOSE</span>
-            </div>
-            <div onclick="openPartnerDetail('Control4')" class="partner-card">
-                <span class="text-slate-900 font-bold text-base">Control<span class="text-red-600 font-extrabold text-lg">4</span></span>
-            </div>
-            <div onclick="openPartnerDetail('VMware')" class="partner-card">
-                <span class="text-slate-800 font-bold text-base font-sans">vm<span class="font-light">ware</span></span>
-            </div>
-            <div onclick="openPartnerDetail('Poly / HP')" class="partner-card flex items-center gap-2">
-                <span class="text-red-500 font-bold text-sm">poly</span>
-                <span class="text-slate-400">|</span>
-                <span class="text-[#0096d6] font-bold text-sm">hp</span>
-            </div>
-            <div onclick="openPartnerDetail('Fujitsu')" class="partner-card">
-                <span class="text-red-600 font-bold text-lg font-serif">FUJITSU</span>
-            </div>
-            <!-- Added Zoya Card here -->
-            <div onclick="openZoyaModal()" class="partner-card zoya-card-custom flex-col items-center justify-center cursor-pointer">
-                <span class="text-rose-600 font-black text-2xl tracking-widest font-serif">ZOYA</span>
-                <span class="text-rose-500 text-[8px] font-bold uppercase tracking-widest mt-0.5">Heartfelt Integration</span>
+        </div>
+
+        <!-- OEM & TECHNOLOGY PARTNERS SECTION -->
+        <div class="mt-16">
+            <h3 class="text-orange-400 text-sm font-bold uppercase tracking-widest mb-6 font-mono text-center">Technology Stack & OEM Partners</h3>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-5 fade-up">
+                <div onclick="openPartnerDetail('KNX')" class="partner-card flex-col items-center">
+                    <span class="text-[#207c38] font-black text-2xl tracking-widest font-mono">KNX</span>
+                    <span class="text-slate-500 text-[8px] font-bold uppercase tracking-wider mt-0.5">Smart Standard</span>
+                </div>
+                <div onclick="openPartnerDetail('GVS')" class="partner-card flex-col items-center">
+                    <span class="text-[#00529b] font-extrabold text-2xl tracking-wider font-sans">GVS</span>
+                    <span class="text-slate-500 text-[8px] font-bold uppercase tracking-wider mt-0.5">Touch & Automation</span>
+                </div>
+                <div onclick="openPartnerDetail('BELDEN')" class="partner-card flex-col items-center">
+                    <span class="text-[#102b4e] font-black text-xl tracking-widest font-sans">BELDEN</span>
+                    <span class="text-slate-500 text-[8px] font-bold uppercase tracking-wider mt-0.5">Signal & Cabling</span>
+                </div>
+                <div onclick="openPartnerDetail('Fortinet')" class="partner-card">
+                    <span class="text-red-600 font-extrabold text-xl tracking-wider font-mono">FORTINET.</span>
+                </div>
+                <div onclick="openPartnerDetail('Cisco')" class="partner-card flex-col gap-1">
+                    <span class="text-slate-800 text-[10px] tracking-widest">.ıııllıl.ıııllıl.</span>
+                    <span class="text-red-600 font-bold text-lg font-mono">CISCO</span>
+                </div>
+                <div onclick="openPartnerDetail('Huawei')" class="partner-card flex items-center gap-2">
+                    <i class="fa-brands fa-huawei text-red-600 text-2xl"></i>
+                    <span class="text-slate-900 font-bold text-sm tracking-wide font-sans">HUAWEI</span>
+                </div>
+                <div onclick="openPartnerDetail('Dell EMC')" class="partner-card">
+                    <span class="text-[#007db8] font-black text-lg tracking-tight font-sans">DELLEMC</span>
+                </div>
+                <div onclick="openPartnerDetail('Hikvision')" class="partner-card">
+                    <span class="text-[#d71920] font-extrabold text-lg tracking-wide italic font-sans">HIKVISION</span>
+                </div>
+                <div onclick="openPartnerDetail('Martin Audio')" class="partner-card flex-col items-center">
+                    <span class="text-slate-950 font-black text-xl font-serif">M</span>
+                    <span class="text-slate-700 text-[8px] font-bold tracking-widest uppercase">Martin Audio</span>
+                </div>
+                <div onclick="openPartnerDetail('Bose')" class="partner-card">
+                    <span class="text-black font-extrabold text-lg tracking-widest italic font-serif">BOSE</span>
+                </div>
+                <div onclick="openPartnerDetail('Control4')" class="partner-card">
+                    <span class="text-slate-900 font-bold text-base">Control<span class="text-red-600 font-extrabold text-lg">4</span></span>
+                </div>
+                <div onclick="openPartnerDetail('VMware')" class="partner-card">
+                    <span class="text-slate-800 font-bold text-base font-sans">vm<span class="font-light">ware</span></span>
+                </div>
+                <div onclick="openPartnerDetail('Poly / HP')" class="partner-card flex items-center gap-2">
+                    <span class="text-red-500 font-bold text-sm">poly</span>
+                    <span class="text-slate-400">|</span>
+                    <span class="text-[#0096d6] font-bold text-sm">hp</span>
+                </div>
+                <div onclick="openPartnerDetail('Fujitsu')" class="partner-card">
+                    <span class="text-red-600 font-bold text-lg font-serif">FUJITSU</span>
+                </div>
+                <!-- Zoya Card -->
+                <div onclick="openZoyaModal()" class="partner-card zoya-card-custom flex-col items-center justify-center cursor-pointer">
+                    <span class="text-rose-600 font-black text-2xl tracking-widest font-serif">ZOYA</span>
+                    <span class="text-rose-500 text-[8px] font-bold uppercase tracking-widest mt-0.5">Heartfelt Integration</span>
+                </div>
             </div>
         </div>
 
@@ -935,17 +964,17 @@
         <div class="flex items-center gap-4 border-b border-neutral-800 pb-5">
             <div id="partnerModalIcon" class="w-14 h-14 rounded-2xl bg-orange-500/15 border border-orange-500/30 flex items-center justify-center text-orange-400 text-2xl"><i class="fa-solid fa-microchip"></i></div>
             <div>
-                <span id="partnerModalTag" class="text-[10px] uppercase font-mono tracking-widest text-orange-400 font-bold">Enterprise OEM Solution</span>
+                <span id="partnerModalTag" class="text-[10px] uppercase font-mono tracking-widest text-orange-400 font-bold">Enterprise Solution</span>
                 <h3 id="partnerModalTitle" class="text-2xl font-bold text-white leading-tight"></h3>
             </div>
         </div>
         <div class="py-6">
-            <h4 class="text-xs font-mono uppercase text-slate-400 tracking-wider mb-2">Technical Implementation & Role</h4>
+            <h4 class="text-xs font-mono uppercase text-slate-400 tracking-wider mb-2">Overview & Technical Scope</h4>
             <p id="partnerModalDesc" class="text-slate-300 text-base leading-relaxed"></p>
         </div>
         <div class="pt-5 border-t border-neutral-800 flex justify-between items-center gap-3">
             <a id="partnerModalLink" href="#" target="_blank" rel="noopener noreferrer" class="hidden px-5 py-2.5 rounded-xl bg-orange-600 hover:bg-orange-500 text-white text-sm font-semibold transition inline-flex items-center gap-2 shadow-lg shadow-orange-600/30">
-                <i class="fa-solid fa-globe text-xs"></i> Official Website
+                <i class="fa-solid fa-globe text-xs"></i> Visit Official Site
             </a>
             <button onclick="closePartnerDetail()" class="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-sm font-semibold transition ml-auto">Got it</button>
         </div>
@@ -1092,7 +1121,6 @@
         document.body.style.overflow = 'auto';
     }
 
-    // ZOYA MODAL FUNCTIONS
     function openZoyaModal() {
         const modal = document.getElementById('zoyaModal');
         modal.classList.remove('hidden');
@@ -1107,7 +1135,7 @@
         document.body.style.overflow = 'auto';
     }
 
-    // SERVICES & PARTNERS DATA
+    // SERVICES DATA
     const servicesData = [
         { category: "Network & Security Gateways", title: "Enterprise Network & IT Rack Deployment", image: "rack.jpg", desc: "Deployment of Next-Generation Firewalls (FortiGate HA Cluster) and core edge routers for secure multi-WAN load balancing and SD-WAN branch interconnects." },
         { category: "Smart Home Automation", title: "Luxury Homes ICT & Home-Automation Projects In Dubai", image: "villa.jpg", desc: "Delivering seamless network reliability, advanced VMS surveillance, multi-room acoustic systems, and unified smart automation across Dubai's elite properties." },
@@ -1117,7 +1145,13 @@
         { category: "Engineering Design", title: "Smart Home-Automation Design", image: "autocad.jpg", desc: "From schematic design to full deployment: robust ICT for modern smart homes. Architecting secure, high-speed, and unified smart automation ecosystems." }
     ];
 
+    // COMBINED PARTNER & GROUP ENTITIES DATA MAP
     const partnerDataMap = {
+        "Dynamic World Computers": { tag: "Core ELV & ICT Integration Hub", desc: "Headquartered in Dubai, UAE, Dynamic World Computers LLC delivers end-to-end extra-low voltage (ELV), audiovisual (AV), smart automation, and enterprise networking engineering solutions for luxury and commercial projects.", icon: "fa-solid fa-building", url: "https://dynamicworld.ae" },
+        "Shiva IT Distribution": { tag: "Authorized Broad-Line IT Distributor", desc: "A premier technology distributor connecting world-class brands across the METACIS region, supplying robust enterprise networking, surveillance, and IT infrastructure hardware to partners and resellers.", icon: "fa-solid fa-truck-fast", url: "#" },
+        "Om Computer": { tag: "Retail & Corporate Hardware Partner", desc: "Providing trusted technology products, computer accessories, and dependable corporate IT hardware solutions with a strong focus on reliability and customer trust.", icon: "fa-solid fa-shop", url: "#" },
+        "Neoterra": { tag: "Boutique Real Estate Developer", desc: "A forward-thinking boutique real estate development company in Dubai crafting sustainable luxury residential communities and future-ready living spaces like Elmora and Eira Residence.", icon: "fa-solid fa-city", url: "https://neoterra.ae" },
+        "Dynamic World Security": { tag: "Official SIRA Licensed Security Division", desc: "Our specialized security and surveillance wing holding official SIRA (Security Industry Regulatory Agency) licensing, delivering certified CCTV, biometrics, and access control solutions across Dubai.", icon: "fa-solid fa-shield-halved", url: "#" },
         "KNX": { tag: "Smart Home & Building Protocol", desc: "Global open standard for commercial and residential automation. Engineering complete KNX topology, ETS programming, bus line couplers, DALI lighting gateways, HVAC climate integration, and centralized building logic controllers.", icon: "fa-solid fa-house-signal", url: "https://www.knx.org" },
         "GVS": { tag: "KNX Touchpanels & Smart Actuators", desc: "High-end KNX smart screens, room master controllers, IP video intercom interfaces, and multifunction keypads for luxury villas and modern hospitality estates.", icon: "fa-solid fa-tablet-screen-button", url: "https://www.video-intercom.com.cn" },
         "BELDEN": { tag: "Mission-Critical Structured Cabling", desc: "Enterprise and industrial grade copper Cat6A/Cat7 cabling, precision audio/video low-capacitance signal wires, KNX certified bus cables, and optical fiber interconnects for zero-loss transmission.", icon: "fa-solid fa-network-wired", url: "https://www.belden.com" },
@@ -1135,7 +1169,7 @@
     };
 
     function openPartnerDetail(name) {
-        const data = partnerDataMap[name] || { tag: "Technology Stack", desc: "Hardware & software technology deployed across enterprise network and smart building projects.", icon: "fa-solid fa-microchip", url: "#" };
+        const data = partnerDataMap[name] || { tag: "Enterprise Ecosystem", desc: "Strategic group company and technology entity.", icon: "fa-solid fa-building", url: "#" };
         document.getElementById('partnerModalTitle').textContent = name;
         document.getElementById('partnerModalTag').textContent = data.tag;
         document.getElementById('partnerModalDesc').textContent = data.desc;
