@@ -389,7 +389,7 @@
             <p class="text-zinc-600 mt-3 text-sm sm:text-base leading-relaxed">Turnkey network architecture, cyber-security gateways, and smart estate controls engineered across prime residential and commercial hubs in the UAE.</p>
         </div>
 
-        <!-- 4 FEATURED LOCATIONS (SHOWN BY DEFAULT) -->
+        <!-- 4 FEATURED LOCATIONS -->
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
             <div class="saas-card p-5 fade-up flex flex-col justify-between">
                 <div>
@@ -436,7 +436,7 @@
             </div>
         </div>
 
-        <!-- REMAINING 9 LOCATIONS (EXPANDABLE) -->
+        <!-- REMAINING 9 LOCATIONS -->
         <div id="extraLocations" class="hidden grid md:grid-cols-2 lg:grid-cols-4 gap-4 mt-4 transition-all duration-500">
             <div class="saas-card p-5 flex flex-col justify-between">
                 <div>
@@ -538,7 +538,6 @@
             </div>
         </div>
 
-        <!-- STYLISH EXPAND/COLLAPSE TOGGLE BUTTON -->
         <div class="mt-8 text-center fade-up">
             <button onclick="toggleLocations()" id="toggleLocBtn" class="px-6 py-3 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-white font-semibold text-sm transition shadow-lg inline-flex items-center gap-2 cursor-pointer">
                 <span id="toggleBtnText">View All 13 Locations</span> <i id="toggleIcon" class="fa-solid fa-chevron-down text-xs transition-transform duration-300"></i>
@@ -560,7 +559,6 @@
             </p>
         </div>
 
-        <!-- GROUP ENTITIES SECTION -->
         <div class="mb-12">
             <h3 class="text-orange-600 text-xs font-bold uppercase tracking-widest mb-5 font-mono text-center">Group Entities & Sister Concerns</h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 fade-up">
@@ -591,7 +589,6 @@
             </div>
         </div>
 
-        <!-- OEM & TECHNOLOGY PARTNERS SECTION -->
         <div class="mt-14">
             <h3 class="text-orange-600 text-xs font-bold uppercase tracking-widest mb-5 font-mono text-center">Technology Stack & OEM Partners</h3>
             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 fade-up">
@@ -645,7 +642,6 @@
                 <div onclick="openPartnerDetail('Fujitsu')" class="partner-card">
                     <span class="text-red-600 font-bold text-sm font-serif">FUJITSU</span>
                 </div>
-                <!-- Zoya Card -->
                 <div onclick="openZoyaModal()" class="partner-card zoya-card-custom flex-col items-center justify-center cursor-pointer">
                     <span class="text-rose-600 font-black text-xl tracking-widest font-serif">ZOYA</span>
                     <span class="text-rose-500 text-[8px] font-bold uppercase tracking-widest mt-0.5">Heartfelt Integration</span>
@@ -794,7 +790,6 @@
             </p>
         </div>
 
-        <!-- QUICK STATS / COUNTER BAND -->
         <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16 text-center fade-up">
             <div class="saas-card p-6">
                 <div class="text-3xl sm:text-4xl font-extrabold text-orange-600 font-mono">7+</div>
@@ -952,7 +947,7 @@
     </div>
 </section>
 
-<!-- TESTIMONIALS / CLIENT ENDORSEMENTS SECTION -->
+<!-- TESTIMONIALS / CLIENT ENDORSEMENTS SECTION WITH LIVE SUBMISSION -->
 <section class="py-24 bg-white border-t border-zinc-200">
     <div class="max-w-7xl mx-auto px-5 sm:px-8">
         <div class="text-center max-w-3xl mx-auto mb-14 fade-up">
@@ -963,54 +958,36 @@
             </p>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-6">
-            <div class="saas-card p-6 sm:p-8 fade-up flex flex-col justify-between">
-                <div>
-                    <div class="text-orange-500 text-sm mb-4"><i class="fa-solid fa-quote-left text-2xl opacity-40"></i></div>
-                    <p class="text-zinc-700 text-sm leading-relaxed italic">
-                        "Faishal’s technical execution on our Jumeirah Bay Island smart villa integration was exceptional. His mastery over FortiGate networks and multi-zone pro-AV made commissioning seamless."
-                    </p>
-                </div>
-                <div class="mt-6 pt-4 border-t border-zinc-100 flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center font-bold text-sm">PM</div>
-                    <div>
-                        <div class="text-zinc-900 font-bold text-xs">Project Management Office</div>
-                        <div class="text-zinc-500 text-[11px]">Luxury Residential Developments, Dubai</div>
-                    </div>
-                </div>
-            </div>
+        <!-- TESTIMONIALS GRID (DYNAMICALLY RENDERED VIA JS) -->
+        <div id="testimonialsGrid" class="grid md:grid-cols-3 gap-6 mb-16">
+            <!-- Default cards injected or loaded via script -->
+        </div>
 
-            <div class="saas-card p-6 sm:p-8 fade-up flex flex-col justify-between">
-                <div>
-                    <div class="text-orange-500 text-sm mb-4"><i class="fa-solid fa-quote-left text-2xl opacity-40"></i></div>
-                    <p class="text-zinc-700 text-sm leading-relaxed italic">
-                        "When it comes to complex IT rack architecture, structured cabling, and zero-downtime firewall configuration, Faishal is one of the most reliable ELV engineers we've worked with in the UAE."
-                    </p>
-                </div>
-                <div class="mt-6 pt-4 border-t border-zinc-100 flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-sm">TC</div>
+        <!-- LIVE REVIEW SUBMISSION FORM FOR OUTSIDERS / CLIENTS -->
+        <div class="max-w-2xl mx-auto saas-card p-6 sm:p-8 fade-up bg-zinc-50/50">
+            <div class="text-center mb-6">
+                <h3 class="text-xl font-bold text-zinc-900">Leave Your Testimonial / Feedback</h3>
+                <p class="text-zinc-600 text-xs sm:text-sm mt-1">Have we worked together? Share your review and it will appear live instantly!</p>
+            </div>
+            <form id="reviewForm" class="space-y-4">
+                <div class="grid sm:grid-cols-2 gap-4">
                     <div>
-                        <div class="text-zinc-900 font-bold text-xs">Technical Consultant</div>
-                        <div class="text-zinc-500 text-[11px]">ICT & ELV Contracting, Dubai</div>
+                        <label class="text-xs text-zinc-500 uppercase tracking-wider font-mono">Your Name / Title</label>
+                        <input id="reviewName" type="text" required placeholder="e.g. Senior Project Director" class="mt-1 w-full px-4 py-2.5 rounded-lg bg-white border border-zinc-300 text-zinc-900 text-sm focus:outline-none focus:border-orange-600 transition">
+                    </div>
+                    <div>
+                        <label class="text-xs text-zinc-500 uppercase tracking-wider font-mono">Company / Location</label>
+                        <input id="reviewCompany" type="text" required placeholder="e.g. Elite Engineering, Dubai" class="mt-1 w-full px-4 py-2.5 rounded-lg bg-white border border-zinc-300 text-zinc-900 text-sm focus:outline-none focus:border-orange-600 transition">
                     </div>
                 </div>
-            </div>
-
-            <div class="saas-card p-6 sm:p-8 fade-up flex flex-col justify-between">
                 <div>
-                    <div class="text-orange-500 text-sm mb-4"><i class="fa-solid fa-quote-left text-2xl opacity-40"></i></div>
-                    <p class="text-zinc-700 text-sm leading-relaxed italic">
-                        "From Emirates Hills to Dubai Hills, his attention to detail in Xilica DSP acoustic calibration and KNX lighting scenes truly transformed our living spaces."
-                    </p>
+                    <label class="text-xs text-zinc-500 uppercase tracking-wider font-mono">Your Review / Message</label>
+                    <textarea id="reviewText" rows="3" required placeholder="Write your experience or feedback here..." class="mt-1 w-full px-4 py-2.5 rounded-lg bg-white border border-zinc-300 text-zinc-900 text-sm focus:outline-none focus:border-orange-600 transition"></textarea>
                 </div>
-                <div class="mt-6 pt-4 border-t border-zinc-100 flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold text-sm">HO</div>
-                    <div>
-                        <div class="text-zinc-900 font-bold text-xs">Homeowner / Client</div>
-                        <div class="text-zinc-500 text-[11px]">Elite Private Estate, Dubai</div>
-                    </div>
-                </div>
-            </div>
+                <button type="submit" class="w-full py-3 rounded-lg bg-orange-600 hover:bg-orange-500 text-white font-bold text-sm transition shadow-md shadow-orange-600/20">
+                    <i class="fa-solid fa-paper-plane mr-2"></i> Submit & Go Live
+                </button>
+            </form>
         </div>
     </div>
 </section>
@@ -1226,6 +1203,78 @@
             icon.classList.remove('rotate-180');
         }
     }
+
+    // LIVE TESTIMONIALS LOGIC
+    let defaultTestimonials = [
+        {
+            text: "Faishal’s technical execution on our Jumeirah Bay Island smart villa integration was exceptional. His mastery over FortiGate networks and multi-zone pro-AV made commissioning seamless.",
+            name: "Project Management Office",
+            company: "Luxury Residential Developments, Dubai",
+            initials: "PM",
+            bg: "bg-orange-100 text-orange-600"
+        },
+        {
+            text: "When it comes to complex IT rack architecture, structured cabling, and zero-downtime firewall configuration, Faishal is one of the most reliable ELV engineers we've worked with in the UAE.",
+            name: "Technical Consultant",
+            company: "ICT & ELV Contracting, Dubai",
+            initials: "TC",
+            bg: "bg-blue-100 text-blue-600"
+        },
+        {
+            text: "From Emirates Hills to Dubai Hills, his attention to detail in Xilica DSP acoustic calibration and KNX lighting scenes truly transformed our living spaces.",
+            name: "Homeowner / Client",
+            company: "Elite Private Estate, Dubai",
+            initials: "HO",
+            bg: "bg-emerald-100 text-emerald-600"
+        }
+    ];
+
+    function renderTestimonials() {
+        const grid = document.getElementById('testimonialsGrid');
+        let storedReviews = JSON.parse(localStorage.getItem('userReviews')) || [];
+        let allReviews = [...storedReviews, ...defaultTestimonials];
+
+        grid.innerHTML = allReviews.map(item => `
+            <div class="saas-card p-6 sm:p-8 fade-up show flex flex-col justify-between">
+                <div>
+                    <div class="text-orange-500 text-sm mb-4"><i class="fa-solid fa-quote-left text-2xl opacity-40"></i></div>
+                    <p class="text-zinc-700 text-sm leading-relaxed italic">"${item.text}"</p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-zinc-100 flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full ${item.bg || 'bg-orange-100 text-orange-600'} flex items-center justify-center font-bold text-sm">${item.initials || item.name.substring(0,2).toUpperCase()}</div>
+                    <div>
+                        <div class="text-zinc-900 font-bold text-xs">${item.name}</div>
+                        <div class="text-zinc-500 text-[11px]">${item.company}</div>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    document.getElementById('reviewForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const name = document.getElementById('reviewName').value.trim();
+        const company = document.getElementById('reviewCompany').value.trim();
+        const text = document.getElementById('reviewText').value.trim();
+
+        const newReview = {
+            text: text,
+            name: name,
+            company: company,
+            initials: name.substring(0, 2).toUpperCase(),
+            bg: "bg-purple-100 text-purple-600"
+        };
+
+        let storedReviews = JSON.parse(localStorage.getItem('userReviews')) || [];
+        storedReviews.unshift(newReview); // Add to top
+        localStorage.setItem('userReviews', JSON.stringify(storedReviews));
+
+        renderTestimonials();
+        this.reset();
+        alert('Thank you! Your testimonial has been posted live.');
+    });
+
+    window.addEventListener('DOMContentLoaded', renderTestimonials);
 
     // MINI GAME LOGIC
     let dodgeAttempts = 0;
