@@ -11,7 +11,6 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-PLJPXLHF7K');
     </script>
 
@@ -42,6 +41,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Dancing+Script:wght@600;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,700;1,800&family=Orbitron:wght@600;800;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 
+    <!-- Three.js & GSAP CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
     <script>
         tailwind.config = {
             theme: {
@@ -70,13 +74,10 @@
         html { scroll-behavior: smooth; }
         body { overflow-x: hidden; background-color: #ffffff; color: #4b5563; font-family: 'Plus Jakarta Sans', sans-serif; }
 
-        /* LIGHT MESH AMBIENCE */
-        .cloud-mesh-bg {
+        /* THREE.JS BACKGROUND CANVAS */
+        #bgCanvas {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             z-index: 0; pointer-events: none;
-            background-image: 
-                radial-gradient(circle 600px at 15% 15%, rgba(249, 115, 22, 0.04), transparent 70%),
-                radial-gradient(circle 800px at 85% 85%, rgba(14, 165, 233, 0.03), transparent 70%);
         }
 
         /* LIGHT DOT GRID PATTERN */
@@ -207,7 +208,8 @@
 
 <body class="bg-white text-zinc-600 font-sans antialiased notranslate" translate="no">
 
-<div class="cloud-mesh-bg"></div>
+<!-- THREE.JS 3D CANVAS -->
+<canvas id="bgCanvas"></canvas>
 
 <!-- NAVBAR -->
 <header class="fixed top-0 left-0 right-0 z-50 bg-white/85 backdrop-blur-xl border-b border-zinc-200 notranslate" translate="no">
@@ -271,7 +273,7 @@
                 </h1>
 
                 <p class="mt-6 text-base sm:text-lg text-zinc-600 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-normal">
-                    A <strong class="text-zinc-900 font-semibold"> Network, Automation, AV, ELV & Infrastructure Project Engineer</strong> from 
+                    A <strong class="text-zinc-900 font-semibold">Network, Automation, AV, ELV & Infrastructure Project Engineer</strong> from 
                     <a href="https://dynamicworld.ae" target="_blank" rel="noopener noreferrer" class="text-orange-600 hover:text-orange-500 underline underline-offset-4 decoration-orange-500/40 transition inline-flex items-center gap-1 font-medium">
                         Dynamic World Computer LLC <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
                     </a>.
@@ -293,7 +295,7 @@
                     
                     <div class="relative p-2 rounded-2xl saas-card overflow-hidden">
                         <div class="rounded-xl overflow-hidden bg-zinc-100 relative">
-                            <img src="profile.jpg" alt="Faishal - Senior Network and Automation Engineer" class="w-full aspect-[4/5] object-cover object-center group-hover:scale-102 transition duration-500">
+                            <img src="profile.JPG" alt="Faishal - Senior Network and Automation Engineer" class="w-full aspect-[4/5] object-cover object-center group-hover:scale-102 transition duration-500">
                             
                             <div class="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-zinc-950 via-zinc-950/80 to-transparent">
                                 <div class="flex items-center justify-between">
@@ -947,7 +949,7 @@
     </div>
 </section>
 
-<!-- TESTIMONIALS / CLIENT ENDORSEMENTS SECTION WITH LIVE SUBMISSION -->
+<!-- TESTIMONIALS SECTION -->
 <section class="py-24 bg-white border-t border-zinc-200">
     <div class="max-w-7xl mx-auto px-5 sm:px-8">
         <div class="text-center max-w-3xl mx-auto mb-14 fade-up">
@@ -958,12 +960,8 @@
             </p>
         </div>
 
-        <!-- TESTIMONIALS GRID (DYNAMICALLY RENDERED VIA JS) -->
-        <div id="testimonialsGrid" class="grid md:grid-cols-3 gap-6 mb-16">
-            <!-- Default cards injected or loaded via script -->
-        </div>
+        <div id="testimonialsGrid" class="grid md:grid-cols-3 gap-6 mb-16"></div>
 
-        <!-- LIVE REVIEW SUBMISSION FORM FOR OUTSIDERS / CLIENTS -->
         <div class="max-w-2xl mx-auto saas-card p-6 sm:p-8 fade-up bg-zinc-50/50">
             <div class="text-center mb-6">
                 <h3 class="text-xl font-bold text-zinc-900">Leave Your Testimonial / Feedback</h3>
@@ -1095,9 +1093,7 @@
     <div class="relative w-full max-w-4xl saas-card border-zinc-200 overflow-hidden shadow-2xl my-auto">
         <button onclick="closeServiceDetail()" class="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-zinc-100 border border-zinc-200 text-zinc-700 hover:text-white hover:bg-orange-600 flex items-center justify-center transition"><i class="fa-solid fa-xmark text-sm"></i></button>
         <div class="flex flex-col">
-            <div id="modalMediaContainer" class="w-full h-64 sm:h-96 overflow-hidden bg-zinc-100 relative flex items-center justify-center">
-                <!-- Dynamically injected Image -->
-            </div>
+            <div id="modalMediaContainer" class="w-full h-64 sm:h-96 overflow-hidden bg-zinc-100 relative flex items-center justify-center"></div>
             <div class="p-6 sm:p-8 bg-white">
                 <div id="modalCategory" class="text-xs font-mono text-orange-600 font-bold uppercase tracking-widest mb-2"></div>
                 <h3 id="modalTitle" class="text-2xl sm:text-3xl font-extrabold text-zinc-900 leading-tight"></h3>
@@ -1187,6 +1183,84 @@
 
 <!-- SCRIPTS -->
 <script>
+    // THREE.JS BACKGROUND SCENE SETUP
+    const canvas = document.getElementById('bgCanvas');
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+    // Particle Network Nodes
+    const particleCount = 70;
+    const geometry = new THREE.BufferGeometry();
+    const positions = new Float32Array(particleCount * 3);
+    const velocities = [];
+
+    for (let i = 0; i < particleCount * 3; i += 3) {
+        positions[i] = (Math.random() - 0.5) * 20;
+        positions[i + 1] = (Math.random() - 0.5) * 20;
+        positions[i + 2] = (Math.random() - 0.5) * 10;
+        velocities.push({
+            x: (Math.random() - 0.5) * 0.015,
+            y: (Math.random() - 0.5) * 0.015
+        });
+    }
+
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    const material = new THREE.PointsMaterial({
+        color: 0xf97316,
+        size: 0.12,
+        transparent: true,
+        opacity: 0.6
+    });
+
+    const particles = new THREE.Points(geometry, material);
+    scene.add(particles);
+    camera.position.z = 5;
+
+    // Animation Loop
+    function animateThree() {
+        requestAnimationFrame(animateThree);
+        const posArr = geometry.attributes.position.array;
+        for (let i = 0; i < particleCount; i++) {
+            posArr[i * 3] += velocities[i].x;
+            posArr[i * 3 + 1] += velocities[i].y;
+
+            if (posArr[i * 3] > 10 || posArr[i * 3] < -10) velocities[i].x *= -1;
+            if (posArr[i * 3 + 1] > 10 || posArr[i * 3 + 1] < -10) velocities[i].y *= -1;
+        }
+        geometry.attributes.position.needsUpdate = true;
+        particles.rotation.y += 0.0005;
+        renderer.render(scene, camera);
+    }
+    animateThree();
+
+    window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    // GSAP Scroll Animations Integration
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.utils.toArray('.fade-up').forEach((el) => {
+        gsap.fromTo(el, 
+            { opacity: 0, y: 30 },
+            {
+                opacity: 1, 
+                y: 0, 
+                duration: 1, 
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 85%",
+                    toggleActions: "play none none none"
+                }
+            }
+        );
+    });
+
     // TOGGLE LOCATIONS EXPAND / COLLAPSE
     function toggleLocations() {
         const extraLocs = document.getElementById('extraLocations');
@@ -1266,7 +1340,7 @@
         };
 
         let storedReviews = JSON.parse(localStorage.getItem('userReviews')) || [];
-        storedReviews.unshift(newReview); // Add to top
+        storedReviews.unshift(newReview);
         localStorage.setItem('userReviews', JSON.stringify(storedReviews));
 
         renderTestimonials();
@@ -1352,7 +1426,7 @@
         { category: "Engineering Design", title: "Smart Home-Automation Design", image: "autocad.jpg", desc: "From schematic design to full deployment: robust ICT for modern smart homes. Architecting secure, high-speed, and unified smart automation ecosystems." }
     ];
 
-    // COMBINED PARTNER & GROUP ENTITIES DATA MAP
+    // PARTNER DATA MAP
     const partnerDataMap = {
         "Dynamic World Computers": { tag: "Core ELV & ICT Integration Hub", desc: "Headquartered in Dubai, UAE, Dynamic World Computers LLC delivers end-to-end extra-low voltage (ELV), audiovisual (AV), smart automation, and enterprise networking engineering solutions for luxury and commercial projects.", icon: "fa-solid fa-building", url: "https://dynamicworld.ae" },
         "Dynamic World Security": { tag: "Official SIRA Licensed Security Division", desc: "Our specialized security and surveillance wing holding official SIRA (Security Industry Regulatory Agency) licensing, delivering certified CCTV, biometrics, and access control solutions across Dubai.", icon: "fa-solid fa-shield-halved", url: "#" },
@@ -1431,11 +1505,6 @@
 
     menuBtn.addEventListener("click", () => { mobileMenu.classList.toggle("hidden"); });
     document.querySelectorAll("#mobileMenu a").forEach(link => { link.addEventListener("click", () => { mobileMenu.classList.add("hidden"); }); });
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add("show"); });
-    }, { threshold: 0.12 });
-    document.querySelectorAll(".fade-up").forEach(el => observer.observe(el));
 
     document.getElementById("contactForm").addEventListener("submit", function(event) {
         event.preventDefault();
