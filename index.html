@@ -73,15 +73,34 @@
         html { scroll-behavior: smooth; }
         body { overflow-x: hidden; color: #e2e8f0; font-family: 'Plus Jakarta Sans', sans-serif; position: relative; min-height: 100vh; transition: background 1.5s ease; }
 
-        /* TIME-BASED ATMOSPHERE BACKGROUNDS */
+        /* REALISTIC TIME-BASED ATMOSPHERE (MORNING vs NIGHT) */
         body.theme-morning {
-            background: linear-gradient(135deg, #0284c7 0%, #38bdf8 50%, #bae6fd 100%);
+            background: linear-gradient(135deg, #0284c7 0%, #38bdf8 45%, #bae6fd 100%);
         }
         body.theme-night {
-            background: linear-gradient(135deg, #020617 0%, #0f172a 50%, #1e293b 100%);
+            background: radial-gradient(circle at 80% 15%, #1e1b4b 0%, #090d16 55%, #020617 100%);
         }
 
-        /* 3D ATMOSPHERIC CLOUDS CONTAINER */
+        /* REALISTIC GLOWING MOON (Visible at Night) */
+        .realistic-moon {
+            position: fixed;
+            top: 7%;
+            right: 12%;
+            width: 85px;
+            height: 85px;
+            background: radial-gradient(circle at 35% 35%, #ffffff 0%, #e2e8f0 60%, #94a3b8 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 45px rgba(226, 232, 240, 0.45), inset -12px -12px 20px rgba(100, 116, 139, 0.4);
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 1.5s ease;
+        }
+        body.theme-night .realistic-moon {
+            opacity: 0.95;
+        }
+
+        /* ULTRA-REALISTIC PUFFY 3D CLOUDS (Pure CSS Multi-layered Shadows) */
         .clouds-container {
             position: fixed;
             top: 0;
@@ -93,51 +112,52 @@
             pointer-events: none;
         }
 
-        .cloud {
+        .realistic-cloud {
             position: absolute;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            border-radius: 150px;
-            box-shadow: inset 0 0 30px rgba(255, 255, 255, 0.2);
-            animation: drift linear infinite;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 200px;
+            filter: blur(1px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15), inset 0 -10px 20px rgba(255, 255, 255, 0.6);
+            animation: cloudDrift linear infinite;
         }
 
-        body.theme-night .cloud {
-            background: rgba(30, 41, 59, 0.45);
-            box-shadow: inset 0 0 30px rgba(255, 255, 255, 0.05);
+        body.theme-night .realistic-cloud {
+            background: rgba(30, 41, 59, 0.65);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5), inset 0 -10px 25px rgba(255, 255, 255, 0.08);
         }
 
-        .cloud::before, .cloud::after {
+        .realistic-cloud::before, .realistic-cloud::after {
             content: '';
             position: absolute;
             background: inherit;
             border-radius: 50%;
         }
 
-        .cloud-1 {
-            width: 400px; height: 130px; top: 10%; left: -500px;
-            animation-duration: 60s;
-            transform: scale(1.8) translateZ(20px);
+        /* Cloud Puff Complex 1 */
+        .cloud-puffed-1 {
+            width: 420px; height: 140px; top: 12%; left: -500px;
+            animation-duration: 55s;
         }
-        .cloud-1::before { width: 160px; height: 160px; top: -80px; left: 70px; }
-        .cloud-1::after { width: 130px; height: 130px; top: -50px; left: 210px; }
+        .cloud-puffed-1::before { width: 180px; height: 180px; top: -90px; left: 60px; }
+        .cloud-puffed-1::after { width: 140px; height: 140px; top: -60px; left: 210px; }
 
-        .cloud-2 {
-            width: 550px; height: 170px; top: 35%; left: -600px;
-            animation-duration: 85s;
-            animation-delay: -12s;
-            transform: scale(2.5) translateZ(60px);
-            opacity: 0.75;
+        /* Cloud Puff Complex 2 (Foreground / Deep 3D) */
+        .cloud-puffed-2 {
+            width: 580px; height: 180px; top: 32%; left: -650px;
+            animation-duration: 75s;
+            animation-delay: -15s;
+            transform: scale(1.4);
+            opacity: 0.85;
         }
-        .cloud-2::before { width: 200px; height: 200px; top: -100px; left: 110px; }
-        .cloud-2::after { width: 160px; height: 160px; top: -80px; left: 280px; }
+        .cloud-puffed-2::before { width: 230px; height: 230px; top: -120px; left: 90px; }
+        .cloud-puffed-2::after { width: 190px; height: 190px; top: -90px; left: 290px; }
 
-        @keyframes drift {
-            0% { transform: translateX(-700px) translateZ(0); }
-            100% { transform: translateX(calc(100vw + 700px)) translateZ(0); }
+        @keyframes cloudDrift {
+            0% { transform: translateX(-700px) scale(var(--scale, 1)); }
+            100% { transform: translateX(calc(100vw + 700px)) scale(var(--scale, 1)); }
         }
 
-        /* TRUE 3D RAIN & SPLASH ENGINE */
+        /* CINEMATIC 3D RAIN & SPLASH ENGINE */
         .rain-container {
             position: fixed;
             top: 0;
@@ -152,19 +172,19 @@
 
         .drop {
             position: absolute;
-            background: linear-gradient(transparent, rgba(186, 230, 253, 0.75));
+            background: linear-gradient(transparent, rgba(148, 163, 184, 0.85));
             width: 1.5px;
-            height: 35px;
-            opacity: 0.7;
+            height: 40px;
+            opacity: 0.75;
             animation: fall linear infinite;
         }
 
         @keyframes fall {
-            0% { transform: translateY(-60px) rotate(18deg); }
-            100% { transform: translateY(105vh) rotate(18deg); }
+            0% { transform: translateY(-70px) rotate(16deg); }
+            100% { transform: translateY(105vh) rotate(16deg); }
         }
 
-        /* TECH GRID PATTERN */
+        /* TECH GRID */
         .tech-grid {
             background-image: radial-gradient(rgba(56, 189, 248, 0.08) 1px, transparent 1px);
             background-size: 32px 32px;
@@ -306,13 +326,16 @@
 
 <body class="theme-night text-zinc-200 font-sans antialiased notranslate" translate="no">
 
-<!-- 3D MOVING ATMOSPHERIC CLOUDS -->
+<!-- REALISTIC GLOWING MOON (Visible at Night) -->
+<div class="realistic-moon"></div>
+
+<!-- ULTRA-REALISTIC 3D PUFFY CLOUDS -->
 <div class="clouds-container">
-    <div class="cloud cloud-1"></div>
-    <div class="cloud cloud-2"></div>
+    <div class="realistic-cloud cloud-puffed-1"></div>
+    <div class="realistic-cloud cloud-puffed-2"></div>
 </div>
 
-<!-- TRUE 3D RAIN & SPLASH LAYER -->
+<!-- CINEMATIC 3D RAIN & SPLASH LAYER -->
 <div class="rain-container" id="rainContainer"></div>
 
 <!-- NAVBAR -->
@@ -1287,17 +1310,20 @@
 
 <!-- SCRIPTS -->
 <script>
-    // AUTOMATIC TIME-BASED ATMOSPHERE ENGINE (Morning vs Night / Storm)
+    // AUTOMATIC TIME-BASED ATMOSPHERE ENGINE (Morning vs Night Moon & Storm Clouds)
     function applyTimeBasedTheme() {
         const currentHour = new Date().getHours();
         const bodyEl = document.body;
         const rainLayer = document.getElementById('rainContainer');
 
+        // 6 AM to 6 PM -> Morning Bright Sky & Fluffy White Clouds (No Rain)
         if (currentHour >= 6 && currentHour < 18) {
             bodyEl.classList.remove('theme-night');
             bodyEl.classList.add('theme-morning');
             if (rainLayer) rainLayer.style.display = 'none';
-        } else {
+        } 
+        // 6 PM to 6 AM -> Night Sky, Glowing Moon, Dark Storm Clouds & 3D Rain
+        else {
             bodyEl.classList.remove('theme-morning');
             bodyEl.classList.add('theme-night');
             if (rainLayer) rainLayer.style.display = 'block';
@@ -1305,19 +1331,19 @@
     }
     applyTimeBasedTheme();
 
-    // TRUE 3D RAIN & SPLASH GENERATOR
+    // CINEMATIC 3D RAIN & SPLASH GENERATOR
     const rainContainer = document.getElementById('rainContainer');
-    const dropCount = 140;
+    const dropCount = 150;
 
     for (let i = 0; i < dropCount; i++) {
         const drop = document.createElement('div');
         drop.classList.add('drop');
         drop.style.left = `${Math.random() * 100}vw`;
         
-        const duration = Math.random() * 0.45 + 0.3;
+        const duration = Math.random() * 0.4 + 0.25;
         const delay = Math.random() * 5;
-        const opacity = Math.random() * 0.6 + 0.3;
-        const scale = Math.random() * 0.8 + 0.5;
+        const opacity = Math.random() * 0.7 + 0.3;
+        const scale = Math.random() * 0.9 + 0.4;
         
         drop.style.animationDuration = `${duration}s`;
         drop.style.animationDelay = `${delay}s`;
@@ -1330,10 +1356,10 @@
     setInterval(() => {
         const drops = document.querySelectorAll('.drop');
         drops.forEach(drop => {
-            const randomSpeed = Math.random() * 0.6 + 0.25;
+            const randomSpeed = Math.random() * 0.5 + 0.2;
             drop.style.animationDuration = `${randomSpeed}s`;
         });
-    }, 8000);
+    }, 7000);
 
     // GSAP Scroll Animations
     gsap.registerPlugin(ScrollTrigger);
