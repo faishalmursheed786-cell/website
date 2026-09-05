@@ -65,8 +65,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Dancing+Script:wght@600;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,700;1,800&family=Orbitron:wght@600;800;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 
-    <!-- Three.js & GSAP CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- GSAP CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
@@ -165,15 +164,9 @@
             100% { transform: translateY(105vh) rotate(18deg); }
         }
 
-        /* THREE.JS BACKGROUND CANVAS */
-        #bgCanvas {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            z-index: 2; pointer-events: none; opacity: 0.65;
-        }
-
         /* TECH GRID PATTERN */
         .tech-grid {
-            background-image: radial-gradient(rgba(56, 189, 248, 0.12) 1px, transparent 1px);
+            background-image: radial-gradient(rgba(56, 189, 248, 0.08) 1px, transparent 1px);
             background-size: 32px 32px;
         }
 
@@ -190,7 +183,7 @@
         }
         .z-interactive-btn { animation: zPulse 2s infinite; }
 
-        /* GLASS SAAS CARDS WITH HIGH CONTRAST */
+        /* GLASS SAAS CARDS */
         .saas-card {
             background: rgba(15, 23, 42, 0.82);
             backdrop-filter: blur(18px);
@@ -322,9 +315,6 @@
 <!-- TRUE 3D RAIN & SPLASH LAYER -->
 <div class="rain-container" id="rainContainer"></div>
 
-<!-- THREE.JS 3D NETWORK AUTOMATION NODES CANVAS -->
-<canvas id="bgCanvas"></canvas>
-
 <!-- NAVBAR -->
 <header class="fixed top-0 left-0 right-0 z-50 bg-[#0f172a]/90 backdrop-blur-xl border-b border-zinc-800 notranslate" translate="no">
     <div class="max-w-7xl mx-auto px-5 sm:px-8 h-18 flex items-center justify-between">
@@ -334,7 +324,7 @@
                         class="w-10 h-10 rounded-lg bg-gradient-to-tr from-rose-600 via-red-500 to-pink-500 flex items-center justify-center font-black text-white text-base shadow-md shadow-rose-500/20 border border-rose-400/30 hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer z-interactive-btn notranslate" translate="no">
                     Z
                 </button>
-                <span class="absolute left-13 top-1/2 -translate-y-1/2 px-2.5 py-1 rounded-md bg-zinc-900 border border-white/10 text-orange-400 text-[11px] font-mono whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none shadow-xl">
+                <span class="absolute left-13 top-1/2 -translate-y-1/2 px-2.5 py-1 rounded-md bg-zinc-900 border border-white/10 text-sky-400 text-[11px] font-mono whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none shadow-xl">
                     Play Game! 🎮
                 </span>
             </div>
@@ -1303,14 +1293,11 @@
         const bodyEl = document.body;
         const rainLayer = document.getElementById('rainContainer');
 
-        // Morning/Daytime (6 AM to 6 PM) -> Bright Sky, Soft Sunlight & Clouds, No Rain
         if (currentHour >= 6 && currentHour < 18) {
             bodyEl.classList.remove('theme-night');
             bodyEl.classList.add('theme-morning');
             if (rainLayer) rainLayer.style.display = 'none';
-        } 
-        // Evening / Night (6 PM to 6 AM) -> Deep Midnight, 3D Dark Clouds & Variable Rain
-        else {
+        } else {
             bodyEl.classList.remove('theme-morning');
             bodyEl.classList.add('theme-night');
             if (rainLayer) rainLayer.style.display = 'block';
@@ -1327,7 +1314,7 @@
         drop.classList.add('drop');
         drop.style.left = `${Math.random() * 100}vw`;
         
-        const duration = Math.random() * 0.45 + 0.3; // High speed 3D depth feel
+        const duration = Math.random() * 0.45 + 0.3;
         const delay = Math.random() * 5;
         const opacity = Math.random() * 0.6 + 0.3;
         const scale = Math.random() * 0.8 + 0.5;
@@ -1340,7 +1327,6 @@
         rainContainer.appendChild(drop);
     }
 
-    // Dynamic storm intensity cycle
     setInterval(() => {
         const drops = document.querySelectorAll('.drop');
         drops.forEach(drop => {
@@ -1348,76 +1334,6 @@
             drop.style.animationDuration = `${randomSpeed}s`;
         });
     }, 8000);
-
-    // THREE.JS 3D NETWORK AUTOMATION NODES CANVAS
-    const canvas = document.getElementById('bgCanvas');
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-    const nodeCount = 45;
-    const nodeGeometry = new THREE.SphereGeometry(0.08, 16, 16);
-    const nodeMaterial = new THREE.MeshBasicMaterial({ color: 0x38bdf8 });
-    
-    const nodesGroup = new THREE.Group();
-    const nodePositions = [];
-
-    for (let i = 0; i < nodeCount; i++) {
-        const mesh = new THREE.Mesh(nodeGeometry, nodeMaterial);
-        const x = (Math.random() - 0.5) * 16;
-        const y = (Math.random() - 0.5) * 16;
-        const z = (Math.random() - 0.5) * 8;
-        mesh.position.set(x, y, z);
-        mesh.userData = {
-            velocity: new THREE.Vector3((Math.random() - 0.5) * 0.008, (Math.random() - 0.5) * 0.008, 0)
-        };
-        nodesGroup.add(mesh);
-        nodePositions.push(mesh.position);
-    }
-    scene.add(nodesGroup);
-
-    const linesMaterial = new THREE.LineBasicMaterial({ color: 0x38bdf8, transparent: true, opacity: 0.25 });
-    const linesGeometry = new THREE.BufferGeometry();
-    const lineMesh = new THREE.LineSegments(linesGeometry, linesMaterial);
-    scene.add(lineMesh);
-
-    camera.position.z = 6;
-
-    function animateThree() {
-        requestAnimationFrame(animateThree);
-
-        const linePositions = [];
-        nodePositions.forEach((pos, idx) => {
-            pos.add(nodesGroup.children[idx].userData.velocity);
-            if (pos.x > 8 || pos.x < -8) nodesGroup.children[idx].userData.velocity.x *= -1;
-            if (pos.y > 8 || pos.y < -8) nodesGroup.children[idx].userData.velocity.y *= -1;
-
-            for (let j = idx + 1; j < nodeCount; j++) {
-                const dist = pos.distanceTo(nodePositions[j]);
-                if (dist < 3.2) {
-                    linePositions.push(pos.x, pos.y, pos.z);
-                    linePositions.push(nodePositions[j].x, nodePositions[j].y, nodePositions[j].z);
-                }
-            }
-        });
-
-        linesGeometry.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3));
-        linesGeometry.attributes.position.needsUpdate = true;
-
-        nodesGroup.rotation.y += 0.0008;
-        lineMesh.rotation.y += 0.0008;
-
-        renderer.render(scene, camera);
-    }
-    animateThree();
-
-    window.addEventListener('resize', () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-    });
 
     // GSAP Scroll Animations
     gsap.registerPlugin(ScrollTrigger);
