@@ -73,15 +73,34 @@
         html { scroll-behavior: smooth; }
         body { overflow-x: hidden; color: #e2e8f0; font-family: 'Plus Jakarta Sans', sans-serif; position: relative; min-height: 100vh; transition: background 1.5s ease; }
 
-        /* REALISTIC TIME-BASED ATMOSPHERE (MORNING vs NIGHT) */
+        /* TIME-BASED ATMOSPHERE (MORNING vs NIGHT) */
         body.theme-morning {
-            background: linear-gradient(135deg, #0284c7 0%, #38bdf8 45%, #bae6fd 100%);
+            background: linear-gradient(135deg, #0284c7 0%, #38bdf8 45%, #e0f2fe 100%);
         }
         body.theme-night {
             background: radial-gradient(circle at 80% 15%, #1e1b4b 0%, #090d16 55%, #020617 100%);
         }
 
-        /* REALISTIC GLOWING MOON (Visible at Night) */
+        /* REALISTIC GLOWING SUN (Visible only in Daytime) */
+        .realistic-sun {
+            position: fixed;
+            top: 8%;
+            right: 12%;
+            width: 90px;
+            height: 90px;
+            background: radial-gradient(circle at 35% 35%, #fffbeb 0%, #fde047 50%, #f59e0b 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 60px rgba(253, 224, 71, 0.8), 0 0 120px rgba(245, 158, 11, 0.5);
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 1.5s ease;
+        }
+        body.theme-morning .realistic-sun {
+            opacity: 1;
+        }
+
+        /* REALISTIC GLOWING MOON (Visible only at Night) */
         .realistic-moon {
             position: fixed;
             top: 7%;
@@ -100,7 +119,7 @@
             opacity: 0.95;
         }
 
-        /* ULTRA-REALISTIC PUFFY 3D CLOUDS (Pure CSS Multi-layered Shadows) */
+        /* ULTRA-REALISTIC PUFFY 3D CLOUDS */
         .clouds-container {
             position: fixed;
             top: 0;
@@ -114,10 +133,10 @@
 
         .realistic-cloud {
             position: absolute;
-            background: rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.75);
             border-radius: 200px;
             filter: blur(1px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15), inset 0 -10px 20px rgba(255, 255, 255, 0.6);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15), inset 0 -10px 20px rgba(255, 255, 255, 0.7);
             animation: cloudDrift linear infinite;
         }
 
@@ -133,7 +152,6 @@
             border-radius: 50%;
         }
 
-        /* Cloud Puff Complex 1 */
         .cloud-puffed-1 {
             width: 420px; height: 140px; top: 12%; left: -500px;
             animation-duration: 55s;
@@ -141,7 +159,6 @@
         .cloud-puffed-1::before { width: 180px; height: 180px; top: -90px; left: 60px; }
         .cloud-puffed-1::after { width: 140px; height: 140px; top: -60px; left: 210px; }
 
-        /* Cloud Puff Complex 2 (Foreground / Deep 3D) */
         .cloud-puffed-2 {
             width: 580px; height: 180px; top: 32%; left: -650px;
             animation-duration: 75s;
@@ -153,8 +170,8 @@
         .cloud-puffed-2::after { width: 190px; height: 190px; top: -90px; left: 290px; }
 
         @keyframes cloudDrift {
-            0% { transform: translateX(-700px) scale(var(--scale, 1)); }
-            100% { transform: translateX(calc(100vw + 700px)) scale(var(--scale, 1)); }
+            0% { transform: translateX(-700px) scale(1); }
+            100% { transform: translateX(calc(100vw + 700px)) scale(1); }
         }
 
         /* CINEMATIC 3D RAIN & SPLASH ENGINE */
@@ -242,6 +259,11 @@
             -webkit-background-clip: text; 
             -webkit-text-fill-color: transparent; 
         }
+        body.theme-morning .gradient-text {
+            background: linear-gradient(135deg, #0f172a 0%, #334155 50%, #0284c7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
         .skill-badge {
             padding: 8px 14px; border-radius: 8px; background: rgba(30, 41, 59, 0.75);
@@ -326,7 +348,8 @@
 
 <body class="theme-night text-zinc-200 font-sans antialiased notranslate" translate="no">
 
-<!-- REALISTIC GLOWING MOON (Visible at Night) -->
+<!-- REALISTIC GLOWING SUN (Daytime) & MOON (Nighttime) -->
+<div class="realistic-sun"></div>
 <div class="realistic-moon"></div>
 
 <!-- ULTRA-REALISTIC 3D PUFFY CLOUDS -->
@@ -1310,19 +1333,19 @@
 
 <!-- SCRIPTS -->
 <script>
-    // AUTOMATIC TIME-BASED ATMOSPHERE ENGINE (Morning vs Night Moon & Storm Clouds)
+    // AUTOMATIC TIME-BASED ATMOSPHERE ENGINE (Morning Sun vs Night Moon & Storm)
     function applyTimeBasedTheme() {
         const currentHour = new Date().getHours();
         const bodyEl = document.body;
         const rainLayer = document.getElementById('rainContainer');
 
-        // 6 AM to 6 PM -> Morning Bright Sky & Fluffy White Clouds (No Rain)
+        // 6 AM to 6 PM -> Bright Morning Sky with Sun & Soft Puffy Clouds (No Rain)
         if (currentHour >= 6 && currentHour < 18) {
             bodyEl.classList.remove('theme-night');
             bodyEl.classList.add('theme-morning');
             if (rainLayer) rainLayer.style.display = 'none';
         } 
-        // 6 PM to 6 AM -> Night Sky, Glowing Moon, Dark Storm Clouds & 3D Rain
+        // 6 PM to 6 AM -> Deep Midnight Sky, Glowing Moon, Dark Storm Clouds & 3D Rain
         else {
             bodyEl.classList.remove('theme-morning');
             bodyEl.classList.add('theme-night');
