@@ -92,17 +92,22 @@
         }
         body.theme-morning .realistic-sun { opacity: 1; }
 
-        /* APPLE WEATHER STYLE CRESCENT MOON (Nighttime) */
-        .weather-crescent-moon {
+        /* APPLE WEATHER STYLE FULL MOON (Nighttime) */
+        .apple-full-moon {
             position: fixed;
-            top: 10%; left: 12%; width: 70px; height: 70px;
+            top: 8%;
+            right: 12%;
+            width: 85px;
+            height: 85px;
+            background: radial-gradient(circle at 35% 35%, #ffffff 0%, #e2e8f0 65%, #94a3b8 100%);
             border-radius: 50%;
-            box-shadow: -14px 4px 0 0 #e2e8f0;
-            filter: drop-shadow(0 0 15px rgba(226, 232, 240, 0.4));
-            z-index: 0; pointer-events: none; opacity: 0; transform: rotate(-25deg);
+            box-shadow: 0 0 50px rgba(226, 232, 240, 0.5), inset -10px -10px 18px rgba(71, 85, 105, 0.5);
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0;
             transition: opacity 1.5s ease;
         }
-        body.theme-night .weather-crescent-moon { opacity: 0.95; }
+        body.theme-night .apple-full-moon { opacity: 0.95; }
 
         /* SCATTERED NIGHT STARS */
         .stars-container {
@@ -120,30 +125,36 @@
             50% { opacity: 1; transform: scale(1.2); }
         }
 
-        /* WISPY HORIZONTAL CLOUDS */
+        /* APPLE WEATHER STYLE WISPY CLOUDS (Drifting across moon & sky) */
         .clouds-container {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            overflow: hidden; z-index: 0; pointer-events: none;
+            overflow: hidden; z-index: 2; pointer-events: none;
         }
 
         .weather-wispy-cloud {
-            position: absolute; background: rgba(255, 255, 255, 0.12);
-            filter: blur(12px); border-radius: 100px; animation: cloudDrift linear infinite;
+            position: absolute;
+            background: rgba(255, 255, 255, 0.14);
+            filter: blur(14px);
+            border-radius: 120px;
+            animation: cloudDrift linear infinite;
         }
-        body.theme-night .weather-wispy-cloud { background: rgba(148, 163, 184, 0.15); }
+        body.theme-night .weather-wispy-cloud {
+            background: rgba(148, 163, 184, 0.18);
+        }
 
-        .cloud-streak-1 { width: 700px; height: 90px; top: 15%; left: -800px; animation-duration: 70s; }
-        .cloud-streak-2 { width: 900px; height: 130px; top: 35%; left: -1000px; animation-duration: 95s; animation-delay: -20s; opacity: 0.7; }
+        .cloud-streak-1 { width: 800px; height: 110px; top: 12%; left: -900px; animation-duration: 65s; }
+        .cloud-streak-2 { width: 1000px; height: 160px; top: 28%; left: -1100px; animation-duration: 90s; animation-delay: -15s; opacity: 0.75; }
+        .cloud-streak-3 { width: 750px; height: 100px; top: 5%; left: -750px; animation-duration: 50s; animation-delay: -30s; opacity: 0.5; }
 
         @keyframes cloudDrift {
-            0% { transform: translateX(-900px); }
-            100% { transform: translateX(calc(100vw + 900px)); }
+            0% { transform: translateX(-1000px); }
+            100% { transform: translateX(calc(100vw + 1000px)); }
         }
 
-        /* INTERMITTENT RAIN & SPLASH ENGINE (Triggered every 30 mins at night for 5 mins) */
+        /* INTERMITTENT RAIN & SPLASH ENGINE (Triggers automatically every 30 mins at night for 5 mins) */
         .rain-container {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 1; pointer-events: none; overflow: hidden;
+            z-index: 3; pointer-events: none; overflow: hidden;
             opacity: 0; transition: opacity 1s ease;
         }
         .rain-container.active { opacity: 1; }
@@ -307,17 +318,18 @@
 
 <body class="theme-night text-zinc-200 font-sans antialiased notranslate" translate="no">
 
-<!-- SUN (Daytime) & APPLE WEATHER STYLE CRESCENT MOON (Nighttime) -->
+<!-- SUN (Daytime) & APPLE WEATHER STYLE FULL MOON (Nighttime) -->
 <div class="realistic-sun"></div>
-<div class="weather-crescent-moon"></div>
+<div class="apple-full-moon"></div>
 
 <!-- SCATTERED NIGHT STARS -->
 <div class="stars-container" id="starsContainer"></div>
 
-<!-- WISPY HORIZONTAL CLOUDS -->
+<!-- APPLE WEATHER STYLE WISPY HORIZONTAL CLOUDS -->
 <div class="clouds-container">
     <div class="weather-wispy-cloud cloud-streak-1"></div>
     <div class="weather-wispy-cloud cloud-streak-2"></div>
+    <div class="weather-wispy-cloud cloud-streak-3"></div>
 </div>
 
 <!-- RAIN LAYER (Triggers automatically every 30 mins at night) -->
@@ -1328,14 +1340,14 @@
 
     // CINEMATIC RAIN & SPLASH GENERATOR
     const rainContainer = document.getElementById('rainContainer');
-    const dropCount = 140;
+    const dropCount = 150;
 
     for (let i = 0; i < dropCount; i++) {
         const drop = document.createElement('div');
         drop.classList.add('drop');
         drop.style.left = `${Math.random() * 100}vw`;
         
-        const duration = Math.random() * 0.35 + 0.25;
+        const duration = Math.random() * 0.4 + 0.25;
         const delay = Math.random() * 5;
         const opacity = Math.random() * 0.7 + 0.3;
         const scale = Math.random() * 0.9 + 0.4;
@@ -1352,15 +1364,13 @@
     function initIntermittentRain() {
         setInterval(() => {
             const currentHour = new Date().getHours();
-            // Run only during night (6 PM to 6 AM)
             if (currentHour < 6 || currentHour >= 18) {
                 rainContainer.classList.add('active');
-                // Stop rain after 5 minutes (300,000 ms)
                 setTimeout(() => {
                     rainContainer.classList.remove('active');
-                }, 300000);
+                }, 300000); // 5 minutes duration
             }
-        }, 1800000); // Checks / triggers every 30 minutes (1,800,000 ms)
+        }, 1800000); // Every 30 minutes
     }
     initIntermittentRain();
 
