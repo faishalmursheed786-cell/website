@@ -78,134 +78,80 @@
             background: linear-gradient(135deg, #0284c7 0%, #38bdf8 45%, #e0f2fe 100%);
         }
         body.theme-night {
-            background: radial-gradient(circle at 80% 15%, #1e1b4b 0%, #090d16 55%, #020617 100%);
+            background: linear-gradient(180deg, #131722 0%, #1a1f30 40%, #0d1017 100%);
         }
 
-        /* REALISTIC GLOWING SUN (Visible only in Daytime) */
+        /* REALISTIC GLOWING SUN (Daytime) */
         .realistic-sun {
             position: fixed;
-            top: 8%;
-            right: 12%;
-            width: 90px;
-            height: 90px;
+            top: 8%; right: 12%; width: 90px; height: 90px;
             background: radial-gradient(circle at 35% 35%, #fffbeb 0%, #fde047 50%, #f59e0b 100%);
             border-radius: 50%;
             box-shadow: 0 0 60px rgba(253, 224, 71, 0.8), 0 0 120px rgba(245, 158, 11, 0.5);
-            z-index: 0;
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 1.5s ease;
+            z-index: 0; pointer-events: none; opacity: 0; transition: opacity 1.5s ease;
         }
-        body.theme-morning .realistic-sun {
-            opacity: 1;
-        }
+        body.theme-morning .realistic-sun { opacity: 1; }
 
-        /* TRUE CINEMATIC 3D TEXTURED MOON (No bulb look - Real Craters & Shading) */
-        .realistic-moon {
+        /* APPLE WEATHER STYLE CRESCENT MOON (Nighttime) */
+        .weather-crescent-moon {
             position: fixed;
-            top: 7%;
-            right: 12%;
-            width: 95px;
-            height: 95px;
-            background: radial-gradient(circle at 30% 30%, #f8fafc 0%, #cbd5e1 45%, #64748b 80%, #334155 100%);
+            top: 10%; left: 12%; width: 70px; height: 70px;
             border-radius: 50%;
-            box-shadow: 0 0 35px rgba(203, 213, 225, 0.25), inset -18px -18px 25px rgba(15, 23, 42, 0.85), inset 8px 8px 15px rgba(255, 255, 255, 0.5);
-            z-index: 0;
-            pointer-events: none;
-            opacity: 0;
+            box-shadow: -14px 4px 0 0 #e2e8f0;
+            filter: drop-shadow(0 0 15px rgba(226, 232, 240, 0.4));
+            z-index: 0; pointer-events: none; opacity: 0; transform: rotate(-25deg);
             transition: opacity 1.5s ease;
-            overflow: hidden;
         }
-        /* Realistic Lunar Craters / Textures */
-        .realistic-moon::before {
-            content: '';
-            position: absolute;
-            top: 15%;
-            left: 20%;
-            width: 25px;
-            height: 25px;
-            background: rgba(100, 116, 139, 0.35);
-            border-radius: 50%;
-            box-shadow: 35px 15px 0 -5px rgba(100, 116, 139, 0.3), 15px 40px 0 -3px rgba(100, 116, 139, 0.25), 40px 35px 0 -8px rgba(100, 116, 139, 0.2);
+        body.theme-night .weather-crescent-moon { opacity: 0.95; }
+
+        /* SCATTERED NIGHT STARS */
+        .stars-container {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0; pointer-events: none; opacity: 0; transition: opacity 1.5s ease;
         }
-        body.theme-night .realistic-moon {
-            opacity: 0.98;
+        body.theme-night .stars-container { opacity: 1; }
+        
+        .star {
+            position: absolute; background: #ffffff; border-radius: 50%;
+            animation: twinkle 3s infinite ease-in-out;
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
         }
 
-        /* ULTRA-REALISTIC PUFFY 3D CLOUDS */
+        /* WISPY HORIZONTAL CLOUDS */
         .clouds-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 0;
-            pointer-events: none;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            overflow: hidden; z-index: 0; pointer-events: none;
         }
 
-        .realistic-cloud {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.75);
-            border-radius: 200px;
-            filter: blur(1px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15), inset 0 -10px 20px rgba(255, 255, 255, 0.7);
-            animation: cloudDrift linear infinite;
+        .weather-wispy-cloud {
+            position: absolute; background: rgba(255, 255, 255, 0.12);
+            filter: blur(12px); border-radius: 100px; animation: cloudDrift linear infinite;
         }
+        body.theme-night .weather-wispy-cloud { background: rgba(148, 163, 184, 0.15); }
 
-        body.theme-night .realistic-cloud {
-            background: rgba(30, 41, 59, 0.65);
-            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5), inset 0 -10px 25px rgba(255, 255, 255, 0.08);
-        }
-
-        .realistic-cloud::before, .realistic-cloud::after {
-            content: '';
-            position: absolute;
-            background: inherit;
-            border-radius: 50%;
-        }
-
-        .cloud-puffed-1 {
-            width: 420px; height: 140px; top: 12%; left: -500px;
-            animation-duration: 55s;
-        }
-        .cloud-puffed-1::before { width: 180px; height: 180px; top: -90px; left: 60px; }
-        .cloud-puffed-1::after { width: 140px; height: 140px; top: -60px; left: 210px; }
-
-        .cloud-puffed-2 {
-            width: 580px; height: 180px; top: 32%; left: -650px;
-            animation-duration: 75s;
-            animation-delay: -15s;
-            transform: scale(1.4);
-            opacity: 0.85;
-        }
-        .cloud-puffed-2::before { width: 230px; height: 230px; top: -120px; left: 90px; }
-        .cloud-puffed-2::after { width: 190px; height: 190px; top: -90px; left: 290px; }
+        .cloud-streak-1 { width: 700px; height: 90px; top: 15%; left: -800px; animation-duration: 70s; }
+        .cloud-streak-2 { width: 900px; height: 130px; top: 35%; left: -1000px; animation-duration: 95s; animation-delay: -20s; opacity: 0.7; }
 
         @keyframes cloudDrift {
-            0% { transform: translateX(-700px) scale(1); }
-            100% { transform: translateX(calc(100vw + 700px)) scale(1); }
+            0% { transform: translateX(-900px); }
+            100% { transform: translateX(calc(100vw + 900px)); }
         }
 
-        /* CINEMATIC 3D RAIN & SPLASH ENGINE */
+        /* INTERMITTENT RAIN & SPLASH ENGINE (Triggered every 30 mins at night for 5 mins) */
         .rain-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            pointer-events: none;
-            overflow: hidden;
-            transition: opacity 0.5s ease;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1; pointer-events: none; overflow: hidden;
+            opacity: 0; transition: opacity 1s ease;
         }
+        .rain-container.active { opacity: 1; }
 
         .drop {
             position: absolute;
             background: linear-gradient(transparent, rgba(148, 163, 184, 0.85));
-            width: 1.5px;
-            height: 40px;
-            opacity: 0.75;
+            width: 1.5px; height: 40px; opacity: 0.75;
             animation: fall linear infinite;
         }
 
@@ -361,21 +307,24 @@
 
 <body class="theme-night text-zinc-200 font-sans antialiased notranslate" translate="no">
 
-<!-- REALISTIC SUN & 3D TEXTURED MOON -->
+<!-- SUN (Daytime) & APPLE WEATHER STYLE CRESCENT MOON (Nighttime) -->
 <div class="realistic-sun"></div>
-<div class="realistic-moon"></div>
+<div class="weather-crescent-moon"></div>
 
-<!-- ULTRA-REALISTIC 3D PUFFY CLOUDS -->
+<!-- SCATTERED NIGHT STARS -->
+<div class="stars-container" id="starsContainer"></div>
+
+<!-- WISPY HORIZONTAL CLOUDS -->
 <div class="clouds-container">
-    <div class="realistic-cloud cloud-puffed-1"></div>
-    <div class="realistic-cloud cloud-puffed-2"></div>
+    <div class="weather-wispy-cloud cloud-streak-1"></div>
+    <div class="weather-wispy-cloud cloud-streak-2"></div>
 </div>
 
-<!-- CINEMATIC 3D RAIN & SPLASH LAYER -->
+<!-- RAIN LAYER (Triggers automatically every 30 mins at night) -->
 <div class="rain-container" id="rainContainer"></div>
 
 <!-- NAVBAR -->
-<header class="fixed top-0 left-0 right-0 z-50 bg-[#0f172a]/90 backdrop-blur-xl border-b border-zinc-800 notranslate" translate="no">
+<header class="fixed top-0 left-0 right-0 z-50 bg-[#131722]/90 backdrop-blur-xl border-b border-zinc-800 notranslate" translate="no">
     <div class="max-w-7xl mx-auto px-5 sm:px-8 h-18 flex items-center justify-between">
         <div class="flex items-center gap-3">
             <div class="relative group">
@@ -411,7 +360,7 @@
         </button>
     </div>
 
-    <div id="mobileMenu" class="hidden md:hidden border-t border-zinc-800 px-5 py-5 bg-[#0f172a]/95 backdrop-blur-2xl notranslate" translate="no">
+    <div id="mobileMenu" class="hidden md:hidden border-t border-zinc-800 px-5 py-5 bg-[#131722]/95 backdrop-blur-2xl notranslate" translate="no">
         <div class="flex flex-col gap-4 text-sm text-zinc-300">
             <a href="#about" class="hover:text-sky-400">About</a>
             <a href="#services" class="hover:text-sky-400">Projects & Specializations</a>
@@ -1346,34 +1295,47 @@
 
 <!-- SCRIPTS -->
 <script>
+    // GENERATE RANDOM TWINKLING STARS
+    const starsContainer = document.getElementById('starsContainer');
+    const starCount = 60;
+    for (let i = 0; i < starCount; i++) {
+        const star = document.createElement('div');
+        star.classList.add('star');
+        star.style.left = `${Math.random() * 100}vw`;
+        star.style.top = `${Math.random() * 70}vh`;
+        const size = Math.random() * 2.5 + 1;
+        star.style.width = `${size}px`;
+        star.style.height = `${size}px`;
+        star.style.animationDuration = `${Math.random() * 3 + 2}s`;
+        star.style.animationDelay = `${Math.random() * 3}s`;
+        starsContainer.appendChild(star);
+    }
+
     // AUTOMATIC TIME-BASED ATMOSPHERE ENGINE
     function applyTimeBasedTheme() {
         const currentHour = new Date().getHours();
         const bodyEl = document.body;
-        const rainLayer = document.getElementById('rainContainer');
 
         if (currentHour >= 6 && currentHour < 18) {
             bodyEl.classList.remove('theme-night');
             bodyEl.classList.add('theme-morning');
-            if (rainLayer) rainLayer.style.display = 'none';
         } else {
             bodyEl.classList.remove('theme-morning');
             bodyEl.classList.add('theme-night');
-            if (rainLayer) rainLayer.style.display = 'block';
         }
     }
     applyTimeBasedTheme();
 
-    // CINEMATIC 3D RAIN & SPLASH GENERATOR
+    // CINEMATIC RAIN & SPLASH GENERATOR
     const rainContainer = document.getElementById('rainContainer');
-    const dropCount = 150;
+    const dropCount = 140;
 
     for (let i = 0; i < dropCount; i++) {
         const drop = document.createElement('div');
         drop.classList.add('drop');
         drop.style.left = `${Math.random() * 100}vw`;
         
-        const duration = Math.random() * 0.4 + 0.25;
+        const duration = Math.random() * 0.35 + 0.25;
         const delay = Math.random() * 5;
         const opacity = Math.random() * 0.7 + 0.3;
         const scale = Math.random() * 0.9 + 0.4;
@@ -1386,13 +1348,21 @@
         rainContainer.appendChild(drop);
     }
 
-    setInterval(() => {
-        const drops = document.querySelectorAll('.drop');
-        drops.forEach(drop => {
-            const randomSpeed = Math.random() * 0.5 + 0.2;
-            drop.style.animationDuration = `${randomSpeed}s`;
-        });
-    }, 7000);
+    // INTERMITTENT RAIN CYCLE: Triggers automatically every 30 minutes at night for 5 minutes
+    function initIntermittentRain() {
+        setInterval(() => {
+            const currentHour = new Date().getHours();
+            // Run only during night (6 PM to 6 AM)
+            if (currentHour < 6 || currentHour >= 18) {
+                rainContainer.classList.add('active');
+                // Stop rain after 5 minutes (300,000 ms)
+                setTimeout(() => {
+                    rainContainer.classList.remove('active');
+                }, 300000);
+            }
+        }, 1800000); // Checks / triggers every 30 minutes (1,800,000 ms)
+    }
+    initIntermittentRain();
 
     // GSAP Scroll Animations
     gsap.registerPlugin(ScrollTrigger);
