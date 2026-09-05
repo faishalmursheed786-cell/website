@@ -72,17 +72,93 @@
 
     <style>
         html { scroll-behavior: smooth; }
-        body { overflow-x: hidden; background-color: #09090b; color: #a1a1aa; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { overflow-x: hidden; background-color: #090d16; color: #a1a1aa; font-family: 'Plus Jakarta Sans', sans-serif; position: relative; min-height: 100vh; }
 
-        /* THREE.JS BACKGROUND CANVAS FOR NETWORK AUTOMATION NODES */
+        /* ATMOSPHERIC CLOUDS & RAIN BACKGROUND SYSTEM */
+        .clouds-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .cloud {
+            position: absolute;
+            background: rgba(30, 41, 59, 0.35);
+            backdrop-filter: blur(8px);
+            border-radius: 100px;
+            box-shadow: inset 0 0 25px rgba(255, 255, 255, 0.04);
+            animation: drift linear infinite;
+        }
+
+        .cloud::before, .cloud::after {
+            content: '';
+            position: absolute;
+            background: rgba(30, 41, 59, 0.35);
+            border-radius: 50%;
+        }
+
+        .cloud-1 {
+            width: 350px; height: 110px; top: 15%; left: -400px;
+            animation-duration: 55s;
+            transform: scale(1.6);
+        }
+        .cloud-1::before { width: 140px; height: 140px; top: -70px; left: 60px; }
+        .cloud-1::after { width: 110px; height: 110px; top: -45px; left: 180px; }
+
+        .cloud-2 {
+            width: 450px; height: 140px; top: 40%; left: -500px;
+            animation-duration: 75s;
+            animation-delay: -15s;
+            transform: scale(2.2) translateZ(50px);
+            opacity: 0.6;
+        }
+        .cloud-2::before { width: 170px; height: 170px; top: -90px; left: 90px; }
+        .cloud-2::after { width: 140px; height: 140px; top: -70px; left: 220px; }
+
+        @keyframes drift {
+            0% { transform: translateX(-600px) translateZ(0); }
+            100% { transform: translateX(calc(100vw + 600px)) translateZ(0); }
+        }
+
+        .rain-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .drop {
+            position: absolute;
+            background: linear-gradient(transparent, rgba(148, 163, 184, 0.55));
+            width: 1px;
+            height: 25px;
+            opacity: 0.6;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-50px) rotate(15deg); }
+            100% { transform: translateY(105vh) rotate(15deg); }
+        }
+
+        /* THREE.JS BACKGROUND CANVAS */
         #bgCanvas {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            z-index: 0; pointer-events: none; opacity: 0.75;
+            z-index: 2; pointer-events: none; opacity: 0.55;
         }
 
         /* DARK TECH GRID PATTERN */
         .tech-grid {
-            background-image: radial-gradient(rgba(249, 115, 22, 0.08) 1px, transparent 1px);
+            background-image: radial-gradient(rgba(249, 115, 22, 0.06) 1px, transparent 1px);
             background-size: 32px 32px;
         }
 
@@ -101,7 +177,7 @@
 
         /* DARK GLASS SAAS CARDS */
         .saas-card {
-            background: rgba(18, 18, 23, 0.75);
+            background: rgba(15, 23, 42, 0.75);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.08);
@@ -111,13 +187,13 @@
         }
         .saas-card:hover {
             border-color: rgba(249, 115, 22, 0.5);
-            background: rgba(24, 24, 32, 0.85);
+            background: rgba(30, 41, 59, 0.85);
             box-shadow: 0 10px 30px -10px rgba(249, 115, 22, 0.25);
             transform: translateY(-2px);
         }
 
         .super-glass-sidebar {
-            background: rgba(18, 18, 23, 0.85) !important;
+            background: rgba(15, 23, 42, 0.85) !important;
             backdrop-filter: blur(16px) !important;
             -webkit-backdrop-filter: blur(16px) !important;
             border-color: rgba(255, 255, 255, 0.08) !important;
@@ -134,7 +210,7 @@
         }
 
         .skill-badge {
-            padding: 8px 14px; border-radius: 8px; background: rgba(24, 24, 32, 0.6);
+            padding: 8px 14px; border-radius: 8px; background: rgba(30, 41, 59, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.08); color: #d4d4d8; font-size: 13px; font-weight: 500;
             transition: all .2s ease;
         }
@@ -146,7 +222,7 @@
         }
 
         .partner-card {
-            background: rgba(18, 18, 23, 0.75); border-radius: 14px;
+            background: rgba(15, 23, 42, 0.75); border-radius: 14px;
             border: 1px solid rgba(255, 255, 255, 0.08);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             transition: all 0.25s ease;
@@ -163,7 +239,7 @@
 
         /* ZOYA POPUP HEART ANIMATION STYLES */
         .zoya-card-custom {
-            background: rgba(18, 18, 23, 0.75) !important;
+            background: rgba(15, 23, 42, 0.75) !important;
             border: 1px solid rgba(244, 63, 94, 0.4) !important;
         }
         .zoya-card-custom:hover {
@@ -206,13 +282,22 @@
     </style>
 </head>
 
-<body class="bg-[#09090b] text-zinc-300 font-sans antialiased notranslate" translate="no">
+<body class="bg-[#090d16] text-zinc-300 font-sans antialiased notranslate" translate="no">
+
+<!-- 3D MOVING BACKGROUND CLOUDS -->
+<div class="clouds-container">
+    <div class="cloud cloud-1"></div>
+    <div class="cloud cloud-2"></div>
+</div>
+
+<!-- DYNAMIC RAIN EFFECT LAYER -->
+<div class="rain-container" id="rainContainer"></div>
 
 <!-- THREE.JS 3D NETWORK AUTOMATION BACKGROUND CANVAS -->
 <canvas id="bgCanvas"></canvas>
 
 <!-- NAVBAR -->
-<header class="fixed top-0 left-0 right-0 z-50 bg-[#09090b]/85 backdrop-blur-xl border-b border-zinc-800 notranslate" translate="no">
+<header class="fixed top-0 left-0 right-0 z-50 bg-[#090d16]/85 backdrop-blur-xl border-b border-zinc-800 notranslate" translate="no">
     <div class="max-w-7xl mx-auto px-5 sm:px-8 h-18 flex items-center justify-between">
         <div class="flex items-center gap-3">
             <div class="relative group">
@@ -248,7 +333,7 @@
         </button>
     </div>
 
-    <div id="mobileMenu" class="hidden md:hidden border-t border-zinc-800 px-5 py-5 bg-[#09090b]/95 backdrop-blur-2xl notranslate" translate="no">
+    <div id="mobileMenu" class="hidden md:hidden border-t border-zinc-800 px-5 py-5 bg-[#090d16]/95 backdrop-blur-2xl notranslate" translate="no">
         <div class="flex flex-col gap-4 text-sm text-zinc-300">
             <a href="#about" class="hover:text-orange-500">About</a>
             <a href="#services" class="hover:text-orange-500">Projects & Specializations</a>
@@ -550,7 +635,7 @@
 </section>
 
 <!-- ENTERPRISE ECOSYSTEM / GROUP COMPANIES -->
-<section id="ecosystem" class="py-24 relative overflow-hidden bg-[#09090b] border-b border-zinc-800">
+<section id="ecosystem" class="py-24 relative overflow-hidden bg-[#090d16] border-b border-zinc-800">
     <div class="max-w-7xl mx-auto px-5 sm:px-8">
         <div class="text-center max-w-3xl mx-auto mb-14 fade-up">
             <div class="text-orange-500 text-xs font-bold uppercase tracking-widest mb-2 font-mono">ENTERPRISE ECOSYSTEM & GROUP NETWORK</div>
@@ -743,7 +828,7 @@
 </section>
 
 <!-- SKILLS SECTION -->
-<section id="skills" class="py-24 border-t border-zinc-800 bg-[#09090b]">
+<section id="skills" class="py-24 border-t border-zinc-800 bg-[#090d16]">
     <div class="max-w-7xl mx-auto px-5 sm:px-8">
         <div class="text-center max-w-3xl mx-auto mb-12 fade-up">
             <div class="text-orange-500 text-xs font-bold uppercase tracking-widest mb-2 font-mono">Technical Skills</div>
@@ -950,7 +1035,7 @@
 </section>
 
 <!-- TESTIMONIALS SECTION -->
-<section class="py-24 bg-[#09090b] border-t border-zinc-800">
+<section class="py-24 bg-[#090d16] border-t border-zinc-800">
     <div class="max-w-7xl mx-auto px-5 sm:px-8">
         <div class="text-center max-w-3xl mx-auto mb-14 fade-up">
             <div class="text-orange-500 text-xs font-bold uppercase tracking-widest mb-2 font-mono">CLIENT & PARTNER ENDORSEMENTS</div>
@@ -991,7 +1076,7 @@
 </section>
 
 <!-- CONTACT SECTION -->
-<section id="contact" class="py-24 border-t border-zinc-800 bg-[#09090b]">
+<section id="contact" class="py-24 border-t border-zinc-800 bg-[#090d16]">
     <div class="max-w-7xl mx-auto px-5 sm:px-8">
         <div class="grid lg:grid-cols-2 gap-14 items-center">
             <div class="fade-up">
@@ -1071,7 +1156,7 @@
 </section>
 
 <!-- FOOTER -->
-<footer class="py-6 border-t border-zinc-800 bg-[#09090b] relative z-10">
+<footer class="py-6 border-t border-zinc-800 bg-[#090d16] relative z-10">
     <div class="max-w-7xl mx-auto px-5 sm:px-8">
         <div class="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
             <div class="text-zinc-500 font-mono">© <span id="year"></span> Faishal. All rights reserved.</div>
@@ -1152,7 +1237,7 @@
     </div>
 </div>
 
-<div id="heartModal" class="fixed inset-0 z-50 bg-[#09090b]/95 backdrop-blur-2xl hidden flex-col items-center justify-between p-6 sm:p-10 select-none">
+<div id="heartModal" class="fixed inset-0 z-50 bg-[#090d16]/95 backdrop-blur-2xl hidden flex-col items-center justify-between p-6 sm:p-10 select-none">
     <div class="w-full flex justify-end">
         <button onclick="closeHeartModal()" class="w-9 h-9 rounded-full bg-zinc-800 border border-zinc-700 text-zinc-300 hover:text-white hover:bg-red-600 flex items-center justify-center transition shadow-md"><i class="fa-solid fa-xmark text-sm"></i></button>
     </div>
@@ -1183,6 +1268,35 @@
 
 <!-- SCRIPTS -->
 <script>
+    // DYNAMIC VARIABLE RAIN EFFECT GENERATOR
+    const rainContainer = document.getElementById('rainContainer');
+    const dropCount = 120;
+
+    for (let i = 0; i < dropCount; i++) {
+        const drop = document.createElement('div');
+        drop.classList.add('drop');
+        drop.style.left = `${Math.random() * 100}vw`;
+        
+        const duration = Math.random() * 0.5 + 0.35; // between 0.35s and 0.85s
+        const delay = Math.random() * 5;
+        const opacity = Math.random() * 0.5 + 0.25;
+        
+        drop.style.animationDuration = `${duration}s`;
+        drop.style.animationDelay = `${delay}s`;
+        drop.style.opacity = opacity;
+        
+        rainContainer.appendChild(drop);
+    }
+
+    // Shift storm intensity over time for dynamic rain effect
+    setInterval(() => {
+        const drops = document.querySelectorAll('.drop');
+        drops.forEach(drop => {
+            const randomSpeed = Math.random() * 0.7 + 0.25;
+            drop.style.animationDuration = `${randomSpeed}s`;
+        });
+    }, 9000);
+
     // THREE.JS 3D NETWORK AUTOMATION NODES BACKGROUND
     const canvas = document.getElementById('bgCanvas');
     const scene = new THREE.Scene();
@@ -1191,10 +1305,9 @@
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-    // Create Network Nodes (Servers / Switches / Routers in 3D Space)
     const nodeCount = 45;
     const nodeGeometry = new THREE.SphereGeometry(0.08, 16, 16);
-    const nodeMaterial = new THREE.MeshBasicMaterial({ color: 0x0ea5e9 });
+    const nodeMaterial = new THREE.MeshBasicMaterial({ color: 0x38bdf8 });
     
     const nodesGroup = new THREE.Group();
     const nodePositions = [];
@@ -1213,15 +1326,13 @@
     }
     scene.add(nodesGroup);
 
-    // Create Dynamic Network Data Lines (Cabling / Fiber Links)
-    const linesMaterial = new THREE.LineBasicMaterial({ color: 0xf97316, transparent: true, opacity: 0.25 });
+    const linesMaterial = new THREE.LineBasicMaterial({ color: 0x38bdf8, transparent: true, opacity: 0.2 });
     const linesGeometry = new THREE.BufferGeometry();
     const lineMesh = new THREE.LineSegments(linesGeometry, linesMaterial);
     scene.add(lineMesh);
 
     camera.position.z = 6;
 
-    // Animation Loop for Network Node Simulation
     function animateThree() {
         requestAnimationFrame(animateThree);
 
@@ -1231,7 +1342,6 @@
             if (pos.x > 8 || pos.x < -8) nodesGroup.children[idx].userData.velocity.x *= -1;
             if (pos.y > 8 || pos.y < -8) nodesGroup.children[idx].userData.velocity.y *= -1;
 
-            // Connect nearby nodes to simulate network routing fabric
             for (let j = idx + 1; j < nodeCount; j++) {
                 const dist = pos.distanceTo(nodePositions[j]);
                 if (dist < 3.2) {
